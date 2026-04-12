@@ -1,0 +1,13 @@
+{
+  "name": "ghcp-workshop-lab-starter",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Starter project for the GitHub Copilot customer workshop lab",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}

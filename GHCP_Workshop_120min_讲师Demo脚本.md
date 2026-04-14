@@ -25,6 +25,45 @@ Demo 项目使用本目录下的 `lab-starter`。
 
 ---
 
+## 2.5 PPT 新增页讲法（Harness Engineering）
+
+在 Demo 前后，可插入 3–5 分钟解释：
+
+### 页 1：Harness Engineering 不是 magic prompt
+
+建议讲法：
+
+> 很多人第一次接触 Agent，会把注意力放在“prompt 怎么写更厉害”。
+> 但在真实团队里，稳定性往往不来自一句更花哨的话，而来自 Agent 的运行环境设计。
+>
+> 也就是：
+> - 有没有项目级 instructions
+> - 有没有角色边界
+> - 有没有高频任务模板
+> - 有没有 tests / lint / CI 给 agent 自动纠偏
+
+一句话总结：
+
+> Prompt engineering 提高一次对话质量；Harness engineering 提高整个团队长期使用 Agent 的成功率。
+
+### 页 2：参考案例页怎么讲
+
+可引用这些热门参考：
+
+- `github/awesome-copilot`
+- `walkinglabs/awesome-harness-engineering`
+- Copilot Customization Handbook
+
+建议讲法：
+
+> 这些高关注度资源都在说明一件事：
+> Agent 落地正在从“个人技巧”走向“工程资产”。
+>
+> 企业客户真正关心的不是“AI 会不会写代码”，
+> 而是“AI 能不能在一个可治理、可验证、可复用的环境里稳定干活”。
+
+---
+
 ## 3. Demo 场景
 
 ### 3.1 背景

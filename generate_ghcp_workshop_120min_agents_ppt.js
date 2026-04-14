@@ -31,7 +31,8 @@ const C = {
   lightPurple: 'F5EEFF'
 };
 
-const output = 'C:\\Users\\qichen2\\ppt-workspace\\ghcp-workshop-120min\\GHCP_Workshop_120min_Agent版.pptx';
+const path = require('path');
+const output = path.join(__dirname, 'GHCP_Workshop_120min_Agent版_升级版.pptx');
 
 function addHeader(slide, title, subtitle = '客户技术团队 · 120分钟') {
   slide.addShape(pptx.ShapeType.rect, {
@@ -370,19 +371,20 @@ function addTwoColumnTable(slide, rows, x, y, w1, w2, rowHeight, headerTitle1, h
   addTwoColumnTable(
     slide,
     [
-      ['开场与目标对齐（10 min）', 'Workshop 目标、受众定位、今天会交付什么'],
-      ['GHCP 核心操作与 IDE 路径（20 min）', 'Chat、Inline、Terminal、代码理解与协同方式'],
-      ['Agent Mode 与工作流升级（20 min）', 'Ask / Plan / Agent、local / CLI / cloud、审批与自治'],
-      ['最佳实践与治理边界（15 min）', '任务拆分、prompt 结构、审批策略、风险控制'],
-      ['Live Demo（20 min）', '在 ticket service 中完成一次 Ask → Plan → Agent 演示'],
-      ['Hands-on Lab（30 min）', '学员跟随操作手册完成 priority filter 与 validation 任务'],
-      ['Q&A 与落地建议（5 min）', '从试点任务到团队 adoption']
+      ['开场与目标对齐（5 min）', 'Workshop 目标、受众定位、今天会交付什么'],
+      ['GHCP 核心操作与 IDE 路径（10 min）', 'Chat、Inline、Terminal、代码理解与协同方式'],
+      ['Agent Mode 与工作流升级（10 min）', 'Ask / Plan / Agent、local / CLI / cloud、审批与自治'],
+      ['Live Demo：Ask → Plan → Agent（15 min）', '在 ticket service 中完成一次完整闭环演示'],
+      ['实验 1：AI-DLC 全生命周期（20 min）', '需求理解、规划、实现、测试、review、PR 描述'],
+      ['Harness Engineering 讲解 + 实验（25 min）', 'instructions / agents / prompt files / backpressure / 热门参考案例'],
+      ['Multi-Agent 讲解 + 实验（20 min）', 'Planner / Developer / Test / Security / Docs 角色协作'],
+      ['Q&A 与落地建议（15 min）', '从试点任务到团队 adoption']
     ],
     0.7,
-    1.3,
-    3.6,
-    8.7,
-    0.62,
+    1.12,
+    3.9,
+    8.4,
+    0.56,
     '环节',
     '讲解重点',
     C.blue
@@ -536,7 +538,65 @@ function addTwoColumnTable(slide, rows, x, y, w1, w2, rowHeight, headerTitle1, h
 // Slide 11
 {
   const slide = pptx.addSlide();
-  addSectionBand(slide, 'PART 2', 'Live Demo 与 Hands-on Lab', '同一业务场景贯穿 Demo 和实验，降低认知切换。');
+  addHeader(slide, 'Harness Engineering：重点不是 magic prompt，而是 Agent 的运行环境');
+  addFooter(slide, 'References: github/awesome-copilot · walkinglabs/awesome-harness-engineering · Copilot Customization Handbook');
+
+  addCard(slide, 0.7, 1.35, 3.9, 2.1, 'Prompt Engineering', '一次性对话技巧。适合快速尝试，但稳定性依赖个人经验，难以团队复用。', C.blue, C.lightBlue);
+  addCard(slide, 4.75, 1.35, 3.9, 2.1, 'Harness Engineering', '把规则、角色、工作流、反馈机制做成仓库资产，让 Agent 更稳而不是更玄学。', C.green, C.lightGreen);
+  addCard(slide, 8.8, 1.35, 3.8, 2.1, '企业价值', '可复用、可治理、可版本化、可审计，适合团队级落地，而不是个人技巧秀。', C.orange, C.lightOrange);
+
+  addTwoColumnTable(
+    slide,
+    [
+      ['Always-on 规则', 'copilot-instructions.md：项目共识、架构边界、测试与 PR 规范'],
+      ['角色边界', 'custom agents：planner / test / security / docs 等职责划分'],
+      ['任务模板', 'prompt files：把高频任务模板化，而不是每次重写 prompt'],
+      ['能力扩展', 'MCP：让 Agent 访问外部知识、服务与工具'],
+      ['自动纠偏', 'tests / lint / CI / hooks：让 Agent 能自己发现并修正错误']
+    ],
+    0.78,
+    3.9,
+    2.45,
+    9.5,
+    0.5,
+    'Harness 维度',
+    '在 GitHub Copilot 中的体现',
+    C.green
+  );
+}
+
+// Slide 12
+{
+  const slide = pptx.addSlide();
+  addHeader(slide, '参考案例：为什么顶级团队更重视 Harness，而不是“神奇提示词”');
+  addFooter(slide);
+
+  addCard(slide, 0.75, 1.35, 4.0, 2.0, 'github/awesome-copilot', '把 instructions、agents、skills、hooks、workflows 组织成可复用模块，说明 customization 正在从技巧走向资产。', C.blue, C.lightBlue);
+  addCard(slide, 4.9, 1.35, 4.0, 2.0, 'walkinglabs/awesome-harness-engineering', '把 harness 拆成 context、guardrails、specs、evals、runtime，说明这是一整层系统设计。', C.green, C.lightGreen);
+  addCard(slide, 9.05, 1.35, 3.55, 2.0, '行业共识', '效果差往往不是模型不行，而是缺少结构、边界和反馈闭环。', C.orange, C.lightOrange);
+
+  addBulletList(slide, [
+    '没有测试、lint、CI 的仓库，换更强模型通常只是“更会胡来”',
+    '好的 Harness 会让同一句 prompt 在不同工程师手里也更稳定',
+    '把经验沉淀成 instructions / agents / prompt files，才具备团队复用价值',
+    '企业真正需要的是可预测、可治理、可回归的 Agent，而不是偶尔惊艳一次'
+  ], 0.85, 3.95, 11.6, { fontSize: 18, gap: 0.58, bulletColor: C.orange });
+
+  slide.addText('讲师建议：这一页可作为“为什么要做 Harness Engineering”的管理层解释页。', {
+    x: 0.85,
+    y: 6.45,
+    w: 11.5,
+    h: 0.3,
+    fontSize: 13,
+    color: C.gray,
+    margin: 0
+  });
+}
+
+// Slide 13
+{
+  const slide = pptx.addSlide();
+  addSectionBand(slide, 'PART 2', 'Live Demo、Harness Engineering 与动手实验', '从 Agent 使用进阶到工程化 harness，再进入 AIDLC / Multi-Agent 实操。');
 }
 
 // Slide 12
@@ -577,16 +637,17 @@ function addTwoColumnTable(slide, rows, x, y, w1, w2, rowHeight, headerTitle1, h
 // Slide 14
 {
   const slide = pptx.addSlide();
-  addHeader(slide, 'Hands-on Lab 设计');
+  addHeader(slide, '升级版 Hands-on Lab 设计');
   addFooter(slide);
 
   addTwoColumnTable(
     slide,
     [
-      ['Task A', '实现 GET /tickets 的 priority 过滤，并补测试'],
-      ['Task B', '为 POST /tickets 增加 title / customer / priority 校验，并补测试'],
-      ['验证', '运行 npm test；如需额外验证，可启动服务并用 Invoke-RestMethod 调用 API'],
-      ['复盘', '讨论 Ask / Plan / Agent 在本实验中分别承担了什么角色']
+      ['实验 1：AI-DLC', '新增 /tickets/summary，完整走 Ask → Plan → Agent → Test → Review → PR 描述'],
+      ['实验 2：Harness Engineering', '构建 instructions / planner agent / test-engineer / workflow prompt，并理解 backpressure'],
+      ['实验 3：Multi-Agent', 'Developer → Test Engineer → Security Reviewer → Doc Writer 串行协作'],
+      ['验证', '运行 npm test；必要时启动服务验证 API；讨论治理与边界'],
+      ['复盘', '总结什么时候该用 Ask / Plan / Agent / custom agents / prompt files']
     ],
     0.75,
     1.45,
@@ -598,7 +659,7 @@ function addTwoColumnTable(slide, rows, x, y, w1, w2, rowHeight, headerTitle1, h
     C.blue
   );
 
-  slide.addText('实验手册原则：每一步都给出推荐 prompt、预期现象、验证命令，确保学员可以独立完成。', {
+  slide.addText('升级版实验手册原则：不仅给 prompt，还给结构化 harness、角色边界和验证闭环，确保学员理解“为什么这样设计”。', {
     x: 0.82,
     y: 5.3,
     w: 11.8,

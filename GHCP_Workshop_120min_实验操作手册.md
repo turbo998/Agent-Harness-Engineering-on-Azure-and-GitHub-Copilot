@@ -2,7 +2,7 @@
 
 ## 1. 实验目标
 
-本实验面向客户技术团队，目标是在一个小型 Node.js 项目中，使用 GitHub Copilot 完成从 **理解代码**、**生成计划** 到 **Agent 模式修改代码并验证结果** 的完整闭环。
+本实验面向客户技术团队，目标是在一个小型 Node.js 项目中，使用 GitHub Copilot 完成从 **理解代码**、**生成计划** 到 **Agent 模式修改代码并验证结果** 的完整闭环，并进一步理解 **Harness Engineering** 的核心思想：不是只靠 prompt，而是通过结构化环境设计提升 Agent 稳定性。
 
 完成后，学员应能够：
 
@@ -11,6 +11,20 @@
 3. 使用 **Agent** 模式完成明确的小型开发任务
 4. 理解何时使用 Ask、Plan、Agent
 5. 理解审批与自治边界
+6. 理解 instructions / custom agents / prompt files / tests 在 Agent 工程化中的作用
+
+### 1.1 讲师可补充的行业参考
+
+在讲 Harness Engineering 时，可结合以下热门参考资源：
+
+- `github/awesome-copilot`
+- `walkinglabs/awesome-harness-engineering`
+- Copilot Customization Handbook
+
+推荐讲法：
+
+> 企业落地 Agent，重点不是写出一个更“神奇”的 prompt，
+> 而是设计一个让 Agent 更稳、更可控、更可复用的工作环境。
 
 ---
 

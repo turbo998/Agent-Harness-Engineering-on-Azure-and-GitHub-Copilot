@@ -1,0 +1,23 @@
+{
+  "name": "ghcp-workshop-120min",
+  "version": "1.0.0",
+  "description": "Customer-facing GitHub Copilot workshop package for a 120-minute technical session.",
+  "main": "generate_ghcp_workshop_120min_agents_ppt.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/turbo998/ghcp-workshop-120min.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/turbo998/ghcp-workshop-120min/issues"
+  },
+  "homepage": "https://github.com/turbo998/ghcp-workshop-120min#readme",
+  "devDependencies": {
+    "pptxgenjs": "^4.0.1"
+  }
+}

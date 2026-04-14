@@ -28,11 +28,13 @@ Customer-facing GitHub Copilot workshop package for a 120-minute technical sessi
 需求理解(Ask) → 规划(Plan) → 实现(Agent) → 测试(Agent) → Review(Ask) → PR描述(Ask)
 ```
 
-### 实验 2：Harness Engineering（15 min）
-通过结构化配置驯服 Agent 行为：
+### 实验 2：Harness Engineering（升级为 20–25 min 深水版）
+通过结构化配置 + 工程反馈闭环驯服 Agent 行为：
 - `copilot-instructions.md` — 全局项目规范
-- Custom Agent — 专用角色（test-engineer）
+- Custom Agent — 专用角色（planner / test-engineer）
 - Prompt File — 可复用任务模板
+- Backpressure — tests / lint / CI 形成自我纠偏机制
+- 结合热门参考：`github/awesome-copilot`、`walkinglabs/awesome-harness-engineering`、Copilot Customization Handbook
 
 ### 实验 3：Multi-Agent 协作（20 min）
 多角色 Agent 串行协作：

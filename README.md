@@ -1,3 +1,5 @@
+🌐 [English](en/README.md) | [中文](README.md)
+
 # Harness Engineering in GitHub Copilot Workshop
 
 > 🚀 180分钟企业级 GitHub Copilot 工作坊 — 从基础补全到多智能体协作，全面掌握 Copilot 工程化实践。
@@ -5,7 +7,7 @@
 ## 🆕 v2 新变化
 
 | 维度 | v1 | v2 |
-|------|----|----|
+|------|----|---|
 | 时长 | 120 分钟 | **180 分钟** |
 | 实验数 | 3 Labs | **5 Labs** |
 | 智能体 | 3 Agents | **10 Agents** |

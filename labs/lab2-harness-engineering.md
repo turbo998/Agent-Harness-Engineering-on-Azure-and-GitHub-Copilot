@@ -1,55 +1,55 @@
-# 实验 2：Harness Engineering — 从“写 prompt”升级到“设计 Agent 运行环境”
+# Lab 2: Harness Engineering — From "Writing Prompts" to "Designing the Agent Runtime Environment"
 
-## 实验目标
+## Lab Objective
 
-这不是一个简单的 `copilot-instructions.md` 入门实验，而是一个 **Harness Engineering 深水版实验**。
+This is not a simple `copilot-instructions.md` introductory lab — it is a **deep-dive Harness Engineering lab**.
 
-完成后，学员应能够：
-1. 理解 **prompt engineering ≠ harness engineering**
-2. 识别 GitHub Copilot 中主要的 harness 组件：instructions / prompt files / custom agents / MCP / hooks / tests / lint / repo structure
-3. 基于真实项目，把“经验”沉淀成可复用、可版本化、可团队共享的 Agent 运行环境
-4. 理解为什么企业落地 Agent 时，**环境设计比 prompt 调优更重要**
-
----
-
-## 实验时长
-建议从原来的 15 分钟升级为 **20–25 分钟**
-
-如果总时长仍必须卡在 120 分钟，可选方案：
-- Workshop 现场做 **核心版 15 分钟**
-- 把进阶部分作为 **课后扩展实验 / 附加讨论 10 分钟**
+After completing this lab, participants should be able to:
+1. Understand that **prompt engineering ≠ harness engineering**
+2. Identify the main harness components in GitHub Copilot: instructions / prompt files / custom agents / MCP / hooks / tests / lint / repo structure
+3. Based on a real project, codify "experience" into a reusable, version-controlled, team-shareable Agent runtime environment
+4. Understand why **environment design matters more than prompt tuning** when enterprises adopt Agents
 
 ---
 
-## 这一节为什么要加深？
+## Duration
+Recommended upgrade from the original 15 minutes to **20–25 minutes**
 
-很多团队对 Harness Engineering 的理解还停留在：
-
-> “哦，就是多写几个 instructions。”
-
-这其实太浅了。
-
-更准确地说：
-
-> **Harness Engineering = 设计 Agent 的工作环境，让它更容易做对事、更难做错事、做错后还能自我修正。**
-
-也就是把注意力从“怎么写一句更聪明的 prompt”，转向：
-- 仓库结构是否清晰
-- 约束是否能被工具机械执行
-- 是否有快速反馈闭环（test/lint/typecheck）
-- 是否有角色分工和 handoff
-- 是否能把高频任务模板化
+If the total workshop must stay within 120 minutes, options include:
+- Do the **core version in 15 minutes** during the workshop
+- Leave the advanced parts as a **post-workshop extension / additional 10-minute discussion**
 
 ---
 
-## 结合 GitHub/行业热门参考仓库与资料
+## Why Go Deeper on This Topic?
 
-这一实验建议讲师先给客户一个“行业参考地图”，说明这不是你自己拍脑袋想出来的，而是整个 Agent 工程实践正在收敛的方向。
+Many teams' understanding of Harness Engineering is still stuck at:
 
-### 建议引用的热门参考源
+> "Oh, it's just writing a few more instructions."
+
+That's far too shallow.
+
+More accurately:
+
+> **Harness Engineering = Designing the Agent's working environment so it's easier to do the right thing, harder to do the wrong thing, and able to self-correct when it does make mistakes.**
+
+This means shifting attention from "how to write a cleverer prompt" to:
+- Is the repository structure clear?
+- Can constraints be mechanically enforced by tools?
+- Is there a fast feedback loop (test/lint/typecheck)?
+- Is there role separation and handoff?
+- Can high-frequency tasks be templatized?
+
+---
+
+## Industry & GitHub Reference Resources
+
+For this lab, instructors should first give participants an "industry reference map" to show that this isn't something invented on the spot — it's the direction the entire Agent engineering practice is converging toward.
+
+### Recommended Reference Sources
 
 #### 1. `github/awesome-copilot`
-GitHub 官方/社区高关注度资源集合，覆盖：
+GitHub official/community high-visibility resource collection covering:
 - instructions
 - custom agents
 - skills
@@ -57,143 +57,143 @@ GitHub 官方/社区高关注度资源集合，覆盖：
 - workflows
 - plugins
 
-**Workshop 可借用的讲法：**
-> GitHub 正在把 Copilot customization 从“零散技巧”演进成“可组合的工程资产”。
-> 我们今天实验里做的 instructions / agents / prompt files，本质上就是这个生态里的最小可落地单元。
+**How to frame it in the workshop:**
+> GitHub is evolving Copilot customization from "scattered tips and tricks" to "composable engineering assets."
+> The instructions / agents / prompt files we're building in today's lab are essentially the smallest deployable units of this ecosystem.
 
 #### 2. `walkinglabs/awesome-harness-engineering`
-这是一个很好的“harness engineering 参考导航”，把这个领域拆成：
+A great "harness engineering reference guide" that breaks the field into:
 - context / memory
 - constraints / guardrails
 - specs / agent files
 - evals / observability
 - runtimes / harnesses
 
-**Workshop 可借用的讲法：**
-> Harness 不是单个文件，而是一整层系统设计。
-> 我们今天在 GitHub Copilot 里做的是这个大框架下最贴近企业开发团队的一层：repo-local harness。
+**How to frame it in the workshop:**
+> A harness is not a single file — it's an entire layer of system design.
+> What we're doing today in GitHub Copilot is the layer closest to enterprise dev teams within that larger framework: repo-local harness.
 
 #### 3. GitHub Copilot Customization Handbook
-这份材料把 GitHub Copilot 的 customization 机制梳理得很清楚：
+This material clearly organizes GitHub Copilot's customization mechanisms:
 - Instructions = always-on context
 - Prompt Files = on-demand reusable workflows
 - Custom Agents = named personas with scoped rules/tools
 - MCP = external capability extension
 
-**Workshop 可借用的讲法：**
-> 不是所有规则都应该放进一个 instructions 文件里。
-> 要按“常驻规则 / 按需模板 / 角色边界 / 外部能力”来拆。
+**How to frame it in the workshop:**
+> Not all rules should go into a single instructions file.
+> You should split them by: always-on rules / on-demand templates / role boundaries / external capabilities.
 
-#### 4. AgentPatterns / HumanLayer / OpenAI 等关于 Harness Engineering 的文章
-这些材料共同强调一个核心共识：
+#### 4. AgentPatterns / HumanLayer / OpenAI articles on Harness Engineering
+These materials share a core consensus:
 
-> **效果差往往不是模型不行，而是 harness 不行。**
+> **Poor results are usually not because the model isn't good enough — it's because the harness isn't good enough.**
 
-也就是说，如果仓库缺少：
-- 类型约束
-- 测试反馈
-- 结构化规则
-- 任务模板
-- 角色边界
+In other words, if the repository lacks:
+- Type constraints
+- Test feedback
+- Structured rules
+- Task templates
+- Role boundaries
 
-那么你换更强模型，也只是“更会胡来”。
+Then switching to a more powerful model just means it will "make mistakes more confidently."
 
 ---
 
-## 核心理念：从 Prompt Engineering 到 Harness Engineering
+## Core Concept: From Prompt Engineering to Harness Engineering
 
-### Prompt Engineering 的思路
+### The Prompt Engineering Approach
 ```text
-请帮我优雅地、安全地、符合规范地添加一个 API，并补充测试。
+Please help me elegantly, safely, and following standards to add an API, and supplement tests.
 ```
 
-问题：
-- 一次性
-- 不稳定
-- 对不同人不可复用
-- 下一轮对话未必还有效
-- Agent 长会话后容易漂移
+Problems:
+- One-shot
+- Unstable
+- Not reusable across people
+- May not work in the next conversation
+- Agent drifts in long sessions
 
-### Harness Engineering 的思路
-把上面的要求拆进不同层：
+### The Harness Engineering Approach
+Break the above requirements into different layers:
 
-| 层 | 机制 | 作用 |
-|---|---|---|
-| Always-on 规则 | `copilot-instructions.md` | 项目级规范 |
-| 角色边界 | `custom agents` | 谁能改代码，谁只做 review |
-| 标准任务模板 | `prompt files` | 把高频任务标准化 |
-| 外部能力 | `MCP` | 访问额外工具/API |
-| 反馈闭环 | tests / lint / CI | 自动给 agent 反向约束 |
-| 架构约束 | repo structure / naming | 限制错误解空间 |
+| Layer | Mechanism | Purpose |
+|-------|-----------|---------|
+| Always-on rules | `copilot-instructions.md` | Project-level standards |
+| Role boundaries | `custom agents` | Who can modify code, who only reviews |
+| Standard task templates | `prompt files` | Standardize high-frequency tasks |
+| External capabilities | `MCP` | Access additional tools/APIs |
+| Feedback loop | tests / lint / CI | Automatic back-pressure constraints for the agent |
+| Architecture constraints | repo structure / naming | Limit the error search space |
 
-**一句话：**
-> Prompt 是一次性对话技巧；Harness 是长期可复用的生产环境设计。
+**In one sentence:**
+> Prompts are one-shot conversation techniques; harnesses are long-term reusable production environment designs.
 
 ---
 
-## 讲师先讲一个“反例”
+## Instructor: Start with a Counter-Example
 
-先让客户看到：**为什么单靠 prompt 不够。**
+Let participants see first: **why prompts alone aren't enough.**
 
-### 反例 Prompt
+### Counter-Example Prompt
 ```text
 Implement a new endpoint cleanly and safely.
 ```
 
-这类 prompt 看起来没错，但太多事情都没有被“确定下来”：
-- cleanly 是什么意思？
-- safely 的标准是什么？
-- 用什么测试框架？
-- 能不能装新包？
-- 改生产代码和改测试代码的边界是什么？
-- 输出 PR 描述的格式是什么？
+This prompt looks fine, but too many things are left undefined:
+- What does "cleanly" mean?
+- What's the standard for "safely"?
+- Which test framework to use?
+- Can new packages be installed?
+- What's the boundary between modifying production code and test code?
+- What format for the PR description?
 
-所以 Agent 只能“猜”。
+So the Agent can only "guess."
 
-**Harness Engineering 的目标就是：把原来靠猜的部分，变成结构化约束。**
+**The goal of Harness Engineering is: turn what used to be guessing into structured constraints.**
 
 ---
 
-## GitHub Copilot 中最重要的 Harness 组件
+## The Most Important Harness Components in GitHub Copilot
 
 ### 1. Custom Instructions
-文件：`.github/copilot-instructions.md`
+File: `.github/copilot-instructions.md`
 
-作用：项目级常驻规则，自动注入所有 Ask / Plan / Agent 对话。
+Purpose: Project-level always-on rules, automatically injected into all Ask / Plan / Agent conversations.
 
-适合放：
-- 技术栈约束
-- 架构原则
-- 测试/错误处理标准
-- PR/commit 规范
+Good for:
+- Tech stack constraints
+- Architecture principles
+- Testing/error handling standards
+- PR/commit conventions
 
-不适合放：
-- 一堆可由 lint 机械执行的小语法偏好
-- 每次都不同的任务要求
-- 太长太碎的 checklist
+Not good for:
+- Minor syntax preferences that can be mechanically enforced by lint
+- Task requirements that differ every time
+- Overly long, fragmented checklists
 
 ---
 
 ### 2. Prompt Files
-文件：`.github/prompts/*.prompt.md`
+File: `.github/prompts/*.prompt.md`
 
-作用：把高频任务模板化，按需触发。
+Purpose: Templatize high-frequency tasks, triggered on demand.
 
-适合放：
-- “新增 API”
-- “生成 PR 描述”
-- “做安全 review”
-- “做 migration”
-- “生成 release note”
+Good for:
+- "Add an API"
+- "Generate PR description"
+- "Do a security review"
+- "Do a migration"
+- "Generate release notes"
 
 ---
 
 ### 3. Custom Agents
-文件：`.github/agents/*.md` 或 `.agent.md`
+File: `.github/agents/*.md` or `.agent.md`
 
-作用：定义专用角色、工具边界、行为边界。
+Purpose: Define specialized roles, tool boundaries, and behavior boundaries.
 
-适合放：
+Good for:
 - test engineer
 - security reviewer
 - docs writer
@@ -202,44 +202,44 @@ Implement a new endpoint cleanly and safely.
 
 ---
 
-### 4. MCP / 外部工具
-文件：`.vscode/mcp.json`（或用户级配置）
+### 4. MCP / External Tools
+File: `.vscode/mcp.json` (or user-level config)
 
-作用：扩展 Agent 的可用能力。
+Purpose: Extend the Agent's available capabilities.
 
-适合放：
-- 查询内部文档
-- 调用 API
-- 访问 issue tracker
-- 调用测试环境 / 数据库 / design system 文档
+Good for:
+- Querying internal documentation
+- Calling APIs
+- Accessing issue trackers
+- Calling test environments / databases / design system docs
 
 ---
 
-### 5. Backpressure（反馈压力）
-这不是一个文件，而是一套反馈系统：
+### 5. Backpressure (Feedback Pressure)
+This isn't a file — it's a feedback system:
 - `npm test`
 - lint
 - typecheck
 - CI
 - pre-commit hook
 
-Harness Engineering 里一个非常重要的思想是：
+A critical principle in Harness Engineering:
 
-> **让 Agent 自己撞上清晰的错误，再自己修正。**
+> **Let the Agent hit clear errors on its own, then self-correct.**
 
-如果没有这些机制，最后所有错误都要人肉 review 去发现，效率会很差。
+Without these mechanisms, all errors must be caught by human review, which is far less efficient.
 
 ---
 
-## 实验设计：三层渐进式 Harness 搭建
+## Lab Design: Three-Layer Progressive Harness Building
 
-本实验分三层：
+This lab has three layers:
 
-1. **规则层**：先定义 always-on 的工程约束
-2. **角色层**：再定义不同 Agent 的职责边界
-3. **任务层**：最后定义高频任务模板
+1. **Rule Layer**: First define always-on engineering constraints
+2. **Role Layer**: Then define different Agents' responsibility boundaries
+3. **Workflow Layer**: Finally define high-frequency task templates
 
-也就是：
+That is:
 
 ```text
 Rule Layer → Role Layer → Workflow Layer
@@ -247,17 +247,17 @@ Rule Layer → Role Layer → Workflow Layer
 
 ---
 
-# Part A：规则层（Rule Layer）
+# Part A: Rule Layer
 
-## Step 1：创建更像“项目宪法”的 copilot-instructions.md
+## Step 1: Create a "Project Constitution" Style copilot-instructions.md
 
-在 `lab-starter` 目录下创建或更新：
+In the `lab-starter` directory, create or update:
 
 ```text
 lab-starter/.github/copilot-instructions.md
 ```
 
-建议内容升级为：
+Recommended upgraded content:
 
 ```markdown
 # Ticket Service Engineering Rules
@@ -301,60 +301,60 @@ When asked for a PR description, always include:
 - Verification Steps
 ```
 
-### 讲师讲解重点
+### Instructor Teaching Points
 
-不要把它讲成“提示词文件”，而要讲成：
+Don't present it as a "prompt file" — present it as:
 
-> 这是项目级 Agent 操作约束。
-> 它不是告诉 Agent “帮我干一件事”，而是规定 Agent **长期怎么干活**。
+> This is a project-level Agent operating constraint.
+> It's not telling the Agent "help me do one thing" — it's defining **how the Agent works long-term**.
 
-### 这里结合 GitHub 热门 repo 可以讲的洞察
+### Insights from Popular GitHub Repos
 
-参考 `github/awesome-copilot` 与 Copilot Customization Handbook，可以引导客户理解：
-- Instructions 是 **always-on context**
-- 它最适合承载 **项目共识**，而不是一次性任务细节
+Referencing `github/awesome-copilot` and the Copilot Customization Handbook, guide participants to understand:
+- Instructions are **always-on context**
+- They're best suited for **project-level consensus**, not one-off task details
 
 ---
 
-## Step 2：做一次“弱 harness vs 强 harness”对比
+## Step 2: Run a "Weak Harness vs Strong Harness" Comparison
 
-### Prompt A（只有 prompt，没有 harness）
+### Prompt A (prompt only, no harness)
 ```text
 Add a PUT /tickets/:id endpoint.
 ```
 
-### Prompt B（有 harness）
-同样输入：
+### Prompt B (with harness)
+Same input:
 ```text
 Add a PUT /tickets/:id endpoint.
 ```
 
-### 观察重点
-让学员比较：
-- 有没有自动想到补测试
-- 有没有遵循现有错误处理风格
-- 有没有试图装新包
-- 有没有给出更结构化的交付总结
+### What to Observe
+Have participants compare:
+- Did it automatically think to add tests?
+- Did it follow the existing error handling style?
+- Did it try to install new packages?
+- Did it provide a more structured delivery summary?
 
-### 学习点
-**最好的 harness，是让同一句 prompt 在不同人手里也更稳定。**
+### Learning Point
+**The best harness makes the same prompt more stable across different people.**
 
 ---
 
-# Part B：角色层（Role Layer）
+# Part B: Role Layer
 
-## Step 3：创建一个“Planner Agent”而不是只创建 test-engineer
+## Step 3: Create a "Planner Agent" — Not Just a test-engineer
 
-很多 workshop 里只讲 test agent，会显得太轻。
-更好的方式是展示：**角色分工本身就是 harness。**
+Many workshops only cover a test agent, which feels too lightweight.
+A better approach is to show: **role separation itself is a harness.**
 
-创建文件：
+Create file:
 
 ```text
 lab-starter/.github/agents/planner.agent.md
 ```
 
-内容：
+Content:
 
 ```markdown
 ---
@@ -387,70 +387,70 @@ You are a planning specialist for this repository.
 5. Verification steps
 ```
 
-### 试运行 Prompt
+### Test Run Prompt
 ```text
 @planner Plan how to add a PUT /tickets/:id endpoint with validation and tests.
 ```
 
-### 你希望学员看到
-- 它只做 plan，不直接改代码
-- 它主动指出影响文件和 edge cases
-- 它把“实现”与“设计”分开
+### What You Want Participants to See
+- It only plans — it doesn't directly modify code
+- It proactively identifies affected files and edge cases
+- It separates "design" from "implementation"
 
-### 讲师要点
-这一步可以联系 GitHub Copilot Customization Handbook 里关于 custom agents 的定位：
+### Instructor Key Points
+This step can be connected to the GitHub Copilot Customization Handbook's positioning of custom agents:
 
-> Agent 不是“换个皮肤的 prompt”，而是定义一个会话级的角色边界。
+> An agent is not "a prompt with a different skin" — it defines a session-level role boundary.
 
-也可顺带引出 Multi-Agent 章节：
-- Planner 先规划
-- Developer 再实现
-- Reviewer 再审查
+You can also segue into the Multi-Agent chapter:
+- Planner plans first
+- Developer implements
+- Reviewer reviews
 
 ---
 
-## Step 4：保留 test-engineer，但把实验升级成“权限边界示范”
+## Step 4: Keep test-engineer, but Upgrade the Lab to a "Permission Boundary Demo"
 
-创建或使用：
+Create or use:
 
 ```text
 lab-starter/.github/agents/test-engineer.md
 ```
 
-然后给出 prompt：
+Then give the prompt:
 
 ```text
 @test-engineer Review the ticketStore test coverage and add missing tests for update and delete operations.
 ```
 
-### 观察重点
-- 是否只修改测试文件
-- 是否主动跑测试
-- 是否输出 coverage gap summary
+### What to Observe
+- Does it only modify test files?
+- Does it proactively run tests?
+- Does it output a coverage gap summary?
 
-### 讲师强调
-这里要把“角色分工”讲成 harness，而不是玩法：
+### Instructor Emphasis
+Frame "role separation" as a harness, not a gimmick:
 
-> Harness Engineering 的一个关键点是：**不是让一个万能 Agent 什么都做，而是让多个受约束的 Agent 各做各的事。**
+> A key principle of Harness Engineering is: **instead of having one omnipotent Agent do everything, have multiple constrained Agents each doing their own thing.**
 
-这与 `github/awesome-copilot` 里大量 custom agents 的思路是一致的：
-- 专家化
-- 工具和边界收敛
-- 任务职责清晰
+This aligns with the large number of custom agents in `github/awesome-copilot`:
+- Specialization
+- Tool and boundary convergence
+- Clear task responsibilities
 
 ---
 
-# Part C：任务层（Workflow Layer）
+# Part C: Workflow Layer
 
-## Step 5：创建一个更完整的 Prompt File，而不是简单的 add-endpoint 模板
+## Step 5: Create a More Complete Prompt File — Not Just a Simple add-endpoint Template
 
-创建：
+Create:
 
 ```text
 lab-starter/.github/prompts/ship-api-change.prompt.md
 ```
 
-内容建议：
+Recommended content:
 
 ```markdown
 ---
@@ -481,138 +481,138 @@ Your job is to deliver an API change safely in this repository.
 - Risks / follow-up suggestions
 ```
 
-### 使用方式
+### Usage
 ```text
 /ship-api-change change_request="Add a PUT /tickets/:id endpoint that updates title, priority, and status"
 ```
 
-### 这一步的意义
-不是“又多了一个 prompt file”，而是：
+### Significance of This Step
+It's not "just another prompt file" — it's:
 
-> 你开始把团队高频工作流模板化了。
+> You've started templatizing your team's high-frequency workflows.
 
-这和 GitHub 上高关注度 customization repo 的核心思路一致：
-- 把临时对话沉淀成长期资产
-- 把个人技巧转成团队复用能力
+This aligns with the core philosophy of high-visibility customization repos on GitHub:
+- Turn ad-hoc conversations into long-term assets
+- Turn individual tricks into team-reusable capabilities
 
 ---
 
-# Part D：把 Harness Engineering 讲到“工程化”而不是“配置化”
+# Part D: Taking Harness Engineering from "Configuration" to "Engineering"
 
-## Step 6：加入 Backpressure 讨论（这是实验加深的关键）
+## Step 6: Add a Backpressure Discussion (This Is the Key to Deepening the Lab)
 
-这一段是整个实验升级里最重要的部分。
+This section is the most important part of the entire lab upgrade.
 
-### 先问客户一个问题
-> 如果 Agent 改错了代码，它怎么知道自己错了？
+### Start by Asking Participants a Question
+> If the Agent writes incorrect code, how does it know it's wrong?
 
-答案不是：
-- 靠模型更聪明
-- 靠 prompt 更优雅
+The answer is NOT:
+- A smarter model
+- A more elegant prompt
 
-答案是：
-- 靠测试
-- 靠 lint
-- 靠类型
-- 靠 CI
-- 靠 hooks
+The answer is:
+- Tests
+- Lint
+- Types
+- CI
+- Hooks
 
-### 讲给客户的核心金句
-> **Harness 的本质不是“告诉 Agent 做什么”，而是“让系统能及时告诉 Agent 它做错了什么”。**
+### Core Message for Participants
+> **The essence of a harness is not "telling the Agent what to do" — it's "enabling the system to promptly tell the Agent what it did wrong."**
 
-### 建议讲法（可结合 AgentPatterns / HumanLayer）
+### Suggested Framing (Can Reference AgentPatterns / HumanLayer)
 
-可以这样解释：
+Explain it this way:
 
-- Prompt 负责“起步方向”
-- Harness 负责“过程纠偏”
-- Backpressure 负责“自我修正”
+- Prompts provide the "initial direction"
+- Harness provides "course correction along the way"
+- Backpressure provides "self-correction"
 
-如果没有 backpressure，Agent 就像在黑屋子里走路；
-如果有 backpressure，它就能一边撞墙一边自己修方向。
+Without backpressure, the Agent is walking in a dark room;
+with backpressure, it can bump into walls and adjust its own direction.
 
-### 现场操作建议
-让学员做一个很小的改动，然后要求 Agent：
+### Hands-On Suggestion
+Have participants make a small change, then ask the Agent:
 
 ```text
 Implement the endpoint and do not stop until tests pass.
 ```
 
-然后观察：
-- Agent 是否会主动运行测试
-- 遇到失败是否会迭代修复
-- 最终是否基于测试结果给出结论
+Then observe:
+- Does the Agent proactively run tests?
+- Does it iterate on fixes when tests fail?
+- Does it reach a conclusion based on test results?
 
-### 讲师总结
-这一步要明确落到企业价值：
+### Instructor Summary
+Ground this step in enterprise value:
 
-> 企业真正需要的不是一个“偶尔很聪明”的 Agent，
-> 而是一个在工程系统中 **可预测、可回归、可审计** 的 Agent。
-
----
-
-# Part E：把热门 repo 的思想映射到这次实验
-
-## 参考映射表
-
-| 参考源 | 关键思想 | 在本实验中的映射 |
-|---|---|---|
-| `github/awesome-copilot` | customizations 应模块化组合 | instructions / agents / prompt files 分层设计 |
-| `walkinglabs/awesome-harness-engineering` | harness 是一整层系统，不止 prompt | 本实验加入 role / workflow / backpressure |
-| Copilot Customization Handbook | instructions / prompts / agents / MCP 各司其职 | 用三层结构区分规则、角色、任务 |
-| AgentPatterns / HumanLayer | 环境设计比 prompt 更重要 | 强调 tests/lint/CI/边界比“魔法 prompt”更关键 |
+> What enterprises really need is not an Agent that's "occasionally brilliant,"
+> but an Agent that is **predictable, regression-testable, and auditable** within an engineering system.
 
 ---
 
-## 实验完成标准（升级版）
+# Part E: Mapping Popular Repo Ideas to This Lab
 
-完成本实验不再只是“创建了几个文件”，而是要达到以下理解：
+## Reference Mapping Table
 
-- [ ] 理解了 prompt engineering 与 harness engineering 的区别
-- [ ] 创建或理解了 `.github/copilot-instructions.md` 的项目级作用
-- [ ] 创建或使用了至少 2 个 custom agents（如 planner / test-engineer）
-- [ ] 创建了 1 个可复用的 workflow prompt file
-- [ ] 理解了 tests / lint / CI 在 harness 中的作用
-- [ ] 能讲清楚为什么 Agent 可靠性是“环境问题”，不只是“模型问题”
+| Reference Source | Key Idea | Mapping in This Lab |
+|------------------|----------|---------------------|
+| `github/awesome-copilot` | Customizations should be modularly composable | Layered design of instructions / agents / prompt files |
+| `walkinglabs/awesome-harness-engineering` | A harness is an entire system layer, not just prompts | This lab adds role / workflow / backpressure |
+| Copilot Customization Handbook | instructions / prompts / agents / MCP each have their role | Three-layer structure separating rules, roles, tasks |
+| AgentPatterns / HumanLayer | Environment design matters more than prompts | Emphasis on tests/lint/CI/boundaries over "magic prompts" |
 
 ---
 
-## 建议讲师收尾话术
+## Completion Criteria (Upgraded)
 
-> 很多人以为 AI 编程的关键是“怎么把 prompt 写得更像咒语”。
-> 但真正成熟的团队不会把希望寄托在咒语上。
+Completing this lab is no longer just "created a few files" — you should reach the following understanding:
+
+- [ ] Understood the difference between prompt engineering and harness engineering
+- [ ] Created or understood the project-level role of `.github/copilot-instructions.md`
+- [ ] Created or used at least 2 custom agents (e.g., planner / test-engineer)
+- [ ] Created 1 reusable workflow prompt file
+- [ ] Understood the role of tests / lint / CI in a harness
+- [ ] Can articulate why Agent reliability is an "environment problem," not just a "model problem"
+
+---
+
+## Suggested Instructor Closing Remarks
+
+> Many people think the key to AI programming is "how to write prompts that feel like magic spells."
+> But truly mature teams don't pin their hopes on spells.
 >
-> 他们会做三件事：
-> 1. 用 instructions 固化项目共识
-> 2. 用 agents 划清角色边界
-> 3. 用 tests / lint / CI 建立自动纠偏机制
+> They do three things:
+> 1. Use instructions to codify project consensus
+> 2. Use agents to establish clear role boundaries
+> 3. Use tests / lint / CI to build automatic course-correction mechanisms
 >
-> 这就是 Harness Engineering。
-> 它不是让 Agent 更神，而是让 Agent **更稳**。
+> That's Harness Engineering.
+> It doesn't make the Agent more magical — it makes the Agent **more reliable**.
 
 ---
 
-## 可选附加题（高级客户可做）
+## Optional Bonus Exercises (For Advanced Participants)
 
-### 附加题 1：把 test-engineer 改成只允许测试工具
-讨论题：
-- 如果未来 GitHub Copilot 对 custom agent 的工具权限控制更细，哪些 agent 应该被限制写权限？
+### Bonus 1: Restrict test-engineer to Testing Tools Only
+Discussion question:
+- If GitHub Copilot gains finer-grained tool permission controls for custom agents in the future, which agents should have their write access restricted?
 
-### 附加题 2：设计一个 security-review prompt file
-例如：
+### Bonus 2: Design a security-review Prompt File
+For example:
 ```text
 /security-review target="new DELETE endpoint"
 ```
-要求输出 structured report。
+Requiring structured report output.
 
-### 附加题 3：设计组织级 Harness
-讨论题：
-- 哪些规则应该放 repo-level？
-- 哪些规则应该放 org-level？
-- 哪些规则应该放 user-level？
+### Bonus 3: Design an Organization-Level Harness
+Discussion questions:
+- Which rules should be at the repo level?
+- Which rules should be at the org level?
+- Which rules should be at the user level?
 
 ---
 
-## 一句话总结
+## One-Sentence Summary
 
-**Prompt engineering 是提高一次对话质量；Harness engineering 是提高整个团队长期使用 Agent 的成功率。**
+**Prompt engineering improves the quality of a single conversation; harness engineering improves the long-term success rate of an entire team using Agents.**

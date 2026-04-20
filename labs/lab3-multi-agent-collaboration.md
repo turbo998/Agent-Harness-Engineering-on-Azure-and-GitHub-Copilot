@@ -1,47 +1,47 @@
-# 实验 3：Multi-Agent 协作
+# Lab 3: Multi-Agent Collaboration
 
-## 实验目标
+## Lab Objective
 
-体验多个 Agent 各司其职、协作完成一个完整交付：
+Experience multiple Agents working together, each with their own role, to collaboratively complete a full delivery:
 
 ```
-Developer Agent → 实现功能
-Test Engineer Agent → 补充测试
-Security Reviewer Agent → 安全审查
-Doc Writer Agent → 生成文档
+Developer Agent → Implement feature
+Test Engineer Agent → Add tests
+Security Reviewer Agent → Security review
+Doc Writer Agent → Generate documentation
 ```
 
-完成后，学员应能够：
-1. 理解 Multi-Agent 协作的核心模式：**任务拆解 → 角色分工 → 并行/串行执行 → 结果汇总**
-2. 使用 custom agent + agent handoff 实现多角色协作
-3. 理解 Mission Control 的概念和使用时机
+After completing this lab, participants should be able to:
+1. Understand the core pattern of Multi-Agent collaboration: **task decomposition → role assignment → parallel/sequential execution → result aggregation**
+2. Use custom agent + agent handoff to achieve multi-role collaboration
+3. Understand the concept of Mission Control and when to use it
 
-## 实验时长
-20 分钟
+## Duration
+20 minutes
 
-## Multi-Agent 协作的三种模式
+## Three Modes of Multi-Agent Collaboration
 
-| 模式 | 说明 | 适用场景 |
-|------|------|---------|
-| **串行 handoff** | Agent A 完成后把结果交给 Agent B | 功能开发 → 测试 → review |
-| **并行执行** | 多个 Agent 同时处理不同子任务 | 不同模块、不同文件、互不依赖 |
-| **Mission Control** | 一个协调者管理多个 Agent 的任务分配和进度 | 复杂项目、需要跨仓库协调 |
+| Mode | Description | Applicable Scenarios |
+|------|-------------|---------------------|
+| **Sequential handoff** | Agent A completes its work and passes the result to Agent B | Feature dev → testing → review |
+| **Parallel execution** | Multiple Agents handle different subtasks simultaneously | Different modules, different files, no interdependencies |
+| **Mission Control** | A coordinator manages task assignment and progress across multiple Agents | Complex projects, cross-repo coordination needed |
 
-本实验聚焦 **串行 handoff** 和 **并行执行**，这是最实用也最容易在 workshop 中落地的模式。
+This lab focuses on **sequential handoff** and **parallel execution** — the most practical patterns and the easiest to implement in a workshop.
 
 ---
 
-## 实验准备
+## Prerequisites
 
-确保你已经完成实验 2，即 `lab-starter` 目录下已有：
+Make sure you've completed Lab 2, meaning the `lab-starter` directory already has:
 - `.github/copilot-instructions.md`
 - `.github/agents/test-engineer.md`
 
-### 新增 Agent 定义
+### New Agent Definitions
 
 #### Security Reviewer Agent
 
-创建文件：`lab-starter/.github/agents/security-reviewer.md`
+Create file: `lab-starter/.github/agents/security-reviewer.md`
 
 ```markdown
 ---
@@ -88,7 +88,7 @@ For each endpoint, verify:
 
 #### Doc Writer Agent
 
-创建文件：`lab-starter/.github/agents/doc-writer.md`
+Create file: `lab-starter/.github/agents/doc-writer.md`
 
 ```markdown
 ---
@@ -120,13 +120,13 @@ You are a technical documentation specialist.
 
 ---
 
-## 实验步骤
+## Steps
 
-### Step 1：Developer Agent 实现功能 — 5 min
+### Step 1: Developer Agent Implements the Feature — 5 min
 
-使用 Agent 模式（默认 agent），给出一个新功能需求：
+Use Agent mode (default agent) and provide a new feature requirement:
 
-**Prompt：**
+**Prompt:**
 ```text
 Add a DELETE /tickets/:id endpoint to this project.
 
@@ -139,15 +139,15 @@ Requirements:
 - Run tests when finished
 ```
 
-**等待 Agent 完成实现。**
+**Wait for the Agent to complete the implementation.**
 
 ---
 
-### Step 2：Test Engineer Agent 补充测试 — 5 min
+### Step 2: Test Engineer Agent Adds Tests — 5 min
 
-切换到 `@test-engineer` agent：
+Switch to the `@test-engineer` agent:
 
-**Prompt：**
+**Prompt:**
 ```text
 @test-engineer Review the new DELETE /tickets/:id feature and ensure comprehensive test coverage.
 
@@ -159,132 +159,132 @@ Check for:
 - Run all tests when done
 ```
 
-**你应该观察到：**
-- test-engineer 只修改测试文件
-- 添加了多个测试用例覆盖正常和异常场景
-- 自动运行 npm test
+**What you should observe:**
+- test-engineer only modifies test files
+- Adds multiple test cases covering normal and edge scenarios
+- Automatically runs npm test
 
-**学习点：**
-这就是 handoff：Developer Agent 做完开发，Test Engineer Agent 接手做测试。两个 Agent 各有专长和约束。
+**Learning point:**
+This is handoff: the Developer Agent finishes development, and the Test Engineer Agent takes over for testing. Each Agent has its own specialty and constraints.
 
 ---
 
-### Step 3：Security Reviewer Agent 安全审查 — 5 min
+### Step 3: Security Reviewer Agent Performs Security Review — 5 min
 
-切换到 `@security-reviewer` agent：
+Switch to the `@security-reviewer` agent:
 
-**Prompt：**
+**Prompt:**
 ```text
 @security-reviewer Perform a security review of the entire ticket service API.
 Focus especially on the new DELETE /tickets/:id endpoint, but also review all existing endpoints.
 ```
 
-**你应该观察到：**
-- Agent 输出结构化的 security review report
-- 分类为 CRITICAL / WARNING / INFO
-- 可能会发现：
-  - DELETE 没有认证机制（WARNING）
-  - 某些输入缺少长度限制（WARNING）
-  - 没有 rate limiting（INFO）
+**What you should observe:**
+- Agent outputs a structured security review report
+- Classified as CRITICAL / WARNING / INFO
+- May find issues such as:
+  - DELETE has no authentication mechanism (WARNING)
+  - Some inputs lack length limits (WARNING)
+  - No rate limiting (INFO)
 
-**学习点：**
-Security Reviewer Agent 不改代码，只做审查。这种"只读型 Agent"在企业环境中特别有价值：审查权和修改权分离。
+**Learning point:**
+The Security Reviewer Agent doesn't modify code — it only reviews. This type of "read-only Agent" is especially valuable in enterprise environments: separation of review authority and modification authority.
 
 ---
 
-### Step 4：Doc Writer Agent 生成文档 — 3 min
+### Step 4: Doc Writer Agent Generates Documentation — 3 min
 
-切换到 `@doc-writer` agent：
+Switch to the `@doc-writer` agent:
 
-**Prompt：**
+**Prompt:**
 ```text
 @doc-writer Generate complete API documentation for this ticket service.
 Include all endpoints (existing + new DELETE endpoint).
 Also generate a changelog entry for the DELETE feature.
 ```
 
-**你应该观察到：**
-- 生成了 `docs/api.md`，包含所有端点的文档
-- 生成了 `docs/CHANGELOG.md`
-- 文档中包含 curl 示例
+**What you should observe:**
+- Generated `docs/api.md` with documentation for all endpoints
+- Generated `docs/CHANGELOG.md`
+- Documentation includes curl examples
 
 ---
 
-### Step 5：复盘 Multi-Agent 协作 — 2 min
+### Step 5: Multi-Agent Collaboration Retrospective — 2 min
 
-回顾刚才的流程：
+Review the workflow you just completed:
 
 ```
 ┌─────────────┐    ┌─────────────────┐    ┌───────────────────┐    ┌──────────────┐
 │  Developer   │ →  │  Test Engineer   │ →  │ Security Reviewer  │ →  │  Doc Writer   │
-│  实现功能    │    │  补充测试        │    │  安全审查          │    │  生成文档     │
-│  改代码+跑测试│    │  只改测试文件    │    │  只输出报告        │    │  只写文档     │
+│  Implement   │    │  Add tests       │    │  Security review   │    │  Generate docs│
+│  Code + test │    │  Test files only │    │  Report only       │    │  Docs only    │
 └─────────────┘    └─────────────────┘    └───────────────────┘    └──────────────┘
 ```
 
-| Agent | 职责 | 权限边界 |
-|-------|------|---------|
-| Developer | 实现功能 | 可改所有代码，可跑命令 |
-| Test Engineer | 补测试 | 只改测试文件 |
-| Security Reviewer | 审查 | 只读，不改代码 |
-| Doc Writer | 文档 | 只写 docs/ 目录 |
+| Agent | Responsibility | Permission Boundary |
+|-------|---------------|---------------------|
+| Developer | Implement features | Can modify all code, can run commands |
+| Test Engineer | Add tests | Only modifies test files |
+| Security Reviewer | Review | Read-only, doesn't modify code |
+| Doc Writer | Documentation | Only writes to the docs/ directory |
 
-**讲师话术：**
-> Multi-Agent 协作的关键不是"用更多 Agent"，而是"每个 Agent 有清晰的职责和权限边界"。
-> 这和真实团队的协作模式完全一致：开发、测试、安全、文档各有分工。
-> 在实际落地中，你还可以通过 Mission Control 来管理多个 Agent 的进度，让它们在不同 branch / repo 上并行工作。
+**Instructor talking points:**
+> The key to Multi-Agent collaboration isn't "using more Agents" — it's "each Agent having clear responsibilities and permission boundaries."
+> This mirrors how real teams collaborate: development, testing, security, and documentation each have their own roles.
+> In practice, you can also use Mission Control to manage multiple Agents' progress, letting them work in parallel across different branches or repos.
 
 ---
 
-## 进阶讨论：Mission Control 与 Coding Agent
+## Advanced Discussion: Mission Control and Coding Agent
 
-### 什么是 Mission Control？
+### What Is Mission Control?
 
-Mission Control 是 GitHub 提供的 Multi-Agent 编排界面，支持：
-- 同时运行多个 Coding Agent（cloud agent）
-- 在不同 repo / branch 上并行执行
-- 监控进度、查看产出、中途调整方向
-- 每个 Agent 自动创建 PR
+Mission Control is GitHub's Multi-Agent orchestration interface that supports:
+- Running multiple Coding Agents (cloud agents) simultaneously
+- Parallel execution across different repos / branches
+- Monitoring progress, viewing outputs, and adjusting direction mid-course
+- Each Agent automatically creates a PR
 
-### 典型场景
+### Typical Scenarios
 
 ```
 Mission Control
-├── Agent 1: repo-frontend → 实现 UI 组件
-├── Agent 2: repo-backend → 实现 API 端点
-├── Agent 3: repo-docs → 更新文档
-└── Agent 4: repo-infra → 更新 CI/CD 配置
+├── Agent 1: repo-frontend → Implement UI components
+├── Agent 2: repo-backend → Implement API endpoints
+├── Agent 3: repo-docs → Update documentation
+└── Agent 4: repo-infra → Update CI/CD configuration
 ```
 
-### 什么时候从 Local Multi-Agent 升级到 Mission Control？
+### When to Upgrade from Local Multi-Agent to Mission Control?
 
-| 场景 | 推荐方式 |
-|------|---------|
-| 单仓库、小任务 | Local Agent + Custom Agent handoff（本实验） |
-| 单仓库、复杂任务 | Local Agent + Coding Agent delegation |
-| 多仓库、并行任务 | Mission Control |
-| CI/CD 驱动的自动化 | Coding Agent + GitHub Actions |
-
----
-
-## 实验完成标准
-
-- [ ] Developer Agent 完成了 DELETE 端点实现
-- [ ] Test Engineer Agent 补充了测试（只改测试文件）
-- [ ] Security Reviewer Agent 输出了安全审查报告
-- [ ] Doc Writer Agent 生成了 API 文档
-- [ ] 理解了 Multi-Agent 的串行 handoff 模式
-- [ ] 了解了 Mission Control 的适用场景
+| Scenario | Recommended Approach |
+|----------|---------------------|
+| Single repo, small tasks | Local Agent + Custom Agent handoff (this lab) |
+| Single repo, complex tasks | Local Agent + Coding Agent delegation |
+| Multi-repo, parallel tasks | Mission Control |
+| CI/CD-driven automation | Coding Agent + GitHub Actions |
 
 ---
 
-## 常见问题
+## Completion Criteria
 
-**Q: 如果某个 Agent 的输出不符合预期怎么办？**
-A: 可以给它更明确的指令重试，或者在 copilot-instructions.md 中补充约束。
+- [ ] Developer Agent completed the DELETE endpoint implementation
+- [ ] Test Engineer Agent added tests (only modified test files)
+- [ ] Security Reviewer Agent output a security review report
+- [ ] Doc Writer Agent generated API documentation
+- [ ] Understood the sequential handoff pattern of Multi-Agent collaboration
+- [ ] Learned about Mission Control's applicable scenarios
 
-**Q: 可以让多个 Agent 同时运行吗？**
-A: 在 VS Code 的本地 Agent 模式中，通常是串行的。如果需要真正的并行，可以使用 Coding Agent（cloud）+ Mission Control。
+---
 
-**Q: Custom Agent 的定义会影响其他协作者吗？**
-A: 是的，`.github/agents/` 下的文件会跟随仓库，所有协作者都可以使用这些 agent。
+## FAQ
+
+**Q: What if an Agent's output doesn't meet expectations?**
+A: You can give it more specific instructions and retry, or add constraints in copilot-instructions.md.
+
+**Q: Can multiple Agents run simultaneously?**
+A: In VS Code's local Agent mode, they typically run sequentially. For true parallelism, use Coding Agent (cloud) + Mission Control.
+
+**Q: Do custom Agent definitions affect other collaborators?**
+A: Yes, files under `.github/agents/` are committed with the repository, so all collaborators can use these agents.

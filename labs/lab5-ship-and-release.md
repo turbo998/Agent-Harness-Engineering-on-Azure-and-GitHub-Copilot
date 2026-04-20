@@ -1,199 +1,199 @@
-# Lab 5: 端到端发布流程 — 从设计到上线
+# Lab 5: End-to-End Release Process — From Design to Production
 
-⏱ **预计时间**: 25 分钟 | **难度**: 高级
+⏱ **Estimated Time**: 25 minutes | **Difficulty**: Advanced
 
-## 🎯 学习目标
+## 🎯 Learning Objectives
 
-完成本实验后，你将能够：
+After completing this lab, you will be able to:
 
-1. 体验完整的 Think → Plan → Build → Review → Test → Ship 开发周期
-2. 在每个阶段使用对应的专业 Agent 和 Prompt
-3. 理解 gstack 风格的工程流程如何用 Copilot 落地
-4. 独立运用多 Agent 协作完成一个功能从设计到发布的全流程
+1. Experience the complete Think → Plan → Build → Review → Test → Ship development cycle
+2. Use the appropriate specialized Agent and Prompt at each phase
+3. Understand how a gstack-style engineering process can be implemented with Copilot
+4. Independently use multi-Agent collaboration to deliver a feature from design to release
 
-## 📋 前置条件
+## 📋 Prerequisites
 
-- 已完成 Lab 1–4
-- 已配置所有 Agent：`@product-reviewer`、`@architect`、`@test-engineer`、`@release-engineer`、`@code-reviewer`
-- 已配置所有 Prompt：`design-feature.prompt`、`code-review.prompt`、`ship-release.prompt`
-- `lab-starter/` 项目可正常运行且 `npm test` 通过
-
----
-
-## 📖 场景
-
-产品经理提出需求：**支持更新工单状态**。需要新增 `PATCH /tickets/:id` 端点，允许更新工单的 `status` 字段（`open` → `in-progress` → `closed`）。
-
-你将以完整的工程流程交付这个功能。
+- Completed Labs 1–4
+- All Agents configured: `@product-reviewer`, `@architect`, `@test-engineer`, `@release-engineer`, `@code-reviewer`
+- All Prompts configured: `design-feature.prompt`, `code-review.prompt`, `ship-release.prompt`
+- The `lab-starter/` project runs normally and `npm test` passes
 
 ---
 
-## Phase 1: Think — 需求评估与架构设计（5 分钟）
+## 📖 Scenario
 
-### 1.1 产品评审
+The product manager has a requirement: **support updating ticket status**. A new `PATCH /tickets/:id` endpoint is needed that allows updating a ticket's `status` field (`open` → `in-progress` → `closed`).
+
+You will deliver this feature using a complete engineering process.
+
+---
+
+## Phase 1: Think — Requirement Assessment & Architecture Design (5 minutes)
+
+### 1.1 Product Review
 
 ```
-@product-reviewer 我们计划新增 PATCH /tickets/:id 端点，允许更新工单状态。
-状态流转规则：open → in-progress → closed，不允许回退。
-请从产品角度评审这个需求，指出潜在问题和改进建议。
+@product-reviewer We plan to add a PATCH /tickets/:id endpoint that allows updating ticket status.
+Status transition rules: open → in-progress → closed, no rollback allowed.
+Please review this requirement from a product perspective, pointing out potential issues and improvement suggestions.
 ```
 
-**✅ 预期反馈**：
-- 是否需要支持 `closed → reopen`？
-- 状态变更是否需要备注/原因？
-- 是否需要通知相关人员？
-- 权限控制 — 谁可以变更状态？
+**✅ Expected feedback**:
+- Should `closed → reopen` be supported?
+- Should status changes require a note/reason?
+- Should relevant people be notified?
+- Permission control — who can change the status?
 
 > [!NOTE]
-> **讲师提示**：强调 Think 阶段的价值 — 在写代码之前发现需求层面的问题，成本最低。让学员简单记录产品建议，但本 Lab 聚焦工程流程，不需要全部采纳。
+> **Instructor tip**: Emphasize the value of the Think phase — finding requirement-level issues before writing code has the lowest cost. Have participants briefly note down the product suggestions, but this lab focuses on the engineering process — they don't need to adopt all suggestions.
 
-### 1.2 架构设计
+### 1.2 Architecture Design
 
 ```
-@architect 请为 PATCH /tickets/:id 端点设计技术方案。
-需求：更新工单 status 字段，状态流转 open → in-progress → closed，不可回退。
-当前项目是 Express + 内存存储的结构。请给出 API 设计、数据校验、错误处理的方案。
+@architect Please design a technical solution for the PATCH /tickets/:id endpoint.
+Requirement: Update the ticket status field, status transitions open → in-progress → closed, no rollback.
+The current project uses Express + in-memory storage. Please provide an API design, data validation, and error handling plan.
 ```
 
-**✅ 预期输出**：
-- API 契约：`PATCH /tickets/:id` body: `{ "status": "in-progress" }`
-- 状态机验证逻辑
-- 错误码设计：400（无效状态）、404（工单不存在）、409（状态流转非法）
-- 建议的文件修改清单
+**✅ Expected output**:
+- API contract: `PATCH /tickets/:id` body: `{ "status": "in-progress" }`
+- State machine validation logic
+- Error code design: 400 (invalid status), 404 (ticket not found), 409 (illegal status transition)
+- Suggested file modification list
 
 ---
 
-## Phase 2: Build — 生成实现计划并编码（5 分钟）
+## Phase 2: Build — Generate Implementation Plan & Code (5 minutes)
 
-### 2.1 生成实现计划
-
-```
-/design-feature PATCH /tickets/:id 端点
-需求：更新工单状态，状态流转 open → in-progress → closed，不可回退。
-参考架构方案：[粘贴 Phase 1.2 的关键输出]
-```
-
-**✅ 预期输出**：结构化的实现步骤清单，包含需要修改的文件和具体变更。
-
-### 2.2 使用 Agent Mode 实现
-
-在 Copilot Chat 中切换到 **Agent Mode**（点击模式切换按钮），然后输入：
+### 2.1 Generate Implementation Plan
 
 ```
-请根据以下设计方案，在 lab-starter 项目中实现 PATCH /tickets/:id 端点：
-
-1. 在 src/routes/tickets.js 中添加 PATCH 路由
-2. 验证 :id 参数格式
-3. 验证请求体包含 status 字段
-4. 实现状态流转校验（open → in-progress → closed，不可回退）
-5. 返回更新后的 ticket 对象
-6. 处理 404（ticket 不存在）和 409（非法状态转换）
+/design-feature PATCH /tickets/:id endpoint
+Requirement: Update ticket status, status transitions open → in-progress → closed, no rollback.
+Reference architecture plan: [paste key output from Phase 1.2]
 ```
 
-**验证实现**：
+**✅ Expected output**: A structured implementation step list, including files to modify and specific changes.
+
+### 2.2 Implement Using Agent Mode
+
+In Copilot Chat, switch to **Agent Mode** (click the mode toggle button), then enter:
+
+```
+Based on the following design plan, implement the PATCH /tickets/:id endpoint in the lab-starter project:
+
+1. Add PATCH route in src/routes/tickets.js
+2. Validate :id parameter format
+3. Validate request body contains status field
+4. Implement status transition validation (open → in-progress → closed, no rollback)
+5. Return the updated ticket object
+6. Handle 404 (ticket not found) and 409 (illegal status transition)
+```
+
+**Verify the implementation**:
 
 ```bash
-# 创建一个测试工单
+# Create a test ticket
 curl -X POST http://localhost:3000/tickets \
   -H "Content-Type: application/json" \
   -d '{"title": "Test ticket", "status": "open"}'
 
-# 更新状态
+# Update status
 curl -X PATCH http://localhost:3000/tickets/1 \
   -H "Content-Type: application/json" \
   -d '{"status": "in-progress"}'
 
-# 应返回 409 — 不允许回退
+# Should return 409 — rollback not allowed
 curl -X PATCH http://localhost:3000/tickets/1 \
   -H "Content-Type: application/json" \
   -d '{"status": "open"}'
 ```
 
 > [!TIP]
-> **讲师提示**：Agent Mode 会自动创建/修改文件。提醒学员查看 Copilot 做了哪些文件变更，不要盲目接受。
+> **Instructor tip**: Agent Mode will automatically create/modify files. Remind participants to check what file changes Copilot made — don't blindly accept.
 
 ---
 
-## Phase 3: Review — 多角色代码审查（5 分钟）
+## Phase 3: Review — Multi-Role Code Review (5 minutes)
 
-### 3.1 运行统一审查
-
-```
-/code-review 请审查我刚实现的 PATCH /tickets/:id 端点
-```
-
-### 3.2 修复发现的问题
-
-根据审查报告，逐一修复发现的问题。常见发现：
-
-- 输入验证不够严格
-- 缺少请求速率限制
-- 错误消息泄露内部信息
+### 3.1 Run Unified Review
 
 ```
-@code-reviewer 我已根据审查意见做了以下修改：[描述修改]。请确认是否已解决所有问题。
+/code-review Please review the PATCH /tickets/:id endpoint I just implemented
+```
+
+### 3.2 Fix Discovered Issues
+
+Based on the review report, fix the discovered issues one by one. Common findings:
+
+- Input validation not strict enough
+- Missing request rate limiting
+- Error messages leaking internal information
+
+```
+@code-reviewer I've made the following changes based on the review feedback: [describe changes]. Please confirm whether all issues have been resolved.
 ```
 
 > [!NOTE]
-> **讲师提示**：真实工作中 Review 可能需要多轮。本 Lab 限时，修复 1-2 个关键问题即可。
+> **Instructor tip**: In real work, reviews may require multiple rounds. This lab is time-limited — fixing 1–2 critical issues is sufficient.
 
 ---
 
-## Phase 4: Test — 生成并运行测试（5 分钟）
+## Phase 4: Test — Generate and Run Tests (5 minutes)
 
-### 4.1 生成测试用例
+### 4.1 Generate Test Cases
 
 ```
-@test-engineer 请为 PATCH /tickets/:id 端点生成全面的测试用例，覆盖：
-1. 正常状态流转（open → in-progress → closed）
-2. 非法回退（closed → open）
-3. 不存在的 ticket（404）
-4. 无效的 status 值（400）
-5. 缺少 status 字段（400）
-6. 无效的 id 格式
+@test-engineer Please generate comprehensive test cases for the PATCH /tickets/:id endpoint, covering:
+1. Normal status transitions (open → in-progress → closed)
+2. Illegal rollback (closed → open)
+3. Non-existent ticket (404)
+4. Invalid status value (400)
+5. Missing status field (400)
+6. Invalid id format
 ```
 
-**✅ 预期输出**：一组完整的测试代码（Jest/Supertest），覆盖正常路径和异常路径。
+**✅ Expected output**: A complete set of test code (Jest/Supertest) covering both happy paths and error paths.
 
-### 4.2 运行测试
+### 4.2 Run Tests
 
-将生成的测试代码保存到 `lab-starter/tests/tickets-patch.test.js`，然后运行：
+Save the generated test code to `lab-starter/tests/tickets-patch.test.js`, then run:
 
 ```bash
 cd lab-starter
 npm test
 ```
 
-**预期结果**：所有测试通过。如果有失败，根据错误信息修复实现代码。
+**Expected result**: All tests pass. If any fail, fix the implementation code based on the error messages.
 
 > [!TIP]
-> **讲师提示**：如果时间紧张，学员可以只运行 Agent 生成的测试，不手动调整。重点是体验流程，不是 100% 通过率。
+> **Instructor tip**: If time is tight, participants can just run the Agent-generated tests without manual adjustments. The focus is experiencing the process, not achieving 100% pass rate.
 
 ---
 
-## Phase 5: Ship — 准备发布（5 分钟）
+## Phase 5: Ship — Prepare for Release (5 minutes)
 
-### 5.1 运行发布流程
-
-```
-/ship-release 准备发布 PATCH /tickets/:id 功能
-版本：从当前版本做一个 minor 版本升级
-变更摘要：新增工单状态更新端点，支持 open → in-progress → closed 状态流转
-```
-
-**或者使用 Agent**：
+### 5.1 Run the Release Process
 
 ```
-@release-engineer 请为以下功能变更准备发布：
-- 新增 PATCH /tickets/:id 端点
-- 支持工单状态流转：open → in-progress → closed
-- 请完成：版本号升级、CHANGELOG 更新、发布说明
+/ship-release Prepare release for the PATCH /tickets/:id feature
+Version: minor version upgrade from current version
+Change summary: Added ticket status update endpoint, supporting open → in-progress → closed status transitions
 ```
 
-**✅ 预期输出**：
+**Or use an Agent**:
 
-1. **package.json** 版本号升级（如 `1.0.0` → `1.1.0`）
-2. **CHANGELOG.md** 新增条目：
+```
+@release-engineer Please prepare the release for the following feature change:
+- Added PATCH /tickets/:id endpoint
+- Supports ticket status transitions: open → in-progress → closed
+- Please complete: version bump, CHANGELOG update, release notes
+```
+
+**✅ Expected output**:
+
+1. **package.json** version bump (e.g., `1.0.0` → `1.1.0`)
+2. **CHANGELOG.md** new entry:
 
 ```markdown
 ## [1.1.0] - 2025-XX-XX
@@ -204,29 +204,29 @@ npm test
 - Input validation and error handling (400, 404, 409)
 ```
 
-3. 发布检查清单：测试通过 ✅、审查完成 ✅、文档更新 ✅
+3. Release checklist: Tests passed ✅, Review completed ✅, Documentation updated ✅
 
-### 5.2 最终验证
+### 5.2 Final Verification
 
 ```bash
-# 确认版本号
+# Confirm version number
 node -e "console.log(require('./package.json').version)"
 
-# 确认测试通过
+# Confirm tests pass
 npm test
 
-# 确认 CHANGELOG 已更新
+# Confirm CHANGELOG is updated
 head -20 CHANGELOG.md
 ```
 
 > [!NOTE]
-> **讲师提示**：在真实项目中，Ship 阶段还包括 CI/CD 流水线、staging 环境验证等。本 Lab 简化为本地操作，重点是理解流程。
+> **Instructor tip**: In real projects, the Ship phase also includes CI/CD pipelines, staging environment validation, etc. This lab simplifies to local operations — the focus is understanding the process.
 
 ---
 
-## 🤔 反思与讨论（2 分钟）
+## 🤔 Reflection & Discussion (2 minutes)
 
-### 回顾完整流程
+### Review the Complete Process
 
 ```
 Think    →  Plan   →  Build  →  Review  →  Test  →  Ship
@@ -236,37 +236,37 @@ product   architect   Copilot   code-review  test   release
 reviewer              Agent      .prompt    engineer engineer
 ```
 
-### 讨论问题
+### Discussion Questions
 
-1. **流程价值**：哪个阶段发现的问题对你来说最"意外"？
-2. **效率对比**：如果没有 AI Agent 辅助，完成同样的流程需要多久？
-3. **质量门禁**：在你的团队中，哪些阶段最容易被跳过？AI 如何帮助确保流程完整？
-4. **定制化**：你会为自己的项目调整哪些 Agent 的行为规则？
-
----
-
-## 📝 关键收获
-
-| # | 收获 |
-|---|------|
-| 1 | 完整的工程流程是 Think → Plan → Build → Review → Test → Ship |
-| 2 | 每个阶段都有对应的专业 Agent 或 Prompt 提供支持 |
-| 3 | 在编码前投入的 Think 时间，能大幅减少后续返工 |
-| 4 | 统一的 Prompt 文件（如 `code-review.prompt`、`ship-release.prompt`）将最佳实践固化为可复用流程 |
-| 5 | AI 不替代工程流程，而是让每个环节更高效、更一致 |
+1. **Process value**: Which phase's findings were most "surprising" to you?
+2. **Efficiency comparison**: Without AI Agent assistance, how long would it take to complete the same process?
+3. **Quality gates**: In your team, which phases are most likely to be skipped? How can AI help ensure process completeness?
+4. **Customization**: Which Agents' behavior rules would you adjust for your own project?
 
 ---
 
-## 🎓 Workshop 总结
+## 📝 Key Takeaways
 
-恭喜你完成了全部 5 个 Lab！回顾你的学习路径：
+| # | Takeaway |
+|---|----------|
+| 1 | The complete engineering process is Think → Plan → Build → Review → Test → Ship |
+| 2 | Each phase has a corresponding specialized Agent or Prompt to provide support |
+| 3 | Time invested in the Think phase before coding significantly reduces rework later |
+| 4 | Unified Prompt files (e.g., `code-review.prompt`, `ship-release.prompt`) codify best practices into reusable processes |
+| 5 | AI doesn't replace the engineering process — it makes each step more efficient and consistent |
 
-| Lab | 主题 | 核心能力 |
-|-----|------|----------|
-| 1 | AI-DLC 全生命周期 | 理解 AI 在开发各阶段的应用 |
-| 2 | Harness Engineering 三层架构 | 掌握 Rule / Role / Workflow 配置 |
-| 3 | 多 Agent 串行协作 | 使用多个 Agent 接力完成任务 |
-| 4 | 多角色联合代码审查 | 不同角色并行审查，全面覆盖 |
-| **5** | **端到端发布流程** | **完整的 Think→Ship 工程闭环** |
+---
 
-**下一步行动**：回到你的真实项目，选择一个即将开发的功能，用今天学到的流程实践一次完整的 Think → Ship 周期。
+## 🎓 Workshop Summary
+
+Congratulations on completing all 5 Labs! Here's a review of your learning path:
+
+| Lab | Topic | Core Capability |
+|-----|-------|----------------|
+| 1 | AI-DLC Full Lifecycle | Understanding AI's role in each development phase |
+| 2 | Harness Engineering Three-Layer Architecture | Mastering Rule / Role / Workflow configuration |
+| 3 | Multi-Agent Sequential Collaboration | Using multiple Agents in relay to complete tasks |
+| 4 | Multi-Role Joint Code Review | Different roles reviewing in parallel for full coverage |
+| **5** | **End-to-End Release Process** | **Complete Think→Ship engineering loop** |
+
+**Next step**: Go back to your real project, pick a feature you're about to develop, and practice a complete Think → Ship cycle using the process you learned today.

@@ -224,6 +224,94 @@ head -20 CHANGELOG.md
 
 ---
 
+## Phase 6: CI/CD — From Local to Production (5 minutes)
+
+> [!NOTE]
+> This phase extends the Ship process with real CI/CD pipelines. Two deployment paths are provided: **Azure Container Apps** (managed) and **VM** (self-hosted).
+
+### 6.1 Explore the CI/CD Workflow
+
+Open `.github/workflows/ci.yml` and review its structure:
+
+```
+Push/PR → Test & Lint → (on tag v*) → Deploy
+                                        ├── Azure Container Apps (managed)
+                                        └── VM via SSH (self-hosted)
+```
+
+**Key design decisions to discuss:**
+- Tests run on **every** push/PR — the quality gate from Phase 4 is now automated
+- Deployment only triggers on **release tags** — prevents accidental deploys
+- Two deployment targets coexist — choose based on your infrastructure
+
+### 6.2 Azure Container Apps (Managed Path)
+
+**Why Azure Container Apps?**
+- Zero infrastructure management — no VMs, no Kubernetes clusters
+- Built-in auto-scaling, HTTPS, and health checks
+- Pay only for actual usage (scale to zero)
+- Native integration with GitHub Actions via `azure/container-apps-deploy-action`
+
+```yaml
+# Key excerpt from ci.yml
+deploy-azure-managed:
+  environment: production-azure
+  steps:
+    - uses: azure/login@v2
+    - uses: azure/container-apps-deploy-action@v2
+      with:
+        runtimeStack: 'node:20'
+```
+
+### 6.3 VM Deployment (Self-Hosted Path)
+
+**When to choose VM?**
+- Existing VM infrastructure
+- Compliance requirements (data residency, air-gapped networks)
+- GPU workloads or custom system dependencies
+- Cost predictability for steady-state loads
+
+```yaml
+# Key excerpt from ci.yml
+deploy-vm:
+  environment: production-vm
+  steps:
+    - uses: appleboy/ssh-action@v1
+      with:
+        script: |
+          cd ~/ticket-service && git pull
+          npm ci --production
+          pm2 restart ticket-service
+```
+
+### 6.4 Generate the Workflow with Agent
+
+Ask the release-engineer to review and customize the workflow:
+
+```
+@release-engineer Review the .github/workflows/ci.yml file.
+Suggest improvements specific to our ticket service:
+- Should we add staging environment?
+- What health check endpoints should we verify?
+- Any security hardening needed?
+```
+
+> [!TIP]
+> **Instructor tip**: This connects the entire workshop loop — the Agent that helped build, test, and review the code now also helps configure its deployment pipeline. Harness Engineering extends beyond code to infrastructure.
+
+### 6.5 Comparison: Azure Managed vs VM
+
+| Aspect | Azure Container Apps | VM (Self-Hosted) |
+|--------|---------------------|-------------------|
+| Setup complexity | Low (managed) | Medium (PM2/systemd) |
+| Scaling | Auto (built-in) | Manual |
+| Cost model | Per-request | Fixed monthly |
+| HTTPS/TLS | Automatic | Manual (Let's Encrypt) |
+| Agent sandbox isolation | Container-level | OS-level |
+| Best for | Stateless APIs, microservices | Stateful apps, custom runtimes |
+
+---
+
 ## 🤔 Reflection & Discussion (2 minutes)
 
 ### Review the Complete Process
@@ -248,12 +336,18 @@ reviewer              Agent      .prompt    engineer engineer
 ## 📝 Key Takeaways
 
 | # | Takeaway |
-|---|----------|
-| 1 | The complete engineering process is Think → Plan → Build → Review → Test → Ship |
-| 2 | Each phase has a corresponding specialized Agent or Prompt to provide support |
-| 3 | Time invested in the Think phase before coding significantly reduces rework later |
-| 4 | Unified Prompt files (e.g., `code-review.prompt`, `ship-release.prompt`) codify best practices into reusable processes |
-| 5 | AI doesn't replace the engineering process — it makes each step more efficient and consistent |
+||---|----------|
+|| 1 | The complete engineering process is Think → Plan → Build → Review → Test → Ship → **Deploy** |
+|| 2 | Each phase has a corresponding specialized Agent or Prompt to provide support |
+|| 3 | Time invested in the Think phase before coding significantly reduces rework later |
+|| 4 | Unified Prompt files (e.g., `code-review.prompt`, `ship-release.prompt`) codify best practices into reusable processes |
+|| 5 | AI doesn't replace the engineering process — it makes each step more efficient and consistent |
+|| 6 | CI/CD extends the harness into production — Azure Container Apps (managed) or VM (self-hosted) based on your needs |
+
+> [!NOTE]
+> **Further reading**: For production-grade agent security, sandbox isolation, and enterprise deployment patterns, see:
+> - [Agent Security & Sandbox Isolation](../docs/agent-security-sandbox.md)
+> - [Enterprise Deployment Guide](../docs/enterprise-deployment-guide.md)
 
 ---
 

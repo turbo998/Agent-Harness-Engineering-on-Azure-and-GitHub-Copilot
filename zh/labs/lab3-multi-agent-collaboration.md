@@ -236,6 +236,64 @@ Also generate a changelog entry for the DELETE feature.
 
 ---
 
+## 高级讨论：跨运行时 Agent 协作
+
+### 超越单一框架
+
+在本 Lab 中，所有 Agent 都运行在同一个 GitHub Copilot 框架内。但在生产环境中，企业通常有 **多种 Agent 运行时** 共存：
+
+```
+┌──────────────────────────────────────────────────────────┐
+│                     消息平台                              │
+│              (Slack / Teams / 飞书 / 微信)                │
+│                                                          │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐  │
+│  │ Copilot Agent │  │ Hermes Agent │  │ 自定义 Agent  │  │
+│  │ (代码任务)    │  │ (运维任务)   │  │ (数据任务)    │  │
+│  │ GitHub 原生   │  │ 多工具      │  │ Python        │  │
+│  └──────────────┘  └──────────────┘  └──────────────┘  │
+│         │                  │                  │          │
+│         └──────────────────┼──────────────────┘          │
+│                            ▼                             │
+│                    LiteLLM Gateway                       │
+│                  (统一模型访问)                           │
+└──────────────────────────────────────────────────────────┘
+```
+
+### 为什么需要多种运行时？
+
+| 原因 | 示例 |
+|------|------|
+| **能力互补** | Copilot 擅长代码；Hermes 擅长运维/聊天；专用 Agent 处理数据 |
+| **团队自主** | A 团队用 Copilot，B 团队自研了 Agent — 两者应该共存 |
+| **渐进式采纳** | 先用 Copilot 做代码，逐步加入运维/数据 Agent |
+| **供应商多元化** | 避免锁定在单一 Agent 框架 |
+
+### 协作方式
+
+跨运行时的 Agent 不直接调用彼此的 API。它们通过 **共享制品** 协作：
+
+1. **共享代码库** — Copilot Agent 写代码，Hermes Agent 负责部署，两者读取同一份 SOUL.md
+2. **共享消息频道** — 所有 Agent 发到同一个 Slack/Teams 频道，由人类协调
+3. **共享模型网关** — LiteLLM 提供统一的访问、预算和可观测性
+4. **共享 Harness 文件** — SOUL.md、copilot-instructions.md 和 Agent 定义跨运行时通用
+
+### 部署路径
+
+| 路径 | 具体形态 |
+|------|---------|
+| **Azure Container Apps** | 每个 Agent 运行时 = 独立的 Container App，共享 VNet，共享 LiteLLM |
+| **VM** | 每个 Agent 运行时 = 独立的 Docker 容器或进程，共享宿主机，共享 LiteLLM |
+| **混合模式** | Copilot 运行在 GitHub 云端，Hermes 运行在 Azure VM，两者都访问 Azure OpenAI |
+
+### 讨论问题
+
+1. 在你的组织中，哪些任务适合用 **非 Copilot** 的 Agent（如运维自动化、数据管线、客户支持）？
+2. 如何确保不同运行时的 Agent 保持一致的行为？（提示：共享 SOUL.md + 共享模型网关）
+3. 跨运行时协作的最小可行方案是什么？（答案：共享 Slack 频道 + 共享 LiteLLM 端点）
+
+---
+
 ## 进阶讨论：Mission Control 与 Coding Agent
 
 ### 什么是 Mission Control？

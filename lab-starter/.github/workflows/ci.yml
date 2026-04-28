@@ -1,0 +1,146 @@
+# CI/CD Pipeline for Ticket Service
+# Two deployment targets: Azure Container Apps (managed) or VM (self-hosted)
+#
+# Usage:
+#   - Push to main → runs tests + lint
+#   - Create a release tag (v*) → builds, tests, and deploys
+#
+# Required secrets (Azure managed):
+#   AZURE_CREDENTIALS          - Service principal JSON
+#   AZURE_CONTAINER_APP_NAME   - e.g. ticket-service
+#   AZURE_RESOURCE_GROUP       - e.g. rg-ticket-prod
+#
+# Required secrets (VM self-hosted):
+#   VM_SSH_KEY                 - SSH private key
+#   VM_HOST                    - e.g. 10.0.1.4 or myvm.eastasia.cloudapp.azure.com
+#   VM_USER                    - e.g. azureuser
+
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+    branches: [main]
+
+env:
+  NODE_VERSION: '20'
+
+jobs:
+  # ──────────────────────────────────────────
+  # Phase 1: Test & Lint (runs on every push/PR)
+  # ──────────────────────────────────────────
+  test:
+    name: Test & Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+      - run: npm ci
+
+      - name: Run linter
+        run: npm run lint --if-present
+
+      - name: Run tests
+        run: npm test
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: test-results/
+
+  # ──────────────────────────────────────────
+  # Phase 2a: Deploy to Azure Container Apps (managed)
+  # Triggers on release tags only
+  # ──────────────────────────────────────────
+  deploy-azure-managed:
+    name: Deploy → Azure Container Apps
+    needs: test
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    environment: production-azure
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Login to Azure
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Build and deploy to Container Apps
+        uses: azure/container-apps-deploy-action@v2
+        with:
+          appSourcePath: ${{ github.workspace }}
+          acrName: ${{ vars.ACR_NAME }}
+          containerAppName: ${{ secrets.AZURE_CONTAINER_APP_NAME }}
+          resourceGroup: ${{ secrets.AZURE_RESOURCE_GROUP }}
+          runtimeStack: 'node:20'
+
+      - name: Verify deployment
+        run: |
+          APP_URL=$(az containerapp show \
+            -n ${{ secrets.AZURE_CONTAINER_APP_NAME }} \
+            -g ${{ secrets.AZURE_RESOURCE_GROUP }} \
+            --query properties.configuration.ingress.fqdn -o tsv)
+          echo "🚀 Deployed to https://$APP_URL"
+          # Health check
+          curl -sf "https://$APP_URL/tickets" || exit 1
+          echo "✅ Health check passed"
+
+  # ──────────────────────────────────────────
+  # Phase 2b: Deploy to VM (self-hosted)
+  # Triggers on release tags only
+  # ──────────────────────────────────────────
+  deploy-vm:
+    name: Deploy → VM (SSH)
+    needs: test
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    environment: production-vm
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.VM_HOST }}
+          username: ${{ secrets.VM_USER }}
+          key: ${{ secrets.VM_SSH_KEY }}
+          script: |
+            set -e
+            APP_DIR=~/ticket-service
+
+            # Pull latest code
+            cd $APP_DIR
+            git fetch origin main
+            git reset --hard origin/main
+
+            # Install dependencies
+            npm ci --production
+
+            # Restart with PM2 (or systemd)
+            if command -v pm2 &> /dev/null; then
+              pm2 restart ticket-service || pm2 start src/server.js --name ticket-service
+            else
+              sudo systemctl restart ticket-service
+            fi
+
+            # Health check
+            sleep 3
+            curl -sf http://localhost:3000/tickets || exit 1
+            echo "✅ VM deployment successful"
+
+      - name: Post-deploy summary
+        run: |
+          echo "## 🚀 Deployment Summary" >> $GITHUB_STEP_SUMMARY
+          echo "- **Target**: VM (${{ secrets.VM_HOST }})" >> $GITHUB_STEP_SUMMARY
+          echo "- **Version**: ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Commit**: ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY

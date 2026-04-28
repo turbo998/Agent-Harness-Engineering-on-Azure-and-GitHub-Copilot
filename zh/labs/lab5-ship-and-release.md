@@ -224,6 +224,94 @@ head -20 CHANGELOG.md
 
 ---
 
+## Phase 6: CI/CD — 从本地到生产环境（5 分钟）
+
+> [!NOTE]
+> 本阶段将 Ship 流程延伸到真实的 CI/CD 流水线。提供两种部署路径：**Azure Container Apps**（托管服务）和 **VM**（自托管）。
+
+### 6.1 浏览 CI/CD 工作流
+
+打开 `.github/workflows/ci.yml`，了解其结构：
+
+```
+Push/PR → 测试 & Lint → (打 v* 标签时) → 部署
+                                           ├── Azure Container Apps（托管）
+                                           └── VM SSH 部署（自托管）
+```
+
+**关键设计决策讨论：**
+- 每次 push/PR 都运行测试 — Phase 4 的质量门禁实现了自动化
+- 只在 **release tag** 时触发部署 — 防止误部署
+- 两种部署目标共存 — 根据基础设施选择
+
+### 6.2 Azure Container Apps（托管路径）
+
+**为什么选 Azure Container Apps？**
+- 零基础设施管理 — 无需管理 VM 和 Kubernetes 集群
+- 内置自动缩放、HTTPS、健康检查
+- 按实际用量付费（可缩容到零）
+- 与 GitHub Actions 原生集成（`azure/container-apps-deploy-action`）
+
+```yaml
+# ci.yml 关键片段
+deploy-azure-managed:
+  environment: production-azure
+  steps:
+    - uses: azure/login@v2
+    - uses: azure/container-apps-deploy-action@v2
+      with:
+        runtimeStack: 'node:20'
+```
+
+### 6.3 VM 部署（自托管路径）
+
+**什么时候选 VM？**
+- 已有 VM 基础设施
+- 合规要求（数据驻留、隔离网络）
+- GPU 工作负载或自定义系统依赖
+- 稳态负载下的成本可预测性
+
+```yaml
+# ci.yml 关键片段
+deploy-vm:
+  environment: production-vm
+  steps:
+    - uses: appleboy/ssh-action@v1
+      with:
+        script: |
+          cd ~/ticket-service && git pull
+          npm ci --production
+          pm2 restart ticket-service
+```
+
+### 6.4 用 Agent 生成工作流
+
+让 release-engineer 审查并定制工作流：
+
+```
+@release-engineer 请审查 .github/workflows/ci.yml 文件。
+针对我们的 ticket 服务提出改进建议：
+- 是否需要增加 staging 环境？
+- 应该验证哪些健康检查端点？
+- 需要哪些安全加固？
+```
+
+> [!TIP]
+> **讲师提示**：这将整个 Workshop 的闭环连接起来 — 帮你构建、测试、审查代码的 Agent 现在还帮你配置部署流水线。Harness Engineering 不止于代码，还延伸到基础设施。
+
+### 6.5 对比：Azure 托管 vs VM 自托管
+
+| 维度 | Azure Container Apps | VM（自托管） |
+|------|---------------------|-------------|
+| 搭建复杂度 | 低（全托管） | 中（PM2/systemd） |
+| 弹性伸缩 | 自动（内置） | 手动 |
+| 计费模式 | 按请求量 | 固定月费 |
+| HTTPS/TLS | 自动 | 手动（Let's Encrypt） |
+| Agent 沙箱隔离 | 容器级 | 操作系统级 |
+| 适用场景 | 无状态 API、微服务 | 有状态应用、自定义运行时 |
+
+---
+
 ## 🤔 反思与讨论（2 分钟）
 
 ### 回顾完整流程

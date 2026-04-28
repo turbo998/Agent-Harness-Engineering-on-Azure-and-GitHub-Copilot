@@ -341,6 +341,95 @@ Have participants compare:
 
 ---
 
+# Part A+: Soul Layer — Defining Agent Identity & Personality
+
+## The Missing Layer: From Rules to Identity
+
+The Rule Layer tells the Agent **what constraints to follow**. But there's a deeper question:
+
+> **Who is the Agent? What does it value? How does it behave when rules don't cover a situation?**
+
+This is the **Soul Layer** — inspired by production AI agent platforms (like Hermes Agent's `SOUL.md`) that mount a personality/identity file into every agent instance.
+
+### Why It Matters
+
+| Without Soul | With Soul |
+|-------------|-----------|
+| Agent follows rules mechanically | Agent has judgment aligned with team values |
+| Ambiguous situations → random behavior | Ambiguous situations → predictable defaults |
+| Different agents feel disconnected | Unified team personality across all agents |
+| Rules grow endlessly trying to cover every case | Values + principles handle the long tail |
+
+### Step 2.5: Create a SOUL.md
+
+Create `lab-starter/SOUL.md`:
+
+```markdown
+# Ticket Service — Agent Soul
+
+## Identity
+You are an engineering agent working on the Ticket Service project.
+
+## Personality
+- **Pragmatic**: Prefer simple, working solutions over clever abstractions
+- **Safety-first**: Always validate inputs, never trust external data
+- **Test-driven**: No feature is complete without tests
+- **Transparent**: Explain trade-offs and limitations honestly
+
+## Values
+1. Working code over perfect code — ship incrementally
+2. Existing patterns over new patterns — consistency matters
+3. Explicit over implicit — clear errors, typed params, documented contracts
+4. Team knowledge over individual cleverness
+
+## Boundaries
+- You do not make product decisions — escalate to @product-reviewer
+- You do not bypass security constraints — escalate to @security-reviewer
+```
+
+### How It Connects to the Harness Model
+
+The updated model is now **4 layers**:
+
+```text
+┌─────────────────────────────────────────────┐
+│  Soul Layer    │ SOUL.md — identity, values, personality   │
+├─────────────────────────────────────────────┤
+│  Rule Layer    │ copilot-instructions.md — constraints     │
+├─────────────────────────────────────────────┤
+│  Role Layer    │ agents/*.md — specialized personas        │
+├─────────────────────────────────────────────┤
+│  Workflow Layer│ prompts/*.prompt.md — task templates       │
+└─────────────────────────────────────────────┘
+```
+
+> [!TIP]
+> **Instructor tip**: The Soul Layer is what differentiates "configuring an AI tool" from "onboarding a team member." When you onboard a new hire, you don't just hand them rules — you communicate team values, personality, and judgment. SOUL.md does the same for Agents.
+
+### Test It: Soul-Guided Behavior
+
+Ask the Agent a deliberately ambiguous question:
+
+```text
+Should I add a caching layer to the ticket service for better performance?
+```
+
+**Without SOUL.md**: Agent might enthusiastically add Redis, npm packages, etc.
+**With SOUL.md**: Agent should apply "pragmatic" + "existing patterns over new patterns" values and push back — "The current in-memory store is sufficient for this service's scale. Adding caching introduces complexity without clear benefit."
+
+### Enterprise Application: Soul at Different Levels
+
+| Level | Soul Scope | Example |
+|-------|-----------|---------|
+| Organization | Company engineering culture | "We ship daily. We prefer boring technology." |
+| Team | Team-specific conventions | "This team owns payments — never auto-approve money-related changes." |
+| Project | Project personality | The SOUL.md you just created |
+| Agent | Individual role identity | Defined in each agent's .md file |
+
+In Azure-managed deployments (Container Apps), SOUL.md can be mounted as a ConfigMap equivalent; in VM deployments, it's simply a file in the repo root — both paths version-control the Agent's identity.
+
+---
+
 # Part B: Role Layer
 
 ## Step 3: Create a "Planner Agent" — Not Just a test-engineer

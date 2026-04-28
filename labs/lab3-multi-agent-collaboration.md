@@ -223,16 +223,77 @@ Review the workflow you just completed:
 ```
 
 | Agent | Responsibility | Permission Boundary |
-|-------|---------------|---------------------|
-| Developer | Implement features | Can modify all code, can run commands |
-| Test Engineer | Add tests | Only modifies test files |
-| Security Reviewer | Review | Read-only, doesn't modify code |
-| Doc Writer | Documentation | Only writes to the docs/ directory |
+||-------|---------------|---------------------|
+|| Developer | Implement features | Can modify all code, can run commands |
+|| Test Engineer | Add tests | Only modifies test files |
+|| Security Reviewer | Review | Read-only, doesn't modify code |
+|| Doc Writer | Documentation | Only writes to the docs/ directory |
+
+> [!NOTE]
+> **Security deep-dive**: Permission boundaries are the first line of defense in agent security. For production environments with VM-level isolation (Kata Containers) and Azure Container Apps network isolation, see [Agent Security & Sandbox Isolation](../docs/agent-security-sandbox.md).
 
 **Instructor talking points:**
 > The key to Multi-Agent collaboration isn't "using more Agents" — it's "each Agent having clear responsibilities and permission boundaries."
 > This mirrors how real teams collaborate: development, testing, security, and documentation each have their own roles.
 > In practice, you can also use Mission Control to manage multiple Agents' progress, letting them work in parallel across different branches or repos.
+
+---
+
+## Advanced Discussion: Cross-Runtime Agent Collaboration
+
+### Beyond Single-Framework Agents
+
+In this lab, all agents run within the same GitHub Copilot framework. But in production, organizations often have **multiple agent runtimes** coexisting:
+
+```
+┌──────────────────────────────────────────────────────────┐
+│                  Messaging Platform                       │
+│              (Slack / Teams / Feishu / WeChat)            │
+│                                                          │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐  │
+│  │ Copilot Agent │  │ Hermes Agent │  │ Custom Agent  │  │
+│  │ (Code tasks)  │  │ (Ops tasks)  │  │ (Data tasks)  │  │
+│  │ GitHub-native │  │ Multi-tool   │  │ Python-based  │  │
+│  └──────────────┘  └──────────────┘  └──────────────┘  │
+│         │                  │                  │          │
+│         └──────────────────┼──────────────────┘          │
+│                            ▼                             │
+│                    LiteLLM Gateway                       │
+│                   (unified model access)                 │
+└──────────────────────────────────────────────────────────┘
+```
+
+### Why Multiple Runtimes?
+
+| Reason | Example |
+|--------|---------|
+| **Different strengths** | Copilot excels at code; Hermes excels at ops/chat; specialized agents handle data |
+| **Team autonomy** | Team A prefers Copilot, Team B built their own agent — both should coexist |
+| **Incremental adoption** | Start with Copilot for code, gradually add ops/data agents |
+| **Vendor diversification** | Avoid lock-in to a single agent framework |
+
+### How They Collaborate
+
+Cross-runtime agents don't call each other's APIs. Instead, they collaborate through **shared artifacts**:
+
+1. **Shared repo** — Copilot agent writes code, Hermes agent deploys it, both read the same SOUL.md
+2. **Shared messaging channel** — All agents post to the same Slack/Teams channel, humans coordinate
+3. **Shared model gateway** — LiteLLM provides unified access, budget, and observability
+4. **Shared harness files** — SOUL.md, copilot-instructions.md, and agent definitions apply across runtimes
+
+### Deployment Paths
+
+| Path | What It Looks Like |
+|------|--------------------|
+| **Azure Container Apps** | Each agent runtime = separate Container App, shared VNet, shared LiteLLM |
+| **VM** | Each agent runtime = separate Docker container or process, shared host, shared LiteLLM |
+| **Hybrid** | Copilot runs in GitHub cloud, Hermes runs on Azure VM, both access Azure OpenAI |
+
+### Discussion Questions
+
+1. In your organization, which tasks would benefit from a **non-Copilot** agent (e.g., ops automation, data pipelines, customer support)?
+2. How would you ensure consistent behavior across agents from different runtimes? (Hint: shared SOUL.md + shared model gateway)
+3. What's the minimum viable cross-runtime setup? (Answer: shared Slack channel + shared LiteLLM endpoint)
 
 ---
 

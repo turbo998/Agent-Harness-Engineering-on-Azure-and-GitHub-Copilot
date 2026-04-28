@@ -1,8 +1,8 @@
 🌐 [English](../README.md) | 中文
 
-# Harness Engineering in GitHub Copilot Workshop
+# Agent Harness Engineering on Azure
 
-> 🚀 180分钟企业级 GitHub Copilot 工作坊 — 从基础补全到多智能体协作，全面掌握 Copilot 工程化实践。
+> 🚀 180分钟企业级 Agent Harness Engineering on Azure 工作坊 — 从基础补全到多智能体协作，全面掌握 Copilot 工程化实践。
 
 ## 🆕 v2 新变化
 

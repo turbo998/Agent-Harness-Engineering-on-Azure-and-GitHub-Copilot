@@ -1,8 +1,8 @@
 🌐 English | [中文](zh/README.md)
 
-# Harness Engineering in GitHub Copilot Workshop
+# Agent Harness Engineering on Azure
 
-> 🚀 180-minute enterprise GitHub Copilot workshop — from basic completions to multi-agent collaboration, master Copilot engineering practices end to end.
+> 🚀 180-minute enterprise workshop on Agent Harness Engineering — from basic completions to multi-agent collaboration, master Copilot engineering practices end to end.
 
 ## 🆕 What's New in v2
 
@@ -20,14 +20,17 @@
 | `README.md` | Project README (English) |
 | `zh/README.md` | Project README (Chinese) |
 | `docs/DESIGN.md` | Design Principles (English) |
-| `zh/docs/DESIGN.md` | Design Principles (Chinese) |
+| `docs/enterprise-deployment-guide.md` | Enterprise Deployment Guide (Azure + VM) |
+| `docs/agent-security-sandbox.md` | Agent Security & Sandbox Isolation |
+| `zh/docs/` | Chinese versions of all docs |
 | `.github/copilot-instructions.md` | Copilot global instructions |
 | `.github/agents/*.md` | 10 custom agent definitions |
 | `.github/prompts/*.prompt.md` | 6 reusable prompt templates |
-| `labs/lab-1/` … `labs/lab-5/` | Lab materials |
-| `src/` | Sample application source code |
+| `.github/workflows/ci.yml` | CI/CD pipeline (Azure Container Apps + VM) |
+| `SOUL.md` | Agent Soul — identity & personality definition |
+| `labs/lab1` … `labs/lab5` | Lab materials |
+| `src/` | Sample application source code (Ticket Service) |
 | `package.json` | Node.js project configuration |
-| `LICENSE` | MIT License |
 
 ## 🤖 Agent Table (10 Agents)
 

@@ -110,13 +110,13 @@
 ## Phase 5: 更新总览文档
 
 ### Task 16: 更新议程为 180 分钟版
-**文件**: `GHCP_Workshop_180min_升级版议程.md`
+**文件**: `AHE_Workshop_180min_升级版议程.md`
 
 ### Task 17: 编写新版讲师 Demo 脚本
-**文件**: `GHCP_Workshop_180min_讲师Demo脚本.md`
+**文件**: `AHE_Workshop_180min_讲师Demo脚本.md`
 
 ### Task 18: 编写新版客户讲稿
-**文件**: `GHCP_Workshop_180min_客户讲稿版.md`
+**文件**: `AHE_Workshop_180min_客户讲稿版.md`
 
 ### Task 19: 更新 README.md
 **文件**: `README.md`
@@ -152,9 +152,9 @@
 - `labs/lab5-ship-and-release.md`
 
 **文档（3 个）:**
-- `GHCP_Workshop_180min_升级版议程.md`
-- `GHCP_Workshop_180min_讲师Demo脚本.md`
-- `GHCP_Workshop_180min_客户讲稿版.md`
+- `AHE_Workshop_180min_升级版议程.md`
+- `AHE_Workshop_180min_讲师Demo脚本.md`
+- `AHE_Workshop_180min_客户讲稿版.md`
 - `docs/DESIGN.md`
 
 ### 修改文件（2 个）

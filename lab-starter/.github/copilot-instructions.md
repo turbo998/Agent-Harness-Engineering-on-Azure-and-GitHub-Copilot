@@ -48,3 +48,8 @@ These principles are adapted from the gstack ETHOS methodology:
 - Each agent has a **defined role boundary** — respect it. Don't perform tasks outside your designated scope.
 - When **uncertain**, ask the user rather than guessing.
 - **Reference other agents by @mention** when their expertise is needed (e.g., defer security questions to `@security-reviewer`).
+
+<!-- SPECKIT START -->
+For additional context about technologies to be used, project structure,
+shell commands, and other important information, read the current plan
+<!-- SPECKIT END -->

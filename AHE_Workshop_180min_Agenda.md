@@ -16,6 +16,7 @@
 | ☕ | Break | 10min | 1:40 |
 | 3 | Part 3: Multi-Agent Collaboration & Role Division | 15min | 1:55 |
 | L3 | Lab 3: Multi-Agent Sequential Collaboration | 20min | 2:15 |
+| L4+ | **Lab 4+ (Bonus): Spec-Driven Development with GitHub Spec-Kit** | **30–35min** | *(elective extension)* |
 | L4 | Lab 4: Multi-Role Joint Code Review | 20min | 2:35 |
 | 4 | Part 4: End-to-End Release Process | 10min | 2:45 |
 | L5 | Lab 5: End-to-End Release Process | 25min | 3:10 |
@@ -117,6 +118,21 @@
 - Task: `@api-designer` designs the interface → `@code-reviewer` reviews → `@test-strategist` generates tests
 - Observe how each Agent builds on the previous one's output
 - Document the strengths and limitations of the collaboration chain
+
+> 🔗 **Handoff to Lab 4+**: What we just hand-crafted — designer → reviewer → tester — is a textbook **Spec-Driven Development** pipeline assembled by hand. In Lab 4+ we industrialize this exact pattern with **GitHub Spec-Kit**: the same handoff becomes a reproducible `specify → plan → tasks → implement` toolchain instead of ad-hoc Agent chaining.
+
+### Lab 4+ (Bonus): Spec-Driven Development with GitHub Spec-Kit (30–35min) ⏱ *elective*
+
+**Goal**: Industrialize the hand-crafted multi-agent handoff from Lab 3 into a repeatable SDD workflow
+
+- Install and bootstrap [GitHub Spec-Kit](https://github.com/github/spec-kit) in the workshop repo
+- Drive a feature through the four SDD phases:
+  - `/specify` — author the executable spec
+  - `/plan` — generate the technical plan
+  - `/tasks` — break down into actionable tasks
+  - `/implement` — execute via Copilot Agent mode
+- Compare with the Lab 3 hand-crafted chain: reproducibility, traceability, team scalability
+- Materials: [`labs/lab4-spec-driven-development.md`](labs/lab4-spec-driven-development.md)
 
 ### Lab 4: Multi-Role Joint Code Review (20min) ⏱ 2:15-2:35
 

@@ -16,6 +16,7 @@
 | ☕ | 茶歇 | 10min | 1:40 |
 | 3 | 第三部分：多Agent协作与角色分工 | 15min | 1:55 |
 | L3 | Lab 3：多Agent串行协作 | 20min | 2:15 |
+| L4+ | **Lab 4+（进阶选修）：基于 GitHub Spec-Kit 的规格驱动开发** | **30–35min** | *(承接 Lab 3 的工业化升级)* |
 | L4 | Lab 4：多角色联合代码审查 | 20min | 2:35 |
 | 4 | 第四部分：端到端发布流程 | 10min | 2:45 |
 | L5 | Lab 5：端到端发布流程 | 25min | 3:10 |
@@ -117,6 +118,21 @@
 - 任务：`@api-designer` 设计接口 → `@code-reviewer` 审查 → `@test-strategist` 生成测试
 - 观察每个 Agent 如何基于前一个的输出工作
 - 记录协作链的优势与局限
+
+> 🔗 **承接 Lab 4+**：刚才我们**手作**的「设计师 → 审查员 → 测试师」交接链，本质上就是一条规格驱动开发（SDD）流水线的雏形。在 Lab 4+ 中，我们将用 **GitHub Spec-Kit** 把同样的协作模式**工业化** —— 把临时的 Agent 串联升级为可复现的 `specify → plan → tasks → implement` 工具链。
+
+### Lab 4+（进阶选修）：基于 GitHub Spec-Kit 的规格驱动开发 (30–35min) ⏱ *选修*
+
+**目标**: 把 Lab 3 的手作多 Agent 交接工业化为可复用的 SDD 流水线
+
+- 在 Workshop 仓库中安装并初始化 [GitHub Spec-Kit](https://github.com/github/spec-kit)
+- 通过 SDD 四阶段驱动一个完整特性：
+  - `/specify` —— 撰写可执行的规格说明
+  - `/plan` —— 生成技术方案
+  - `/tasks` —— 拆解为可执行任务
+  - `/implement` —— 通过 Copilot Agent 模式执行
+- 对比 Lab 3 的手作协作链：可复现性、可追溯性、团队规模化
+- 实验材料：[`zh/labs/lab4-spec-driven-development.md`](labs/lab4-spec-driven-development.md)
 
 ### Lab 4：多角色联合代码审查 (20min) ⏱ 2:15-2:35
 

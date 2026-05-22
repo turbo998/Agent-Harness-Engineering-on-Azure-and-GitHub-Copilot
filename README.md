@@ -67,6 +67,9 @@
 | Lab 3 | Agent Collaboration (Agent Mode) | 40 min | Multi-agent invocation, role division |
 | Lab 4 | End-to-End Feature Development | 40 min | Full workflow from design to release |
 | Lab 5 | Security Review & Red Team | 40 min | Security scanning, adversarial prompts, defense strategies |
+| **Lab 4+** *(Bonus)* | **Spec-Driven Development with GitHub Spec-Kit** | **30–35 min** | Industrialize the hand-crafted multi-agent handoff from Lab 3 into a repeatable SDD workflow via [Spec-Kit](https://github.com/github/spec-kit) — `specify → plan → tasks → implement` |
+
+> 📎 **Lab 4+ positioning**: Lab 3 demonstrates **hand-crafted** multi-agent handoff (designer → reviewer → tester). Lab 4+ shows how to **industrialize** that same pattern with GitHub Spec-Kit's SDD toolchain — turning ad-hoc Agent chaining into reproducible spec-driven engineering. See [`labs/lab4-spec-driven-development.md`](labs/lab4-spec-driven-development.md).
 
 ## ✅ Prerequisites
 

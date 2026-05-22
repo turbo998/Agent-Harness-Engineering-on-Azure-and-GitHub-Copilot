@@ -65,6 +65,9 @@
 | Lab 3 | 智能体协作（Agent Mode） | 40 min | 多智能体调用、角色分工 |
 | Lab 4 | 端到端功能开发 | 40 min | 从设计到发布的全流程实战 |
 | Lab 5 | 安全审查与红队对抗 | 40 min | 安全扫描、对抗性 Prompt、防护策略 |
+| **Lab 4+** *(进阶选修)* | **基于 GitHub Spec-Kit 的规格驱动开发 (SDD)** | **30–35 min** | 把 Lab 3 的手作多 Agent 交接工业化为可复用的 SDD 流水线 — [Spec-Kit](https://github.com/github/spec-kit) `specify → plan → tasks → implement` |
+
+> 📎 **Lab 4+ 定位**: Lab 3 演示**手作**的多 Agent 交接（设计师 → 审查员 → 测试师）；Lab 4+ 展示如何用 GitHub Spec-Kit 的 SDD 工具链把同样的协作模式**工业化** — 把临时的 Agent 串联升级为可复现的规格驱动工程。详见 [`labs/lab4-spec-driven-development.md`](labs/lab4-spec-driven-development.md)。
 
 ## ✅ 前置条件
 

@@ -236,6 +236,39 @@ Review the workflow you just completed:
 
 ---
 
+## Step 6: A/B Exercise — Passing PURPOSE vs. Passing Only the Task — 5 min
+
+> **Borrowed from ECC's cross-harness architecture:** an upstream agent should pass the downstream agent *why* a task matters (its PURPOSE), not merely *what* to do. This exercise lets participants feel the difference.
+
+Run the **same** handoff twice and compare downstream output.
+
+**Variant A — task only.** Hand off to the security-reviewer with just the task:
+
+```text
+@security-reviewer Review the /users endpoint.
+```
+
+**Variant B — task + PURPOSE.** Hand off the same task, but include the purpose:
+
+```text
+@security-reviewer Review the /users endpoint.
+PURPOSE: this API will be exposed to untrusted public clients in a partner-facing
+SaaS offer, so input that reaches a future SQL layer and any data leakage in
+responses are the highest-priority risks.
+```
+
+**Observe and compare:**
+- Does Variant B prioritize the risks that actually matter for this context (injection reaching the SQL layer, response data leakage) instead of a generic checklist?
+- Does Variant B's report read as more *aligned* with the real goal?
+- Try the same A/B on the doc-writer: does knowing the audience ("partner developers integrating the SaaS offer") change the docs' depth and examples?
+
+**Talking point:**
+> A task tells the downstream agent *what to do*; a PURPOSE tells it *what to optimize for when the task is ambiguous*. Most "the agent technically did it but missed the point" failures are missing-PURPOSE failures, not capability failures. In a multi-agent pipeline, propagate PURPOSE down the chain, not just tasks.
+
+**Pitfall:** PURPOSE is not a license to widen scope. The downstream agent should still respect its permission boundary (the security-reviewer still only writes a report) — PURPOSE sharpens *judgment within* the boundary, it does not remove the boundary.
+
+---
+
 ## Advanced Discussion: Mission Control and Coding Agent
 
 ### What Is Mission Control?

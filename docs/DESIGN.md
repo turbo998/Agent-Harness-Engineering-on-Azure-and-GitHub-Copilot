@@ -106,20 +106,24 @@ Safety is not an add-on feature — it's **part of the system architecture**.
 
 ## Comparison: gstack (Claude Code) vs This Workshop (GitHub Copilot)
 
-| Dimension | gstack (Claude Code) | This Workshop (GitHub Copilot) |
-|-----------|---------------------|-------------------------------|
-| AI Engine | Claude (Anthropic) | GPT-4o / Claude (via Copilot) |
-| Config Files | `CLAUDE.md` + `ETHOS.md` | `copilot-instructions.md` |
-| Role Definitions | SubAgents in CLAUDE.md | `.agent.md` files |
-| Workflows | Bash scripts + prompts | `.prompt.md` files |
-| Core Principles | Boil the Lake, Search Before Building, User Sovereignty | Completeness First, Search Before Building, User Sovereignty |
-| IDE Integration | Terminal-based (CLI) | VS Code native integration |
-| Multi-Agent | Via SubAgent directives | Via `@agent` mentions |
-| Best For | Full-stack dev, complex refactoring | Daily development, team collaboration, code review |
-| Learning Curve | Steeper (requires CLI workflow knowledge) | Gentler (in-IDE operations) |
-| Enterprise Fit | Small teams / individuals | Enterprise-grade (GitHub ecosystem integration) |
+> **Two benchmarks, not one.** This workshop deliberately compares against *two* reference harnesses so participants see harness design as a **spectrum, not a single answer**: **gstack** (a multi-role engineering process for Claude Code) and **ECC** (an open-source agent system whose distinctive traits are *cross-harness portability* and *each agent carrying its own defense baseline*). gstack shows the "engineering-process" style; ECC shows the "portable + self-defending agent" style; this workshop adapts both to GitHub Copilot.
 
-**Core consensus**: Both agree — AI agents need structured constraints to operate reliably in engineering practice.
+| Dimension | gstack (Claude Code) | ECC (open-source agent system) | This Workshop (GitHub Copilot) |
+|-----------|---------------------|--------------------------------|-------------------------------|
+| AI Engine | Claude (Anthropic) | Model-agnostic | GPT-4o / Claude (via Copilot) |
+| Config Files | `CLAUDE.md` + `ETHOS.md` | Per-agent definitions | `copilot-instructions.md` |
+| Role Definitions | SubAgents in CLAUDE.md | Per-agent files | `.agent.md` files |
+| Workflows | Bash scripts + prompts | Cross-harness workflows | `.prompt.md` files |
+| Core Principles | Boil the Lake, Search Before Building, User Sovereignty | PURPOSE propagation, per-agent defense baseline, token budget as hard constraint | Completeness First, Search Before Building, User Sovereignty |
+| Cross-harness portability | Low (Claude-specific) | **High (a design goal)** | Medium (Copilot ecosystem) |
+| Per-agent injection defense | Not emphasized | **Built into every agent** | Added in Lab 2 (Part D-2) |
+| IDE Integration | Terminal-based (CLI) | Varies by host | VS Code native integration |
+| Best For | Full-stack dev, complex refactoring | Portable multi-agent systems | Daily development, team collaboration, code review |
+| Enterprise Fit | Small teams / individuals | Teams needing host-portability | Enterprise-grade (GitHub ecosystem integration) |
+
+**Core consensus**: All three agree — AI agents need structured constraints to operate reliably in engineering practice. Where they differ is *style*: gstack leans on engineering process, ECC leans on portability + built-in defense, and this workshop adapts the best of both to the Copilot ecosystem.
+
+> Note: ECC is referenced for its documented engineering practices only; we do not use its star count or popularity metrics as a credibility signal (third-party numbers conflict). Judge it by its code and docs.
 
 ## Enterprise Team Best Practices
 

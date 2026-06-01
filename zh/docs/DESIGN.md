@@ -105,20 +105,24 @@ Harness Engineering（驾驭工程）是一种系统化的 AI 协作方法论。
 
 ## 对比：gstack (Claude Code) vs 本 Workshop (GitHub Copilot)
 
-| 维度 | gstack (Claude Code) | 本 Workshop (GitHub Copilot) |
-|------|---------------------|----------------------------|
-| AI 引擎 | Claude (Anthropic) | GPT-4o / Claude (via Copilot) |
-| 配置文件 | `CLAUDE.md` + `ETHOS.md` | `copilot-instructions.md` |
-| 角色定义 | SubAgents in CLAUDE.md | `.agent.md` 文件 |
-| 工作流 | Bash scripts + prompts | `.prompt.md` 文件 |
-| 核心原则 | Boil the Lake, Search Before Building, User Sovereignty | Completeness First, Search Before Building, User Sovereignty |
-| IDE 集成 | Terminal-based (CLI) | VS Code 原生集成 |
-| 多 Agent | 通过 SubAgent 指令 | 通过 `@agent` mention |
-| 适用场景 | 全栈开发、复杂重构 | 日常开发、团队协作、Code Review |
-| 学习曲线 | 较陡（需理解 CLI 工作流） | 较平缓（IDE 内操作） |
-| 企业适用性 | 小团队/个人 | 企业级（GitHub 生态集成） |
+> **两个标杆，不是一个。** 本 Workshop 刻意对照*两个*参考 harness，让学员看到 harness 设计是**一条光谱、而非单一答案**：**gstack**（面向 Claude Code 的多角色工程流程）与 **ECC**（一个开源 agent 系统，其特色是*跨 harness 可移植*与*每个 agent 自带防御基线*）。gstack 展示"工程流程"风格；ECC 展示"可移植 + 自我防御的 agent"风格；本 Workshop 把两者都适配到 GitHub Copilot。
 
-**核心共识**：两者都认同——AI agent 需要结构化约束才能在工程实践中可靠运作。
+| 维度 | gstack (Claude Code) | ECC（开源 agent 系统） | 本 Workshop (GitHub Copilot) |
+|------|---------------------|------------------------|----------------------------|
+| AI 引擎 | Claude (Anthropic) | 模型无关 | GPT-4o / Claude (via Copilot) |
+| 配置文件 | `CLAUDE.md` + `ETHOS.md` | 每 agent 定义 | `copilot-instructions.md` |
+| 角色定义 | SubAgents in CLAUDE.md | 每 agent 文件 | `.agent.md` 文件 |
+| 工作流 | Bash scripts + prompts | 跨 harness 工作流 | `.prompt.md` 文件 |
+| 核心原则 | Boil the Lake, Search Before Building, User Sovereignty | PURPOSE 传递、每 agent 防御基线、token 预算硬约束 | Completeness First, Search Before Building, User Sovereignty |
+| 跨 harness 可移植 | 低（Claude 专属） | **高（设计目标）** | 中（Copilot 生态） |
+| 每 agent 注入防御 | 未强调 | **内置于每个 agent** | Lab 2 (Part D-2) 新增 |
+| IDE 集成 | Terminal-based (CLI) | 随宿主而定 | VS Code 原生集成 |
+| 适用场景 | 全栈开发、复杂重构 | 可移植的多 agent 系统 | 日常开发、团队协作、Code Review |
+| 企业适用性 | 小团队/个人 | 需要宿主可移植的团队 | 企业级（GitHub 生态集成） |
+
+**核心共识**：三者都认同——AI agent 需要结构化约束才能在工程实践中可靠运作。差异在于*风格*：gstack 偏工程流程，ECC 偏可移植 + 内置防御，本 Workshop 把两者所长都适配进 Copilot 生态。
+
+> 注：引用 ECC 仅取其有文档记载的工程实践；不以其 star 数 / 流行度作为可信度依据（三方数字打架）。只看它的代码与文档来判断。
 
 ## 企业团队最佳实践
 

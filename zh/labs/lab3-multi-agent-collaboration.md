@@ -236,6 +236,38 @@ Also generate a changelog entry for the DELETE feature.
 
 ---
 
+## Step 6：A/B 练习 —— 传 PURPOSE vs. 只传 task —— 5 min
+
+> **借鉴 ECC 的跨 harness 架构：** 上游 agent 应该把"这件事为什么重要"（PURPOSE）传给下游 agent，而不只是"做什么"。这个练习让学员亲身感受差异。
+
+把**同一个**交接跑两遍，对比下游产出。
+
+**变体 A —— 只传 task。** 只带任务交给 security-reviewer：
+
+```text
+@security-reviewer Review the /users endpoint.
+```
+
+**变体 B —— task + PURPOSE。** 同样的任务，但带上目的：
+
+```text
+@security-reviewer Review the /users endpoint.
+PURPOSE: 这个 API 将面向一个合作伙伴的 SaaS offer、暴露给不可信的公网客户端，
+因此「会进入未来 SQL 层的输入」和「响应中的任何数据泄露」是最高优先级风险。
+```
+
+**观察并对比：**
+- 变体 B 是否优先盯住这个语境下真正要紧的风险（注入抵达 SQL 层、响应数据泄露），而不是套一份通用清单？
+- 变体 B 的报告是否读起来更*对齐*真实目标？
+- 对 doc-writer 做同样的 A/B：知道受众（"集成该 SaaS offer 的合作伙伴开发者"）是否改变了文档的深度与示例？
+
+**讲解金句：**
+> task 告诉下游 agent *做什么*；PURPOSE 告诉它*在任务模糊时该为什么而优化*。大多数"agent 技术上做了、但没抓住重点"的失败，是缺 PURPOSE 的失败，而非能力的失败。在多 agent 流水线里，要把 PURPOSE 沿链路往下传，而不只是传 task。
+
+**坑：** PURPOSE 不是扩大范围的许可证。下游 agent 仍应遵守自己的权限边界（security-reviewer 依然只写报告）—— PURPOSE 是*在边界内*磨锐判断力，而非移除边界。
+
+---
+
 ## 进阶讨论：Mission Control 与 Coding Agent
 
 ### 什么是 Mission Control？

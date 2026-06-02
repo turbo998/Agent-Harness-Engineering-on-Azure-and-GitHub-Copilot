@@ -336,6 +336,74 @@ Mission Control
 
 ---
 
+## 🎁 进阶 · 业界级 Harness 模式参考
+
+本实验给的是 **最小可用** 的 multi-agent 接法。下面两个开源项目把同样的思路推到了生产级，强烈推荐在自家落地前研读。
+
+### 参考 1：NVIDIA OpenShell —— *安全沙箱 Harness*
+
+[NVIDIA/OpenShell](https://github.com/NVIDIA/OpenShell) 用一份声明式 YAML policy 把任何 agent CLI（Claude Code / Codex / Copilot CLI）套进 **四层沙箱**：
+
+| 层 | 控制什么 | 能热更新？ |
+|----|---------|----------|
+| Filesystem | Landlock —— 创建时锁死 | ❌ |
+| Network | L4 + L7 规则 | ✅ |
+| Process | 降权 + 阻 syscall | ❌ |
+| Inference | `inference.local` 劫持 | ✅ |
+
+运行时三件套：**Gateway + Supervisor + CLI**；所有安全决策走 **OCSF v1.7.0** 标准日志（可接 Azure Sentinel / Splunk）。Helm chart 在 `oci://ghcr.io/nvidia/openshell/helm-chart`。
+
+### 参考 2：Claude-Code-Game-Studios —— *组织治理 Harness*
+
+[Donchitos/Claude-Code-Game-Studios](https://github.com/Donchitos/Claude-Code-Game-Studios) 把一个 Claude Code 会话改造成 49 个 agent 的「游戏工作室」：
+
+- **三档模型路由**（比全程 Opus 省 5–10x token）：
+  - Directors → Opus，`maxTurns=30`，`memory=user`
+  - Leads → Sonnet，`maxTurns=20`，`memory=project`
+  - Specialists → Sonnet / Haiku
+- **协作协议**：每次交互固定走 `问 → 选项 → 决策 → 草稿 → 批准`
+- **Path-scoped Rules**：11 份规则文件，按 glob 作用域生效（`src/gameplay/**`、`design/gdd/**` 等）
+- **12 个 Hooks**：`session-start`、`pre/post-compact`、`validate-commit/push/assets`、`detect-gaps` ……
+- **Review Mode** 三档开关（`full | lean | solo`），同一个 skill 在不同场景伸缩
+
+### 三家拼起来：完整的 Agent Harness 全景
+
+三种思路 —— **CCGS（组织治理）**、**OpenShell（安全沙箱）**、**GitHub Copilot（平台配置）** —— 互不重叠，叠在一起就是一套生产级 Harness：
+
+![三家 Agent Harness 对照图](../../docs/assets/agent-harness-three-pillar.png)
+
+> *治理决定 **谁** 该做 · 沙箱决定 **能做什么** · 平台决定 **怎么下发**。*
+
+### 实战：`/team-copilot-review`
+
+我们把 CCGS 的 `/team-combat` 模式 port 成 Copilot prompt-files 格式，可以直接对真实 PR 跑：
+
+```bash
+# 在 lab-starter/ 目录内
+gh pr checkout <PR-NUMBER>
+# 在 VS Code 里调用 prompt：
+/team-copilot-review <PR-URL>                 # 默认 lean
+/team-copilot-review <PR-URL> --review full   # 四个 agent + 全量 gate
+/team-copilot-review <PR-URL> --review solo   # 一次跑完，零 gate
+```
+
+流水线（带显式 **Phase Gates** 的串行 handoff）：
+
+```
+@architect → [Gate 1] → @security-reviewer → [Gate 2]
+           → @product-reviewer → [Gate 3] → @test-engineer → [Final Gate]
+```
+
+Skill 文件：`lab-starter/.github/prompts/team-copilot-review.prompt.md`
+四个 agent 都必须遵循：`zh/docs/collaboration-protocol-template.md`
+
+**讨论题：**
+1. 同一份 PR 分别用 `full` 和 `solo` 跑一遍，哪些 gate **真的拦下了问题**？哪些只是 **走流程**？
+2. 你自己团队会把 `--review` 默认值设成哪一档？
+3. 把 `@architect` 换成 `@perf-engineer` 或 `@a11y-reviewer`，整条流水线的形状是否需要改？
+
+---
+
 ## 常见问题
 
 **Q: 如果某个 Agent 的输出不符合预期怎么办？**

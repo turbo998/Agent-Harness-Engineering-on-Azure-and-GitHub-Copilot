@@ -339,6 +339,84 @@ Mission Control
 
 ---
 
+## 🎁 Extension · Industry-Grade Harness Patterns
+
+This lab covers the *minimum viable* multi-agent setup. Two open-source projects
+push the same idea much further — and both are worth studying for your own
+production rollout.
+
+### Reference 1: NVIDIA OpenShell — *Security Harness*
+
+[NVIDIA/OpenShell](https://github.com/NVIDIA/OpenShell) wraps any agent CLI
+(Claude Code / Codex / Copilot CLI) in a **four-layer sandbox** with a
+declarative YAML policy:
+
+| Layer | What it controls | Hot-reload? |
+|-------|------------------|-------------|
+| Filesystem | Landlock — locked at sandbox creation | No |
+| Network | L4 + L7 rules | ✅ Yes |
+| Process | Capability drop + syscall block | No |
+| Inference | `inference.local` interception | ✅ Yes |
+
+Three-piece runtime: **Gateway + Supervisor + CLI**, all decisions logged in
+**OCSF v1.7.0** structured events (pluggable into Azure Sentinel / Splunk).
+Helm chart available at `oci://ghcr.io/nvidia/openshell/helm-chart`.
+
+### Reference 2: Claude-Code-Game-Studios — *Organizational Harness*
+
+[Donchitos/Claude-Code-Game-Studios](https://github.com/Donchitos/Claude-Code-Game-Studios)
+turns one Claude Code session into a 49-agent game studio:
+
+- **3-tier × 3-model routing** (saves 5–10× tokens vs. all-Opus):
+  - Directors → Opus, `maxTurns=30`, `memory=user`
+  - Leads → Sonnet, `maxTurns=20`, `memory=project`
+  - Specialists → Sonnet / Haiku
+- **Collaboration Protocol**: every interaction follows `Question → Options → Decision → Draft → Approval`
+- **Path-scoped Rules**: 11 rule files, each scoped via glob (`src/gameplay/**`, `design/gdd/**`, …)
+- **12 Hooks**: `session-start`, `pre/post-compact`, `validate-commit/push/assets`, `detect-gaps`, …
+- **Review Mode** flag (`full | lean | solo`) lets the same skill scale up/down
+
+### Three-Pillar Harness Reference
+
+The three approaches — **CCGS (organizational)**, **OpenShell (sandbox)**,
+**GitHub Copilot (platform-native)** — are complementary. Put together they
+form a complete production-grade agent harness:
+
+![Three-Pillar Agent Harness](../docs/assets/agent-harness-three-pillar.png)
+
+> *Governance decides **who** should act · Sandbox decides **what** they can do · Platform decides **how** to ship it.*
+
+### Hands-on: `/team-copilot-review`
+
+We ported the CCGS `/team-combat` pattern to Copilot's prompt-files format.
+Try it on a real PR:
+
+```bash
+# Inside lab-starter/
+gh pr checkout <PR-NUMBER>
+# In VS Code, run the prompt:
+/team-copilot-review <PR-URL>            # default: lean mode
+/team-copilot-review <PR-URL> --review full   # all 4 agents + every gate
+/team-copilot-review <PR-URL> --review solo   # single-pass, no gates
+```
+
+Pipeline (sequential handoff with explicit **Phase Gates**):
+
+```
+@architect → [Gate 1] → @security-reviewer → [Gate 2]
+           → @product-reviewer → [Gate 3] → @test-engineer → [Final Gate]
+```
+
+Skill file: `lab-starter/.github/prompts/team-copilot-review.prompt.md`
+Protocol all four agents must follow: `docs/collaboration-protocol-template.md`
+
+**Discussion questions:**
+1. Flip the same PR through `full` vs `solo`. Which gates *caught real issues* vs *felt like ceremony*?
+2. Where would *your* team default the `--review` flag?
+3. Could you swap `@architect` for `@perf-engineer` or `@a11y-reviewer` without changing the pipeline shape?
+
+---
+
 ## FAQ
 
 **Q: What if an Agent's output doesn't meet expectations?**

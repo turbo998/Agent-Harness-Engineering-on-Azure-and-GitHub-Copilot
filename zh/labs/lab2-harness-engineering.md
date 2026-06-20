@@ -100,6 +100,52 @@ GitHub 官方/社区高关注度资源集合，覆盖：
 
 ---
 
+## 参考案例：同一套 Harness 原语正在跨云收敛
+
+> 用这一节让学员看到：「Harness 工程」不是 GitHub Copilot 独有的概念——**当前最大的两个 Agent 平台（AWS 与 Azure）正各自独立地收敛到同一组运行时原语。** 你今天构建的 *repo-local harness*，会在更上面一层以 *托管运行时 harness* 的形态重现。
+
+2026 年中，AWS 把 **Bedrock AgentCore** 示例仓库从扁平的教程列表重构为**按能力分层**的结构（Runtime / Memory / Gateway / Identity / Observability / 治理）。Azure 的 **Microsoft Foundry Agent Service** 暴露的是同一组原语。对照如下：
+
+| Agent 运行时原语 | AWS Bedrock AgentCore | Microsoft Foundry（Azure）对应 | 你的 repo-local 层（本 Lab） |
+|---|---|---|---|
+| **托管运行时** | AgentCore Runtime（serverless、会话隔离） | **Microsoft Foundry Agent Service**（hosted agents、Responses API） | —（运行时层，在仓库之上） |
+| **会话存储 / 短期记忆** | AgentCore Memory 短期：`actorId`+`sessionId`、`CreateEvent`/`ListEvents`、actor 隔离、branching、`eventExpiryDuration` | **会话状态（conversation state）** 经 BYO **Azure Cosmos DB** | `copilot-instructions.md` = 常驻 context |
+| **长期记忆** | AgentCore Memory 长期：SEMANTIC / SUMMARIZATION / USER_PREFERENCE / EPISODIC 策略 + namespace | Foundry **agent memory** *（预览）* | — |
+| **工具 / MCP** | AgentCore Gateway（把 API 变成 MCP 工具） | Foundry **Tools**：远程 **MCP server**、OpenAPI、Logic Apps、Azure Functions、**Toolbox** *（预览）* | `MCP` = 外部能力 |
+| **身份 / 授权** | AgentCore Identity（OAuth / workload identity） | **Microsoft Entra Agent ID**（每 Agent 托管身份、OBO 透传） | — |
+| **可观测 / 评估** | AgentCore Observability（CloudWatch） | Agent **tracing** + Azure Monitor / **Application Insights** + **OpenTelemetry** | tests / lint / CI 反馈回路 |
+| **治理 / 注册表** | AgentCore Gateway → Policy / Registry | **Azure API Center**（API + MCP 注册）+ **Entra Agent Registry** | repo 结构 / 命名约束 |
+| **AI 网关（多模型路由）** | 社区代理（双 OpenAI+Anthropic API、多云路由、配额、prompt cache） | **Azure API Management GenAI Gateway**（token 限流、语义缓存、负载均衡）+ Foundry **Model Router** | — |
+
+```mermaid
+graph TB
+    subgraph Repo["repo-local harness —— 本 Lab 你构建的"]
+        I["copilot-instructions.md<br/>(常驻 context)"]
+        A["custom agents<br/>(角色边界)"]
+        P["prompt files<br/>(任务模板)"]
+        M1["MCP<br/>(外部能力)"]
+        C["tests / lint / CI<br/>(反馈回路)"]
+    end
+    subgraph Managed["托管运行时 harness —— 同一套原语，上移一层"]
+        direction LR
+        AWS["AWS Bedrock AgentCore<br/>Runtime · Memory · Gateway<br/>Identity · Observability"]
+        AZ["Microsoft Foundry Agent Service<br/>Hosted agents · Cosmos 状态 · MCP 工具<br/>Entra Agent ID · Tracing/OTel"]
+    end
+    I --> AZ
+    A --> AZ
+    P --> AZ
+    M1 --> AWS
+    C --> AWS
+    M1 --> AZ
+```
+
+**在工作坊里怎么讲：**
+> 技能是可迁移的。你在这里设计的 instructions / agents / prompt files / MCP 接线，就是 AWS AgentCore 和 Microsoft Foundry 作为托管服务暴露的*同一套 harness 原语*。Harness 思维学一次，从你的仓库一路用到跨云的生产运行时。
+
+> ⚠️ **中国区合规闸门（别盲目承诺）：** 上表的 Azure 映射描述的是 **Azure Global**。Microsoft Foundry Agent Service、Entra Agent ID，以及表中若干工具（memory、web search、Toolbox）处于**预览**状态，且在 **Azure 中国（世纪互联）可用性受限**。在做任何中国区落地承诺之前，必须逐项核实区域可用性与数据驻留边界。
+
+---
+
 ## 核心理念：从 Prompt Engineering 到 Harness Engineering
 
 ### Prompt Engineering 的思路

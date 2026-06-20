@@ -22,6 +22,7 @@
 | `docs/DESIGN.md` | Design Principles (English) |
 | `docs/enterprise-deployment-guide.md` | Enterprise Deployment Guide (Azure + VM) |
 | `docs/agent-security-sandbox.md` | Agent Security & Sandbox Isolation |
+| `docs/managed-harness-platforms.md` | **Managed Harness platforms compared — AWS AgentCore vs. Azure AI Foundry** (incl. Azure China gate) |
 | `zh/docs/` | Chinese versions of all docs |
 | `.github/copilot-instructions.md` | Copilot global instructions |
 | `.github/agents/*.md` | 10 custom agent definitions |

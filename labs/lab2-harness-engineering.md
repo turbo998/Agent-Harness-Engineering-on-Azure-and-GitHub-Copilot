@@ -705,3 +705,11 @@ Discussion questions:
 ## One-Sentence Summary
 
 **Prompt engineering improves the quality of a single conversation; harness engineering improves the long-term success rate of an entire team using Agents.**
+
+---
+
+## Further Reading: who else is building the harness?
+
+In 2026 the cloud vendors started shipping the harness *as a managed product* — AWS **Bedrock AgentCore Managed Harness** and Azure **AI Foundry Agent Service**. The static harness you just built (chatmodes, prompt files, MCP tools, `SKILL.md` packs) is the **same vocabulary** those platforms use, so your work here is portable to them.
+
+→ See [`docs/managed-harness-platforms.md`](../docs/managed-harness-platforms.md) for a 10-capability AWS-vs-Azure map — **and the critical note that Azure Foundry Agent Service is not yet available on Azure China (21Vianet)**, which is exactly why the build-your-own-on-Copilot approach in this Lab is, today, the more deployable option inside that boundary.

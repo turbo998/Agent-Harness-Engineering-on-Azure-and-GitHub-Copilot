@@ -28,6 +28,7 @@
 | `labs/lab-5/` | Lab 5 实验材料 |
 | `src/` | 示例应用源码 |
 | `package.json` | Node.js 项目配置 |
+| `zh/docs/managed-harness-platforms.md` | **托管 Harness 平台对比 —— AWS AgentCore vs. Azure AI Foundry**（含 Azure 中国区闸门）|
 | `LICENSE` | MIT 许可证 |
 
 ## 🤖 智能体角色表（10 Agents）

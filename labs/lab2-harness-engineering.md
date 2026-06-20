@@ -112,37 +112,34 @@ In mid-2026 AWS restructured its **Bedrock AgentCore** samples repo away from a 
 | **Session storage / short-term memory** | AgentCore Memory — short-term: `actorId`+`sessionId`, `CreateEvent`/`ListEvents`, actor isolation, branching, `eventExpiryDuration` | **Conversation state** via bring-your-own **Azure Cosmos DB** | `copilot-instructions.md` = always-on context |
 | **Long-term memory** | AgentCore Memory — long-term: SEMANTIC / SUMMARIZATION / USER_PREFERENCE / EPISODIC strategies + namespaces | Foundry **agent memory** *(preview)* | — |
 | **Tools / MCP** | AgentCore Gateway (turns APIs into MCP tools) | Foundry **Tools**: remote **MCP servers**, OpenAPI, Logic Apps, Azure Functions, **Toolbox** *(preview)* | `MCP` = external capability |
-| **Identity / authorization** | AgentCore Identity (OAuth / workload identity) | **Microsoft Entra Agent ID** (per-agent managed identity, OBO passthrough) | — |
+| **Identity / authorization** | AgentCore Identity (OAuth / workload identity) | **Microsoft Entra Agent ID** *(preview)* — per-agent managed identity, OBO passthrough | — |
 | **Observability / eval** | AgentCore Observability (CloudWatch) | Agent **tracing** + Azure Monitor / **Application Insights** + **OpenTelemetry** | tests / lint / CI feedback loop |
-| **Governance / registry** | AgentCore Gateway → Policy / Registry | **Azure API Center** (API + MCP registry) + **Entra Agent Registry** | repo structure / naming constraints |
+| **Governance / registry** | AgentCore Gateway → Policy / Registry | **Azure API Center** (API + MCP registry) + **Entra Agent Registry** *(preview)* | repo structure / naming constraints |
 | **AI gateway (multi-model routing)** | community proxies (dual OpenAI+Anthropic API, multi-cloud routing, quota, prompt cache) | **Azure API Management GenAI Gateway** (token limits, semantic cache, load balancing) + Foundry **Model Router** | — |
 
 ```mermaid
 graph TB
     subgraph Repo["Repo-local harness — what you build in this lab"]
+        direction LR
         I["copilot-instructions.md<br/>(always-on context)"]
         A["custom agents<br/>(role boundaries)"]
         P["prompt files<br/>(task templates)"]
         M1["MCP<br/>(external capability)"]
         C["tests / lint / CI<br/>(feedback loop)"]
     end
-    subgraph Managed["Managed-runtime harness — same primitives, one layer up"]
+    Repo ==>|same primitives, one layer up| AWS
+    Repo ==>|same primitives, one layer up| AZ
+    subgraph Managed["Managed-runtime harness"]
         direction LR
-        AWS["AWS Bedrock AgentCore<br/>Runtime · Memory · Gateway<br/>Identity · Observability"]
-        AZ["Microsoft Foundry Agent Service<br/>Hosted agents · Cosmos state · MCP tools<br/>Entra Agent ID · Tracing/OTel"]
+        AWS["AWS Bedrock AgentCore<br/>Runtime · Memory · Gateway<br/>Identity · Observability · Governance"]
+        AZ["Microsoft Foundry Agent Service<br/>Hosted agents · Cosmos state · MCP tools<br/>Entra Agent ID · Tracing/OTel · API Center"]
     end
-    I --> AZ
-    A --> AZ
-    P --> AZ
-    M1 --> AWS
-    C --> AWS
-    M1 --> AZ
 ```
 
 **How to frame it in the workshop:**
 > The skills are transferable. The instructions / agents / prompt files / MCP wiring you design here are the *same harness primitives* that AWS AgentCore and Microsoft Foundry expose as managed services. Learn the harness mindset once; apply it from your repo all the way up to a cross-cloud production runtime.
 
-> ⚠️ **China-region compliance gate (do not promise blindly):** the Azure mappings above describe **Azure Global**. Microsoft Foundry Agent Service, Entra Agent ID, and several listed tools (memory, web search, Toolbox) are **preview** and/or have **limited availability on Azure China (21Vianet)**. Verify region availability and data-residency boundaries item-by-item before committing to any China-region deployment.
+> ⚠️ **China-region compliance gate (do not promise blindly):** the Azure mappings above describe **Azure Global**. Microsoft Foundry Agent Service, Entra Agent ID, and several listed tools (memory, Toolbox) are **preview** and/or have **limited availability on Azure China (21Vianet)**. Verify region availability and data-residency boundaries item-by-item before committing to any China-region deployment.
 
 ---
 

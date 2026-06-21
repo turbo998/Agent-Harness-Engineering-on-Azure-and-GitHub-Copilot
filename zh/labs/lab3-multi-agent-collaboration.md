@@ -325,6 +325,23 @@ Mission Control
 
 ---
 
+## 延伸阅读：和 Claude Code Agent Teams 的对比
+
+2026-05 Anthropic 在 Claude Code 推出了实验特性 **Agent Teams**（队友间可同步通信、共享任务列表、Plan 审批 + hook 硬约束）。从 GitHub Copilot 视角看，它与 Copilot 的 Custom Agents / Coding Agent / Mission Control 是同一类工程化路线下的不同产品形态。
+
+四档场景选型快速参考：
+
+| 任务画像 | 推荐方案 |
+|---------|---------|
+| 单仓库、可拆分子任务 | Copilot Custom Agents handoff（本实验） |
+| 单仓库、需要「同事讨论」 | Claude Code Agent Teams |
+| 跨仓库、跨 PR 并行 | Copilot Coding Agent + Mission Control / Agent HQ |
+| 几百 sub-agent 大规模分解 | 云端 Swarm（Kimi K2.6 / 自建） |
+
+完整对比（概念映射、成本/限额、合作伙伴话术）：[`zh/docs/copilot-vs-claude-code-agent-teams.md`](../docs/copilot-vs-claude-code-agent-teams.md)
+
+---
+
 ## 实验完成标准
 
 - [ ] Developer Agent 完成了 DELETE 端点实现

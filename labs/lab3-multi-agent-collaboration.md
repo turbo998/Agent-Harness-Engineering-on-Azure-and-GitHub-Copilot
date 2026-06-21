@@ -328,6 +328,23 @@ Mission Control
 
 ---
 
+## Further Reading: Comparison with Claude Code Agent Teams
+
+In 2026-05, Anthropic shipped an experimental **Agent Teams** feature in Claude Code (synchronous teammate-to-teammate messaging, shared task list, Plan approval + hook-based hard constraints). From a GitHub Copilot perspective, it sits on the same engineering track as Copilot's Custom Agents / Coding Agent / Mission Control — just different product shapes.
+
+Quick four-tier selection matrix:
+
+| Task profile | Recommended |
+|--------------|-------------|
+| Single repo, splittable subtasks | Copilot Custom Agents handoff (this lab) |
+| Single repo, needs "teammate discussion" | Claude Code Agent Teams |
+| Cross-repo, cross-PR parallelism | Copilot Coding Agent + Mission Control / Agent HQ |
+| Hundreds of sub-agents, large-scale fan-out | Cloud Swarm (Kimi K2.6 / custom) |
+
+Full comparison (concept mapping, cost/quota, partner talking points): [`docs/copilot-vs-claude-code-agent-teams.md`](../docs/copilot-vs-claude-code-agent-teams.md)
+
+---
+
 ## Completion Criteria
 
 - [ ] Developer Agent completed the DELETE endpoint implementation

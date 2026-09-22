@@ -3,7 +3,7 @@
 
 > 这些条目是从历史研究快照脱敏整理出的补充学习材料，用于学习、讨论、POC 设计前的思路准备；它们不是正式实验报告、不是本次实机验证结论，也不构成生产部署或合规建议。原快照中的来源可达性、HTTP 200 或核验时间不代表本次发布时已经重新核验。
 
-- 已发布：88
+- 已发布：90
 - 已隔离：0（详见本地报告，不发布敏感原文）
 - 跳过/冲突：0（详见本地报告）
 
@@ -57,6 +57,7 @@
 - 2026-08-17 — [Agent Migration & Harness Control Plane Checklist（2026-08-17）](assets/agent-migration-harness-control-plane-checklist-2026-08-17.md)
 - 2026-09-06 — [Agent Harness Trust / Output / Workflow Gates（2026-09-06）](assets/agent-harness-trust-output-and-workflow-gates-2026-09-06.md)
 - 2026-09-18 — [Agent harness instruction / network / retro gates（2026-09-18）](assets/agent-harness-instruction-network-and-retro-gates-2026-09-18.md)
+- 2026-09-23 — [Completion Evidence Contract Lab（2026-09-23 离线练习卡）](assets/harness-completion-contract-lab-2026-09-23.md)
 - 日期未知 — [Codex Remote 控制平面 & 上下文生命周期速查 [→harness]](assets/codex-remote-control-plane-cheatsheet.md)
 - 日期未知 — [架构图模式：多 Harness 统一控制面（meta-harness）变体](assets/arch-pattern-meta-harness-control-plane.md)
 - 日期未知 — [渐进式教学 Workshop 工程模式速查（GitHub Template + Action 自动推进）](assets/progressive-workshop-engineering-pattern-cheatsheet.md)
@@ -65,6 +66,7 @@
 ## 其他
 
 - 2026-08-13 — [Agent Extension / Upgrade / Scheduled Runbook（SA 版，2026-08-13）](assets/agent-extension-upgrade-scheduled-runbook-2026-08-13.md)
+- 2026-09-23 — [Agent 完成证据与 POC 验收门禁（2026-09-23）](assets/agent-evidence-completion-and-poc-gates-2026-09-23.md)
 - 日期未知 — [Agent 自体检 + 容器化收敛（Containment）速查](assets/agent-self-audit-and-containment-cheatsheet.md)
 - 日期未知 — [POC 计划 / 技术方案文档质量检查清单](assets/poc-plan-and-technical-proposal-quality-checklist.md)
 - 日期未知 — [多 Agent Provider 收敛 + Containment 架构 Cheatsheet](assets/multi-agent-provider-convergence-and-containment-cheatsheet.md)

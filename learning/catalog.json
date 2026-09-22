@@ -378,6 +378,15 @@
     "sha256": "590c610a3248d51cb7c7f01f93adb958bc42c393092fc38dbfe7118fd71bc235"
   },
   {
+    "path": "assets/harness-completion-contract-lab-2026-09-23.md",
+    "title": "Completion Evidence Contract Lab（2026-09-23 离线练习卡）",
+    "date": "2026-09-23",
+    "topic": "Workshop 练习",
+    "status": "published",
+    "source_name": "harness-completion-contract-lab-2026-09-23.md",
+    "sha256": "866ee6a8093876b6b906c57e497685848ab37dca254820dec2971e28c38397fc"
+  },
+  {
     "path": "assets/codex-remote-control-plane-cheatsheet.md",
     "title": "Codex Remote 控制平面 & 上下文生命周期速查 [→harness]",
     "date": null,
@@ -421,6 +430,15 @@
     "status": "published",
     "source_name": "agent-extension-upgrade-scheduled-runbook-2026-08-13.md",
     "sha256": "754167f8897a8e01cc0b38aad54d351c3e737d4e9dbd8a1af8c8188913a5cb2d"
+  },
+  {
+    "path": "assets/agent-evidence-completion-and-poc-gates-2026-09-23.md",
+    "title": "Agent 完成证据与 POC 验收门禁（2026-09-23）",
+    "date": "2026-09-23",
+    "topic": "其他",
+    "status": "published",
+    "source_name": "agent-evidence-completion-and-poc-gates-2026-09-23.md",
+    "sha256": "d3ce926964f53a80a788a48ea7730ea9a547951f7f3e9e1411f32b5369ba3f43"
   },
   {
     "path": "assets/agent-self-audit-and-containment-cheatsheet.md",

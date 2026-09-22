@@ -4,6 +4,10 @@
 
 > 🚀 180分钟企业级 Agent Harness Engineering on Azure 工作坊 — 从基础补全到多智能体协作，全面掌握 Copilot 工程化实践。
 
+## 📚 持续更新的学习资产
+
+[进入学习资产库](../learning/README.md)：经整理的技术速查、POC 验收清单、架构模式和练习卡。材料保留历史快照与未验证边界，不替代正式实验或当前产品文档。[查看入库规范](../learning/PUBLISHING.md)。
+
 ## 🆕 v2 新变化
 
 | 维度 | v1 | v2 |

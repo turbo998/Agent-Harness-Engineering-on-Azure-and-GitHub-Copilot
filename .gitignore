@@ -1,3 +1,10 @@
 lab-starter/node_modules/
 .DS_Store
 Thumbs.db
+
+# Local publication reports and Python caches (never publish).
+learning/.publish-local/
+learning/publish_report.json
+learning/quarantine_report.json
+__pycache__/
+*.pyc

@@ -1,0 +1,794 @@
+[
+  {
+    "path": "assets/agent-extension-control-plane-and-runtime-log-checklist-2026-08-28.md",
+    "title": "Agent 扩展控制面 + 运行证据日志 Checklist（2026-08-28）",
+    "date": "2026-08-28",
+    "topic": "Agent 运行时",
+    "status": "published",
+    "source_name": "agent-extension-control-plane-and-runtime-log-checklist-2026-08-28.md",
+    "sha256": "4ebbfb2822178c427c22e371d067d51ca03de2f0b18e9af042dbd5801cec404e"
+  },
+  {
+    "path": "assets/agent-planfile-source-freshness-and-hosted-workflow-gates-2026-09-08.md",
+    "title": "Agent Planfile / Source Freshness / Hosted Workflow Gates（2026-09-08）",
+    "date": "2026-09-08",
+    "topic": "Agent 运行时",
+    "status": "published",
+    "source_name": "agent-planfile-source-freshness-and-hosted-workflow-gates-2026-09-08.md",
+    "sha256": "da74dd56dd06a90f347f30f9ee3b057328d41be23fbb2756e83d353d2ba8cd2e"
+  },
+  {
+    "path": "assets/agent-skill-portfolio-governance-cheatsheet.md",
+    "title": "Agent Skill 组合治理速查（2026-07-17）",
+    "date": "2026-07-17",
+    "topic": "MCP 与插件",
+    "status": "published",
+    "source_name": "agent-skill-portfolio-governance-cheatsheet.md",
+    "sha256": "1292db0f475fcb91e152d91ce7f034c1d7f8ec6533d6e4ada205362e169c3918"
+  },
+  {
+    "path": "assets/mcp-2026-07-28-stateless-migration-checklist.md",
+    "title": "MCP 2026-07-28 无状态化规范 — POC 启动前置兼容性检查清单",
+    "date": "2026-07-28",
+    "topic": "MCP 与插件",
+    "status": "published",
+    "source_name": "mcp-2026-07-28-stateless-migration-checklist.md",
+    "sha256": "4233e83601aed98eac0b3bc06ee517554277d21ddaf48b3ce592e86726fd8a31"
+  },
+  {
+    "path": "assets/mcp-2026-07-28-protocol-breaking-changes-full-spec.md",
+    "title": "MCP 2026-07-28 正式规范 —— 完整 Breaking Change 逐字清单",
+    "date": "2026-07-28",
+    "topic": "MCP 与插件",
+    "status": "published",
+    "source_name": "mcp-2026-07-28-protocol-breaking-changes-full-spec.md",
+    "sha256": "4378a3af89f1701d9d671d97c44652d36d8f0ccd611e9f5952399c1e96250ac8"
+  },
+  {
+    "path": "assets/anthropic-plugin-ecosystem-and-xai-grok-build-cheatsheet.md",
+    "title": "Anthropic 插件生态三件套 + xAI Grok Build 速查（数据复核于2026-07-31）",
+    "date": "2026-07-31",
+    "topic": "MCP 与插件",
+    "status": "published",
+    "source_name": "anthropic-plugin-ecosystem-and-xai-grok-build-cheatsheet.md",
+    "sha256": "18b6e2256e468c1e6c1844d55275098033d3b94a7ec04bdd57958f30e60afdf4"
+  },
+  {
+    "path": "assets/dual-harness-skill-authoring-mattpocock-cheatsheet.md",
+    "title": "双 Harness Skill 编写规范 —— mattpocock/skills 拆解速查（2026-08-04 新增）",
+    "date": "2026-08-04",
+    "topic": "MCP 与插件",
+    "status": "published",
+    "source_name": "dual-harness-skill-authoring-mattpocock-cheatsheet.md",
+    "sha256": "366d833584affbb9c539187863efbd1897d384e0edee4d50e63e1e619131ed77"
+  },
+  {
+    "path": "assets/cross-vendor-agent-skills-and-harness-blueprint-2026-08-06.md",
+    "title": "跨厂商 Agent Skills + Harness 蓝图（Claude Code / Codex / 社区 Skill 工厂）",
+    "date": "2026-08-06",
+    "topic": "MCP 与插件",
+    "status": "published",
+    "source_name": "cross-vendor-agent-skills-and-harness-blueprint-2026-08-06.md",
+    "sha256": "485817551beac0fbd0923522fc4d2c4ce205e794356969b96ea605ab5139360d"
+  },
+  {
+    "path": "assets/mcp-agent-governance-and-coding-cli-safety-cheatsheet-2026-08-07.md",
+    "title": "MCP / Agent Governance + Coding CLI Safety 速查（2026-08-07）",
+    "date": "2026-08-07",
+    "topic": "MCP 与插件",
+    "status": "published",
+    "source_name": "mcp-agent-governance-and-coding-cli-safety-cheatsheet-2026-08-07.md",
+    "sha256": "0010c90c65dbbea4f376a44b40da8d7df39ad2cdb5f2ded3350ae17b2f461b75"
+  },
+  {
+    "path": "assets/enterprise-agent-mcp-skill-runtime-governance-checklist-2026-08-11.md",
+    "title": "Enterprise Agent MCP / Skill / Runtime Governance Checklist（2026-08-11）",
+    "date": "2026-08-11",
+    "topic": "MCP 与插件",
+    "status": "published",
+    "source_name": "enterprise-agent-mcp-skill-runtime-governance-checklist-2026-08-11.md",
+    "sha256": "57df378b14f33cfeea6360abc76a4be76fa91d5cb2499c4d3e955ff802677c56"
+  },
+  {
+    "path": "assets/agent-plugin-hook-runtime-governance-checklist-2026-08-12.md",
+    "title": "Agent 插件、Hook 与执行运行时治理速查（2026-08-12）",
+    "date": "2026-08-12",
+    "topic": "MCP 与插件",
+    "status": "published",
+    "source_name": "agent-plugin-hook-runtime-governance-checklist-2026-08-12.md",
+    "sha256": "32b48ee516d2fe69b177d4ea2f20144e2bc13ca1ef76cdaa9796f20762969e23"
+  },
+  {
+    "path": "assets/session-sandbox-skill-gate-and-eval-smoke-test-2026-08-14.md",
+    "title": "Session Sandbox / Skill Gate / Eval Smoke Test（SA 版，2026-08-14）",
+    "date": "2026-08-14",
+    "topic": "MCP 与插件",
+    "status": "published",
+    "source_name": "session-sandbox-skill-gate-and-eval-smoke-test-2026-08-14.md",
+    "sha256": "3b104928b1b6a7ebb6c38362c11a61b8eedbce12ee126c9c36280b801ad10512"
+  },
+  {
+    "path": "assets/agent-runtime-plugin-eval-governance-checklist-2026-08-16.md",
+    "title": "Agent Runtime / Plugin / Eval 治理速查（2026-08-16）",
+    "date": "2026-08-16",
+    "topic": "MCP 与插件",
+    "status": "published",
+    "source_name": "agent-runtime-plugin-eval-governance-checklist-2026-08-16.md",
+    "sha256": "5b39342dafa913401e0321bc034a2004762de983cccb28481844c60847329e76"
+  },
+  {
+    "path": "assets/long-horizon-harness-and-skill-radar-intake-2026-08-18.md",
+    "title": "Long-horizon Harness 与 Skill Radar Intake 清单（2026-08-18）",
+    "date": "2026-08-18",
+    "topic": "MCP 与插件",
+    "status": "published",
+    "source_name": "long-horizon-harness-and-skill-radar-intake-2026-08-18.md",
+    "sha256": "7d393547f49820e1d204fa077c242f353d54135927d94298bcfca215dd873f38"
+  },
+  {
+    "path": "assets/agent-work-queue-skill-catalog-governance-checklist-2026-08-22.md",
+    "title": "Agent Work Queue + Skill Catalog + Governance Checklist (2026-08-22)",
+    "date": "2026-08-22",
+    "topic": "MCP 与插件",
+    "status": "published",
+    "source_name": "agent-work-queue-skill-catalog-governance-checklist-2026-08-22.md",
+    "sha256": "8a604890c92e74de5a4e537a2531839897a78e3b0ea667f74b4afccde821f8e1"
+  },
+  {
+    "path": "assets/copilot-codex-claude-skill-harness-intake-2026-08-24.md",
+    "title": "Copilot SDK × Codex Platform × Claude Skills：Agent Harness Intake 清单（2026-08-24）",
+    "date": "2026-08-24",
+    "topic": "MCP 与插件",
+    "status": "published",
+    "source_name": "copilot-codex-claude-skill-harness-intake-2026-08-24.md",
+    "sha256": "4619d9dc2bd986135fafba8a09718614d3ad53bb38f019e4a5f9c9c7436807d2"
+  },
+  {
+    "path": "assets/agent-memory-mcp-and-cross-agent-config-gates-2026-08-25.md",
+    "title": "Agent Memory / Secure MCP Tunnel / Cross-Agent Config Gates — 2026-08-25",
+    "date": "2026-08-25",
+    "topic": "MCP 与插件",
+    "status": "published",
+    "source_name": "agent-memory-mcp-and-cross-agent-config-gates-2026-08-25.md",
+    "sha256": "e43e944442d90579a06bba622cad1720239334340109a7735bce5a513f7238e2"
+  },
+  {
+    "path": "assets/agent-cancellation-drill-eval-skill-cost-gates-2026-08-26.md",
+    "title": "Agent Runtime Cancellation、Resilience Drill、Eval 与 Skill 成本治理速查（2026-08-26）",
+    "date": "2026-08-26",
+    "topic": "MCP 与插件",
+    "status": "published",
+    "source_name": "agent-cancellation-drill-eval-skill-cost-gates-2026-08-26.md",
+    "sha256": "5fb4cc356f7b7c33a491a9dfe33d840b862cdf0c7a3cd94ce96d4cec3611a202"
+  },
+  {
+    "path": "assets/agent-output-budget-execplan-and-skill-eval-gates-2026-08-27.md",
+    "title": "Agent 输出预算 / ExecPlan / Skill Eval 门禁速查（2026-08-27）",
+    "date": "2026-08-27",
+    "topic": "MCP 与插件",
+    "status": "published",
+    "source_name": "agent-output-budget-execplan-and-skill-eval-gates-2026-08-27.md",
+    "sha256": "dd3d9906e0fc0b7b27a29832b07c5d1fdb3500f4eb66feb6d2093d8342a011b0"
+  },
+  {
+    "path": "assets/agent-session-observability-and-skill-surface-gates-2026-08-29.md",
+    "title": "Agent session / observability / skill-surface gates — 2026-08-29",
+    "date": "2026-08-29",
+    "topic": "MCP 与插件",
+    "status": "published",
+    "source_name": "agent-session-observability-and-skill-surface-gates-2026-08-29.md",
+    "sha256": "45d8906442e939a787d07d451bf0e9cb8c86c17b84c7139785b19f826390cf6e"
+  },
+  {
+    "path": "assets/codex-0-151-mcp-result-and-agent-review-gates-2026-08-30.md",
+    "title": "Codex 0.151 MCP Result + Agent Review Gates（SA 可复用检查表）",
+    "date": "2026-08-30",
+    "topic": "MCP 与插件",
+    "status": "published",
+    "source_name": "codex-0-151-mcp-result-and-agent-review-gates-2026-08-30.md",
+    "sha256": "965e61993de13dd6ebd801ef14cd504ab3aa37d08258559c89226d049a6aa095"
+  },
+  {
+    "path": "assets/agent-harness-continuity-and-skill-eval-gates-2026-09-02.md",
+    "title": "Agent Harness Continuity & Skill Eval Gates（2026-09-02）",
+    "date": "2026-09-02",
+    "topic": "MCP 与插件",
+    "status": "published",
+    "source_name": "agent-harness-continuity-and-skill-eval-gates-2026-09-02.md",
+    "sha256": "f04036e9111064d0413e81f26042ac5e45b2ee449829356c3c6a36561a1a119c"
+  },
+  {
+    "path": "assets/agent-marketplace-managed-mcp-and-advisor-governance-gates-2026-09-04.md",
+    "title": "Agent Marketplace / Managed MCP / Advisor Governance Gates — 2026-09-04",
+    "date": "2026-09-04",
+    "topic": "MCP 与插件",
+    "status": "published",
+    "source_name": "agent-marketplace-managed-mcp-and-advisor-governance-gates-2026-09-04.md",
+    "sha256": "1f05b685e3b957ca93cc8fc15b2b0dcd8b55727142e8e60818886081185f6119"
+  },
+  {
+    "path": "assets/agent-mcp-browser-native-harness-intake-gates-2026-09-07.md",
+    "title": "Agent MCP / Browser / Native Hosted Runtime Intake Gates — 2026-09-07",
+    "date": "2026-09-07",
+    "topic": "MCP 与插件",
+    "status": "published",
+    "source_name": "agent-mcp-browser-native-harness-intake-gates-2026-09-07.md",
+    "sha256": "d723841c3c572d2c5798b964de31d7bb165aaaf0a02011e84f45a52d165274d6"
+  },
+  {
+    "path": "assets/agent-runtime-isolation-release-triage-and-skill-gates-2026-09-09.md",
+    "title": "Agent Runtime Isolation / Release Triage / Skill Gates — SA 速查（2026-09-09）",
+    "date": "2026-09-09",
+    "topic": "MCP 与插件",
+    "status": "published",
+    "source_name": "agent-runtime-isolation-release-triage-and-skill-gates-2026-09-09.md",
+    "sha256": "166ae66510c5e4299381ab7850ffa4c061248bb8f0caa98b83a2bb167fb67663"
+  },
+  {
+    "path": "assets/agent-automation-autofix-plugin-cache-and-mcp-schema-gates-2026-09-10.md",
+    "title": "Agent Automation / Autofix / Plugin Cache / MCP Schema-risk Precheck Gates（2026-09-10）",
+    "date": "2026-09-10",
+    "topic": "MCP 与插件",
+    "status": "published",
+    "source_name": "agent-automation-autofix-plugin-cache-and-mcp-schema-gates-2026-09-10.md",
+    "sha256": "a1983f7879d937d026cf70297dc0add2e954e2954ac90696aa6396171a280d32"
+  },
+  {
+    "path": "assets/agent-cli-gateway-sandbox-and-skill-package-gates-2026-09-12.md",
+    "title": "Agent CLI / Gateway / Sandbox / Skill Package Gates（2026-09-12）",
+    "date": "2026-09-12",
+    "topic": "MCP 与插件",
+    "status": "published",
+    "source_name": "agent-cli-gateway-sandbox-and-skill-package-gates-2026-09-12.md",
+    "sha256": "859e0f055568ad94f0b182c634c91b7bc284f0cc6ea61ea6b67e9f6e30441d28"
+  },
+  {
+    "path": "assets/agent-plugin-eval-policy-skill-and-observability-gates-2026-09-13.md",
+    "title": "Agent plugin eval / policy skill / observability gates — SA reusable checklist (2026-09-13)",
+    "date": "2026-09-13",
+    "topic": "MCP 与插件",
+    "status": "published",
+    "source_name": "agent-plugin-eval-policy-skill-and-observability-gates-2026-09-13.md",
+    "sha256": "01d18c560161414776e0f737d2c4700969f05272ab1f3f94b934345bce9ee1ce"
+  },
+  {
+    "path": "assets/agent-plugin-supply-chain-ide-runtime-and-ssrf-gates-2026-09-17.md",
+    "title": "Agent Plugin Supply Chain、IDE Runtime 与 SSRF Gates（2026-09-17）",
+    "date": "2026-09-17",
+    "topic": "MCP 与插件",
+    "status": "published",
+    "source_name": "agent-plugin-supply-chain-ide-runtime-and-ssrf-gates-2026-09-17.md",
+    "sha256": "d82503f464ff43af69ec226f6bd57cf7f48b4f93446ac88bb11d5cdc66bee4b6"
+  },
+  {
+    "path": "assets/agent-release-gateway-skill-eval-and-vector-gates-2026-09-19.md",
+    "title": "Agent Release / Gateway / Skill-Eval / Vector Gates（2026-09-19）",
+    "date": "2026-09-19",
+    "topic": "MCP 与插件",
+    "status": "published",
+    "source_name": "agent-release-gateway-skill-eval-and-vector-gates-2026-09-19.md",
+    "sha256": "382796407f45794b57e46acfe0f7346bc910ba0697b014abe92c47f6e5be92c5"
+  },
+  {
+    "path": "assets/cross-agent-skill-eval-release-gates-2026-09-20.md",
+    "title": "Cross-agent skill / eval / release gates（2026-09-20）",
+    "date": "2026-09-20",
+    "topic": "MCP 与插件",
+    "status": "published",
+    "source_name": "cross-agent-skill-eval-release-gates-2026-09-20.md",
+    "sha256": "4683194258abe4469f90dd15878ec4784946a5315ee53d015e54665491035ff1"
+  },
+  {
+    "path": "assets/agent-private-mcp-voice-skill-context-and-metrics-gates-2026-09-22.md",
+    "title": "Agent private-MCP、Voice POC、Skill context 与用量治理 gates（2026-09-22）",
+    "date": "2026-09-22",
+    "topic": "MCP 与插件",
+    "status": "published",
+    "source_name": "agent-private-mcp-voice-skill-context-and-metrics-gates-2026-09-22.md",
+    "sha256": "cea9e8309017e1d17bdabf0c9ba7d25ee8a613d3b0a3df25102fde4ceb619848"
+  },
+  {
+    "path": "assets/claude-code-dynamic-workflows-orchestration-primitive.md",
+    "title": "Claude Code Dynamic Workflows — 第四种编排原语（Subagents / Skills / Agent Teams 之外）",
+    "date": null,
+    "topic": "MCP 与插件",
+    "status": "published",
+    "source_name": "claude-code-dynamic-workflows-orchestration-primitive.md",
+    "sha256": "17da0483df0daa627e9b86ac0bd8c2ef7364ea00b37dfdc98fd6e2495cf83a56"
+  },
+  {
+    "path": "assets/managed-agents-sandbox-and-mcp-approval-safety-cheatsheet.md",
+    "title": "Managed Agents 容器沙箱 + MCP 工具审批/安全护栏 速查表",
+    "date": null,
+    "topic": "MCP 与插件",
+    "status": "published",
+    "source_name": "managed-agents-sandbox-and-mcp-approval-safety-cheatsheet.md",
+    "sha256": "98bc54d24df4d315e33dcaa7999c65797323cf1a8ccb62c362412763befc5d74"
+  },
+  {
+    "path": "assets/arch-pattern-multi-agent-mcp-a2a.md",
+    "title": "架构图模式：企业级多 Agent 参考拓扑（MCP 纵 / A2A 横）",
+    "date": null,
+    "topic": "MCP 与插件",
+    "status": "published",
+    "source_name": "arch-pattern-multi-agent-mcp-a2a.md",
+    "sha256": "b291f239c4c5fce9aceb282e579ae691e842ea45518b0c1d1c8f44b4edfc7e16"
+  },
+  {
+    "path": "assets/cross-vendor-coding-agent-bridge-plugins-cheatsheet.md",
+    "title": "跨厂商编码 Agent 桥接插件模式速查（Codex↔Claude Code↔Grok Build）",
+    "date": null,
+    "topic": "MCP 与插件",
+    "status": "published",
+    "source_name": "cross-vendor-coding-agent-bridge-plugins-cheatsheet.md",
+    "sha256": "e8a05c5e03026dbf9162b0e4264568701d0dc120ae1b73331c005ccfd8c5511f"
+  },
+  {
+    "path": "assets/ai-agent-autonomous-security-scanning-harness-cheatsheet.md",
+    "title": "Agent 自主安全扫描 Harness 速查（源自 anthropics/defending-code-reference-harness 深挖，2026-07-16）",
+    "date": "2026-07-16",
+    "topic": "Workshop 练习",
+    "status": "published",
+    "source_name": "ai-agent-autonomous-security-scanning-harness-cheatsheet.md",
+    "sha256": "ab34e23c884c9f8b50650c0f912e6e4cadf685af2905334b644db2e4535379a6"
+  },
+  {
+    "path": "assets/claude-code-harness-steering-mechanisms-cheatsheet.md",
+    "title": "Claude Code / Agent Harness 驾驭机制速查（2026-07-20）",
+    "date": "2026-07-20",
+    "topic": "Workshop 练习",
+    "status": "published",
+    "source_name": "claude-code-harness-steering-mechanisms-cheatsheet.md",
+    "sha256": "4c0f22dd709afe0e65a4bd86b3fdc4db3ebfb622fb8540a7f15279175d4b7f13"
+  },
+  {
+    "path": "assets/codex-claude-harness-and-agent-runtime-checklist-2026-08-09.md",
+    "title": "Codex / Claude Code / Agent Runtime Harness 速查与 POC 清单（2026-08-09）",
+    "date": "2026-08-09",
+    "topic": "Workshop 练习",
+    "status": "published",
+    "source_name": "codex-claude-harness-and-agent-runtime-checklist-2026-08-09.md",
+    "sha256": "475dca2c384e076776af7685ac0510e3c056772d07e8439905b53fa457598f8b"
+  },
+  {
+    "path": "assets/agent-migration-harness-control-plane-checklist-2026-08-17.md",
+    "title": "Agent Migration & Harness Control Plane Checklist（2026-08-17）",
+    "date": "2026-08-17",
+    "topic": "Workshop 练习",
+    "status": "published",
+    "source_name": "agent-migration-harness-control-plane-checklist-2026-08-17.md",
+    "sha256": "f3c3388fef41566e78d8ee71ff19078bb29f8e89da7f1282832c5612bdcd33a7"
+  },
+  {
+    "path": "assets/agent-harness-trust-output-and-workflow-gates-2026-09-06.md",
+    "title": "Agent Harness Trust / Output / Workflow Gates（2026-09-06）",
+    "date": "2026-09-06",
+    "topic": "Workshop 练习",
+    "status": "published",
+    "source_name": "agent-harness-trust-output-and-workflow-gates-2026-09-06.md",
+    "sha256": "3d912ce7ca81f298aaeac247786fa748cb36f52f235e386a17c82d3bde805845"
+  },
+  {
+    "path": "assets/agent-harness-instruction-network-and-retro-gates-2026-09-18.md",
+    "title": "Agent harness instruction / network / retro gates（2026-09-18）",
+    "date": "2026-09-18",
+    "topic": "Workshop 练习",
+    "status": "published",
+    "source_name": "agent-harness-instruction-network-and-retro-gates-2026-09-18.md",
+    "sha256": "590c610a3248d51cb7c7f01f93adb958bc42c393092fc38dbfe7118fd71bc235"
+  },
+  {
+    "path": "assets/codex-remote-control-plane-cheatsheet.md",
+    "title": "Codex Remote 控制平面 & 上下文生命周期速查 [→harness]",
+    "date": null,
+    "topic": "Workshop 练习",
+    "status": "published",
+    "source_name": "codex-remote-control-plane-cheatsheet.md",
+    "sha256": "d51fa1fa681d67e46d4d513e515f603d846dce930538d2668aa13531b3dc3297"
+  },
+  {
+    "path": "assets/arch-pattern-meta-harness-control-plane.md",
+    "title": "架构图模式：多 Harness 统一控制面（meta-harness）变体",
+    "date": null,
+    "topic": "Workshop 练习",
+    "status": "published",
+    "source_name": "arch-pattern-meta-harness-control-plane.md",
+    "sha256": "c2af3482371f35aeb68c41172a13a1de903cd779fb97586d42f27d8b1adf3f73"
+  },
+  {
+    "path": "assets/progressive-workshop-engineering-pattern-cheatsheet.md",
+    "title": "渐进式教学 Workshop 工程模式速查（GitHub Template + Action 自动推进）",
+    "date": null,
+    "topic": "Workshop 练习",
+    "status": "published",
+    "source_name": "progressive-workshop-engineering-pattern-cheatsheet.md",
+    "sha256": "b83522d9bcf36821c64f59794e01ce8fc56ea983cbca8713ae5d31a436c56621"
+  },
+  {
+    "path": "assets/codex-claude-harness-governance-cheatsheet.md",
+    "title": "编码 Agent CLI 上下文 & 成本治理速查（Codex / Claude Code 新机制）",
+    "date": null,
+    "topic": "Workshop 练习",
+    "status": "published",
+    "source_name": "codex-claude-harness-governance-cheatsheet.md",
+    "sha256": "bb29af83ff1b26fc92feda2d2bcd72e84247857c7d7424728f18782dd5fbe9f6"
+  },
+  {
+    "path": "assets/agent-extension-upgrade-scheduled-runbook-2026-08-13.md",
+    "title": "Agent Extension / Upgrade / Scheduled Runbook（SA 版，2026-08-13）",
+    "date": "2026-08-13",
+    "topic": "其他",
+    "status": "published",
+    "source_name": "agent-extension-upgrade-scheduled-runbook-2026-08-13.md",
+    "sha256": "754167f8897a8e01cc0b38aad54d351c3e737d4e9dbd8a1af8c8188913a5cb2d"
+  },
+  {
+    "path": "assets/agent-self-audit-and-containment-cheatsheet.md",
+    "title": "Agent 自体检 + 容器化收敛（Containment）速查",
+    "date": null,
+    "topic": "其他",
+    "status": "published",
+    "source_name": "agent-self-audit-and-containment-cheatsheet.md",
+    "sha256": "3e38c91ba552d3138beda840acc6d1e7401516bb29632cdf99780ef2abb5de7c"
+  },
+  {
+    "path": "assets/poc-plan-and-technical-proposal-quality-checklist.md",
+    "title": "POC 计划 / 技术方案文档质量检查清单",
+    "date": null,
+    "topic": "其他",
+    "status": "published",
+    "source_name": "poc-plan-and-technical-proposal-quality-checklist.md",
+    "sha256": "bdd30769f53156bd4547bd8fc96860d307bbbf694b4c8ca609773fc869ca9fbe"
+  },
+  {
+    "path": "assets/multi-agent-provider-convergence-and-containment-cheatsheet.md",
+    "title": "多 Agent Provider 收敛 + Containment 架构 Cheatsheet",
+    "date": null,
+    "topic": "其他",
+    "status": "published",
+    "source_name": "multi-agent-provider-convergence-and-containment-cheatsheet.md",
+    "sha256": "24fc5d31e0707021bae22320135d9a92ccd3d47ab2ce7f16f6401d2d968b6d06"
+  },
+  {
+    "path": "assets/ms-agent-stack-cheatsheet.md",
+    "title": "微软 Agent 技术栈速查（合作伙伴可转发版）",
+    "date": null,
+    "topic": "其他",
+    "status": "published",
+    "source_name": "ms-agent-stack-cheatsheet.md",
+    "sha256": "3ad7da23032f67180cb9087cfcc63728e64e0c5430a1957ebe37ff52dd4a3ab0"
+  },
+  {
+    "path": "assets/archify-diagram-validation-and-delta-diff-cheatsheet.md",
+    "title": "架构图工作流增强参考 — 借鉴 Archify 的 Schema 校验 + Delta Diff 机制",
+    "date": null,
+    "topic": "其他",
+    "status": "published",
+    "source_name": "archify-diagram-validation-and-delta-diff-cheatsheet.md",
+    "sha256": "16544c5063b196a39fb42b4d6959b78629e00057a56e59b21cafb968dd6cba8e"
+  },
+  {
+    "path": "assets/agent-delegation-authorization-governance-cheatsheet.md",
+    "title": "Agent 委派授权治理速查（Codex vs Claude Code）— 2026-07-18",
+    "date": "2026-07-18",
+    "topic": "安全与治理",
+    "status": "published",
+    "source_name": "agent-delegation-authorization-governance-cheatsheet.md",
+    "sha256": "212b25775999f76e0a64261217c029d41683767e5b506e3b66047237fea11e0e"
+  },
+  {
+    "path": "assets/agent-egress-control-and-trending-repos-2026-08-03.md",
+    "title": "Agent 出站流量治理模式（2026-08-03）",
+    "date": "2026-08-03",
+    "topic": "安全与治理",
+    "status": "published",
+    "source_name": "agent-egress-control-and-trending-repos-2026-08-03.md",
+    "sha256": "d62c306caf802f417f535eeed551b3383f3480d7f91f4f9d3c20e5965ce08276"
+  },
+  {
+    "path": "assets/agent-security-audit-tools-and-claude-code-v2.1.221-cheatsheet-2026-08-05.md",
+    "title": "Agent 安全审计工具三方对比 + Claude Code v2.1.221 沙箱凭证隔离 cheatsheet",
+    "date": "2026-08-05",
+    "topic": "安全与治理",
+    "status": "published",
+    "source_name": "agent-security-audit-tools-and-claude-code-v2.1.221-cheatsheet-2026-08-05.md",
+    "sha256": "ba88d960362190a3fcfbff9dc2096698c7cc1538984518b52de426a1afbc2355"
+  },
+  {
+    "path": "assets/coding-agent-self-hosted-and-governance-2026-08-08.md",
+    "title": "Coding Agent 自托管与治理速查（2026-08-08）",
+    "date": "2026-08-08",
+    "topic": "安全与治理",
+    "status": "published",
+    "source_name": "coding-agent-self-hosted-and-governance-2026-08-08.md",
+    "sha256": "24f9b706f178c869d7d82901e9a7302d82d15e28325c62df9f9b188a58e4543d"
+  },
+  {
+    "path": "assets/agent-persistence-egress-oncall-and-security-ci-checklist-2026-08-21.md",
+    "title": "Agent Persistence / Egress / On-call / Security-CI Checklist（2026-08-21）",
+    "date": "2026-08-21",
+    "topic": "安全与治理",
+    "status": "published",
+    "source_name": "agent-persistence-egress-oncall-and-security-ci-checklist-2026-08-21.md",
+    "sha256": "1917bea6a90cac73e7e390d8e5d6076a92ebc3d04341998a2a37a74f495f9b77"
+  },
+  {
+    "path": "assets/agent-command-execution-authz-tristack-cheatsheet.md",
+    "title": "Agent「命令执行授权 / 沙箱审批」三栈对照速查（Codex shell-escalation ↔ Claude Code auto-mode/sandbox ↔ AWS IAM agent-vs-human）+ Azure 映射",
+    "date": null,
+    "topic": "安全与治理",
+    "status": "published",
+    "source_name": "agent-command-execution-authz-tristack-cheatsheet.md",
+    "sha256": "d908d753c8e9e11ee4bb7f409100933ebb67a5f56e781871e2d3a86840452389"
+  },
+  {
+    "path": "assets/coding-agent-hooks-tristack-comparison-cheatsheet.md",
+    "title": "编码 Agent Hooks 与权限治理对照验收模板",
+    "date": null,
+    "topic": "安全与治理",
+    "status": "published",
+    "source_name": "coding-agent-hooks-tristack-comparison-cheatsheet.md",
+    "sha256": "80188ae92209956eae2770e15ffa92d1b866859962a2b6ff0e679db9d3d30838"
+  },
+  {
+    "path": "assets/coding-agent-cli-weekly-delta-2026-07-26.md",
+    "title": "Codex / Claude Code 本周进展速查（截至 2026-07-26）",
+    "date": "2026-07-26",
+    "topic": "编码 Agent",
+    "status": "published",
+    "source_name": "coding-agent-cli-weekly-delta-2026-07-26.md",
+    "sha256": "0e8c802f89f7aed3459e689de17a2571fc2e0aea8268818a26faac76d73b90a8"
+  },
+  {
+    "path": "assets/model-baseline-and-context-budget-cheatsheet.md",
+    "title": "Agent 模型基线 & 上下文预算速查（Codex / Claude Code / GitHub Copilot）",
+    "date": null,
+    "topic": "编码 Agent",
+    "status": "published",
+    "source_name": "model-baseline-and-context-budget-cheatsheet.md",
+    "sha256": "b86854e2cf6608175c95865dfa14f29403501d2a8757a632123f7421fe56743a"
+  },
+  {
+    "path": "assets/xai-grok-build-fourth-stack-cheatsheet.md",
+    "title": "xAI Grok Build — 编码 Agent CLI 第四栈速查",
+    "date": null,
+    "topic": "编码 Agent",
+    "status": "published",
+    "source_name": "xai-grok-build-fourth-stack-cheatsheet.md",
+    "sha256": "dd4863b6dc07a33f5e7d2c7cf33ed8e440890912b8994d4098649a01b84f37d6"
+  },
+  {
+    "path": "assets/unattended-agent-scheduling-tristack-cheatsheet.md",
+    "title": "无人值守 / 托管 Agent 调度三栈对照速查（Codex Automations ↔ Claude Code Routines ↔ GitHub Actions/Copilot）+ Azure 映射",
+    "date": null,
+    "topic": "编码 Agent",
+    "status": "published",
+    "source_name": "unattended-agent-scheduling-tristack-cheatsheet.md",
+    "sha256": "1a596f4181ee852678e7e92f0f7b045bb90258b31aee1d808bcc1d4eae23b56d"
+  },
+  {
+    "path": "assets/coding-agent-cli-parity-cheatsheet.md",
+    "title": "编码 Agent CLI 三栈配置对照与迁移验收模板",
+    "date": null,
+    "topic": "编码 Agent",
+    "status": "published",
+    "source_name": "coding-agent-cli-parity-cheatsheet.md",
+    "sha256": "6683ef82e389d1083b5c254bc2d2eb965305fe5f9f066b08dc4d11671fdf0b38"
+  },
+  {
+    "path": "assets/claude-code-verification-loops-and-context-doctor-cheatsheet.md",
+    "title": "编码 Agent 验证循环与上下文体检模板",
+    "date": null,
+    "topic": "编码 Agent",
+    "status": "published",
+    "source_name": "claude-code-verification-loops-and-context-doctor-cheatsheet.md",
+    "sha256": "904e20b96919a187038c39ac931a759c350a7b79d2e6603fe24ddb3f3701e37d"
+  },
+  {
+    "path": "assets/agent-release-radar-conformance-and-modernization-gates-2026-09-01.md",
+    "title": "Agent release radar、conformance 与 modernization gates（2026-09-01）",
+    "date": "2026-09-01",
+    "topic": "网关与部署",
+    "status": "published",
+    "source_name": "agent-release-radar-conformance-and-modernization-gates-2026-09-01.md",
+    "sha256": "c5ea60bb651491b5e9afdcdbe0fe267cefa4cd7a50399c81547d03e561ef7923"
+  },
+  {
+    "path": "assets/agent-cli-extension-version-and-go-runtime-gates-2026-09-05.md",
+    "title": "Agent CLI Extension / Version Watch / Go Runtime Gates（release/docs-derived pre-smoke, 2026-09-05）",
+    "date": "2026-09-05",
+    "topic": "网关与部署",
+    "status": "published",
+    "source_name": "agent-cli-extension-version-and-go-runtime-gates-2026-09-05.md",
+    "sha256": "6dd7cb22cee7887452891c9341dddcd995f5d7d3b3d4a2eb3ba6df01c4963dc3"
+  },
+  {
+    "path": "assets/foundry-csharp-byo-browser-automation-poc.md",
+    "title": "Foundry C# BYO 浏览器自动化 Hosted Agent — POC 速查（含密钥脱敏模式）",
+    "date": null,
+    "topic": "网关与部署",
+    "status": "published",
+    "source_name": "foundry-csharp-byo-browser-automation-poc.md",
+    "sha256": "8cf05d78b60a1c52f9a4d1bddac0019694c8b2aa306c2d874b7c83da5af58437"
+  },
+  {
+    "path": "assets/foundry-hosted-agent-private-vnet-poc.md",
+    "title": "Foundry Hosted Agent — 私有 VNet POC 部署 & 网络自检清单",
+    "date": null,
+    "topic": "网关与部署",
+    "status": "published",
+    "source_name": "foundry-hosted-agent-private-vnet-poc.md",
+    "sha256": "8393b8c096486d80a63d7703fca919183ff1ef21888dc0831465e1c6ab6349ec"
+  },
+  {
+    "path": "assets/maf-foundry-chatclient-and-agent-rename-migration-cheatsheet.md",
+    "title": "MAF `Agent→AIAgent` 重命名 + Python `FoundryChatClient` 官方落地 —— POC 迁移速查",
+    "date": null,
+    "topic": "网关与部署",
+    "status": "published",
+    "source_name": "maf-foundry-chatclient-and-agent-rename-migration-cheatsheet.md",
+    "sha256": "ee043106901e76ac73c01cf0b5aa3819d783e1f0efb5a2fa972c676bae411265"
+  },
+  {
+    "path": "assets/distributed-agent-runtime-google-ax-vs-maf-workflow-cheatsheet.md",
+    "title": "分布式 Agent 运行时架构参考：google/ax vs MAF Workflow vs Azure AI Foundry Agent Service",
+    "date": null,
+    "topic": "网关与部署",
+    "status": "published",
+    "source_name": "distributed-agent-runtime-google-ax-vs-maf-workflow-cheatsheet.md",
+    "sha256": "0b0a1c53f5ae17e0d601a75006e245398651913dfab4b641972d74a5e1c7b123"
+  },
+  {
+    "path": "assets/agent-approval-auto-mode-memory-and-gateway-checklist-2026-08-10.md",
+    "title": "Agent 审批绑定、Auto Mode 与企业 Memory/Gateway POC 清单（2026-08-10）",
+    "date": "2026-08-10",
+    "topic": "记忆与检索",
+    "status": "published",
+    "source_name": "agent-approval-auto-mode-memory-and-gateway-checklist-2026-08-10.md",
+    "sha256": "393054974a181e8c73f01697bd8e4baf47c738a344103d7e4fd387d6cb3a2783"
+  },
+  {
+    "path": "assets/foundry-stateful-and-a2a-poc-cheatsheet.md",
+    "title": "Foundry Hosted Agents — 有状态记忆 & 跨框架 A2A 委派 POC 速查",
+    "date": null,
+    "topic": "记忆与检索",
+    "status": "published",
+    "source_name": "foundry-stateful-and-a2a-poc-cheatsheet.md",
+    "sha256": "06e0de85c76029cc954778aef9b83369d555f1a22cddf6ce571f71a756ecfa11"
+  },
+  {
+    "path": "assets/agent-security-eval-resilience-gates-2026-08-15.md",
+    "title": "Agent POC 安全 / 评测 / 可恢复性 Gate Pack（2026-08-15）",
+    "date": "2026-08-15",
+    "topic": "评测与观测",
+    "status": "published",
+    "source_name": "agent-security-eval-resilience-gates-2026-08-15.md",
+    "sha256": "e26e1e69250de8b99a630a06af87047b59f83acc409ba7faa0feb32f09efa151"
+  },
+  {
+    "path": "assets/agent-harness-phase-eval-observability-checklist-2026-08-19.md",
+    "title": "Agent Harness Phase / Eval / Observability Checklist (2026-08-19)",
+    "date": "2026-08-19",
+    "topic": "评测与观测",
+    "status": "published",
+    "source_name": "agent-harness-phase-eval-observability-checklist-2026-08-19.md",
+    "sha256": "b72b2d748524e84412f9001b896d2f835a638a2e78611b3abf059fdc07e3ab2a"
+  },
+  {
+    "path": "assets/agent-tool-contract-cua-security-regression-gates-2026-08-20.md",
+    "title": "Agent 工具契约 / CUA 评测 / 安全回归门速查（2026-08-20）",
+    "date": "2026-08-20",
+    "topic": "评测与观测",
+    "status": "published",
+    "source_name": "agent-tool-contract-cua-security-regression-gates-2026-08-20.md",
+    "sha256": "5bf73d2a225db2345d8550fe6396a68361470eb23d71e0892ef599227d9e0c88"
+  },
+  {
+    "path": "assets/agent-release-routing-eval-gates-2026-08-23.md",
+    "title": "Agent release / routing / eval gates — SA reusable checklist (2026-08-23)",
+    "date": "2026-08-23",
+    "topic": "评测与观测",
+    "status": "published",
+    "source_name": "agent-release-routing-eval-gates-2026-08-23.md",
+    "sha256": "63d0dc901f4c61a4c3e783ae11c42dc4533089ba158cf00ef470e0dd31bac0f7"
+  },
+  {
+    "path": "assets/agent-poc-eval-and-config-control-plane-2026-08-31.md",
+    "title": "Agent POC Evaluation & Config Control Plane Checklist（2026-08-31）",
+    "date": "2026-08-31",
+    "topic": "评测与观测",
+    "status": "published",
+    "source_name": "agent-poc-eval-and-config-control-plane-2026-08-31.md",
+    "sha256": "f15d48b296acc4a8a4beca54bde2ae54e87dfaea9dd1edc7f6215cecec8fce7a"
+  },
+  {
+    "path": "assets/agent-approval-observability-and-config-lint-gates-2026-09-03.md",
+    "title": "Agent approval / observability / config-lint gates（2026-09-03）",
+    "date": "2026-09-03",
+    "topic": "评测与观测",
+    "status": "published",
+    "source_name": "agent-approval-observability-and-config-lint-gates-2026-09-03.md",
+    "sha256": "5825ba81de659cee646ced4393482154baab7378b24bd4357697ec0625d54d7d"
+  },
+  {
+    "path": "assets/agent-release-control-plane-and-eval-harness-gates-2026-09-11.md",
+    "title": "Agent Release Control-Plane & Eval Harness Gates（2026-09-11）",
+    "date": "2026-09-11",
+    "topic": "评测与观测",
+    "status": "published",
+    "source_name": "agent-release-control-plane-and-eval-harness-gates-2026-09-11.md",
+    "sha256": "c5ff595b4fd2324bfd1340458c1146f84484a06f1e240b88de979975dd8e799e"
+  },
+  {
+    "path": "assets/agent-harness-authoring-eval-and-subagent-gates-2026-09-14.md",
+    "title": "Agent Harness Authoring / Eval / Subagent Gates — SA 可复用速查（2026-09-14）",
+    "date": "2026-09-14",
+    "topic": "评测与观测",
+    "status": "published",
+    "source_name": "agent-harness-authoring-eval-and-subagent-gates-2026-09-14.md",
+    "sha256": "292abc11e31c40261630e86c47d094675610c5a63a3e09b81558907fae94ba07"
+  },
+  {
+    "path": "assets/agent-diagnostics-provenance-eval-and-model-tier-gates-2026-09-15.md",
+    "title": "Agent diagnostics / provenance / eval / model-tier gates（2026-09-15）",
+    "date": "2026-09-15",
+    "topic": "评测与观测",
+    "status": "published",
+    "source_name": "agent-diagnostics-provenance-eval-and-model-tier-gates-2026-09-15.md",
+    "sha256": "39ab1cab9bc631fcb126444442b64ffc55b43ff43f53091124f6d90ab49df9f5"
+  },
+  {
+    "path": "assets/agent-cli-isolation-foundry-preflight-and-mobile-eval-gates-2026-09-16.md",
+    "title": "Agent CLI 隔离、Foundry 预检与移动端评测 Gate（2026-09-16）",
+    "date": "2026-09-16",
+    "topic": "评测与观测",
+    "status": "published",
+    "source_name": "agent-cli-isolation-foundry-preflight-and-mobile-eval-gates-2026-09-16.md",
+    "sha256": "17bd6f8baabca23a7a470a3948305d0d68af55d790e40b22634664b5a526ccf5"
+  },
+  {
+    "path": "assets/agent-poc-preflight-telemetry-and-headless-harness-gates-2026-09-21.md",
+    "title": "Agent POC 预检、遥测与 Headless Harness Gates（2026-09-21）",
+    "date": "2026-09-21",
+    "topic": "评测与观测",
+    "status": "published",
+    "source_name": "agent-poc-preflight-telemetry-and-headless-harness-gates-2026-09-21.md",
+    "sha256": "c27d71a64e73a0c1f5211d4e83fd610a11e2679978976bc20923f0782d4368ef"
+  },
+  {
+    "path": "assets/agent-observability-selection-opik-vs-foundry-evals-cheatsheet.md",
+    "title": "Agent 可观测性/评测层选型速查：Opik vs Foundry Evals vs Cookbook Improvement Loop",
+    "date": null,
+    "topic": "评测与观测",
+    "status": "published",
+    "source_name": "agent-observability-selection-opik-vs-foundry-evals-cheatsheet.md",
+    "sha256": "5425b46139714f14a5a1142983e9638c212809aefe4496499e84b3a2adad04cb"
+  },
+  {
+    "path": "assets/foundry-adaptive-evals-azure-native-eval-gate-cheatsheet.md",
+    "title": "Foundry Evals（含 Adaptive / Rubric 评测器）— 评测驱动闭环的 Azure 原生版 速查",
+    "date": null,
+    "topic": "评测与观测",
+    "status": "published",
+    "source_name": "foundry-adaptive-evals-azure-native-eval-gate-cheatsheet.md",
+    "sha256": "867eae1f1b0add8a9514cb2800c4798028026c91541ea052c792fdd89b7478fc"
+  },
+  {
+    "path": "assets/harness-eval-loop-and-goal-contract-cheatsheet.md",
+    "title": "Harness 评测回路 + Goal 完成契约 + Headless/FinOps 速查",
+    "date": null,
+    "topic": "评测与观测",
+    "status": "published",
+    "source_name": "harness-eval-loop-and-goal-contract-cheatsheet.md",
+    "sha256": "a56b3ec5c368638aeab32a51cb70d00d1b333cd85a6c55709e59a4c0279a7a9c"
+  },
+  {
+    "path": "assets/eval-driven-improvement-loop-and-poc-acceptance-cheatsheet.md",
+    "title": "评测驱动的 Agent 改进闭环 + POC 验收评分卡 速查",
+    "date": null,
+    "topic": "评测与观测",
+    "status": "published",
+    "source_name": "eval-driven-improvement-loop-and-poc-acceptance-cheatsheet.md",
+    "sha256": "a7f9b36ff86b943e0491c6d39d40a81b829775d9fb033f9a3683671023f163a4"
+  }
+]

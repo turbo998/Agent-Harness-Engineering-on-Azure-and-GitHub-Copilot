@@ -4,6 +4,10 @@
 
 > 🚀 180-minute enterprise workshop on Agent Harness Engineering — from basic completions to multi-agent collaboration, master Copilot engineering practices end to end.
 
+## 📚 Reusable Learning Assets
+
+[Browse the curated learning library (Chinese)](learning/README.md): checklists, POC gates, architecture patterns, and exercise cards. Historical research snapshots are clearly marked; they are not live product guarantees or validated production labs. See the [publication policy](learning/PUBLISHING.md).
+
 ## 🆕 What's New in v2
 
 | Dimension | v1 | v2 |

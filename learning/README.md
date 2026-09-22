@@ -3,7 +3,7 @@
 
 > 这些条目是从历史研究快照脱敏整理出的补充学习材料，用于学习、讨论、POC 设计前的思路准备；它们不是正式实验报告、不是本次实机验证结论，也不构成生产部署或合规建议。原快照中的来源可达性、HTTP 200 或核验时间不代表本次发布时已经重新核验。
 
-- 已发布：88
+- 已发布：91
 - 已隔离：0（详见本地报告，不发布敏感原文）
 - 跳过/冲突：0（详见本地报告）
 
@@ -44,6 +44,7 @@
 - 2026-09-19 — [Agent Release / Gateway / Skill-Eval / Vector Gates（2026-09-19）](assets/agent-release-gateway-skill-eval-and-vector-gates-2026-09-19.md)
 - 2026-09-20 — [Cross-agent skill / eval / release gates（2026-09-20）](assets/cross-agent-skill-eval-release-gates-2026-09-20.md)
 - 2026-09-22 — [Agent private-MCP、Voice POC、Skill context 与用量治理 gates（2026-09-22）](assets/agent-private-mcp-voice-skill-context-and-metrics-gates-2026-09-22.md)
+- 2026-09-22 — [FDE Skill 园艺、独立审查与资产发布清单（2026-09-22）](assets/fde-skill-gardening-review-and-publication-checklist-2026-09-22.md)
 - 日期未知 — [Claude Code Dynamic Workflows — 第四种编排原语（Subagents / Skills / Agent Teams 之外）](assets/claude-code-dynamic-workflows-orchestration-primitive.md)
 - 日期未知 — [Managed Agents 容器沙箱 + MCP 工具审批/安全护栏 速查表](assets/managed-agents-sandbox-and-mcp-approval-safety-cheatsheet.md)
 - 日期未知 — [架构图模式：企业级多 Agent 参考拓扑（MCP 纵 / A2A 横）](assets/arch-pattern-multi-agent-mcp-a2a.md)
@@ -65,6 +66,7 @@
 ## 其他
 
 - 2026-08-13 — [Agent Extension / Upgrade / Scheduled Runbook（SA 版，2026-08-13）](assets/agent-extension-upgrade-scheduled-runbook-2026-08-13.md)
+- 2026-09-22 — [从 MediaCrawler 学多 Provider 适配架构：检查清单（2026-09-22）](assets/mediacrawler-multi-provider-architecture-checklist-2026-09-22.md)
 - 日期未知 — [Agent 自体检 + 容器化收敛（Containment）速查](assets/agent-self-audit-and-containment-cheatsheet.md)
 - 日期未知 — [POC 计划 / 技术方案文档质量检查清单](assets/poc-plan-and-technical-proposal-quality-checklist.md)
 - 日期未知 — [多 Agent Provider 收敛 + Containment 架构 Cheatsheet](assets/multi-agent-provider-convergence-and-containment-cheatsheet.md)
@@ -94,6 +96,7 @@
 
 - 2026-09-01 — [Agent release radar、conformance 与 modernization gates（2026-09-01）](assets/agent-release-radar-conformance-and-modernization-gates-2026-09-01.md)
 - 2026-09-05 — [Agent CLI Extension / Version Watch / Go Runtime Gates（release/docs-derived pre-smoke, 2026-09-05）](assets/agent-cli-extension-version-and-go-runtime-gates-2026-09-05.md)
+- 2026-09-22 — [沙箱内定时脚本部署与验证 Runbook（2026-09-22）](assets/cron-script-containment-and-deployment-runbook-2026-09-22.md)
 - 日期未知 — [Foundry C# BYO 浏览器自动化 Hosted Agent — POC 速查（含密钥脱敏模式）](assets/foundry-csharp-byo-browser-automation-poc.md)
 - 日期未知 — [Foundry Hosted Agent — 私有 VNet POC 部署 & 网络自检清单](assets/foundry-hosted-agent-private-vnet-poc.md)
 - 日期未知 — [MAF `Agent→AIAgent` 重命名 + Python `FoundryChatClient` 官方落地 —— POC 迁移速查](assets/maf-foundry-chatclient-and-agent-rename-migration-cheatsheet.md)

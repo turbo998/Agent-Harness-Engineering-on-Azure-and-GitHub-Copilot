@@ -288,6 +288,15 @@
     "sha256": "cea9e8309017e1d17bdabf0c9ba7d25ee8a613d3b0a3df25102fde4ceb619848"
   },
   {
+    "path": "assets/fde-skill-gardening-review-and-publication-checklist-2026-09-22.md",
+    "title": "FDE Skill 园艺、独立审查与资产发布清单（2026-09-22）",
+    "date": "2026-09-22",
+    "topic": "MCP 与插件",
+    "status": "published",
+    "source_name": "fde-skill-gardening-review-and-publication-checklist-2026-09-22.md",
+    "sha256": "cfdb1244e8c93ebad0fdebcbbaa220c776b67ea655aa4d772ae794527e36aa9e"
+  },
+  {
     "path": "assets/claude-code-dynamic-workflows-orchestration-primitive.md",
     "title": "Claude Code Dynamic Workflows — 第四种编排原语（Subagents / Skills / Agent Teams 之外）",
     "date": null,
@@ -421,6 +430,15 @@
     "status": "published",
     "source_name": "agent-extension-upgrade-scheduled-runbook-2026-08-13.md",
     "sha256": "754167f8897a8e01cc0b38aad54d351c3e737d4e9dbd8a1af8c8188913a5cb2d"
+  },
+  {
+    "path": "assets/mediacrawler-multi-provider-architecture-checklist-2026-09-22.md",
+    "title": "从 MediaCrawler 学多 Provider 适配架构：检查清单（2026-09-22）",
+    "date": "2026-09-22",
+    "topic": "其他",
+    "status": "published",
+    "source_name": "mediacrawler-multi-provider-architecture-checklist-2026-09-22.md",
+    "sha256": "0df507e95ab3c8b1c69c02a9882faeecd826c3324797e10b1670b93887eb61d4"
   },
   {
     "path": "assets/agent-self-audit-and-containment-cheatsheet.md",
@@ -601,6 +619,15 @@
     "status": "published",
     "source_name": "agent-cli-extension-version-and-go-runtime-gates-2026-09-05.md",
     "sha256": "6dd7cb22cee7887452891c9341dddcd995f5d7d3b3d4a2eb3ba6df01c4963dc3"
+  },
+  {
+    "path": "assets/cron-script-containment-and-deployment-runbook-2026-09-22.md",
+    "title": "沙箱内定时脚本部署与验证 Runbook（2026-09-22）",
+    "date": "2026-09-22",
+    "topic": "网关与部署",
+    "status": "published",
+    "source_name": "cron-script-containment-and-deployment-runbook-2026-09-22.md",
+    "sha256": "eb727363d5a0675c4d1517c8bdfb3084babb1b040697ed426ed7dc9cacf82c9b"
   },
   {
     "path": "assets/foundry-csharp-byo-browser-automation-poc.md",

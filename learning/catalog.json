@@ -288,6 +288,15 @@
     "sha256": "cea9e8309017e1d17bdabf0c9ba7d25ee8a613d3b0a3df25102fde4ceb619848"
   },
   {
+    "path": "assets/skill-snapshot-and-instruction-boundary-gates-2026-09-24.md",
+    "title": "Skill 快照与指令边界：双 harness POC 验收模板",
+    "date": "2026-09-24",
+    "topic": "MCP 与插件",
+    "status": "published",
+    "source_name": "skill-snapshot-and-instruction-boundary-gates-2026-09-24.md",
+    "sha256": "90dc9af846ccefd0d001f0195710f708288ab8000d55953640aeed60b5168798"
+  },
+  {
     "path": "assets/claude-code-dynamic-workflows-orchestration-primitive.md",
     "title": "Claude Code Dynamic Workflows — 第四种编排原语（Subagents / Skills / Agent Teams 之外）",
     "date": null,
@@ -385,6 +394,15 @@
     "status": "published",
     "source_name": "harness-completion-contract-lab-2026-09-23.md",
     "sha256": "866ee6a8093876b6b906c57e497685848ab37dca254820dec2971e28c38397fc"
+  },
+  {
+    "path": "assets/harness-retry-generation-lab-2026-09-24.md",
+    "title": "retry is not exactly-once",
+    "date": "2026-09-24",
+    "topic": "Workshop 练习",
+    "status": "published",
+    "source_name": "harness-retry-generation-lab-2026-09-24.md",
+    "sha256": "29ef363e5ee023e9020975977bb3aa177062e88541f836c1dc721ff576dc4401"
   },
   {
     "path": "assets/codex-remote-control-plane-cheatsheet.md",

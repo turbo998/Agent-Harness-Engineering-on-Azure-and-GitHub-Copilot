@@ -297,6 +297,24 @@
     "sha256": "90dc9af846ccefd0d001f0195710f708288ab8000d55953640aeed60b5168798"
   },
   {
+    "path": "assets/skill-evidence-semantic-gate-lab-2026-09-25.md",
+    "title": "S01 Snapshot Equality 语义 Gate 离线 Lab",
+    "date": "2026-09-25",
+    "topic": "MCP 与插件",
+    "status": "published",
+    "source_name": "skill-evidence-semantic-gate-lab-2026-09-25.md",
+    "sha256": "1fd681636a9eda159241d929482899f94d1299d8f1e92cc1a71c931c15f92431"
+  },
+  {
+    "path": "assets/coding-agent-policy-provenance-gates-2026-09-25.md",
+    "title": "编码 Agent 控制面验收：三态网络策略、Mailbox 边界与 Skill 来源授权",
+    "date": "2026-09-25",
+    "topic": "MCP 与插件",
+    "status": "published",
+    "source_name": "coding-agent-policy-provenance-gates-2026-09-25.md",
+    "sha256": "050b8e3e2a1c4861b55dbc6ef19c96ea524bf62f48614ce426adb609e4f97aba"
+  },
+  {
     "path": "assets/claude-code-dynamic-workflows-orchestration-primitive.md",
     "title": "Claude Code Dynamic Workflows — 第四种编排原语（Subagents / Skills / Agent Teams 之外）",
     "date": null,
@@ -790,6 +808,15 @@
     "status": "published",
     "source_name": "agent-poc-preflight-telemetry-and-headless-harness-gates-2026-09-21.md",
     "sha256": "c27d71a64e73a0c1f5211d4e83fd610a11e2679978976bc20923f0782d4368ef"
+  },
+  {
+    "path": "assets/agent-poc-observable-failure-contracts-2026-09-25.md",
+    "title": "Agent POC 可观测失败契约：四类机制速查与负例验收",
+    "date": "2026-09-25",
+    "topic": "评测与观测",
+    "status": "published",
+    "source_name": "agent-poc-observable-failure-contracts-2026-09-25.md",
+    "sha256": "05c0d023d1b1c903ad813ec5771416dd98e947fd8e457770bb6c96c32555cb2a"
   },
   {
     "path": "assets/agent-observability-selection-opik-vs-foundry-evals-cheatsheet.md",

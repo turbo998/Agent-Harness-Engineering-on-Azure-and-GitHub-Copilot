@@ -3,7 +3,7 @@
 
 > 这些条目是从历史研究快照脱敏整理出的补充学习材料，用于学习、讨论、POC 设计前的思路准备；它们不是正式实验报告、不是本次实机验证结论，也不构成生产部署或合规建议。原快照中的来源可达性、HTTP 200 或核验时间不代表本次发布时已经重新核验。
 
-- 已发布：92
+- 已发布：95
 - 已隔离：0（详见本地报告，不发布敏感原文）
 - 跳过/冲突：0（详见本地报告）
 
@@ -45,6 +45,8 @@
 - 2026-09-20 — [Cross-agent skill / eval / release gates（2026-09-20）](assets/cross-agent-skill-eval-release-gates-2026-09-20.md)
 - 2026-09-22 — [Agent private-MCP、Voice POC、Skill context 与用量治理 gates（2026-09-22）](assets/agent-private-mcp-voice-skill-context-and-metrics-gates-2026-09-22.md)
 - 2026-09-24 — [Skill 快照与指令边界：双 harness POC 验收模板](assets/skill-snapshot-and-instruction-boundary-gates-2026-09-24.md)
+- 2026-09-25 — [S01 Snapshot Equality 语义 Gate 离线 Lab](assets/skill-evidence-semantic-gate-lab-2026-09-25.md)
+- 2026-09-25 — [编码 Agent 控制面验收：三态网络策略、Mailbox 边界与 Skill 来源授权](assets/coding-agent-policy-provenance-gates-2026-09-25.md)
 - 日期未知 — [Claude Code Dynamic Workflows — 第四种编排原语（Subagents / Skills / Agent Teams 之外）](assets/claude-code-dynamic-workflows-orchestration-primitive.md)
 - 日期未知 — [Managed Agents 容器沙箱 + MCP 工具审批/安全护栏 速查表](assets/managed-agents-sandbox-and-mcp-approval-safety-cheatsheet.md)
 - 日期未知 — [架构图模式：企业级多 Agent 参考拓扑（MCP 纵 / A2A 横）](assets/arch-pattern-multi-agent-mcp-a2a.md)
@@ -121,6 +123,7 @@
 - 2026-09-15 — [Agent diagnostics / provenance / eval / model-tier gates（2026-09-15）](assets/agent-diagnostics-provenance-eval-and-model-tier-gates-2026-09-15.md)
 - 2026-09-16 — [Agent CLI 隔离、Foundry 预检与移动端评测 Gate（2026-09-16）](assets/agent-cli-isolation-foundry-preflight-and-mobile-eval-gates-2026-09-16.md)
 - 2026-09-21 — [Agent POC 预检、遥测与 Headless Harness Gates（2026-09-21）](assets/agent-poc-preflight-telemetry-and-headless-harness-gates-2026-09-21.md)
+- 2026-09-25 — [Agent POC 可观测失败契约：四类机制速查与负例验收](assets/agent-poc-observable-failure-contracts-2026-09-25.md)
 - 日期未知 — [Agent 可观测性/评测层选型速查：Opik vs Foundry Evals vs Cookbook Improvement Loop](assets/agent-observability-selection-opik-vs-foundry-evals-cheatsheet.md)
 - 日期未知 — [Foundry Evals（含 Adaptive / Rubric 评测器）— 评测驱动闭环的 Azure 原生版 速查](assets/foundry-adaptive-evals-azure-native-eval-gate-cheatsheet.md)
 - 日期未知 — [Harness 评测回路 + Goal 完成契约 + Headless/FinOps 速查](assets/harness-eval-loop-and-goal-contract-cheatsheet.md)

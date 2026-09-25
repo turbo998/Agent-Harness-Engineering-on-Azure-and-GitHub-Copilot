@@ -315,6 +315,15 @@
     "sha256": "050b8e3e2a1c4861b55dbc6ef19c96ea524bf62f48614ce426adb609e4f97aba"
   },
   {
+    "path": "assets/skill-routing-evidence-gate-lab-2026-09-26.md",
+    "title": "Workshop Lab：Skill Routing Evidence Gate（2026-09-26）",
+    "date": "2026-09-26",
+    "topic": "MCP 与插件",
+    "status": "published",
+    "source_name": "skill-routing-evidence-gate-lab-2026-09-26.md",
+    "sha256": "126d38d80ed3f0618a4ca0a54a23b8bd8f0b6916c1e13918518aff4c33b0a674"
+  },
+  {
     "path": "assets/claude-code-dynamic-workflows-orchestration-primitive.md",
     "title": "Claude Code Dynamic Workflows — 第四种编排原语（Subagents / Skills / Agent Teams 之外）",
     "date": null,
@@ -565,6 +574,24 @@
     "status": "published",
     "source_name": "agent-persistence-egress-oncall-and-security-ci-checklist-2026-08-21.md",
     "sha256": "1917bea6a90cac73e7e390d8e5d6076a92ebc3d04341998a2a37a74f495f9b77"
+  },
+  {
+    "path": "assets/agent-approval-and-egress-poc-gates-2026-09-26.md",
+    "title": "Agent 审批与出站双门：公开源码审阅与 POC 验收设计",
+    "date": "2026-09-26",
+    "topic": "安全与治理",
+    "status": "published",
+    "source_name": "agent-approval-and-egress-poc-gates-2026-09-26.md",
+    "sha256": "32265a4af9f05f783e39d940cf99581e7568ea4807b0e25f82034ce722b9da28"
+  },
+  {
+    "path": "assets/coding-agent-authority-degradation-gates-2026-09-26.md",
+    "title": "Coding Agent Authority Degradation Gates：公开 CLI 验收设计模板（2026-09-26）",
+    "date": "2026-09-26",
+    "topic": "安全与治理",
+    "status": "published",
+    "source_name": "coding-agent-authority-degradation-gates-2026-09-26.md",
+    "sha256": "0ad1be2224ab81dafafac92acb8ce4af6868c97d046592f0db09a9034b455489"
   },
   {
     "path": "assets/agent-command-execution-authz-tristack-cheatsheet.md",

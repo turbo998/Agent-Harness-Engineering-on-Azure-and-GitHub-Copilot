@@ -3,7 +3,7 @@
 
 > 这些条目是从历史研究快照脱敏整理出的补充学习材料，用于学习、讨论、POC 设计前的思路准备；它们不是正式实验报告、不是本次实机验证结论，也不构成生产部署或合规建议。原快照中的来源可达性、HTTP 200 或核验时间不代表本次发布时已经重新核验。
 
-- 已发布：95
+- 已发布：98
 - 已隔离：0（详见本地报告，不发布敏感原文）
 - 跳过/冲突：0（详见本地报告）
 
@@ -47,6 +47,7 @@
 - 2026-09-24 — [Skill 快照与指令边界：双 harness POC 验收模板](assets/skill-snapshot-and-instruction-boundary-gates-2026-09-24.md)
 - 2026-09-25 — [S01 Snapshot Equality 语义 Gate 离线 Lab](assets/skill-evidence-semantic-gate-lab-2026-09-25.md)
 - 2026-09-25 — [编码 Agent 控制面验收：三态网络策略、Mailbox 边界与 Skill 来源授权](assets/coding-agent-policy-provenance-gates-2026-09-25.md)
+- 2026-09-26 — [Workshop Lab：Skill Routing Evidence Gate（2026-09-26）](assets/skill-routing-evidence-gate-lab-2026-09-26.md)
 - 日期未知 — [Claude Code Dynamic Workflows — 第四种编排原语（Subagents / Skills / Agent Teams 之外）](assets/claude-code-dynamic-workflows-orchestration-primitive.md)
 - 日期未知 — [Managed Agents 容器沙箱 + MCP 工具审批/安全护栏 速查表](assets/managed-agents-sandbox-and-mcp-approval-safety-cheatsheet.md)
 - 日期未知 — [架构图模式：企业级多 Agent 参考拓扑（MCP 纵 / A2A 横）](assets/arch-pattern-multi-agent-mcp-a2a.md)
@@ -84,6 +85,8 @@
 - 2026-08-05 — [Agent 安全审计工具三方对比 + Claude Code v2.1.221 沙箱凭证隔离 cheatsheet](assets/agent-security-audit-tools-and-claude-code-v2.1.221-cheatsheet-2026-08-05.md)
 - 2026-08-08 — [Coding Agent 自托管与治理速查（2026-08-08）](assets/coding-agent-self-hosted-and-governance-2026-08-08.md)
 - 2026-08-21 — [Agent Persistence / Egress / On-call / Security-CI Checklist（2026-08-21）](assets/agent-persistence-egress-oncall-and-security-ci-checklist-2026-08-21.md)
+- 2026-09-26 — [Agent 审批与出站双门：公开源码审阅与 POC 验收设计](assets/agent-approval-and-egress-poc-gates-2026-09-26.md)
+- 2026-09-26 — [Coding Agent Authority Degradation Gates：公开 CLI 验收设计模板（2026-09-26）](assets/coding-agent-authority-degradation-gates-2026-09-26.md)
 - 日期未知 — [Agent「命令执行授权 / 沙箱审批」三栈对照速查（Codex shell-escalation ↔ Claude Code auto-mode/sandbox ↔ AWS IAM agent-vs-human）+ Azure 映射](assets/agent-command-execution-authz-tristack-cheatsheet.md)
 - 日期未知 — [编码 Agent Hooks 与权限治理对照验收模板](assets/coding-agent-hooks-tristack-comparison-cheatsheet.md)
 

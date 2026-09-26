@@ -3,7 +3,7 @@
 
 > 这些条目是从历史研究快照脱敏整理出的补充学习材料，用于学习、讨论、POC 设计前的思路准备；它们不是正式实验报告、不是本次实机验证结论，也不构成生产部署或合规建议。原快照中的来源可达性、HTTP 200 或核验时间不代表本次发布时已经重新核验。
 
-- 已发布：98
+- 已发布：101
 - 已隔离：0（详见本地报告，不发布敏感原文）
 - 跳过/冲突：0（详见本地报告）
 
@@ -93,6 +93,8 @@
 ## 编码 Agent
 
 - 2026-07-26 — [Codex / Claude Code 本周进展速查（截至 2026-07-26）](assets/coding-agent-cli-weekly-delta-2026-07-26.md)
+- 2026-09-27 — [Copilot Rust SDK resume 事件交付验收手册（公开复用版）](assets/copilot-resume-event-delivery-gates-2026-09-27.md)
+- 2026-09-27 — [编码 Agent 双 CLI 验收资产：Codex 目录预算生命周期与 Claude 模型准入](assets/coding-agent-catalog-and-model-admission-2026-09-27.md)
 - 日期未知 — [Agent 模型基线 & 上下文预算速查（Codex / Claude Code / GitHub Copilot）](assets/model-baseline-and-context-budget-cheatsheet.md)
 - 日期未知 — [xAI Grok Build — 编码 Agent CLI 第四栈速查](assets/xai-grok-build-fourth-stack-cheatsheet.md)
 - 日期未知 — [无人值守 / 托管 Agent 调度三栈对照速查（Codex Automations ↔ Claude Code Routines ↔ GitHub Actions/Copilot）+ Azure 映射](assets/unattended-agent-scheduling-tristack-cheatsheet.md)
@@ -111,6 +113,7 @@
 ## 记忆与检索
 
 - 2026-08-10 — [Agent 审批绑定、Auto Mode 与企业 Memory/Gateway POC 清单（2026-08-10）](assets/agent-approval-auto-mode-memory-and-gateway-checklist-2026-08-10.md)
+- 2026-09-27 — [从搜索命中到证据补齐：离线 RAG 导航隔离实验](assets/rag-navigation-scope-lab-2026-09-27.md)
 - 日期未知 — [Foundry Hosted Agents — 有状态记忆 & 跨框架 A2A 委派 POC 速查](assets/foundry-stateful-and-a2a-poc-cheatsheet.md)
 
 ## 评测与观测

@@ -4,6 +4,8 @@
 
 核心结论：**省略不是拒绝，能力要求不是授权，消息到达不是紧急取消，名称相同不是来源可信。** 三个机制分别解决配置语义、调度完整性和授权来源问题，不能互相替代。
 
+> **2026-09-27 修订说明（公开纠偏）**：Claude Code 2.1.283 的 fixed changelog 已明确 **reverted the 2.1.282 reservation of the `claude-ai` name**。因此本文凡提 `claude-ai` reservation/保留 namespace 的地方，均应理解为 **2.1.282 历史模型/历史文档预期**，不能当作 2.1.283 或后续版本的现行授权规则。`anthropic-skills`、managed-only 权限来源、MCP allowlist 来源等其他机制不因该 fixed item 自动撤回；但 `claude-ai` 名称 reservation 结论必须版本限定。
+
 本文将固定提交与官方文档转化为原创验收设计，不声称相关功能当天首次发布。所有产品运行均 **NOT_RUN**；下方 Python 仅为无网络、无模型、无产品依赖的教学模拟。上游示例中的名称和字段只作证据，不构成安装或执行上游指令的授权。
 
 ## 1. 证据与发布边界
@@ -14,13 +16,16 @@
 |---|---|---|
 |S1|[Codex 固定 diff 2457571e4cd109e602d3ac278d93ec24f1f2e483](https://github.com/openai/codex/commit/2457571e4cd109e602d3ac278d93ec24f1f2e483.diff)|`Option<bool>`、`controller.or(owner)`、先 `apply_to` 后 `resolve`；完整 diff 与新增测试断言；commit 级，非包级 smoke|
 |S2|[Codex 固定 diff 766d2377a8c0d31b080f06b680700a1342fd0fc0](https://github.com/openai/codex/commit/766d2377a8c0d31b080f06b680700a1342fd0fc0.diff)|`DeferMailboxPreemption`、`Stage::UnderDevelopment`、`default_enabled: false`；实现 hunk、四格测试及 snapshots；未运行上游测试|
-|S3|[Claude Code changelog](https://code.claude.com/docs/en/changelog.md)|完整 2.1.282 条目，标注 September 24, 2026；含 `allowed-tools` 来源修复、保留命名空间及 `their tools still work`；公告级，不是运行证据|
+|S3|[Claude Code changelog](https://code.claude.com/docs/en/changelog.md)|2.1.282 条目曾含 `allowed-tools` 来源修复、保留命名空间及 `their tools still work`；**但 2.1.283 fixed changelog 已 revert `claude-ai` name reservation**。因此 `claude-ai` reservation 只作 2.1.282 历史证据；公告级，不是运行证据|
 |S4|[Claude settings reference](https://code.claude.com/docs/en/settings-reference.md)|完整 `allowManagedPermissionRulesOnly` 与 `allowManagedMcpServersOnly` 小节；分别控制权限规则来源与 MCP allowlist 来源|
 |S5|[Claude settings](https://code.claude.com/docs/en/settings.md)|权限规则跨 scope 合并与 managed-only 例外；背景文档复用，不作为 2.1.282 实现证明|
-|S6|[Claude npm dist-tags](https://registry.npmjs.org/-/package/@anthropic-ai/claude-code/dist-tags)|`latest=2.1.281`、`next=2.1.282`、`stable=2.1.273`；当时标签快照；registry mutable，交付前须重核 dist-tags|
+|S6|[Claude npm dist-tags](https://registry.npmjs.org/-/package/@anthropic-ai/claude-code/dist-tags)|原始资产当时快照为 `latest=2.1.281`、`next=2.1.282`、`stable=2.1.273`；registry mutable。2026-09-27 修订复核另见 S8，不能继续用 2.1.282 `claude-ai` reservation 当现行授权|
 |S7|[Codex npm dist-tags](https://registry.npmjs.org/-/package/@openai/codex/dist-tags)|`latest=0.156.1`、`alpha=0.158.0-alpha.9`；不能证明 S1/S2 已入其中任何包；registry mutable，交付前须重核 dist-tags|
+|S8|[Claude Code fixed changelog pinned 7779afb](https://raw.githubusercontent.com/anthropics/claude-code/7779afb12e3635f46f56ec823979d68350ae000b/CHANGELOG.md)|2.1.283 fixed item: `Reverted the 2.1.282 reservation of the claude-ai name: skills, commands, workflows and MCP servers' skills and prompts so named load again, and Skill(claude-ai:*) rules are ordinary prefix rules`；本修订的纠偏证据|
 
-**不能对客户说“latest 已修复”。** Claude 的修复文字在 2.1.282，快照中 latest 仍是 2.1.281。Codex 两项是固定 main 提交证据，提交与发行包的包含关系未核实；不建议为了演示直接启用开发中 flag。
+证据分类：S1/S2/S8 是固定 commit 的 diff/raw 内容；S3–S7 的 docs/registry 是可变快照，抓取时间与正文 SHA-256 只标识当时响应，不要求未来正文恒定，也不证明包级实现或 host 行为。
+
+**原始 2026-09-25 资产当时不能对客户说“latest 已修复”。** Claude 的修复文字在 2.1.282，当时快照中 latest 仍是 2.1.281；本 2026-09-27 修订另指出 2.1.283 已 revert `claude-ai` reservation，因此更不能把 2.1.282 历史 reservation 当现行授权。Codex 两项仍是固定 main 提交证据，提交与发行包的包含关系未核实；不建议为了演示直接启用开发中 flag。
 
 ## 2. Codex：三态不是把布尔值换个写法
 
@@ -138,22 +143,22 @@ sequenceDiagram
 
 **客户 POC 动作：** 对会写文件、发请求或发布图稿的工具，把“worker 完成消息”与“用户取消”画成两条事件通道。独立验收取消到达前后是否发生副作用、重试是否重复发布。不能因本 fixture 的 `update_plan` 顺利完成而省略这些测试。
 
-## 4. Claude 2.1.282：名称、加载、规则匹配、工具授权是四层
+## 4. Claude 2.1.282 历史模型：名称、加载、规则匹配、工具授权是四层
 
-S3 宣告的三项命名空间行为，与 `allowed-tools` 在 managed-only 下的自授权修复，是相关但不同的控制点。保留 namespace 为 `anthropic-skills` / `claude-ai`；对应 allow rule 是 `Skill(anthropic-skills:*)` / `Skill(claude-ai:*)`，2.1.282 将其覆盖范围限定为 claude.ai 同步来源。
+S3 宣告的三项命名空间行为，与 `allowed-tools` 在 managed-only 下的自授权修复，是相关但不同的控制点。**版本限定：以下 `claude-ai` reservation 逻辑仅为 2.1.282 历史模型；2.1.283 已按 S8 revert，`claude-ai` 同名 skills/commands/workflows/MCP skills/prompts 会重新加载，`Skill(claude-ai:*)` 规则成为普通 prefix 规则，不能再当作现行来源限定授权。** `anthropic-skills` 与 managed-only 自授权修复需另按当前文档/版本验收。
 
 ### 4.1 来源授权负例矩阵
 
-以下为 **2.1.282 文档预期**，不是对已安装产品的实测。`不授予`仅表示该来源/规则不能授予权限，不代表执行最终一定 DENY：其他有效规则和交互审批仍需另判。
+以下为 **2.1.282 历史文档预期**，不是对已安装产品的实测；其中所有 `claude-ai` reservation 行在 2.1.283 起不得作为现行授权规则使用。`不授予`仅表示该历史来源/规则不能授予权限，不代表执行最终一定 DENY：其他有效规则和交互审批仍需另判。
 
 |ID|来源与输入|前置|加载/发现预期|授权预期|必须保留的反证|
 |---|---|---|---|---|---|
-|P1|真实 claude.ai 同步 skill，保留 namespace|有对应 `Skill(...:*)` allow rule|可进入同步 skill 路径|可被该来源限定规则覆盖|规则匹配不是后续每个工具自动获准|
-|N1|repo skill 仅改成保留 namespace|同一 allow rule|该 namespace 的 skill folder 不再加载|不能靠改名取得匹配资格|不能把名称当同步来源证明|
-|N2|user skill / command file 冒用保留 namespace|同一 allow rule|对应 folder/command 不加载|不授予|与 repo 路径不同也不产生可信身份|
-|N3|workflow command 冒用保留 namespace|同一 allow rule|不加载|不授予|不能只检查 SKILL 文件而漏 workflow|
-|N4|插件名为保留 namespace|同一 allow rule|插件仍加载；重名时让位同步 skill|不因名称相同获得同步来源规则授权|不能写成“保留名字插件全部禁用”|
-|N5|MCP server 名为保留 namespace|该 server 通过其他接入检查|不列 skills/prompts；tools 仍工作|不会由此获得同步 skill 权限|不能写成“MCP tools 已全面封禁”|
+|P1|2.1.282 历史：真实 claude.ai 同步 skill，保留 namespace|有对应 `Skill(...:*)` allow rule|可进入同步 skill 路径|可被该来源限定规则覆盖|2.1.283 已 revert `claude-ai` reservation；规则匹配不是后续每个工具自动获准|
+|N1|2.1.282 历史：repo skill 仅改成保留 namespace|同一 allow rule|该 namespace 的 skill folder 不再加载|不能靠改名取得匹配资格|2.1.283 后 `claude-ai` 名称重新加载，不能继续引用此行作现行阻断证据|
+|N2|2.1.282 历史：user skill / command file 冒用保留 namespace|同一 allow rule|对应 folder/command 不加载|不授予|2.1.283 后 `claude-ai` 名称 reservation 已撤回；仍需普通来源/权限检查|
+|N3|2.1.282 历史：workflow command 冒用保留 namespace|同一 allow rule|不加载|不授予|2.1.283 后 `claude-ai` workflow 名称 reservation 已撤回；不能只检查 SKILL 文件而漏 workflow|
+|N4|2.1.282 历史：插件名为保留 namespace|同一 allow rule|插件仍加载；重名时让位同步 skill|不因名称相同获得同步来源规则授权|2.1.283 `claude-ai` revert 后需重验；不能写成“保留名字插件全部禁用”|
+|N5|2.1.282 历史：MCP server 名为保留 namespace|该 server 通过其他接入检查|不列 skills/prompts；tools 仍工作|不会由此获得同步 skill 权限|2.1.283 fixed 说明 `claude-ai` MCP skills/prompts so named load again；不能写成“MCP tools 已全面封禁”|
 |N6|MCP 改为普通名字|该 server 通过其他接入检查|文档说可恢复列出 skills/prompts|仍不是 claude.ai 同步来源|改名不是提权；仍需普通权限检查|
 |N7|repo skill 的 `allowed-tools` 自批工具|managed `allowManagedPermissionRulesOnly=true`|此修复不等于整个 skill 禁用|该字段不能自行预批准工具|保留有效 managed 权限与审批流程|
 |N8|user skill / command 的 `allowed-tools`|同上|同上|不能自授权|不能漏用户目录入口|
@@ -181,6 +186,8 @@ from itertools import product
 
 U = None
 VALUES = (U, False, True)
+# 2026-09-27修订：此toy集合保留原历史代码形状，仅模拟2.1.282历史reservation；
+# 2.1.283已revert `claude-ai` reservation，不能把本toy当现行授权库。
 RESERVED = {'anthropic-skills', 'claude-ai'}
 
 
@@ -297,7 +304,7 @@ if __name__ == '__main__':
     unittest.main(verbosity=2)
 ```
 
-**断言覆盖**：九格三态合并；七类 controller × 六种 owner/executor 组合；两种 boundary 标签 × defer 开关的事件顺序回放（不模拟两类 SSE item schema）；两个保留 namespace 的正负来源；四种本地自授权入口；merge、binding、replay 的列明非法输入拒绝。配置优先级在 lab 中已折叠为 `effective`，所以该 lab **不测试 managed 配置解析器**。tuple 未改写检查也不等价于产品共享对象并发不变性测试。
+**断言覆盖**：九格三态合并；七类 controller × 六种 owner/executor 组合；两种 boundary 标签 × defer 开关的事件顺序回放（不模拟两类 SSE item schema）；两个保留 namespace 的正负来源（**仅为 2.1.282 历史 reservation toy，2.1.283 后 `claude-ai` 不可作现行授权结论**）；四种本地自授权入口；merge、binding、replay 的列明非法输入拒绝。配置优先级在 lab 中已折叠为 `effective`，所以该 lab **不测试 managed 配置解析器**。tuple 未改写检查也不等价于产品共享对象并发不变性测试。
 
 **实测离线结果**：最终代码块含边界标签与非法输入断言，`unittest` 的 5 个测试方法全部通过；方法内部覆盖表中的组合。四项独立变异检查也已执行：将 AND 改成 OR、将缺 controller 的默认 false 改成 U、将 RT 冲突 DENY 改成 ALLOW、将来源判定改成只看 namespace，均在代码可编译的前提下触发 `AssertionError`。这验证测试能发现这些特定退化，不证明穷尽安全性；不是上游测试或产品 host smoke。
 
@@ -313,15 +320,18 @@ Lab 的严格类型拒绝是原创 schema 契约，不模拟 Claude 的错误类
 {
   "case_id": "RT-explicit-deny",
   "schema_status": "VALID",
-  "gate_decision": "DENY",
+  "execution_layer": "offline_contract",
+  "expected": {"gate_decision": "DENY", "reason": "executor cannot enforce false"},
+  "observed": {"gate_decision": "DENY", "binding": false},
   "case_status": "PASS",
   "host_status": "NOT_RUN",
+  "host_observed": null,
   "evidence_kind": "offline_contract",
-  "expected_reason": "executor cannot enforce false"
+  "evidence_ref": "section-5:test_schema_is_not_authorization"
 }
 ```
 
-`PASS` 在这里表示离线负例正确拒绝，绝不是 host 已通过。UNKNOWN、SKIP、NOT_RUN 都不能转换成执行许可；类型合法也不代表来源可信。
+`PASS` 在这里仅表示第 5 节实际运行的离线负例正确拒绝；observed 只属于标明的 offline_contract 层，host_observed 仍为 null，绝不是 host 已通过。产品用例尚未执行时须写 `case_status=NOT_RUN`、`observed=null`，将文档决策只放在 expected 内，不能把 docs/source 读取写成 observed 产品决策。`schema_status=VALID` 仅表示本原创记录结构合法，不表示产品接受配置。UNKNOWN、SKIP、NOT_RUN 都不能转换成执行许可；类型合法也不代表来源可信。
 
 |Host/运行层|本文状态|交付前需取得的独立证据|
 |---|---|---|
@@ -337,9 +347,9 @@ Lab 的严格类型拒绝是原创 schema 契约，不模拟 Claude 的错误类
 1. **限定范围**：空白测试项目、无生产凭据、无真实写入工具、明确 cleanup；固定包版本与平台，留存版本/通道及 policy 来源。版本不能满足时记 NOT_RUN，不用名称相近的新版本代替。
 2. **网络语义**：按九格与 absent 三格创建独立 fixture；采集 merge 前/后值；RT+F 必须拒绝；确认原 controller 未变。仅使用受控目的端，把策略拒绝与端点无 listener 分开，禁止通过扩大域名/私网权限“让测试绿”。
 3. **调度**：两段响应、两条 worker 消息、显式 queue barrier；逐一回放四格，记录第二次输入中的消息顺序和 `planned-action` 结果；消息丢失，或工具结果的有无与四格矩阵不符，则 FAIL（false 分支按预期截断，不应误判为工具丢失）。另设取消事件与有副作用工具替身，记录是否开始、完成、重试；这些附加用例不能由四格测试代签。
-4. **来源**：P1 作正对照，N1–N10 逐入口建无害 fixture；日志同时记录 `origin + namespace + component_kind + effective_policy`。检查加载、Skill allow 匹配、MCP tools 列表和实际批准四种不同结果；特别确认 N4 插件仍加载、N5 tools 不被误封。N11 仅作为自建 gate 的不可信输入负例，不假称已知 Claude 内部证明格式。
+4. **来源**：P1 作正对照，N1–N10 逐入口建无害 fixture；日志同时记录 `origin + namespace + component_kind + effective_policy`。检查加载、Skill allow 匹配、MCP tools 列表和实际批准四种不同结果；特别确认 N4 插件仍加载、N5 tools 不被误封。**若验收版本为 2.1.283 或更新，`claude-ai` reservation 相关断言必须标为历史纠偏/NOT_RUN，不得作为现行 DENY/ALLOW 依据。** N11 仅作为自建 gate 的不可信输入负例，不假称已知 Claude 内部证明格式。
 5. **managed 边界**：分别测试两个 managed-only 开关及实际 allowlist；低信任文件不得建立 managed scope；验证 session deny/ask reload 后仍收紧。错误类型 lock 的测试须独立记录启动告警，不作为常规配置模板。
-6. **出具报告与恢复**：每项写 expected/observed/reason、package、host、trace 引用，负例正确阻断写 `DENY + PASS`；无观测写 NOT_RUN，不写 PASS；清理所有 fixture 和临时规则，确认没有修改生产状态。
+6. **出具报告与恢复**：每项分开写 expected/observed/reason、execution_layer、package、host、trace 引用，实际负例正确阻断才可在对应运行层写 `observed.DENY + PASS`；无观测写 NOT_RUN、observed=null，预期 DENY 仅在 expected 中，不写 PASS；清理所有 fixture 和临时规则，确认没有修改生产状态。
 
 ### 6.3 可直接使用的技术问答与图稿修改
 
@@ -347,6 +357,15 @@ Lab 的严格类型拒绝是原创 schema 契约，不模拟 Claude 的错误类
 - **问：“RequireTrue 能否自动给私网放行？”** 答：不能覆盖显式限制；不支持执行该限制的 executor 应报冲突，不应改写权限。
 - **问：“worker 完成后是否应该打断主 agent？”** 答：这是正常输入边界的调度选择，不是安全取消协议。POC 分别演示 mailbox 与 cancel；架构图把 cancel 单独接到执行协调层。
 - **问：“我们设了 managed-only，是否所有 MCP 都被管住？”** 答：先确认设的是 permission-rule 开关还是 MCP allowlist 开关，再核实际 list、deny 与接入例外。不要用一个开关的截图替代另一条控制面的证据。
-- **问：“前缀像官方 skill，是否可直接允许？”** 答：不能。图中把可信同步来源接到 provenance 判定，将 repo/user/plugin/MCP 作为不同输入，再分别连到加载、规则匹配、工具批准；每个框都留独立日志字段。
+- **问：“前缀像官方 skill，是否可直接允许？”** 答：不能。图中把可信同步来源接到 provenance 判定，将 repo/user/plugin/MCP 作为不同输入，再分别连到加载、规则匹配、工具批准；每个框都留独立日志字段。**但 `claude-ai` reservation 是 2.1.282 历史模型，2.1.283 已 revert，不能用它当现行来源授权。**
 
-**交付门槛**：本文可用于解释机制和设计测试；没有产品 host 的有效运行证据，不得据此签署生产验收、宣称稳定包修复、推荐开发中 flag，或声称获得事务/取消/来源证明的完整安全保证。
+## 7. Fixed changelog 证据与修订结论
+
+2026-09-27 修订复核的固定 changelog（curl 200，见本文 S8 固定公开来源；可 GET 该固定 URL 并查找 2.1.283 的 reverted 条目复核正文）包含 2.1.283 fixed item：`Reverted the 2.1.282 reservation of the claude-ai name: skills, commands, workflows and MCP servers' skills and prompts so named load again, and Skill(claude-ai:*) rules are ordinary prefix rules`。因此：
+
+- 本文原 2.1.282 中关于 `claude-ai` reservation 的表格、toy code 与 Q/A 只能作为历史回放与反例设计材料。
+- 不能对外说 `Skill(claude-ai:*)` 在 2.1.283 仍是 claude.ai 同步来源限定授权；它已是 ordinary prefix rule。
+- 不能把 `claude-ai` 名称本身当现行可信来源、现行阻断、或现行企业授权边界。
+- `allowed-tools` 在 managed-only 下的自授权修复、`allowManagedPermissionRulesOnly`、`allowManagedMcpServersOnly` 等控制面仍需按当前版本另验；本修订只撤销/限定 `claude-ai` reservation 结论，不自动改写全部来源治理原则。
+
+**交付门槛**：本文可用于解释机制和设计测试；没有产品 host 的有效运行证据，不得据此签署生产验收、宣称稳定包修复、推荐开发中 flag，或声称获得事务/取消/来源证明的完整安全保证。凡涉及 `claude-ai` reservation 的历史结论，必须带 2.1.282 版本限定与 2.1.283 revert 说明。

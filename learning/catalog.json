@@ -312,7 +312,7 @@
     "topic": "MCP 与插件",
     "status": "published",
     "source_name": "coding-agent-policy-provenance-gates-2026-09-25.md",
-    "sha256": "050b8e3e2a1c4861b55dbc6ef19c96ea524bf62f48614ce426adb609e4f97aba"
+    "sha256": "7e613e5c95b6499b9f71cb6588727b27ecf9d43f7277b74dc4302b24be3e4045"
   },
   {
     "path": "assets/skill-routing-evidence-gate-lab-2026-09-26.md",
@@ -621,6 +621,24 @@
     "sha256": "0e8c802f89f7aed3459e689de17a2571fc2e0aea8268818a26faac76d73b90a8"
   },
   {
+    "path": "assets/copilot-resume-event-delivery-gates-2026-09-27.md",
+    "title": "Copilot Rust SDK resume 事件交付验收手册（公开复用版）",
+    "date": "2026-09-27",
+    "topic": "编码 Agent",
+    "status": "published",
+    "source_name": "copilot-resume-event-delivery-gates-2026-09-27.md",
+    "sha256": "3e03ee52a6243b7eef0a03de7e218041a373f51f73b0e1e16d030f39738c536a"
+  },
+  {
+    "path": "assets/coding-agent-catalog-and-model-admission-2026-09-27.md",
+    "title": "编码 Agent 双 CLI 验收资产：Codex 目录预算生命周期与 Claude 模型准入",
+    "date": "2026-09-27",
+    "topic": "编码 Agent",
+    "status": "published",
+    "source_name": "coding-agent-catalog-and-model-admission-2026-09-27.md",
+    "sha256": "7a64f403c5019ff34fe27f2d59de7861384c306583d7fb50e99f182497b82467"
+  },
+  {
     "path": "assets/model-baseline-and-context-budget-cheatsheet.md",
     "title": "Agent 模型基线 & 上下文预算速查（Codex / Claude Code / GitHub Copilot）",
     "date": null,
@@ -727,6 +745,15 @@
     "status": "published",
     "source_name": "agent-approval-auto-mode-memory-and-gateway-checklist-2026-08-10.md",
     "sha256": "393054974a181e8c73f01697bd8e4baf47c738a344103d7e4fd387d6cb3a2783"
+  },
+  {
+    "path": "assets/rag-navigation-scope-lab-2026-09-27.md",
+    "title": "从搜索命中到证据补齐：离线 RAG 导航隔离实验",
+    "date": "2026-09-27",
+    "topic": "记忆与检索",
+    "status": "published",
+    "source_name": "rag-navigation-scope-lab-2026-09-27.md",
+    "sha256": "7a8641f040d33eb3132910d452ef8ca96ba597b20e07e60bcc7fbfbf505ccca9"
   },
   {
     "path": "assets/foundry-stateful-and-a2a-poc-cheatsheet.md",

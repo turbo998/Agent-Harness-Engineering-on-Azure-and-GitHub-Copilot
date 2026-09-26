@@ -198,7 +198,7 @@ bootstrap 是无界 `VecDeque<SessionEvent>`；预算必须由业务 POC 约束�
 
 ## 7. 本手册未完成 / 未验证
 
-- 修订稿等待独立复审；生产者修复不撤销原 NO_GO，不构成公开发布批准。
+- 本文是已复核的源码级验收设计，不是运行结果、厂商背书或生产安全认证；执行时仍需目标环境的独立验收。
 - NOT_RUN：未执行上游测试，未编译 SDK，未连接真实 Copilot CLI/服务端。
 - 未验证 crates / NuGet / npm 包发布状态；不声明正式版本可用。
 - 未做吞吐、RSS、长连接断连重连、client-global router 溢出实测。

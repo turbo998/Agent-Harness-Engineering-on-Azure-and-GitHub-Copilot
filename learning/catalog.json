@@ -627,7 +627,7 @@
     "topic": "编码 Agent",
     "status": "published",
     "source_name": "copilot-resume-event-delivery-gates-2026-09-27.md",
-    "sha256": "3e03ee52a6243b7eef0a03de7e218041a373f51f73b0e1e16d030f39738c536a"
+    "sha256": "129c0d87c9068700370b52dce1d5abd8bb5347d918610806416fc2b0048643fc"
   },
   {
     "path": "assets/coding-agent-catalog-and-model-admission-2026-09-27.md",
@@ -753,7 +753,7 @@
     "topic": "记忆与检索",
     "status": "published",
     "source_name": "rag-navigation-scope-lab-2026-09-27.md",
-    "sha256": "7a8641f040d33eb3132910d452ef8ca96ba597b20e07e60bcc7fbfbf505ccca9"
+    "sha256": "7218cec1993253d023f60fa0c630873501c572d1eea414710557d6a0ca0a1dd7"
   },
   {
     "path": "assets/foundry-stateful-and-a2a-poc-cheatsheet.md",

@@ -18,6 +18,15 @@
     "sha256": "da74dd56dd06a90f347f30f9ee3b057328d41be23fbb2756e83d353d2ba8cd2e"
   },
   {
+    "path": "assets/maf-declarative-config-exposure-gates-2026-09-28.md",
+    "title": "MAF 声明式配置暴露门：离线 POC 验收设计模板",
+    "date": "2026-09-28",
+    "topic": "Agent 运行时",
+    "status": "published",
+    "source_name": "maf-declarative-config-exposure-gates-2026-09-28.md",
+    "sha256": "1568773e5796eb3c0109798fe6f7559702bbc938e4ce30018be19015e422bf89"
+  },
+  {
     "path": "assets/agent-skill-portfolio-governance-cheatsheet.md",
     "title": "Agent Skill 组合治理速查（2026-07-17）",
     "date": "2026-07-17",
@@ -324,6 +333,15 @@
     "sha256": "126d38d80ed3f0618a4ca0a54a23b8bd8f0b6916c1e13918518aff4c33b0a674"
   },
   {
+    "path": "assets/nemo-plugin-delivery-acceptance-lab-2026-09-28.md",
+    "title": "NVIDIA 插件交付：可移植离线验收 lab",
+    "date": "2026-09-28",
+    "topic": "MCP 与插件",
+    "status": "published",
+    "source_name": "nemo-plugin-delivery-acceptance-lab-2026-09-28.md",
+    "sha256": "edeeebe7a52b94ce872a01eb1c163f3a9a460b73f84991ea9db7deea597f39d7"
+  },
+  {
     "path": "assets/claude-code-dynamic-workflows-orchestration-primitive.md",
     "title": "Claude Code Dynamic Workflows — 第四种编排原语（Subagents / Skills / Agent Teams 之外）",
     "date": null,
@@ -430,6 +448,15 @@
     "status": "published",
     "source_name": "harness-retry-generation-lab-2026-09-24.md",
     "sha256": "29ef363e5ee023e9020975977bb3aa177062e88541f836c1dc721ff576dc4401"
+  },
+  {
+    "path": "assets/coding-agent-review-freshness-and-prompt-attribution-2026-09-28.md",
+    "title": "编码代理审查新鲜度与 prompt 归因：公开 harness 验收模板草稿",
+    "date": "2026-09-28",
+    "topic": "Workshop 练习",
+    "status": "published",
+    "source_name": "coding-agent-review-freshness-and-prompt-attribution-2026-09-28.md",
+    "sha256": "6a0291373e5f201eed2edda45dc678233ab7f1b0de658d75f272cfcf1daee45e"
   },
   {
     "path": "assets/codex-remote-control-plane-cheatsheet.md",

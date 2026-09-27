@@ -1,9 +1,9 @@
 <!-- generated-by: publish_learning_assets.py -->
 # Learning Assets（补充学习材料）
 
-> 这些条目是从历史研究快照脱敏整理出的补充学习材料，用于学习、讨论、POC 设计前的思路准备；它们不是正式实验报告、不是本次实机验证结论，也不构成生产部署或合规建议。原快照中的来源可达性、HTTP 200 或核验时间不代表本次发布时已经重新核验。
+> 本目录包含历史快照整理、静态源码/文档分析及明确记录的离线实验。来源核验与执行状态以各资产的日期、固定版本、环境、结果及未验证项为准；历史记录不自动代表本次重验，有限离线实验不等于真实产品部署或生产合规验证。
 
-- 已发布：101
+- 已发布：104
 - 已隔离：0（详见本地报告，不发布敏感原文）
 - 跳过/冲突：0（详见本地报告）
 
@@ -11,6 +11,7 @@
 
 - 2026-08-28 — [Agent 扩展控制面 + 运行证据日志 Checklist（2026-08-28）](assets/agent-extension-control-plane-and-runtime-log-checklist-2026-08-28.md)
 - 2026-09-08 — [Agent Planfile / Source Freshness / Hosted Workflow Gates（2026-09-08）](assets/agent-planfile-source-freshness-and-hosted-workflow-gates-2026-09-08.md)
+- 2026-09-28 — [MAF 声明式配置暴露门：离线 POC 验收设计模板](assets/maf-declarative-config-exposure-gates-2026-09-28.md)
 
 ## MCP 与插件
 
@@ -48,6 +49,7 @@
 - 2026-09-25 — [S01 Snapshot Equality 语义 Gate 离线 Lab](assets/skill-evidence-semantic-gate-lab-2026-09-25.md)
 - 2026-09-25 — [编码 Agent 控制面验收：三态网络策略、Mailbox 边界与 Skill 来源授权](assets/coding-agent-policy-provenance-gates-2026-09-25.md)
 - 2026-09-26 — [Workshop Lab：Skill Routing Evidence Gate（2026-09-26）](assets/skill-routing-evidence-gate-lab-2026-09-26.md)
+- 2026-09-28 — [NVIDIA 插件交付：可移植离线验收 lab](assets/nemo-plugin-delivery-acceptance-lab-2026-09-28.md)
 - 日期未知 — [Claude Code Dynamic Workflows — 第四种编排原语（Subagents / Skills / Agent Teams 之外）](assets/claude-code-dynamic-workflows-orchestration-primitive.md)
 - 日期未知 — [Managed Agents 容器沙箱 + MCP 工具审批/安全护栏 速查表](assets/managed-agents-sandbox-and-mcp-approval-safety-cheatsheet.md)
 - 日期未知 — [架构图模式：企业级多 Agent 参考拓扑（MCP 纵 / A2A 横）](assets/arch-pattern-multi-agent-mcp-a2a.md)
@@ -63,6 +65,7 @@
 - 2026-09-18 — [Agent harness instruction / network / retro gates（2026-09-18）](assets/agent-harness-instruction-network-and-retro-gates-2026-09-18.md)
 - 2026-09-23 — [Completion Evidence Contract Lab（2026-09-23 离线练习卡）](assets/harness-completion-contract-lab-2026-09-23.md)
 - 2026-09-24 — [retry is not exactly-once](assets/harness-retry-generation-lab-2026-09-24.md)
+- 2026-09-28 — [编码代理审查新鲜度与 prompt 归因：公开 harness 验收模板草稿](assets/coding-agent-review-freshness-and-prompt-attribution-2026-09-28.md)
 - 日期未知 — [Codex Remote 控制平面 & 上下文生命周期速查 [→harness]](assets/codex-remote-control-plane-cheatsheet.md)
 - 日期未知 — [架构图模式：多 Harness 统一控制面（meta-harness）变体](assets/arch-pattern-meta-harness-control-plane.md)
 - 日期未知 — [渐进式教学 Workshop 工程模式速查（GitHub Template + Action 自动推进）](assets/progressive-workshop-engineering-pattern-cheatsheet.md)

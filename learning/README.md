@@ -3,7 +3,7 @@
 
 > 本目录包含历史快照整理、静态源码/文档分析及明确记录的离线实验。来源核验与执行状态以各资产的日期、固定版本、环境、结果及未验证项为准；历史记录不自动代表本次重验，有限离线实验不等于真实产品部署或生产合规验证。
 
-- 已发布：104
+- 已发布：108
 - 已隔离：0（详见本地报告，不发布敏感原文）
 - 跳过/冲突：0（详见本地报告）
 
@@ -50,6 +50,7 @@
 - 2026-09-25 — [编码 Agent 控制面验收：三态网络策略、Mailbox 边界与 Skill 来源授权](assets/coding-agent-policy-provenance-gates-2026-09-25.md)
 - 2026-09-26 — [Workshop Lab：Skill Routing Evidence Gate（2026-09-26）](assets/skill-routing-evidence-gate-lab-2026-09-26.md)
 - 2026-09-28 — [NVIDIA 插件交付：可移植离线验收 lab](assets/nemo-plugin-delivery-acceptance-lab-2026-09-28.md)
+- 2026-09-29 — [微软 MAF reasoning replay 与 Azure MCP 身份遥测／namespace gate：公开验收模板](assets/maf-mcp-replay-and-telemetry-gates-2026-09-29.md)
 - 日期未知 — [Claude Code Dynamic Workflows — 第四种编排原语（Subagents / Skills / Agent Teams 之外）](assets/claude-code-dynamic-workflows-orchestration-primitive.md)
 - 日期未知 — [Managed Agents 容器沙箱 + MCP 工具审批/安全护栏 速查表](assets/managed-agents-sandbox-and-mcp-approval-safety-cheatsheet.md)
 - 日期未知 — [架构图模式：企业级多 Agent 参考拓扑（MCP 纵 / A2A 横）](assets/arch-pattern-multi-agent-mcp-a2a.md)
@@ -66,6 +67,7 @@
 - 2026-09-23 — [Completion Evidence Contract Lab（2026-09-23 离线练习卡）](assets/harness-completion-contract-lab-2026-09-23.md)
 - 2026-09-24 — [retry is not exactly-once](assets/harness-retry-generation-lab-2026-09-24.md)
 - 2026-09-28 — [编码代理审查新鲜度与 prompt 归因：公开 harness 验收模板草稿](assets/coding-agent-review-freshness-and-prompt-attribution-2026-09-28.md)
+- 2026-09-29 — [MAF reasoning replay：固定源码离线可复演 lab（2026-09-29）](assets/maf-reasoning-replay-offline-lab-2026-09-29.md)
 - 日期未知 — [Codex Remote 控制平面 & 上下文生命周期速查 [→harness]](assets/codex-remote-control-plane-cheatsheet.md)
 - 日期未知 — [架构图模式：多 Harness 统一控制面（meta-harness）变体](assets/arch-pattern-meta-harness-control-plane.md)
 - 日期未知 — [渐进式教学 Workshop 工程模式速查（GitHub Template + Action 自动推进）](assets/progressive-workshop-engineering-pattern-cheatsheet.md)
@@ -90,6 +92,7 @@
 - 2026-08-21 — [Agent Persistence / Egress / On-call / Security-CI Checklist（2026-08-21）](assets/agent-persistence-egress-oncall-and-security-ci-checklist-2026-08-21.md)
 - 2026-09-26 — [Agent 审批与出站双门：公开源码审阅与 POC 验收设计](assets/agent-approval-and-egress-poc-gates-2026-09-26.md)
 - 2026-09-26 — [Coding Agent Authority Degradation Gates：公开 CLI 验收设计模板（2026-09-26）](assets/coding-agent-authority-degradation-gates-2026-09-26.md)
+- 2026-09-29 — [Coding Agent 治理验收模板：选路、授权与强制出口不能互相替代](assets/coding-agent-route-authorization-egress-gates-2026-09-29.md)
 - 日期未知 — [Agent「命令执行授权 / 沙箱审批」三栈对照速查（Codex shell-escalation ↔ Claude Code auto-mode/sandbox ↔ AWS IAM agent-vs-human）+ Azure 映射](assets/agent-command-execution-authz-tristack-cheatsheet.md)
 - 日期未知 — [编码 Agent Hooks 与权限治理对照验收模板](assets/coding-agent-hooks-tristack-comparison-cheatsheet.md)
 
@@ -133,6 +136,7 @@
 - 2026-09-16 — [Agent CLI 隔离、Foundry 预检与移动端评测 Gate（2026-09-16）](assets/agent-cli-isolation-foundry-preflight-and-mobile-eval-gates-2026-09-16.md)
 - 2026-09-21 — [Agent POC 预检、遥测与 Headless Harness Gates（2026-09-21）](assets/agent-poc-preflight-telemetry-and-headless-harness-gates-2026-09-21.md)
 - 2026-09-25 — [Agent POC 可观测失败契约：四类机制速查与负例验收](assets/agent-poc-observable-failure-contracts-2026-09-25.md)
+- 2026-09-29 — [Polaris 固定源码离线评估行为实验（2026-09-29）](assets/polaris-evaluation-characterization-lab-2026-09-29.md)
 - 日期未知 — [Agent 可观测性/评测层选型速查：Opik vs Foundry Evals vs Cookbook Improvement Loop](assets/agent-observability-selection-opik-vs-foundry-evals-cheatsheet.md)
 - 日期未知 — [Foundry Evals（含 Adaptive / Rubric 评测器）— 评测驱动闭环的 Azure 原生版 速查](assets/foundry-adaptive-evals-azure-native-eval-gate-cheatsheet.md)
 - 日期未知 — [Harness 评测回路 + Goal 完成契约 + Headless/FinOps 速查](assets/harness-eval-loop-and-goal-contract-cheatsheet.md)

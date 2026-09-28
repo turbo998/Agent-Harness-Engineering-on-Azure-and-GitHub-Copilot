@@ -342,6 +342,15 @@
     "sha256": "edeeebe7a52b94ce872a01eb1c163f3a9a460b73f84991ea9db7deea597f39d7"
   },
   {
+    "path": "assets/maf-mcp-replay-and-telemetry-gates-2026-09-29.md",
+    "title": "微软 MAF reasoning replay 与 Azure MCP 身份遥测／namespace gate：公开验收模板",
+    "date": "2026-09-29",
+    "topic": "MCP 与插件",
+    "status": "published",
+    "source_name": "maf-mcp-replay-and-telemetry-gates-2026-09-29.md",
+    "sha256": "0b3a808a3342c66056e8b53694f1559faf1cc97329bb437c2097bbb8ddd82b74"
+  },
+  {
     "path": "assets/claude-code-dynamic-workflows-orchestration-primitive.md",
     "title": "Claude Code Dynamic Workflows — 第四种编排原语（Subagents / Skills / Agent Teams 之外）",
     "date": null,
@@ -457,6 +466,15 @@
     "status": "published",
     "source_name": "coding-agent-review-freshness-and-prompt-attribution-2026-09-28.md",
     "sha256": "6a0291373e5f201eed2edda45dc678233ab7f1b0de658d75f272cfcf1daee45e"
+  },
+  {
+    "path": "assets/maf-reasoning-replay-offline-lab-2026-09-29.md",
+    "title": "MAF reasoning replay：固定源码离线可复演 lab（2026-09-29）",
+    "date": "2026-09-29",
+    "topic": "Workshop 练习",
+    "status": "published",
+    "source_name": "maf-reasoning-replay-offline-lab-2026-09-29.md",
+    "sha256": "ece027f08b9f9bf042342489f86042c3c81440087d969878e904f2d61ce2cab4"
   },
   {
     "path": "assets/codex-remote-control-plane-cheatsheet.md",
@@ -619,6 +637,15 @@
     "status": "published",
     "source_name": "coding-agent-authority-degradation-gates-2026-09-26.md",
     "sha256": "0ad1be2224ab81dafafac92acb8ce4af6868c97d046592f0db09a9034b455489"
+  },
+  {
+    "path": "assets/coding-agent-route-authorization-egress-gates-2026-09-29.md",
+    "title": "Coding Agent 治理验收模板：选路、授权与强制出口不能互相替代",
+    "date": "2026-09-29",
+    "topic": "安全与治理",
+    "status": "published",
+    "source_name": "coding-agent-route-authorization-egress-gates-2026-09-29.md",
+    "sha256": "d42d37ad374cddd73c0e8d732500d34d6f2d6c7bc365ea7f73ef8e4ec24d8f3d"
   },
   {
     "path": "assets/agent-command-execution-authz-tristack-cheatsheet.md",
@@ -898,6 +925,15 @@
     "status": "published",
     "source_name": "agent-poc-observable-failure-contracts-2026-09-25.md",
     "sha256": "05c0d023d1b1c903ad813ec5771416dd98e947fd8e457770bb6c96c32555cb2a"
+  },
+  {
+    "path": "assets/polaris-evaluation-characterization-lab-2026-09-29.md",
+    "title": "Polaris 固定源码离线评估行为实验（2026-09-29）",
+    "date": "2026-09-29",
+    "topic": "评测与观测",
+    "status": "published",
+    "source_name": "polaris-evaluation-characterization-lab-2026-09-29.md",
+    "sha256": "8ac7a36d36c971c77cf03663ee10b90d865c41bebdcd19484d538f0d56e45669"
   },
   {
     "path": "assets/agent-observability-selection-opik-vs-foundry-evals-cheatsheet.md",

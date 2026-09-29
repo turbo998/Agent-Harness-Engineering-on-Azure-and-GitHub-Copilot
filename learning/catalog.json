@@ -531,6 +531,15 @@
     "sha256": "d3ce926964f53a80a788a48ea7730ea9a547951f7f3e9e1411f32b5369ba3f43"
   },
   {
+    "path": "assets/agent-disconnect-ownership-and-recovery-gates-2026-09-30.md",
+    "title": "Agent 断连后的执行归属、连接归属与恢复门禁",
+    "date": "2026-09-30",
+    "topic": "其他",
+    "status": "published",
+    "source_name": "agent-disconnect-ownership-and-recovery-gates-2026-09-30.md",
+    "sha256": "2a98c7d5bb7ff8c2e8fbb55503788f807016e0b624787545e52d1fe40217d3d5"
+  },
+  {
     "path": "assets/agent-self-audit-and-containment-cheatsheet.md",
     "title": "Agent 自体检 + 容器化收敛（Containment）速查",
     "date": null,
@@ -691,6 +700,15 @@
     "status": "published",
     "source_name": "coding-agent-catalog-and-model-admission-2026-09-27.md",
     "sha256": "7a64f403c5019ff34fe27f2d59de7861384c306583d7fb50e99f182497b82467"
+  },
+  {
+    "path": "assets/coding-agent-safety-stop-and-mod-admission-2026-09-30.md",
+    "title": "Coding Agent：安全停止回报与模块准入验收卡",
+    "date": "2026-09-30",
+    "topic": "编码 Agent",
+    "status": "published",
+    "source_name": "coding-agent-safety-stop-and-mod-admission-2026-09-30.md",
+    "sha256": "bb7381c3ef9e0eca3d94e3f1cc6115a36d8823c03b9ff042e77a1cf50eae57a1"
   },
   {
     "path": "assets/model-baseline-and-context-budget-cheatsheet.md",
@@ -934,6 +952,15 @@
     "status": "published",
     "source_name": "polaris-evaluation-characterization-lab-2026-09-29.md",
     "sha256": "8ac7a36d36c971c77cf03663ee10b90d865c41bebdcd19484d538f0d56e45669"
+  },
+  {
+    "path": "assets/agent-evaluation-instrument-and-rubric-gates-2026-09-30.md",
+    "title": "Agent 评测仪器冻结与评分证据门",
+    "date": "2026-09-30",
+    "topic": "评测与观测",
+    "status": "published",
+    "source_name": "agent-evaluation-instrument-and-rubric-gates-2026-09-30.md",
+    "sha256": "71ec733b5bc242fe4e3292fe2487ac675efb54f18295cae5bc8d304120b1b61d"
   },
   {
     "path": "assets/agent-observability-selection-opik-vs-foundry-evals-cheatsheet.md",

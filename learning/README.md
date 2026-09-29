@@ -1,9 +1,9 @@
 <!-- generated-by: publish_learning_assets.py -->
 # Learning Assets（补充学习材料）
 
-> 本目录包含历史快照整理、静态源码/文档分析及明确记录的离线实验。来源核验与执行状态以各资产的日期、固定版本、环境、结果及未验证项为准；历史记录不自动代表本次重验，有限离线实验不等于真实产品部署或生产合规验证。
+> 这些条目是从历史研究快照脱敏整理出的补充学习材料，用于学习、讨论、POC 设计前的思路准备；它们不是正式实验报告、不是本次实机验证结论，也不构成生产部署或合规建议。原快照中的来源可达性、HTTP 200 或核验时间不代表本次发布时已经重新核验。
 
-- 已发布：108
+- 已发布：111
 - 已隔离：0（详见本地报告，不发布敏感原文）
 - 跳过/冲突：0（详见本地报告）
 
@@ -77,6 +77,7 @@
 
 - 2026-08-13 — [Agent Extension / Upgrade / Scheduled Runbook（SA 版，2026-08-13）](assets/agent-extension-upgrade-scheduled-runbook-2026-08-13.md)
 - 2026-09-23 — [Agent 完成证据与 POC 验收门禁（2026-09-23）](assets/agent-evidence-completion-and-poc-gates-2026-09-23.md)
+- 2026-09-30 — [Agent 断连后的执行归属、连接归属与恢复门禁](assets/agent-disconnect-ownership-and-recovery-gates-2026-09-30.md)
 - 日期未知 — [Agent 自体检 + 容器化收敛（Containment）速查](assets/agent-self-audit-and-containment-cheatsheet.md)
 - 日期未知 — [POC 计划 / 技术方案文档质量检查清单](assets/poc-plan-and-technical-proposal-quality-checklist.md)
 - 日期未知 — [多 Agent Provider 收敛 + Containment 架构 Cheatsheet](assets/multi-agent-provider-convergence-and-containment-cheatsheet.md)
@@ -101,6 +102,7 @@
 - 2026-07-26 — [Codex / Claude Code 本周进展速查（截至 2026-07-26）](assets/coding-agent-cli-weekly-delta-2026-07-26.md)
 - 2026-09-27 — [Copilot Rust SDK resume 事件交付验收手册（公开复用版）](assets/copilot-resume-event-delivery-gates-2026-09-27.md)
 - 2026-09-27 — [编码 Agent 双 CLI 验收资产：Codex 目录预算生命周期与 Claude 模型准入](assets/coding-agent-catalog-and-model-admission-2026-09-27.md)
+- 2026-09-30 — [Coding Agent：安全停止回报与模块准入验收卡](assets/coding-agent-safety-stop-and-mod-admission-2026-09-30.md)
 - 日期未知 — [Agent 模型基线 & 上下文预算速查（Codex / Claude Code / GitHub Copilot）](assets/model-baseline-and-context-budget-cheatsheet.md)
 - 日期未知 — [xAI Grok Build — 编码 Agent CLI 第四栈速查](assets/xai-grok-build-fourth-stack-cheatsheet.md)
 - 日期未知 — [无人值守 / 托管 Agent 调度三栈对照速查（Codex Automations ↔ Claude Code Routines ↔ GitHub Actions/Copilot）+ Azure 映射](assets/unattended-agent-scheduling-tristack-cheatsheet.md)
@@ -137,6 +139,7 @@
 - 2026-09-21 — [Agent POC 预检、遥测与 Headless Harness Gates（2026-09-21）](assets/agent-poc-preflight-telemetry-and-headless-harness-gates-2026-09-21.md)
 - 2026-09-25 — [Agent POC 可观测失败契约：四类机制速查与负例验收](assets/agent-poc-observable-failure-contracts-2026-09-25.md)
 - 2026-09-29 — [Polaris 固定源码离线评估行为实验（2026-09-29）](assets/polaris-evaluation-characterization-lab-2026-09-29.md)
+- 2026-09-30 — [Agent 评测仪器冻结与评分证据门](assets/agent-evaluation-instrument-and-rubric-gates-2026-09-30.md)
 - 日期未知 — [Agent 可观测性/评测层选型速查：Opik vs Foundry Evals vs Cookbook Improvement Loop](assets/agent-observability-selection-opik-vs-foundry-evals-cheatsheet.md)
 - 日期未知 — [Foundry Evals（含 Adaptive / Rubric 评测器）— 评测驱动闭环的 Azure 原生版 速查](assets/foundry-adaptive-evals-azure-native-eval-gate-cheatsheet.md)
 - 日期未知 — [Harness 评测回路 + Goal 完成契约 + Headless/FinOps 速查](assets/harness-eval-loop-and-goal-contract-cheatsheet.md)

@@ -1,9 +1,9 @@
 <!-- generated-by: publish_learning_assets.py -->
 # Learning Assets（补充学习材料）
 
-> 这些条目是从历史研究快照脱敏整理出的补充学习材料，用于学习、讨论、POC 设计前的思路准备；它们不是正式实验报告、不是本次实机验证结论，也不构成生产部署或合规建议。原快照中的来源可达性、HTTP 200 或核验时间不代表本次发布时已经重新核验。
+> 这些条目包含历史资料整理、静态源码分析、POC 设计与明确标注的离线实验。请逐项查看日期、固定版本、证据范围与 NOT_RUN 限制：部分资产记录了真实源码离线测试或原创教学实验，但不等于云端、目标租户、生产部署或合规验证。历史快照的来源可达性不自动延续到今天；当日核验与执行情况以各资产说明为准。
 
-- 已发布：111
+- 已发布：115
 - 已隔离：0（详见本地报告，不发布敏感原文）
 - 跳过/冲突：0（详见本地报告）
 
@@ -51,6 +51,8 @@
 - 2026-09-26 — [Workshop Lab：Skill Routing Evidence Gate（2026-09-26）](assets/skill-routing-evidence-gate-lab-2026-09-26.md)
 - 2026-09-28 — [NVIDIA 插件交付：可移植离线验收 lab](assets/nemo-plugin-delivery-acceptance-lab-2026-09-28.md)
 - 2026-09-29 — [微软 MAF reasoning replay 与 Azure MCP 身份遥测／namespace gate：公开验收模板](assets/maf-mcp-replay-and-telemetry-gates-2026-09-29.md)
+- 2026-10-01 — [MAF：用真实固定源码复现审批与技能 context 分离](assets/maf-skill-context-injection-lab-2026-10-01.md)
+- 2026-10-01 — [技能评测契约对齐：不要把正确拒绝当成坏样本](assets/skill-eval-contract-alignment-lab-2026-10-01.md)
 - 日期未知 — [Claude Code Dynamic Workflows — 第四种编排原语（Subagents / Skills / Agent Teams 之外）](assets/claude-code-dynamic-workflows-orchestration-primitive.md)
 - 日期未知 — [Managed Agents 容器沙箱 + MCP 工具审批/安全护栏 速查表](assets/managed-agents-sandbox-and-mcp-approval-safety-cheatsheet.md)
 - 日期未知 — [架构图模式：企业级多 Agent 参考拓扑（MCP 纵 / A2A 横）](assets/arch-pattern-multi-agent-mcp-a2a.md)
@@ -78,6 +80,7 @@
 - 2026-08-13 — [Agent Extension / Upgrade / Scheduled Runbook（SA 版，2026-08-13）](assets/agent-extension-upgrade-scheduled-runbook-2026-08-13.md)
 - 2026-09-23 — [Agent 完成证据与 POC 验收门禁（2026-09-23）](assets/agent-evidence-completion-and-poc-gates-2026-09-23.md)
 - 2026-09-30 — [Agent 断连后的执行归属、连接归属与恢复门禁](assets/agent-disconnect-ownership-and-recovery-gates-2026-09-30.md)
+- 2026-10-01 — [LogAct：意图、裁决与副作用边界（5分钟恢复性Meta资产）](assets/logact-intent-decision-effect-boundaries-2026-10-01.md)
 - 日期未知 — [Agent 自体检 + 容器化收敛（Containment）速查](assets/agent-self-audit-and-containment-cheatsheet.md)
 - 日期未知 — [POC 计划 / 技术方案文档质量检查清单](assets/poc-plan-and-technical-proposal-quality-checklist.md)
 - 日期未知 — [多 Agent Provider 收敛 + Containment 架构 Cheatsheet](assets/multi-agent-provider-convergence-and-containment-cheatsheet.md)
@@ -103,6 +106,7 @@
 - 2026-09-27 — [Copilot Rust SDK resume 事件交付验收手册（公开复用版）](assets/copilot-resume-event-delivery-gates-2026-09-27.md)
 - 2026-09-27 — [编码 Agent 双 CLI 验收资产：Codex 目录预算生命周期与 Claude 模型准入](assets/coding-agent-catalog-and-model-admission-2026-09-27.md)
 - 2026-09-30 — [Coding Agent：安全停止回报与模块准入验收卡](assets/coding-agent-safety-stop-and-mod-admission-2026-09-30.md)
+- 2026-10-01 — [编码代理恢复与 deny-rule 闸门：公开演练模板（2026-10-01）](assets/coding-agent-recovery-and-deny-rule-gates-2026-10-01.md)
 - 日期未知 — [Agent 模型基线 & 上下文预算速查（Codex / Claude Code / GitHub Copilot）](assets/model-baseline-and-context-budget-cheatsheet.md)
 - 日期未知 — [xAI Grok Build — 编码 Agent CLI 第四栈速查](assets/xai-grok-build-fourth-stack-cheatsheet.md)
 - 日期未知 — [无人值守 / 托管 Agent 调度三栈对照速查（Codex Automations ↔ Claude Code Routines ↔ GitHub Actions/Copilot）+ Azure 映射](assets/unattended-agent-scheduling-tristack-cheatsheet.md)

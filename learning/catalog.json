@@ -495,6 +495,15 @@
     "sha256": "ece027f08b9f9bf042342489f86042c3c81440087d969878e904f2d61ce2cab4"
   },
   {
+    "path": "assets/maf-zip-collision-source-lab-2026-10-02.md",
+    "title": "MAF ZIP 冲突：可复演的真实源码切片实验",
+    "date": "2026-10-02",
+    "topic": "Workshop 练习",
+    "status": "published",
+    "source_name": "maf-zip-collision-source-lab-2026-10-02.md",
+    "sha256": "d0c7454ece807b2890405e8fd9cca851d9ae708a9425ac8b2b24c7fc3482a2f3"
+  },
+  {
     "path": "assets/codex-remote-control-plane-cheatsheet.md",
     "title": "Codex Remote 控制平面 & 上下文生命周期速查 [→harness]",
     "date": null,
@@ -565,6 +574,15 @@
     "status": "published",
     "source_name": "logact-intent-decision-effect-boundaries-2026-10-01.md",
     "sha256": "013b9bfbf5e419971649336119930a58f4739107b21f0204d414c2192fc62d59"
+  },
+  {
+    "path": "assets/actor-suspend-identity-and-lease-gates-2026-10-02.md",
+    "title": "Agent Substrate：Actor 挂起的身份、lease 与副作用门",
+    "date": "2026-10-02",
+    "topic": "其他",
+    "status": "published",
+    "source_name": "actor-suspend-identity-and-lease-gates-2026-10-02.md",
+    "sha256": "6ba684ca896b024e7f58a00cdcd713f1ac2d9476359db9928d63b0598cd78287"
   },
   {
     "path": "assets/agent-self-audit-and-containment-cheatsheet.md",
@@ -997,6 +1015,24 @@
     "status": "published",
     "source_name": "agent-evaluation-instrument-and-rubric-gates-2026-09-30.md",
     "sha256": "71ec733b5bc242fe4e3292fe2487ac675efb54f18295cae5bc8d304120b1b61d"
+  },
+  {
+    "path": "assets/coding-agent-origin-grants-and-telemetry-gates-2026-10-02.md",
+    "title": "Coding Agent：来源授权与遥测内容门验收卡",
+    "date": "2026-10-02",
+    "topic": "评测与观测",
+    "status": "published",
+    "source_name": "coding-agent-origin-grants-and-telemetry-gates-2026-10-02.md",
+    "sha256": "a0f30087b1c119e3f741f799af7bdc8764192f7975a91e6602c031c244a35e16"
+  },
+  {
+    "path": "assets/multimodal-evaluation-input-and-coverage-gates-2026-10-02.md",
+    "title": "多模态评测输入完整性与覆盖分母 Gate：POC 验收模板",
+    "date": "2026-10-02",
+    "topic": "评测与观测",
+    "status": "published",
+    "source_name": "multimodal-evaluation-input-and-coverage-gates-2026-10-02.md",
+    "sha256": "ca2974b2e1eb97c291b491e2edd558f328ea8919a1769ac0816552aece5a24cc"
   },
   {
     "path": "assets/agent-observability-selection-opik-vs-foundry-evals-cheatsheet.md",

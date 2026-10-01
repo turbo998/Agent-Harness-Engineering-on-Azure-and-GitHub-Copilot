@@ -1,0 +1,389 @@
+{
+  "schema_version": 1,
+  "title": "MAF ZIP 冲突：固定真实源码 AST 切片实验",
+  "publication_date": "2026-10-02",
+  "document": "maf-zip-collision-source-lab-2026-10-02.md",
+  "scope": "真实源码 AST 函数切片；非完整 SDK、正常 import 或端到端测试",
+  "commit": "501989469265894443ba0812264397aec986e4cd",
+  "sources": [
+    {
+      "role": "python_ast_slice_input",
+      "url": "https://raw.githubusercontent.com/microsoft/agent-framework/501989469265894443ba0812264397aec986e4cd/python/packages/core/agent_framework/_skills.py",
+      "sha256": "48024920a29885bd883f0605eb56ebf2f31789a4b61733e5fd58e272481c9c32"
+    },
+    {
+      "role": "dotnet_static_reference_only",
+      "url": "https://raw.githubusercontent.com/microsoft/agent-framework/501989469265894443ba0812264397aec986e4cd/dotnet/src/Microsoft.Agents.AI.Mcp/Skills/Loaders/AgentMcpSkillArchiveExtractor.cs",
+      "sha256": "24d72bc71ee1048b17a3ef4848e7cd71e6e57c97b581b781a59f022d65950bb4"
+    }
+  ],
+  "upstream_source_redistributed": false,
+  "runner": {
+    "location": "maf-zip-collision-source-lab-2026-10-02.md#完整-runner",
+    "fence_start_marker": "<!-- runner.py:start -->",
+    "fence_end_marker": "<!-- runner.py:end -->",
+    "extracted_filename": "runner.py",
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "final_newline": true,
+    "line_count": 277,
+    "sha256": "0bd47d0fcb5d1dfbae84c75d8513c468cae8218a0bb4607096d698746b3fd224",
+    "change_from_historical_runner": "仅顶部模块 docstring 的首行改为中性说明；其余字节完全相同。docstring 也用于命令行帮助，不能将改写视为同一制品。",
+    "historical_runner_sha256": "441847f9a2bce2c0d16fc07b1b155e5f81750d90da7396c7620dd31fbbb8e185",
+    "historical_pass_applies_to_this_hash": false,
+    "final_artifact_executed": true,
+    "independent_review_and_replay_required": false,
+    "other_environment_requires_new_review": true
+  },
+  "extraction": {
+    "nodes": [
+      {
+        "name": "SKILL_FILE_NAME",
+        "lines": [
+          1991,
+          1991
+        ]
+      },
+      {
+        "name": "_ARCHIVE_READ_BUFFER_SIZE",
+        "lines": [
+          4876,
+          4876
+        ]
+      },
+      {
+        "name": "_ArchiveFormat",
+        "lines": [
+          4879,
+          4883
+        ]
+      },
+      {
+        "name": "_detect_archive_format",
+        "lines": [
+          4886,
+          4915
+        ]
+      },
+      {
+        "name": "_normalize_archive_member_name",
+        "lines": [
+          4918,
+          4951
+        ]
+      },
+      {
+        "name": "_read_member_with_limit",
+        "lines": [
+          4954,
+          4981
+        ]
+      },
+      {
+        "name": "_extract_archive_to_memory",
+        "lines": [
+          4984,
+          5017
+        ]
+      },
+      {
+        "name": "_extract_zip_to_memory",
+        "lines": [
+          5020,
+          5059
+        ]
+      },
+      {
+        "name": "_ArchiveEntryLoader._verify_digest",
+        "lines": [
+          5197,
+          5211
+        ]
+      },
+      {
+        "name": "_ArchiveEntryLoader._find_skill_md",
+        "lines": [
+          5281,
+          5287
+        ]
+      }
+    ],
+    "hash_boundary": "完整原始源文件 bytes；不接受换行重写后的文件",
+    "method_transform": "只移除两个已核对的 staticmethod 装饰器，提升函数；函数体不改",
+    "postponed_annotations": true,
+    "stdlib_bindings": [
+      "Enum",
+      "io",
+      "zipfile",
+      "hashlib",
+      "re",
+      "logger",
+      "builtins"
+    ],
+    "third_party_dependencies": [],
+    "digest_boundary": "真实 verifier + 原创 harness；_download 顺序只静态审查"
+  },
+  "baseline_cases": [
+    "first-order",
+    "normalized-alias",
+    "unicode-lower",
+    "trailing-dot",
+    "count-before-dedup",
+    "skipped-no-read",
+    "actual-byte-budget",
+    "path-boundary",
+    "digest-mismatch",
+    "skill-selection",
+    "format-boundary"
+  ],
+  "mutation_dedicated_case_map": {
+    "M1-last-wins": "first-order",
+    "M2-casefold": "unicode-lower",
+    "M3-count-after-dedup": "count-before-dedup",
+    "M4-read-skipped": "skipped-no-read",
+    "M5-no-normalize": "normalized-alias",
+    "M6-digest-bypass": "digest-mismatch"
+  },
+  "historical_execution": {
+    "description": "既有独立审查后执行的结果摘录；不是本公开版新执行或完整 SDK 认证。",
+    "started_at_utc": "2026-10-01T19:18:25.844976+00:00",
+    "status": "PASS",
+    "exit_code": 0,
+    "source_sha256": "48024920a29885bd883f0605eb56ebf2f31789a4b61733e5fd58e272481c9c32",
+    "runner_sha256": "441847f9a2bce2c0d16fc07b1b155e5f81750d90da7396c7620dd31fbbb8e185",
+    "python": "3.11.15 (main, May 19 2026, 23:49:45) [GCC 14.2.0]",
+    "unicode_version": "14.0.0",
+    "platform_summary": "Linux x86_64，glibc 2.41",
+    "baseline": [
+      {
+        "case": "first-order",
+        "status": "PASS"
+      },
+      {
+        "case": "normalized-alias",
+        "status": "PASS"
+      },
+      {
+        "case": "unicode-lower",
+        "status": "PASS"
+      },
+      {
+        "case": "trailing-dot",
+        "status": "PASS"
+      },
+      {
+        "case": "count-before-dedup",
+        "status": "PASS"
+      },
+      {
+        "case": "skipped-no-read",
+        "status": "PASS"
+      },
+      {
+        "case": "actual-byte-budget",
+        "status": "PASS"
+      },
+      {
+        "case": "path-boundary",
+        "status": "PASS"
+      },
+      {
+        "case": "digest-mismatch",
+        "status": "PASS"
+      },
+      {
+        "case": "skill-selection",
+        "status": "PASS"
+      },
+      {
+        "case": "format-boundary",
+        "status": "PASS"
+      }
+    ],
+    "mutations": [
+      {
+        "mutation": "M1-last-wins",
+        "case": "first-order",
+        "status": "KILLED",
+        "error": "first content lost"
+      },
+      {
+        "mutation": "M2-casefold",
+        "case": "unicode-lower",
+        "status": "KILLED",
+        "error": "casefold merged lower-distinct names"
+      },
+      {
+        "mutation": "M3-count-after-dedup",
+        "case": "count-before-dedup",
+        "status": "KILLED",
+        "error": "expected ValueError: file count"
+      },
+      {
+        "mutation": "M4-read-skipped",
+        "case": "skipped-no-read",
+        "status": "KILLED",
+        "error": "skipped duplicate opened"
+      },
+      {
+        "mutation": "M5-no-normalize",
+        "case": "normalized-alias",
+        "status": "KILLED",
+        "error": "normalized aliases not collapsed"
+      },
+      {
+        "mutation": "M6-digest-bypass",
+        "case": "digest-mismatch",
+        "status": "KILLED",
+        "error": "old digest accepted reordered archive"
+      }
+    ],
+    "mutation_scope": "每个变异只运行对应专属 case；不是全部 case × 全部变异矩阵，不是代码覆盖率。"
+  },
+  "replay_acceptance": {
+    "exit_code": 0,
+    "overall_status": "PASS",
+    "baseline": "名称与清单完全一致且全部 PASS",
+    "mutations": "六个名称、专属 case、KILLED 与历史 error 文本逐项匹配",
+    "unexpected_exception": "ERROR，不算 kill；构造/编译/加载失败不算 kill",
+    "hashes": "输出 source_sha256 与本清单来源一致；runner_sha256 必须等于公开 runner 新 hash",
+    "runtime": "记录实际 Python、Unicode 版本、平台、隔离配置及退出状态；不能借用历史环境声明"
+  },
+  "execution_constraints": {
+    "reader_reviewed_local_image_only": true,
+    "pull": "never",
+    "image": "由读者审查并锁定本地 sha256 image ID；本文不提供可拉取镜像",
+    "image_declared_volumes": "必须为空，防止隐式附加挂载",
+    "network": "none",
+    "root_filesystem": "read-only",
+    "bind_mounts": [
+      "runner.py:read-only",
+      "trusted-skills.py:read-only"
+    ],
+    "capabilities": "drop ALL",
+    "no_new_privileges": true,
+    "uid_gid": "65534:65534",
+    "environment": "env -i；Python 入口再清空环境",
+    "python_flags": [
+      "-I",
+      "-S",
+      "-B",
+      "-X",
+      "utf8"
+    ],
+    "memory": "256m",
+    "memory_swap_total": "256m",
+    "cpu_quota": "0.5",
+    "cpu_seconds": 10,
+    "wall_seconds": 30,
+    "pids": 32,
+    "security_boundary": "哈希、AST 白名单和命令行确认字串均不是安全授权或沙箱；非 root 进程不等于 rootless daemon 或 VM。"
+  },
+  "limitations": [
+    "不执行原模块 import、MCP 下载、base64 集成、YAML/frontmatter、缓存或资源构建。",
+    "真实 digest verifier 配原创门控；不验证 _download 的集成调用顺序。",
+    ".NET 仅静态参考；不覆盖真实文件系统、平台别名、symlink/race 或清理回滚。",
+    "仅有界内存 ZIP_STORED；不覆盖 DEFLATE、压缩炸弹或中央目录内存压力。",
+    "合成归档成员仅作数据，不执行；不证明发行包行为、生产安全性或首项可信。",
+    "公开runner与Shell模板已作一次隔离复演；其他环境须重新审查，完整SDK与云端等未测范围不因此升级。"
+  ],
+  "final_execution": {
+    "status": "PASS",
+    "scope": "real-source AST slice; not full SDK",
+    "commit": "501989469265894443ba0812264397aec986e4cd",
+    "source_sha256": "48024920a29885bd883f0605eb56ebf2f31789a4b61733e5fd58e272481c9c32",
+    "runner_sha256": "0bd47d0fcb5d1dfbae84c75d8513c468cae8218a0bb4607096d698746b3fd224",
+    "python": "3.11.15 (main, May 19 2026, 23:49:45) [GCC 14.2.0]",
+    "unicode_version": "14.0.0",
+    "baseline": [
+      {
+        "case": "first-order",
+        "status": "PASS"
+      },
+      {
+        "case": "normalized-alias",
+        "status": "PASS"
+      },
+      {
+        "case": "unicode-lower",
+        "status": "PASS"
+      },
+      {
+        "case": "trailing-dot",
+        "status": "PASS"
+      },
+      {
+        "case": "count-before-dedup",
+        "status": "PASS"
+      },
+      {
+        "case": "skipped-no-read",
+        "status": "PASS"
+      },
+      {
+        "case": "actual-byte-budget",
+        "status": "PASS"
+      },
+      {
+        "case": "path-boundary",
+        "status": "PASS"
+      },
+      {
+        "case": "digest-mismatch",
+        "status": "PASS"
+      },
+      {
+        "case": "skill-selection",
+        "status": "PASS"
+      },
+      {
+        "case": "format-boundary",
+        "status": "PASS"
+      }
+    ],
+    "mutations": [
+      {
+        "mutation": "M1-last-wins",
+        "case": "first-order",
+        "status": "KILLED",
+        "error": "first content lost"
+      },
+      {
+        "mutation": "M2-casefold",
+        "case": "unicode-lower",
+        "status": "KILLED",
+        "error": "casefold merged lower-distinct names"
+      },
+      {
+        "mutation": "M3-count-after-dedup",
+        "case": "count-before-dedup",
+        "status": "KILLED",
+        "error": "expected ValueError: file count"
+      },
+      {
+        "mutation": "M4-read-skipped",
+        "case": "skipped-no-read",
+        "status": "KILLED",
+        "error": "skipped duplicate opened"
+      },
+      {
+        "mutation": "M5-no-normalize",
+        "case": "normalized-alias",
+        "status": "KILLED",
+        "error": "normalized aliases not collapsed"
+      },
+      {
+        "mutation": "M6-digest-bypass",
+        "case": "digest-mismatch",
+        "status": "KILLED",
+        "error": "old digest accepted reordered archive"
+      }
+    ],
+    "executed_at_utc": "2026-10-01T19:36:17.807329729Z",
+    "exit_code": 0,
+    "oom_killed": false,
+    "platform_summary": "Linux x86_64, glibc 2.41",
+    "template_scope": "公开Shell仅替换本地已审镜像ID，提取脚本与启动前检查实际执行；11基线与6专属mutation，非全矩阵",
+    "isolation_evidence": "Docker inspect配置与入口/退出状态已核；本次公开模板未采进程内/proc attestation；非rootless daemon"
+  }
+}

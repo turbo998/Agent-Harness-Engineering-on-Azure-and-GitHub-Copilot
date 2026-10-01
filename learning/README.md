@@ -3,7 +3,7 @@
 
 > 这些条目包含历史资料整理、静态源码分析、POC 设计与明确标注的离线实验。请逐项查看日期、固定版本、证据范围与 NOT_RUN 限制：部分资产记录了真实源码离线测试或原创教学实验，但不等于云端、目标租户、生产部署或合规验证。历史快照的来源可达性不自动延续到今天；当日核验与执行情况以各资产说明为准。
 
-- 已发布：115
+- 已发布：119
 - 已隔离：0（详见本地报告，不发布敏感原文）
 - 跳过/冲突：0（详见本地报告）
 
@@ -70,6 +70,7 @@
 - 2026-09-24 — [retry is not exactly-once](assets/harness-retry-generation-lab-2026-09-24.md)
 - 2026-09-28 — [编码代理审查新鲜度与 prompt 归因：公开 harness 验收模板草稿](assets/coding-agent-review-freshness-and-prompt-attribution-2026-09-28.md)
 - 2026-09-29 — [MAF reasoning replay：固定源码离线可复演 lab（2026-09-29）](assets/maf-reasoning-replay-offline-lab-2026-09-29.md)
+- 2026-10-02 — [MAF ZIP 冲突：可复演的真实源码切片实验](assets/maf-zip-collision-source-lab-2026-10-02.md)
 - 日期未知 — [Codex Remote 控制平面 & 上下文生命周期速查 [→harness]](assets/codex-remote-control-plane-cheatsheet.md)
 - 日期未知 — [架构图模式：多 Harness 统一控制面（meta-harness）变体](assets/arch-pattern-meta-harness-control-plane.md)
 - 日期未知 — [渐进式教学 Workshop 工程模式速查（GitHub Template + Action 自动推进）](assets/progressive-workshop-engineering-pattern-cheatsheet.md)
@@ -81,6 +82,7 @@
 - 2026-09-23 — [Agent 完成证据与 POC 验收门禁（2026-09-23）](assets/agent-evidence-completion-and-poc-gates-2026-09-23.md)
 - 2026-09-30 — [Agent 断连后的执行归属、连接归属与恢复门禁](assets/agent-disconnect-ownership-and-recovery-gates-2026-09-30.md)
 - 2026-10-01 — [LogAct：意图、裁决与副作用边界（5分钟恢复性Meta资产）](assets/logact-intent-decision-effect-boundaries-2026-10-01.md)
+- 2026-10-02 — [Agent Substrate：Actor 挂起的身份、lease 与副作用门](assets/actor-suspend-identity-and-lease-gates-2026-10-02.md)
 - 日期未知 — [Agent 自体检 + 容器化收敛（Containment）速查](assets/agent-self-audit-and-containment-cheatsheet.md)
 - 日期未知 — [POC 计划 / 技术方案文档质量检查清单](assets/poc-plan-and-technical-proposal-quality-checklist.md)
 - 日期未知 — [多 Agent Provider 收敛 + Containment 架构 Cheatsheet](assets/multi-agent-provider-convergence-and-containment-cheatsheet.md)
@@ -144,6 +146,8 @@
 - 2026-09-25 — [Agent POC 可观测失败契约：四类机制速查与负例验收](assets/agent-poc-observable-failure-contracts-2026-09-25.md)
 - 2026-09-29 — [Polaris 固定源码离线评估行为实验（2026-09-29）](assets/polaris-evaluation-characterization-lab-2026-09-29.md)
 - 2026-09-30 — [Agent 评测仪器冻结与评分证据门](assets/agent-evaluation-instrument-and-rubric-gates-2026-09-30.md)
+- 2026-10-02 — [Coding Agent：来源授权与遥测内容门验收卡](assets/coding-agent-origin-grants-and-telemetry-gates-2026-10-02.md)
+- 2026-10-02 — [多模态评测输入完整性与覆盖分母 Gate：POC 验收模板](assets/multimodal-evaluation-input-and-coverage-gates-2026-10-02.md)
 - 日期未知 — [Agent 可观测性/评测层选型速查：Opik vs Foundry Evals vs Cookbook Improvement Loop](assets/agent-observability-selection-opik-vs-foundry-evals-cheatsheet.md)
 - 日期未知 — [Foundry Evals（含 Adaptive / Rubric 评测器）— 评测驱动闭环的 Azure 原生版 速查](assets/foundry-adaptive-evals-azure-native-eval-gate-cheatsheet.md)
 - 日期未知 — [Harness 评测回路 + Goal 完成契约 + Headless/FinOps 速查](assets/harness-eval-loop-and-goal-contract-cheatsheet.md)

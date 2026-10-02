@@ -3,7 +3,7 @@
 
 > 这些条目包含历史资料整理、静态源码分析、POC 设计与明确标注的离线实验。请逐项查看日期、固定版本、证据范围与 NOT_RUN 限制：部分资产记录了真实源码离线测试或原创教学实验，但不等于云端、目标租户、生产部署或合规验证。历史快照的来源可达性不自动延续到今天；当日核验与执行情况以各资产说明为准。
 
-- 已发布：119
+- 已发布：123
 - 已隔离：0（详见本地报告，不发布敏感原文）
 - 跳过/冲突：0（详见本地报告）
 
@@ -53,6 +53,7 @@
 - 2026-09-29 — [微软 MAF reasoning replay 与 Azure MCP 身份遥测／namespace gate：公开验收模板](assets/maf-mcp-replay-and-telemetry-gates-2026-09-29.md)
 - 2026-10-01 — [MAF：用真实固定源码复现审批与技能 context 分离](assets/maf-skill-context-injection-lab-2026-10-01.md)
 - 2026-10-01 — [技能评测契约对齐：不要把正确拒绝当成坏样本](assets/skill-eval-contract-alignment-lab-2026-10-01.md)
+- 2026-10-03 — [动态 MCP 安全标签验收模板（基于 MAF source-SDK baseline 实测）](assets/maf-dynamic-mcp-labels-acceptance-2026-10-03.md)
 - 日期未知 — [Claude Code Dynamic Workflows — 第四种编排原语（Subagents / Skills / Agent Teams 之外）](assets/claude-code-dynamic-workflows-orchestration-primitive.md)
 - 日期未知 — [Managed Agents 容器沙箱 + MCP 工具审批/安全护栏 速查表](assets/managed-agents-sandbox-and-mcp-approval-safety-cheatsheet.md)
 - 日期未知 — [架构图模式：企业级多 Agent 参考拓扑（MCP 纵 / A2A 横）](assets/arch-pattern-multi-agent-mcp-a2a.md)
@@ -99,6 +100,7 @@
 - 2026-09-26 — [Agent 审批与出站双门：公开源码审阅与 POC 验收设计](assets/agent-approval-and-egress-poc-gates-2026-09-26.md)
 - 2026-09-26 — [Coding Agent Authority Degradation Gates：公开 CLI 验收设计模板（2026-09-26）](assets/coding-agent-authority-degradation-gates-2026-09-26.md)
 - 2026-09-29 — [Coding Agent 治理验收模板：选路、授权与强制出口不能互相替代](assets/coding-agent-route-authorization-egress-gates-2026-09-29.md)
+- 2026-10-03 — [Lightflow 人工关卡与超时副作用：客户 POC 验收模板](assets/lightflow-approval-resume-effect-gates-2026-10-03.md)
 - 日期未知 — [Agent「命令执行授权 / 沙箱审批」三栈对照速查（Codex shell-escalation ↔ Claude Code auto-mode/sandbox ↔ AWS IAM agent-vs-human）+ Azure 映射](assets/agent-command-execution-authz-tristack-cheatsheet.md)
 - 日期未知 — [编码 Agent Hooks 与权限治理对照验收模板](assets/coding-agent-hooks-tristack-comparison-cheatsheet.md)
 
@@ -109,6 +111,7 @@
 - 2026-09-27 — [编码 Agent 双 CLI 验收资产：Codex 目录预算生命周期与 Claude 模型准入](assets/coding-agent-catalog-and-model-admission-2026-09-27.md)
 - 2026-09-30 — [Coding Agent：安全停止回报与模块准入验收卡](assets/coding-agent-safety-stop-and-mod-admission-2026-09-30.md)
 - 2026-10-01 — [编码代理恢复与 deny-rule 闸门：公开演练模板（2026-10-01）](assets/coding-agent-recovery-and-deny-rule-gates-2026-10-01.md)
+- 2026-10-03 — [编程代理升级的协议验收模板：输出真实性、线程回收与会话绑定](assets/coding-agent-output-lifecycle-session-gates-2026-10-03.md)
 - 日期未知 — [Agent 模型基线 & 上下文预算速查（Codex / Claude Code / GitHub Copilot）](assets/model-baseline-and-context-budget-cheatsheet.md)
 - 日期未知 — [xAI Grok Build — 编码 Agent CLI 第四栈速查](assets/xai-grok-build-fourth-stack-cheatsheet.md)
 - 日期未知 — [无人值守 / 托管 Agent 调度三栈对照速查（Codex Automations ↔ Claude Code Routines ↔ GitHub Actions/Copilot）+ Azure 映射](assets/unattended-agent-scheduling-tristack-cheatsheet.md)
@@ -148,6 +151,7 @@
 - 2026-09-30 — [Agent 评测仪器冻结与评分证据门](assets/agent-evaluation-instrument-and-rubric-gates-2026-09-30.md)
 - 2026-10-02 — [Coding Agent：来源授权与遥测内容门验收卡](assets/coding-agent-origin-grants-and-telemetry-gates-2026-10-02.md)
 - 2026-10-02 — [多模态评测输入完整性与覆盖分母 Gate：POC 验收模板](assets/multimodal-evaluation-input-and-coverage-gates-2026-10-02.md)
+- 2026-10-03 — [eval_hub 解析器覆盖验收练习卡（公开版，2026-10-03）](assets/eval-parser-coverage-lab-2026-10-03.md)
 - 日期未知 — [Agent 可观测性/评测层选型速查：Opik vs Foundry Evals vs Cookbook Improvement Loop](assets/agent-observability-selection-opik-vs-foundry-evals-cheatsheet.md)
 - 日期未知 — [Foundry Evals（含 Adaptive / Rubric 评测器）— 评测驱动闭环的 Azure 原生版 速查](assets/foundry-adaptive-evals-azure-native-eval-gate-cheatsheet.md)
 - 日期未知 — [Harness 评测回路 + Goal 完成契约 + Headless/FinOps 速查](assets/harness-eval-loop-and-goal-contract-cheatsheet.md)

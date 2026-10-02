@@ -369,6 +369,15 @@
     "sha256": "0804ccea81e4d33b963af928ebfd559a4db8b16f92702522e3e07b8ece419bc2"
   },
   {
+    "path": "assets/maf-dynamic-mcp-labels-acceptance-2026-10-03.md",
+    "title": "动态 MCP 安全标签验收模板（基于 MAF source-SDK baseline 实测）",
+    "date": "2026-10-03",
+    "topic": "MCP 与插件",
+    "status": "published",
+    "source_name": "maf-dynamic-mcp-labels-acceptance-2026-10-03.md",
+    "sha256": "1a0c6998eddfd4b1ee1cf6d4dfcc44d49119ee3e0ce60c3e50810a3dc19f5fed"
+  },
+  {
     "path": "assets/claude-code-dynamic-workflows-orchestration-primitive.md",
     "title": "Claude Code Dynamic Workflows — 第四种编排原语（Subagents / Skills / Agent Teams 之外）",
     "date": null,
@@ -702,6 +711,15 @@
     "sha256": "d42d37ad374cddd73c0e8d732500d34d6f2d6c7bc365ea7f73ef8e4ec24d8f3d"
   },
   {
+    "path": "assets/lightflow-approval-resume-effect-gates-2026-10-03.md",
+    "title": "Lightflow 人工关卡与超时副作用：客户 POC 验收模板",
+    "date": "2026-10-03",
+    "topic": "安全与治理",
+    "status": "published",
+    "source_name": "lightflow-approval-resume-effect-gates-2026-10-03.md",
+    "sha256": "9812d603e2085d948e3add046df5867e65d5b2adbf179443c7a6625ae36b9d42"
+  },
+  {
     "path": "assets/agent-command-execution-authz-tristack-cheatsheet.md",
     "title": "Agent「命令执行授权 / 沙箱审批」三栈对照速查（Codex shell-escalation ↔ Claude Code auto-mode/sandbox ↔ AWS IAM agent-vs-human）+ Azure 映射",
     "date": null,
@@ -763,6 +781,15 @@
     "status": "published",
     "source_name": "coding-agent-recovery-and-deny-rule-gates-2026-10-01.md",
     "sha256": "f1ea89b889784c14d50c3c8298d36720104afc1b7a87f5f9ce6da15b2ba62cbf"
+  },
+  {
+    "path": "assets/coding-agent-output-lifecycle-session-gates-2026-10-03.md",
+    "title": "编程代理升级的协议验收模板：输出真实性、线程回收与会话绑定",
+    "date": "2026-10-03",
+    "topic": "编码 Agent",
+    "status": "published",
+    "source_name": "coding-agent-output-lifecycle-session-gates-2026-10-03.md",
+    "sha256": "e5b21fea711ce1cb089a69d8ac616cf437943abb50668207d5a777126485c62c"
   },
   {
     "path": "assets/model-baseline-and-context-budget-cheatsheet.md",
@@ -1033,6 +1060,15 @@
     "status": "published",
     "source_name": "multimodal-evaluation-input-and-coverage-gates-2026-10-02.md",
     "sha256": "ca2974b2e1eb97c291b491e2edd558f328ea8919a1769ac0816552aece5a24cc"
+  },
+  {
+    "path": "assets/eval-parser-coverage-lab-2026-10-03.md",
+    "title": "eval_hub 解析器覆盖验收练习卡（公开版，2026-10-03）",
+    "date": "2026-10-03",
+    "topic": "评测与观测",
+    "status": "published",
+    "source_name": "eval-parser-coverage-lab-2026-10-03.md",
+    "sha256": "b963dfc07f49606b9e325de7da572a16264518a0b07d725ad72131ac7019dd5d"
   },
   {
     "path": "assets/agent-observability-selection-opik-vs-foundry-evals-cheatsheet.md",

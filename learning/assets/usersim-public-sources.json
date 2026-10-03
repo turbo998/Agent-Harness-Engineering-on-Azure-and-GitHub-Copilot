@@ -1,0 +1,605 @@
+{
+  "schema": "usersim-public-source-manifest-v1",
+  "lab_date": "2026-10-04",
+  "repo": "NVIDIA-NeMo/UserSim",
+  "commit_sha": "2945592c6d5b473c8b7158f432b16490a2d04aa0",
+  "runner": {
+    "path": "usersim_manifest_runner.py",
+    "origin": "Original lab runner; not an upstream UserSim file",
+    "sha256": "70ab7c0c754805808e1da57f5e8f7605fb42686d6836a6e7a1e54b6a23f93f64",
+    "bytes": 15050,
+    "copied_byte_identically": true,
+    "license_note": "No separate license declaration in original runner; upstream Apache-2.0 is not automatically its license."
+  },
+  "upstream_license": {
+    "identifier": "Apache-2.0",
+    "evidence": "LICENSE and eval_manifest.py SPDX header"
+  },
+  "runtime": {
+    "image": "python@sha256:a3ab0b966bc4e91546a033e22093cb840908979487a9fc0e6e38295747e49ac0",
+    "platform": "linux/amd64",
+    "python_version": "3.11.15",
+    "network": "none",
+    "readonly": true,
+    "container_user": "65534:65534",
+    "cap_drop": "ALL",
+    "no_new_privileges": true,
+    "scope": "Complete single eval_manifest module import plus original synthetic policies; not full SDK, notebook, CLI or models",
+    "public_wrapper_execution": "Not rerun during editorial packaging"
+  },
+  "execution_evidence": {
+    "origin": "Previously captured runner stdout JSON; summary transcribed mechanically without rerunning target code",
+    "original_stdout_sha256": "e361357b4b0f0883617d340e0270ca8fab8082c9f9e8750273508e78db397d9b",
+    "status": "PASS",
+    "baseline_cases": 10,
+    "source_mutants": 5,
+    "policy_mutants": 2,
+    "blocked_effect_attempts": {
+      "network": 0,
+      "process": 0
+    },
+    "variants": {
+      "baseline": {
+        "accepted": true,
+        "mutation_killed": false,
+        "target": null,
+        "cases": [
+          {
+            "case": "append_sequence",
+            "status": "PASS"
+          },
+          {
+            "case": "cross_run_rejection",
+            "status": "PASS"
+          },
+          {
+            "case": "fresh_cross_run",
+            "status": "PASS"
+          },
+          {
+            "case": "schema_edges",
+            "status": "PASS"
+          },
+          {
+            "case": "mixed_consensus",
+            "status": "PASS"
+          },
+          {
+            "case": "prewrite_eval_failure",
+            "status": "PASS"
+          },
+          {
+            "case": "prewrite_commit_failure",
+            "status": "PASS"
+          },
+          {
+            "case": "fresh_history_loss",
+            "status": "PASS"
+          },
+          {
+            "case": "missing_prediction_denominator",
+            "status": "PASS"
+          },
+          {
+            "case": "successful_receipt",
+            "status": "PASS"
+          }
+        ]
+      },
+      "append_to_replace": {
+        "accepted": true,
+        "mutation_killed": true,
+        "target": "append_sequence",
+        "cases": [
+          {
+            "case": "append_sequence",
+            "status": "BUSINESS_ORACLE_FAILURE",
+            "detail": "append must retain both passes"
+          },
+          {
+            "case": "cross_run_rejection",
+            "status": "PASS"
+          },
+          {
+            "case": "fresh_cross_run",
+            "status": "PASS"
+          },
+          {
+            "case": "schema_edges",
+            "status": "PASS"
+          },
+          {
+            "case": "mixed_consensus",
+            "status": "BUSINESS_ORACLE_FAILURE",
+            "detail": "mixed test needs both passes"
+          },
+          {
+            "case": "prewrite_eval_failure",
+            "status": "PASS"
+          },
+          {
+            "case": "prewrite_commit_failure",
+            "status": "PASS"
+          },
+          {
+            "case": "fresh_history_loss",
+            "status": "PASS"
+          },
+          {
+            "case": "missing_prediction_denominator",
+            "status": "PASS"
+          },
+          {
+            "case": "successful_receipt",
+            "status": "PASS"
+          }
+        ]
+      },
+      "remove_cross_run_guard": {
+        "accepted": true,
+        "mutation_killed": true,
+        "target": "cross_run_rejection",
+        "cases": [
+          {
+            "case": "append_sequence",
+            "status": "PASS"
+          },
+          {
+            "case": "cross_run_rejection",
+            "status": "BUSINESS_ORACLE_FAILURE",
+            "detail": "cross-run must reject AND leave bytes unchanged"
+          },
+          {
+            "case": "fresh_cross_run",
+            "status": "PASS"
+          },
+          {
+            "case": "schema_edges",
+            "status": "PASS"
+          },
+          {
+            "case": "mixed_consensus",
+            "status": "PASS"
+          },
+          {
+            "case": "prewrite_eval_failure",
+            "status": "PASS"
+          },
+          {
+            "case": "prewrite_commit_failure",
+            "status": "PASS"
+          },
+          {
+            "case": "fresh_history_loss",
+            "status": "PASS"
+          },
+          {
+            "case": "missing_prediction_denominator",
+            "status": "PASS"
+          },
+          {
+            "case": "successful_receipt",
+            "status": "PASS"
+          }
+        ]
+      },
+      "ignore_fresh": {
+        "accepted": true,
+        "mutation_killed": true,
+        "target": "fresh_history_loss",
+        "cases": [
+          {
+            "case": "append_sequence",
+            "status": "PASS"
+          },
+          {
+            "case": "cross_run_rejection",
+            "status": "PASS"
+          },
+          {
+            "case": "fresh_cross_run",
+            "status": "BUSINESS_ORACLE_FAILURE",
+            "detail": "fresh must bypass old-run rejection"
+          },
+          {
+            "case": "schema_edges",
+            "status": "PASS"
+          },
+          {
+            "case": "mixed_consensus",
+            "status": "PASS"
+          },
+          {
+            "case": "prewrite_eval_failure",
+            "status": "PASS"
+          },
+          {
+            "case": "prewrite_commit_failure",
+            "status": "PASS"
+          },
+          {
+            "case": "fresh_history_loss",
+            "status": "BUSINESS_ORACLE_FAILURE",
+            "detail": "intent must survive downstream fault; fresh drops history"
+          },
+          {
+            "case": "missing_prediction_denominator",
+            "status": "PASS"
+          },
+          {
+            "case": "successful_receipt",
+            "status": "PASS"
+          }
+        ]
+      },
+      "latest_not_consensus": {
+        "accepted": true,
+        "mutation_killed": true,
+        "target": "mixed_consensus",
+        "cases": [
+          {
+            "case": "append_sequence",
+            "status": "PASS"
+          },
+          {
+            "case": "cross_run_rejection",
+            "status": "PASS"
+          },
+          {
+            "case": "fresh_cross_run",
+            "status": "PASS"
+          },
+          {
+            "case": "schema_edges",
+            "status": "PASS"
+          },
+          {
+            "case": "mixed_consensus",
+            "status": "BUSINESS_ORACLE_FAILURE",
+            "detail": "mixed history mislabeled as latest mode"
+          },
+          {
+            "case": "prewrite_eval_failure",
+            "status": "PASS"
+          },
+          {
+            "case": "prewrite_commit_failure",
+            "status": "PASS"
+          },
+          {
+            "case": "fresh_history_loss",
+            "status": "PASS"
+          },
+          {
+            "case": "missing_prediction_denominator",
+            "status": "PASS"
+          },
+          {
+            "case": "successful_receipt",
+            "status": "PASS"
+          }
+        ]
+      },
+      "version_gate": {
+        "accepted": true,
+        "mutation_killed": true,
+        "target": "schema_edges",
+        "cases": [
+          {
+            "case": "append_sequence",
+            "status": "PASS"
+          },
+          {
+            "case": "cross_run_rejection",
+            "status": "PASS"
+          },
+          {
+            "case": "fresh_cross_run",
+            "status": "PASS"
+          },
+          {
+            "case": "schema_edges",
+            "status": "BUSINESS_ORACLE_FAILURE",
+            "detail": "passes list is discriminator, not version"
+          },
+          {
+            "case": "mixed_consensus",
+            "status": "PASS"
+          },
+          {
+            "case": "prewrite_eval_failure",
+            "status": "PASS"
+          },
+          {
+            "case": "prewrite_commit_failure",
+            "status": "PASS"
+          },
+          {
+            "case": "fresh_history_loss",
+            "status": "PASS"
+          },
+          {
+            "case": "missing_prediction_denominator",
+            "status": "PASS"
+          },
+          {
+            "case": "successful_receipt",
+            "status": "PASS"
+          }
+        ]
+      },
+      "intent_as_commit": {
+        "accepted": true,
+        "mutation_killed": true,
+        "target": "prewrite_eval_failure",
+        "cases": [
+          {
+            "case": "append_sequence",
+            "status": "PASS"
+          },
+          {
+            "case": "cross_run_rejection",
+            "status": "PASS"
+          },
+          {
+            "case": "fresh_cross_run",
+            "status": "PASS"
+          },
+          {
+            "case": "schema_edges",
+            "status": "PASS"
+          },
+          {
+            "case": "mixed_consensus",
+            "status": "PASS"
+          },
+          {
+            "case": "prewrite_eval_failure",
+            "status": "BUSINESS_ORACLE_FAILURE",
+            "detail": "intent incorrectly counted as committed"
+          },
+          {
+            "case": "prewrite_commit_failure",
+            "status": "BUSINESS_ORACLE_FAILURE",
+            "detail": "intent incorrectly counted as committed"
+          },
+          {
+            "case": "fresh_history_loss",
+            "status": "BUSINESS_ORACLE_FAILURE",
+            "detail": "intent incorrectly counted as committed"
+          },
+          {
+            "case": "missing_prediction_denominator",
+            "status": "PASS"
+          },
+          {
+            "case": "successful_receipt",
+            "status": "PASS"
+          }
+        ]
+      },
+      "observed_denominator": {
+        "accepted": true,
+        "mutation_killed": true,
+        "target": "missing_prediction_denominator",
+        "cases": [
+          {
+            "case": "append_sequence",
+            "status": "PASS"
+          },
+          {
+            "case": "cross_run_rejection",
+            "status": "PASS"
+          },
+          {
+            "case": "fresh_cross_run",
+            "status": "PASS"
+          },
+          {
+            "case": "schema_edges",
+            "status": "PASS"
+          },
+          {
+            "case": "mixed_consensus",
+            "status": "PASS"
+          },
+          {
+            "case": "prewrite_eval_failure",
+            "status": "PASS"
+          },
+          {
+            "case": "prewrite_commit_failure",
+            "status": "PASS"
+          },
+          {
+            "case": "fresh_history_loss",
+            "status": "PASS"
+          },
+          {
+            "case": "missing_prediction_denominator",
+            "status": "BUSINESS_ORACLE_FAILURE",
+            "detail": "observed-only denominator hides missing prediction"
+          },
+          {
+            "case": "successful_receipt",
+            "status": "PASS"
+          }
+        ]
+      }
+    }
+  },
+  "url_check_note": "HEAD proves reachability only; SHA values were independently recomputed from fixed source bytes already retained, not from HEAD responses. Checks are UTC; lab date is the publication label.",
+  "sources": [
+    {
+      "path": "src/usersim/reporting/eval_manifest.py",
+      "url": "https://raw.githubusercontent.com/NVIDIA-NeMo/UserSim/2945592c6d5b473c8b7158f432b16490a2d04aa0/src/usersim/reporting/eval_manifest.py",
+      "sha256": "8788999297e5048e197cefa939248683e5beb7b57dcbe3b9f28329dd430acfa3",
+      "bytes": 10443,
+      "role": "runtime",
+      "head_check": {
+        "checked_at_utc": "2026-10-03T19:27:43.748907+00:00",
+        "method": "curl -sI -L --max-time 20",
+        "curl_exit_code": 0,
+        "http_status": 200,
+        "final_url": "https://raw.githubusercontent.com/NVIDIA-NeMo/UserSim/2945592c6d5b473c8b7158f432b16490a2d04aa0/src/usersim/reporting/eval_manifest.py",
+        "redirect_count": 0,
+        "status_lines": [
+          "HTTP/2 200"
+        ],
+        "error": null
+      }
+    },
+    {
+      "path": "notebooks/02_evaluate_simulation.ipynb",
+      "url": "https://raw.githubusercontent.com/NVIDIA-NeMo/UserSim/2945592c6d5b473c8b7158f432b16490a2d04aa0/notebooks/02_evaluate_simulation.ipynb",
+      "sha256": "4b92e9ca970c6daaec651421b31b3850597ecdea2e585668c8b70d442a5f752d",
+      "bytes": 27583,
+      "role": "static_evidence_only",
+      "head_check": {
+        "checked_at_utc": "2026-10-03T19:27:43.797558+00:00",
+        "method": "curl -sI -L --max-time 20",
+        "curl_exit_code": 0,
+        "http_status": 200,
+        "final_url": "https://raw.githubusercontent.com/NVIDIA-NeMo/UserSim/2945592c6d5b473c8b7158f432b16490a2d04aa0/notebooks/02_evaluate_simulation.ipynb",
+        "redirect_count": 0,
+        "status_lines": [
+          "HTTP/2 200"
+        ],
+        "error": null
+      }
+    },
+    {
+      "path": "src/usersim/cli/evaluate.py",
+      "url": "https://raw.githubusercontent.com/NVIDIA-NeMo/UserSim/2945592c6d5b473c8b7158f432b16490a2d04aa0/src/usersim/cli/evaluate.py",
+      "sha256": "a4814c7bae5cae4f69ab9fc7e0c24c3756dcd771e3733b3a15463a079babbea9",
+      "bytes": 12176,
+      "role": "static_evidence_only",
+      "head_check": {
+        "checked_at_utc": "2026-10-03T19:27:43.742997+00:00",
+        "method": "curl -sI -L --max-time 20",
+        "curl_exit_code": 0,
+        "http_status": 200,
+        "final_url": "https://raw.githubusercontent.com/NVIDIA-NeMo/UserSim/2945592c6d5b473c8b7158f432b16490a2d04aa0/src/usersim/cli/evaluate.py",
+        "redirect_count": 0,
+        "status_lines": [
+          "HTTP/2 200"
+        ],
+        "error": null
+      }
+    },
+    {
+      "path": "tests/test_eval_manifest.py",
+      "url": "https://raw.githubusercontent.com/NVIDIA-NeMo/UserSim/2945592c6d5b473c8b7158f432b16490a2d04aa0/tests/test_eval_manifest.py",
+      "sha256": "428b4a73ff2a4b3cd68510ad49204347a7909c97e599d22de87197e7351bf0d1",
+      "bytes": 20819,
+      "role": "static_evidence_only",
+      "head_check": {
+        "checked_at_utc": "2026-10-03T19:27:43.771709+00:00",
+        "method": "curl -sI -L --max-time 20",
+        "curl_exit_code": 0,
+        "http_status": 200,
+        "final_url": "https://raw.githubusercontent.com/NVIDIA-NeMo/UserSim/2945592c6d5b473c8b7158f432b16490a2d04aa0/tests/test_eval_manifest.py",
+        "redirect_count": 0,
+        "status_lines": [
+          "HTTP/2 200"
+        ],
+        "error": null
+      }
+    },
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/NVIDIA-NeMo/UserSim/2945592c6d5b473c8b7158f432b16490a2d04aa0/LICENSE",
+      "sha256": "ee4829788960ba974f402c4d9f5b86e702e51037ef5407ec5ffdb93d3b391f33",
+      "bytes": 11411,
+      "role": "static_evidence_only",
+      "head_check": {
+        "checked_at_utc": "2026-10-03T19:27:43.782686+00:00",
+        "method": "curl -sI -L --max-time 20",
+        "curl_exit_code": 0,
+        "http_status": 200,
+        "final_url": "https://raw.githubusercontent.com/NVIDIA-NeMo/UserSim/2945592c6d5b473c8b7158f432b16490a2d04aa0/LICENSE",
+        "redirect_count": 0,
+        "status_lines": [
+          "HTTP/2 200"
+        ],
+        "error": null
+      }
+    },
+    {
+      "path": "src/usersim/cli/_pipeline.py",
+      "url": "https://raw.githubusercontent.com/NVIDIA-NeMo/UserSim/2945592c6d5b473c8b7158f432b16490a2d04aa0/src/usersim/cli/_pipeline.py",
+      "sha256": "9d14f629dcba75deac4cceb9e296dc8adbbc8bd8f7f06cc0917acb6dc2ef62f2",
+      "bytes": 37144,
+      "role": "static_evidence_only",
+      "head_check": {
+        "checked_at_utc": "2026-10-03T19:27:44.079125+00:00",
+        "method": "curl -sI -L --max-time 20",
+        "curl_exit_code": 0,
+        "http_status": 200,
+        "final_url": "https://raw.githubusercontent.com/NVIDIA-NeMo/UserSim/2945592c6d5b473c8b7158f432b16490a2d04aa0/src/usersim/cli/_pipeline.py",
+        "redirect_count": 0,
+        "status_lines": [
+          "HTTP/2 200"
+        ],
+        "error": null
+      }
+    },
+    {
+      "path": "src/usersim/engine/core/storage.py",
+      "url": "https://raw.githubusercontent.com/NVIDIA-NeMo/UserSim/2945592c6d5b473c8b7158f432b16490a2d04aa0/src/usersim/engine/core/storage.py",
+      "sha256": "cdbabd59459c71bd284b42fedb68a0f5087747a04c49faf7f6ba1fa6e03ce6cc",
+      "bytes": 40454,
+      "role": "static_evidence_only",
+      "head_check": {
+        "checked_at_utc": "2026-10-03T19:27:44.117931+00:00",
+        "method": "curl -sI -L --max-time 20",
+        "curl_exit_code": 0,
+        "http_status": 200,
+        "final_url": "https://raw.githubusercontent.com/NVIDIA-NeMo/UserSim/2945592c6d5b473c8b7158f432b16490a2d04aa0/src/usersim/engine/core/storage.py",
+        "redirect_count": 0,
+        "status_lines": [
+          "HTTP/2 200"
+        ],
+        "error": null
+      }
+    },
+    {
+      "path": "src/usersim/reporting/__init__.py",
+      "url": "https://raw.githubusercontent.com/NVIDIA-NeMo/UserSim/2945592c6d5b473c8b7158f432b16490a2d04aa0/src/usersim/reporting/__init__.py",
+      "sha256": "19ba51d3ec6f24af39fd3883f6e45be04d274faa5101b206958eee6f18c5de15",
+      "bytes": 3776,
+      "role": "static_evidence_only",
+      "head_check": {
+        "checked_at_utc": "2026-10-03T19:27:44.109609+00:00",
+        "method": "curl -sI -L --max-time 20",
+        "curl_exit_code": 0,
+        "http_status": 200,
+        "final_url": "https://raw.githubusercontent.com/NVIDIA-NeMo/UserSim/2945592c6d5b473c8b7158f432b16490a2d04aa0/src/usersim/reporting/__init__.py",
+        "redirect_count": 0,
+        "status_lines": [
+          "HTTP/2 200"
+        ],
+        "error": null
+      }
+    },
+    {
+      "path": "src/usersim/reporting/capability_report.py",
+      "url": "https://raw.githubusercontent.com/NVIDIA-NeMo/UserSim/2945592c6d5b473c8b7158f432b16490a2d04aa0/src/usersim/reporting/capability_report.py",
+      "sha256": "363a0b4d5bbad9c1b735a8d3092bfcb1381125ffdf4c9f788ea08cafd19b24f0",
+      "bytes": 87839,
+      "role": "static_evidence_only",
+      "head_check": {
+        "checked_at_utc": "2026-10-03T19:27:44.185929+00:00",
+        "method": "curl -sI -L --max-time 20",
+        "curl_exit_code": 0,
+        "http_status": 200,
+        "final_url": "https://raw.githubusercontent.com/NVIDIA-NeMo/UserSim/2945592c6d5b473c8b7158f432b16490a2d04aa0/src/usersim/reporting/capability_report.py",
+        "redirect_count": 0,
+        "status_lines": [
+          "HTTP/2 200"
+        ],
+        "error": null
+      }
+    }
+  ]
+}

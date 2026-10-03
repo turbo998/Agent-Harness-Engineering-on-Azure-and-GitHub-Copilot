@@ -1,0 +1,232 @@
+{
+  "method": "curl GET with redirects; full bodies hashed; reachability is not runtime validation",
+  "sources": [
+    {
+      "id": "S1",
+      "url": "https://github.com/openai/codex/commit/58ae3ba61186c39b849a6ebe60e60f4b11690373.diff",
+      "kind": "fixed_sha",
+      "checked_at_utc": "2026-10-03T19:13:48.681886+00:00",
+      "curl_exit_code": 0,
+      "http_status": 200,
+      "final_url": "https://github.com/openai/codex/commit/58ae3ba61186c39b849a6ebe60e60f4b11690373.diff",
+      "error": "",
+      "body_sha256": "1c95899e4dec17772d17fdbeb4e66580a3a96970da7b7c0f7ebfd520053d7324",
+      "body_bytes": 37367,
+      "redirect_chain": [
+        "HTTP/2 200"
+      ]
+    },
+    {
+      "id": "S2",
+      "url": "https://raw.githubusercontent.com/openai/codex/58ae3ba61186c39b849a6ebe60e60f4b11690373/codex-rs/core/src/tools/spec_plan.rs",
+      "kind": "fixed_sha",
+      "checked_at_utc": "2026-10-03T19:13:48.682082+00:00",
+      "curl_exit_code": 0,
+      "http_status": 200,
+      "final_url": "https://raw.githubusercontent.com/openai/codex/58ae3ba61186c39b849a6ebe60e60f4b11690373/codex-rs/core/src/tools/spec_plan.rs",
+      "error": "",
+      "body_sha256": "87825bf65fddf7ca856823c8fff631d27936232621fce1dd4e2ac5d0d1bd19d7",
+      "body_bytes": 61957,
+      "redirect_chain": [
+        "HTTP/2 200"
+      ]
+    },
+    {
+      "id": "S3",
+      "url": "https://raw.githubusercontent.com/openai/codex/58ae3ba61186c39b849a6ebe60e60f4b11690373/codex-rs/core/src/tools/mod.rs",
+      "kind": "fixed_sha",
+      "checked_at_utc": "2026-10-03T19:13:48.682547+00:00",
+      "curl_exit_code": 0,
+      "http_status": 200,
+      "final_url": "https://raw.githubusercontent.com/openai/codex/58ae3ba61186c39b849a6ebe60e60f4b11690373/codex-rs/core/src/tools/mod.rs",
+      "error": "",
+      "body_sha256": "510635e3ae67e4c63e1feaf6d645f25dc2590f54391645dddeec0a84c1d17616",
+      "body_bytes": 5240,
+      "redirect_chain": [
+        "HTTP/2 200"
+      ]
+    },
+    {
+      "id": "S4",
+      "url": "https://raw.githubusercontent.com/openai/codex/58ae3ba61186c39b849a6ebe60e60f4b11690373/codex-rs/core/src/tools/registry.rs",
+      "kind": "fixed_sha",
+      "checked_at_utc": "2026-10-03T19:13:48.684139+00:00",
+      "curl_exit_code": 0,
+      "http_status": 200,
+      "final_url": "https://raw.githubusercontent.com/openai/codex/58ae3ba61186c39b849a6ebe60e60f4b11690373/codex-rs/core/src/tools/registry.rs",
+      "error": "",
+      "body_sha256": "c51d069d46af8d0961c4a7555b477bbab303dc2c3a0afcdf1441ecdb570edc05",
+      "body_bytes": 31664,
+      "redirect_chain": [
+        "HTTP/2 200"
+      ]
+    },
+    {
+      "id": "S5",
+      "url": "https://raw.githubusercontent.com/openai/codex/58ae3ba61186c39b849a6ebe60e60f4b11690373/codex-rs/core/src/mcp_tool_exposure.rs",
+      "kind": "fixed_sha",
+      "checked_at_utc": "2026-10-03T19:13:48.687906+00:00",
+      "curl_exit_code": 0,
+      "http_status": 200,
+      "final_url": "https://raw.githubusercontent.com/openai/codex/58ae3ba61186c39b849a6ebe60e60f4b11690373/codex-rs/core/src/mcp_tool_exposure.rs",
+      "error": "",
+      "body_sha256": "1011a3a223c88fa27f5084af64057c9c4ac29399c120e2a820e215f94a07c5b3",
+      "body_bytes": 6936,
+      "redirect_chain": [
+        "HTTP/2 200"
+      ]
+    },
+    {
+      "id": "S6",
+      "url": "https://raw.githubusercontent.com/openai/codex/58ae3ba61186c39b849a6ebe60e60f4b11690373/codex-rs/core/src/tools/spec_plan_strict_third_party_tests.rs",
+      "kind": "fixed_sha",
+      "checked_at_utc": "2026-10-03T19:13:48.814671+00:00",
+      "curl_exit_code": 0,
+      "http_status": 200,
+      "final_url": "https://raw.githubusercontent.com/openai/codex/58ae3ba61186c39b849a6ebe60e60f4b11690373/codex-rs/core/src/tools/spec_plan_strict_third_party_tests.rs",
+      "error": "",
+      "body_sha256": "3da18d48cbf2c33cbedd855fefeaf8ed7d1bcdbdf1afd263d4be4e3283b89c42",
+      "body_bytes": 8863,
+      "redirect_chain": [
+        "HTTP/2 200"
+      ]
+    },
+    {
+      "id": "S7",
+      "url": "https://raw.githubusercontent.com/openai/codex/58ae3ba61186c39b849a6ebe60e60f4b11690373/codex-rs/core/tests/suite/app_tool_exposure_strict_tests.rs",
+      "kind": "fixed_sha",
+      "checked_at_utc": "2026-10-03T19:13:48.823301+00:00",
+      "curl_exit_code": 0,
+      "http_status": 200,
+      "final_url": "https://raw.githubusercontent.com/openai/codex/58ae3ba61186c39b849a6ebe60e60f4b11690373/codex-rs/core/tests/suite/app_tool_exposure_strict_tests.rs",
+      "error": "",
+      "body_sha256": "b600dbba5e6910dfa25e087270a9281c4c6e35b1ca0bcb31b5279977fa3f6cec",
+      "body_bytes": 4279,
+      "redirect_chain": [
+        "HTTP/2 200"
+      ]
+    },
+    {
+      "id": "S8",
+      "url": "https://raw.githubusercontent.com/openai/codex/58ae3ba61186c39b849a6ebe60e60f4b11690373/codex-rs/core/tests/suite/scenarios_strict_3p_cache.rs",
+      "kind": "fixed_sha",
+      "checked_at_utc": "2026-10-03T19:13:49.158556+00:00",
+      "curl_exit_code": 0,
+      "http_status": 200,
+      "final_url": "https://raw.githubusercontent.com/openai/codex/58ae3ba61186c39b849a6ebe60e60f4b11690373/codex-rs/core/tests/suite/scenarios_strict_3p_cache.rs",
+      "error": "",
+      "body_sha256": "17cacf51b773c8aa99d6ac346f60364c98d9590b7f94498c5fad27e13df12b86",
+      "body_bytes": 8404,
+      "redirect_chain": [
+        "HTTP/2 200"
+      ]
+    },
+    {
+      "id": "S9",
+      "url": "https://raw.githubusercontent.com/openai/codex/a956835d020762cb2b570053af06f643a11c0ecc/codex-rs/features/src/lib.rs",
+      "kind": "fixed_sha",
+      "checked_at_utc": "2026-10-03T19:13:49.183706+00:00",
+      "curl_exit_code": 0,
+      "http_status": 200,
+      "final_url": "https://raw.githubusercontent.com/openai/codex/a956835d020762cb2b570053af06f643a11c0ecc/codex-rs/features/src/lib.rs",
+      "error": "",
+      "body_sha256": "124c76d1fbad7b05fd78a62b89a28282c7ecab1de7426ac18696987024ddeae0",
+      "body_bytes": 65810,
+      "redirect_chain": [
+        "HTTP/2 200"
+      ]
+    },
+    {
+      "id": "S10",
+      "url": "https://api.github.com/repos/openai/codex/git/tags/79b1b666f2e8551f8abbbca34957227f67f3f553",
+      "kind": "fixed_sha",
+      "checked_at_utc": "2026-10-03T19:13:49.190230+00:00",
+      "curl_exit_code": 0,
+      "http_status": 200,
+      "final_url": "https://api.github.com/repos/openai/codex/git/tags/79b1b666f2e8551f8abbbca34957227f67f3f553",
+      "error": "",
+      "body_sha256": "8527d47f09dae2714fb8a3c2bb44adc06c4c2f975ee554f6ac9864b4795b24a3",
+      "body_bytes": 769,
+      "redirect_chain": [
+        "HTTP/2 200"
+      ]
+    },
+    {
+      "id": "S11",
+      "url": "https://github.com/anthropics/claude-code/commit/1c229fcd1e1e4e452e29a8f116b45fe4cfe2c528.diff",
+      "kind": "fixed_sha",
+      "checked_at_utc": "2026-10-03T19:13:49.194856+00:00",
+      "curl_exit_code": 0,
+      "http_status": 200,
+      "final_url": "https://github.com/anthropics/claude-code/commit/1c229fcd1e1e4e452e29a8f116b45fe4cfe2c528.diff",
+      "error": "",
+      "body_sha256": "d8b2089aae7ba3b7e087e94e83d77d898d3a0f2dd6c0a364b3fa50659d91e9aa",
+      "body_bytes": 39388,
+      "redirect_chain": [
+        "HTTP/2 200"
+      ]
+    },
+    {
+      "id": "S12",
+      "url": "https://raw.githubusercontent.com/anthropics/claude-code/1c229fcd1e1e4e452e29a8f116b45fe4cfe2c528/CHANGELOG.md",
+      "kind": "fixed_sha",
+      "checked_at_utc": "2026-10-03T19:13:49.197957+00:00",
+      "curl_exit_code": 0,
+      "http_status": 200,
+      "final_url": "https://raw.githubusercontent.com/anthropics/claude-code/1c229fcd1e1e4e452e29a8f116b45fe4cfe2c528/CHANGELOG.md",
+      "error": "",
+      "body_sha256": "c2073a2eb811b9322317fe8496bfa38634984a3de1147cc8ef3439f91e0be9a1",
+      "body_bytes": 900935,
+      "redirect_chain": [
+        "HTTP/2 200"
+      ]
+    },
+    {
+      "id": "D1",
+      "url": "https://code.claude.com/docs/en/hooks.md",
+      "kind": "official_live_docs",
+      "checked_at_utc": "2026-10-03T19:13:49.398229+00:00",
+      "curl_exit_code": 0,
+      "http_status": 200,
+      "final_url": "https://code.claude.com/docs/en/hooks.md",
+      "error": "",
+      "body_sha256": "755e30355fb80abada5a6a5ec10fe491cc1a57bf123232c80d1cc68312869ae5",
+      "body_bytes": 249100,
+      "redirect_chain": [
+        "HTTP/2 200"
+      ]
+    },
+    {
+      "id": "D2",
+      "url": "https://developers.openai.com/codex/changelog",
+      "kind": "official_live_docs",
+      "checked_at_utc": "2026-10-03T19:13:49.588879+00:00",
+      "curl_exit_code": 0,
+      "http_status": 200,
+      "final_url": "https://learn.chatgpt.com/docs/changelog",
+      "error": "",
+      "body_sha256": "8bf25642e6785842eb5564f99e4d92aaa5a1489c49ac263f84231ade176b0d36",
+      "body_bytes": 1529078,
+      "redirect_chain": [
+        "HTTP/2 308",
+        "location: https://learn.chatgpt.com/docs/changelog",
+        "HTTP/2 200"
+      ]
+    },
+    {
+      "id": "R1",
+      "url": "https://api.github.com/repos/anthropics/claude-code/releases/tags/v2.1.288",
+      "kind": "official_release_metadata",
+      "checked_at_utc": "2026-10-03T19:13:49.594519+00:00",
+      "curl_exit_code": 0,
+      "http_status": 200,
+      "final_url": "https://api.github.com/repos/anthropics/claude-code/releases/tags/v2.1.288",
+      "error": "",
+      "body_sha256": "21b7a7c8ee11a95e24b5bce8336b84f63e1394f2135cc6aeb936a381a206aa29",
+      "body_bytes": 33855,
+      "redirect_chain": [
+        "HTTP/2 200"
+      ]
+    }
+  ]
+}

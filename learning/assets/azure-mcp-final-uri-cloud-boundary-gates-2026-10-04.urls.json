@@ -1,0 +1,172 @@
+{
+  "purpose": "immutable-source-fetch-only; not product runtime endpoint evidence",
+  "runtime_status": "NOT_RUN",
+  "sources": [
+    {
+      "id": "S01",
+      "sha": "6ea52482ea1446b7f2230e1d8db0d650982ff1d1",
+      "path": "core/Microsoft.Mcp.Core/src/Helpers/EndpointValidator.cs",
+      "requested_url": "https://raw.githubusercontent.com/microsoft/mcp/6ea52482ea1446b7f2230e1d8db0d650982ff1d1/core/Microsoft.Mcp.Core/src/Helpers/EndpointValidator.cs",
+      "http_status": 200,
+      "final_url": "https://raw.githubusercontent.com/microsoft/mcp/6ea52482ea1446b7f2230e1d8db0d650982ff1d1/core/Microsoft.Mcp.Core/src/Helpers/EndpointValidator.cs",
+      "curl_exit": 0,
+      "retrieved_at_utc": "2026-10-03T19:16:52.825138+00:00",
+      "body_sha256": "00eb91d4f26dd68df124c353227b1a73b14512c14ec4f8639791e4a9bf571b76",
+      "redirect_locations": []
+    },
+    {
+      "id": "S02",
+      "sha": "6ea52482ea1446b7f2230e1d8db0d650982ff1d1",
+      "path": "core/Microsoft.Mcp.Core/src/Helpers/EndpointValidator.AllowLists.cs",
+      "requested_url": "https://raw.githubusercontent.com/microsoft/mcp/6ea52482ea1446b7f2230e1d8db0d650982ff1d1/core/Microsoft.Mcp.Core/src/Helpers/EndpointValidator.AllowLists.cs",
+      "http_status": 200,
+      "final_url": "https://raw.githubusercontent.com/microsoft/mcp/6ea52482ea1446b7f2230e1d8db0d650982ff1d1/core/Microsoft.Mcp.Core/src/Helpers/EndpointValidator.AllowLists.cs",
+      "curl_exit": 0,
+      "retrieved_at_utc": "2026-10-03T19:16:52.846888+00:00",
+      "body_sha256": "db48ddda01d2752aec97922d3c6552ce17b3f6f8300256ef8e646b9e82f9f7fb",
+      "redirect_locations": []
+    },
+    {
+      "id": "S03",
+      "sha": "6ea52482ea1446b7f2230e1d8db0d650982ff1d1",
+      "path": "tools/Azure.Mcp.Tools.Pricing/src/Services/PricingService.cs",
+      "requested_url": "https://raw.githubusercontent.com/microsoft/mcp/6ea52482ea1446b7f2230e1d8db0d650982ff1d1/tools/Azure.Mcp.Tools.Pricing/src/Services/PricingService.cs",
+      "http_status": 200,
+      "final_url": "https://raw.githubusercontent.com/microsoft/mcp/6ea52482ea1446b7f2230e1d8db0d650982ff1d1/tools/Azure.Mcp.Tools.Pricing/src/Services/PricingService.cs",
+      "curl_exit": 0,
+      "retrieved_at_utc": "2026-10-03T19:16:52.764740+00:00",
+      "body_sha256": "ae17404557df0f5f6378b1b4acd81e9054eb0080eec282cf4e50cc32375c2d68",
+      "redirect_locations": []
+    },
+    {
+      "id": "S04",
+      "sha": "6ea52482ea1446b7f2230e1d8db0d650982ff1d1",
+      "path": "tools/Azure.Mcp.Tools.Pricing/src/Services/RetailPricingEndpointValidationPolicy.cs",
+      "requested_url": "https://raw.githubusercontent.com/microsoft/mcp/6ea52482ea1446b7f2230e1d8db0d650982ff1d1/tools/Azure.Mcp.Tools.Pricing/src/Services/RetailPricingEndpointValidationPolicy.cs",
+      "http_status": 200,
+      "final_url": "https://raw.githubusercontent.com/microsoft/mcp/6ea52482ea1446b7f2230e1d8db0d650982ff1d1/tools/Azure.Mcp.Tools.Pricing/src/Services/RetailPricingEndpointValidationPolicy.cs",
+      "curl_exit": 0,
+      "retrieved_at_utc": "2026-10-03T19:16:52.762257+00:00",
+      "body_sha256": "65595fb76c289814b2354b129fe6333963e439c839bf6e6364ac6d80b1862420",
+      "redirect_locations": []
+    },
+    {
+      "id": "S05",
+      "sha": "6ea52482ea1446b7f2230e1d8db0d650982ff1d1",
+      "path": "tools/Azure.Mcp.Tools.Pricing/src/Client/AzureRetailPricesClient.cs",
+      "requested_url": "https://raw.githubusercontent.com/microsoft/mcp/6ea52482ea1446b7f2230e1d8db0d650982ff1d1/tools/Azure.Mcp.Tools.Pricing/src/Client/AzureRetailPricesClient.cs",
+      "http_status": 200,
+      "final_url": "https://raw.githubusercontent.com/microsoft/mcp/6ea52482ea1446b7f2230e1d8db0d650982ff1d1/tools/Azure.Mcp.Tools.Pricing/src/Client/AzureRetailPricesClient.cs",
+      "curl_exit": 0,
+      "retrieved_at_utc": "2026-10-03T19:16:52.770793+00:00",
+      "body_sha256": "d6e34788bf40e347014404b264853e537a0add15dd7b1c805209f2c503360a0b",
+      "redirect_locations": []
+    },
+    {
+      "id": "S06",
+      "sha": "6ea52482ea1446b7f2230e1d8db0d650982ff1d1",
+      "path": "tools/Azure.Mcp.Tools.Pricing/src/Client/RetailPrices.cs",
+      "requested_url": "https://raw.githubusercontent.com/microsoft/mcp/6ea52482ea1446b7f2230e1d8db0d650982ff1d1/tools/Azure.Mcp.Tools.Pricing/src/Client/RetailPrices.cs",
+      "http_status": 200,
+      "final_url": "https://raw.githubusercontent.com/microsoft/mcp/6ea52482ea1446b7f2230e1d8db0d650982ff1d1/tools/Azure.Mcp.Tools.Pricing/src/Client/RetailPrices.cs",
+      "curl_exit": 0,
+      "retrieved_at_utc": "2026-10-03T19:16:52.862384+00:00",
+      "body_sha256": "8f31db9886248772abbcfdd16fadfa42657b2da14c8505cec0ae9650f63c2bd9",
+      "redirect_locations": []
+    },
+    {
+      "id": "S07",
+      "sha": "6ea52482ea1446b7f2230e1d8db0d650982ff1d1",
+      "path": "tools/Azure.Mcp.Tools.Pricing/src/Client/RetailPrices.RestClient.cs",
+      "requested_url": "https://raw.githubusercontent.com/microsoft/mcp/6ea52482ea1446b7f2230e1d8db0d650982ff1d1/tools/Azure.Mcp.Tools.Pricing/src/Client/RetailPrices.RestClient.cs",
+      "http_status": 200,
+      "final_url": "https://raw.githubusercontent.com/microsoft/mcp/6ea52482ea1446b7f2230e1d8db0d650982ff1d1/tools/Azure.Mcp.Tools.Pricing/src/Client/RetailPrices.RestClient.cs",
+      "curl_exit": 0,
+      "retrieved_at_utc": "2026-10-03T19:16:53.182689+00:00",
+      "body_sha256": "984ffa63efdbfa39995ac73d4b0da14b5cf97cd5435157109b51f25d860d03dd",
+      "redirect_locations": []
+    },
+    {
+      "id": "S08",
+      "sha": "6ea52482ea1446b7f2230e1d8db0d650982ff1d1",
+      "path": "tools/Azure.Mcp.Tools.Pricing/src/Client/CollectionResults/RetailPricesGetPricesAsyncCollectionResultOfT.cs",
+      "requested_url": "https://raw.githubusercontent.com/microsoft/mcp/6ea52482ea1446b7f2230e1d8db0d650982ff1d1/tools/Azure.Mcp.Tools.Pricing/src/Client/CollectionResults/RetailPricesGetPricesAsyncCollectionResultOfT.cs",
+      "http_status": 200,
+      "final_url": "https://raw.githubusercontent.com/microsoft/mcp/6ea52482ea1446b7f2230e1d8db0d650982ff1d1/tools/Azure.Mcp.Tools.Pricing/src/Client/CollectionResults/RetailPricesGetPricesAsyncCollectionResultOfT.cs",
+      "curl_exit": 0,
+      "retrieved_at_utc": "2026-10-03T19:16:53.135526+00:00",
+      "body_sha256": "ad62d2367fe51f008b34173276852769582bd4d9fdb715012c651253f37983a6",
+      "redirect_locations": []
+    },
+    {
+      "id": "S09",
+      "sha": "6ea52482ea1446b7f2230e1d8db0d650982ff1d1",
+      "path": "tools/Azure.Mcp.Tools.Pricing/tests/Azure.Mcp.Tools.Pricing.Tests/PricingServiceEndpointValidationTests.cs",
+      "requested_url": "https://raw.githubusercontent.com/microsoft/mcp/6ea52482ea1446b7f2230e1d8db0d650982ff1d1/tools/Azure.Mcp.Tools.Pricing/tests/Azure.Mcp.Tools.Pricing.Tests/PricingServiceEndpointValidationTests.cs",
+      "http_status": 200,
+      "final_url": "https://raw.githubusercontent.com/microsoft/mcp/6ea52482ea1446b7f2230e1d8db0d650982ff1d1/tools/Azure.Mcp.Tools.Pricing/tests/Azure.Mcp.Tools.Pricing.Tests/PricingServiceEndpointValidationTests.cs",
+      "curl_exit": 0,
+      "retrieved_at_utc": "2026-10-03T19:16:53.181424+00:00",
+      "body_sha256": "13414202976dfcb03cf7917be8240eca5cc07895969fd10e6a090dfeb9193312",
+      "redirect_locations": []
+    },
+    {
+      "id": "S10",
+      "sha": "6ea52482ea1446b7f2230e1d8db0d650982ff1d1",
+      "path": "tools/Azure.Mcp.Tools.Speech/src/Services/SpeechEndpointValidator.cs",
+      "requested_url": "https://raw.githubusercontent.com/microsoft/mcp/6ea52482ea1446b7f2230e1d8db0d650982ff1d1/tools/Azure.Mcp.Tools.Speech/src/Services/SpeechEndpointValidator.cs",
+      "http_status": 200,
+      "final_url": "https://raw.githubusercontent.com/microsoft/mcp/6ea52482ea1446b7f2230e1d8db0d650982ff1d1/tools/Azure.Mcp.Tools.Speech/src/Services/SpeechEndpointValidator.cs",
+      "curl_exit": 0,
+      "retrieved_at_utc": "2026-10-03T19:16:53.240566+00:00",
+      "body_sha256": "2e2eb52e97a65f64a4da00c21255678bfe31f49ed3bd314c8bdcd6b9421355cf",
+      "redirect_locations": []
+    },
+    {
+      "id": "S11",
+      "sha": "6ea52482ea1446b7f2230e1d8db0d650982ff1d1",
+      "path": "tools/Azure.Mcp.Tools.Speech/src/Services/Synthesizers/RealtimeTtsSynthesizer.cs",
+      "requested_url": "https://raw.githubusercontent.com/microsoft/mcp/6ea52482ea1446b7f2230e1d8db0d650982ff1d1/tools/Azure.Mcp.Tools.Speech/src/Services/Synthesizers/RealtimeTtsSynthesizer.cs",
+      "http_status": 200,
+      "final_url": "https://raw.githubusercontent.com/microsoft/mcp/6ea52482ea1446b7f2230e1d8db0d650982ff1d1/tools/Azure.Mcp.Tools.Speech/src/Services/Synthesizers/RealtimeTtsSynthesizer.cs",
+      "curl_exit": 0,
+      "retrieved_at_utc": "2026-10-03T19:16:53.231626+00:00",
+      "body_sha256": "6b5673fedc4f8c533643ef66016c07950aa0a498e4bce1582c972bd783954c1e",
+      "redirect_locations": []
+    },
+    {
+      "id": "S12",
+      "sha": "6ea52482ea1446b7f2230e1d8db0d650982ff1d1",
+      "path": "tools/Azure.Mcp.Tools.Storage/src/Services/StorageService.cs",
+      "requested_url": "https://raw.githubusercontent.com/microsoft/mcp/6ea52482ea1446b7f2230e1d8db0d650982ff1d1/tools/Azure.Mcp.Tools.Storage/src/Services/StorageService.cs",
+      "http_status": 200,
+      "final_url": "https://raw.githubusercontent.com/microsoft/mcp/6ea52482ea1446b7f2230e1d8db0d650982ff1d1/tools/Azure.Mcp.Tools.Storage/src/Services/StorageService.cs",
+      "curl_exit": 0,
+      "retrieved_at_utc": "2026-10-03T19:16:53.248232+00:00",
+      "body_sha256": "89525621cd6d0fd40faa2041eed3953df201da63983a36e83d86d153e60e6bcd",
+      "redirect_locations": []
+    },
+    {
+      "id": "C88",
+      "sha": "88e497ca516d6d53dad16290eeb100686bbcdd11",
+      "requested_url": "https://api.github.com/repos/microsoft/mcp/commits/88e497ca516d6d53dad16290eeb100686bbcdd11",
+      "http_status": 200,
+      "final_url": "https://api.github.com/repos/microsoft/mcp/commits/88e497ca516d6d53dad16290eeb100686bbcdd11",
+      "curl_exit": 0,
+      "retrieved_at_utc": "2026-10-03T19:17:34.357451+00:00",
+      "body_sha256": "47fc20e1986fca1409a388787633eacae7b28798afcfaa64c7bb9756d4a615ee",
+      "redirect_locations": []
+    },
+    {
+      "id": "C6",
+      "sha": "6ea52482ea1446b7f2230e1d8db0d650982ff1d1",
+      "requested_url": "https://api.github.com/repos/microsoft/mcp/commits/6ea52482ea1446b7f2230e1d8db0d650982ff1d1",
+      "http_status": 200,
+      "final_url": "https://api.github.com/repos/microsoft/mcp/commits/6ea52482ea1446b7f2230e1d8db0d650982ff1d1",
+      "curl_exit": 0,
+      "retrieved_at_utc": "2026-10-03T19:17:34.710933+00:00",
+      "body_sha256": "60e65b650c33c16cd8afe996dbedcb7dcf379f65d11ebf388b3ef2ee40a84b85",
+      "redirect_locations": []
+    }
+  ]
+}

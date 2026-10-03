@@ -378,6 +378,15 @@
     "sha256": "1a0c6998eddfd4b1ee1cf6d4dfcc44d49119ee3e0ce60c3e50810a3dc19f5fed"
   },
   {
+    "path": "assets/azure-mcp-final-uri-cloud-boundary-gates-2026-10-04.md",
+    "title": "Azure MCP：最终请求 URI 与云边界验收模板",
+    "date": "2026-10-04",
+    "topic": "MCP 与插件",
+    "status": "published",
+    "source_name": "azure-mcp-final-uri-cloud-boundary-gates-2026-10-04.md",
+    "sha256": "ba60e306ebbb2c649995da0cd50cd1cd10725084ea7b10408f5722984609f1ac"
+  },
+  {
     "path": "assets/claude-code-dynamic-workflows-orchestration-primitive.md",
     "title": "Claude Code Dynamic Workflows — 第四种编排原语（Subagents / Skills / Agent Teams 之外）",
     "date": null,
@@ -511,6 +520,24 @@
     "status": "published",
     "source_name": "maf-zip-collision-source-lab-2026-10-02.md",
     "sha256": "d0c7454ece807b2890405e8fd9cca851d9ae708a9425ac8b2b24c7fc3482a2f3"
+  },
+  {
+    "path": "assets/usersim-manifest-intent-commit-lab-2026-10-04.md",
+    "title": "UserSim：manifest 意图不等于结果提交——离线单模块 Lab",
+    "date": "2026-10-04",
+    "topic": "Workshop 练习",
+    "status": "published",
+    "source_name": "usersim-manifest-intent-commit-lab-2026-10-04.md",
+    "sha256": "a4a9095a3c830b1ef8fdcef783f76f56c86eafed460792cdd65b1a94faa81a2c"
+  },
+  {
+    "path": "assets/usersim-file-fault-and-concurrent-append-lab-2026-10-04.md",
+    "title": "UserSim：真实文件 write 边界与并发 append——补充 Lab",
+    "date": "2026-10-04",
+    "topic": "Workshop 练习",
+    "status": "published",
+    "source_name": "usersim-file-fault-and-concurrent-append-lab-2026-10-04.md",
+    "sha256": "736bd54d66c9aecf01170686ef3cc4478ea652e3d66d8c1f41e8e97bc8087bdc"
   },
   {
     "path": "assets/codex-remote-control-plane-cheatsheet.md",
@@ -790,6 +817,15 @@
     "status": "published",
     "source_name": "coding-agent-output-lifecycle-session-gates-2026-10-03.md",
     "sha256": "e5b21fea711ce1cb089a69d8ac616cf437943abb50668207d5a777126485c62c"
+  },
+  {
+    "path": "assets/coding-agent-tool-exposure-and-hook-failure-gates-2026-10-04.md",
+    "title": "双CLI验收模板：工具暴露不等于授权，hook失败必须按阶段判定",
+    "date": "2026-10-04",
+    "topic": "编码 Agent",
+    "status": "published",
+    "source_name": "coding-agent-tool-exposure-and-hook-failure-gates-2026-10-04.md",
+    "sha256": "63fa8762e001ae30c1a9cab4b39eaf29e5970e32108463b58b2cb1a944fd7274"
   },
   {
     "path": "assets/model-baseline-and-context-budget-cheatsheet.md",

@@ -1,0 +1,606 @@
+{
+  "schema_version": "1.0",
+  "title": "双CLI工具暴露与hook失败门禁",
+  "date": "2026-10-04",
+  "execution": {
+    "product_cli": "NOT_RUN",
+    "product_models": "NOT_RUN",
+    "upstream_tests": "NOT_RUN",
+    "original_toy_proof": false
+  },
+  "claims": [
+    {
+      "id": "K1",
+      "claim": "strict以effective CodeModeOnly与feature开关共同门控，模型覆盖优先，CodeMode降级有特定条件",
+      "sources": [
+        "S1",
+        "S2",
+        "S3"
+      ],
+      "strength": "implementation_read",
+      "runtime": "NOT_RUN"
+    },
+    {
+      "id": "K2",
+      "claim": "第三方由McpHandler/DynamicToolHandler runtime识别；暴露覆盖不复活未注册或Hidden工具，exec路径仍有合法性与碰撞门禁",
+      "sources": [
+        "S1",
+        "S2",
+        "S4",
+        "S5",
+        "S6",
+        "S7"
+      ],
+      "strength": "implementation_and_tests_read",
+      "runtime": "NOT_RUN"
+    },
+    {
+      "id": "K3",
+      "claim": "目录刷新scenario断言枚举调用结果变化与additional_tools相等；没有直接验证旧名称拒绝、真实缓存命中或executor重启",
+      "sources": [
+        "S8"
+      ],
+      "strength": "upstream_test_read",
+      "runtime": "NOT_RUN"
+    },
+    {
+      "id": "K4",
+      "claim": "0.160.0固定源码未含strict feature，main新增项默认false且UnderDevelopment",
+      "sources": [
+        "S1",
+        "S9",
+        "S10",
+        "D2"
+      ],
+      "strength": "source_release_comparison",
+      "runtime": "NOT_RUN"
+    },
+    {
+      "id": "K5",
+      "claim": "Claude 2.1.288官方公告称PreToolUse/PermissionRequest匹配失败或输入JSON序列化失败阻断调用",
+      "sources": [
+        "S11",
+        "S12"
+      ],
+      "strength": "release_contract_not_runtime_source",
+      "runtime": "NOT_RUN"
+    },
+    {
+      "id": "K6",
+      "claim": "stdout解析/校验失败通常非阻断；PreToolUse exit2阻断但PermissionRequest exit2无decision不阻断",
+      "sources": [
+        "D1"
+      ],
+      "strength": "live_official_docs_not_version_pinned_implementation",
+      "runtime": "NOT_RUN"
+    },
+    {
+      "id": "K7",
+      "claim": "Claude 2.1.288 published_at=2026-10-02T20:19:57Z，即北京时间2026-10-03T04:19:57+08:00，不属于UTC 10-03之后发布",
+      "sources": [
+        "R1",
+        "S12"
+      ],
+      "strength": "official_release_metadata",
+      "runtime": "NOT_RUN"
+    }
+  ],
+  "cases": [
+    {
+      "id": "C01",
+      "title": "严格门控正例",
+      "product": "Codex 58ae3ba61186c39b849a6ebe60e60f4b11690373（main研究版本；非0.160.0 GA）",
+      "preconditions": "CodeModeOnly有效；strict=true；exec/wait获准；无名称冲突；合法dynamic工具。",
+      "stimulus": "分别设置deferLoading=false/true，supports_search_tool=false/true。",
+      "expected_result": "工具均Deferred；无第三方直接schema；exec映射包含该工具；exec描述不含该工具eager签名。",
+      "observed": "NOT_RUN",
+      "negative_control": "同输入strict=false：比较实际基线，不将基线结果预写成Deferred。",
+      "evidence": [
+        "S1",
+        "S2",
+        "S6"
+      ],
+      "evidence_tier": "source_derived_acceptance"
+    },
+    {
+      "id": "C02",
+      "title": "模型覆盖优先于配置",
+      "product": "Codex 58ae3ba61186c39b849a6ebe60e60f4b11690373（main研究版本；非0.160.0 GA）",
+      "preconditions": "配置CodeModeOnly；模型tool_mode分别Direct/CodeMode；CodeMode可用。",
+      "stimulus": "只切strict开关，比较完整ToolPlanProbe。",
+      "expected_result": "两种有效mode下on==off；配置写了Only不代表严格生效。",
+      "observed": "NOT_RUN",
+      "negative_control": "将判断故意替换成配置mode的变更应被此oracle识别（变更测试未执行）。",
+      "evidence": [
+        "S2",
+        "S3",
+        "S6"
+      ],
+      "evidence_tier": "source_derived_acceptance"
+    },
+    {
+      "id": "C03",
+      "title": "effective mode降级条件",
+      "product": "Codex 58ae3ba61186c39b849a6ebe60e60f4b11690373（main研究版本；非0.160.0 GA）",
+      "preconditions": "requested=CodeMode；code_mode_available=false；其他输入固定。",
+      "stimulus": "切disable_in_process_fallback；再以requested=CodeModeOnly作对照。",
+      "expected_result": "fallback未禁时CodeMode降为Direct；禁用fallback时保留CodeMode；Only不会被这段函数自动降为Direct，不能由此推断host启动成功。",
+      "observed": "NOT_RUN",
+      "negative_control": "禁止把“所有CodeMode不可用都降Direct”作为期望。",
+      "evidence": [
+        "S3"
+      ],
+      "evidence_tier": "source_derived_acceptance"
+    },
+    {
+      "id": "C04",
+      "title": "第三方身份不看名字",
+      "product": "Codex 58ae3ba61186c39b849a6ebe60e60f4b11690373（main研究版本；非0.160.0 GA）",
+      "preconditions": "内置update_plan已注册；外部同名dynamic；碰撞配置非致命；strict有效。",
+      "stimulus": "同时加入无namespace且deferLoading=false的client_echo及同名update_plan。",
+      "expected_result": "client_echo Deferred；update_plan内置runtime仍非第三方、测试中Direct；外部重复注册被跳过。",
+      "observed": "NOT_RUN",
+      "negative_control": "若启用error_on_tool_collisions，允许配置报错而非要求同一成功结果；名称前缀归类不能冒充runtime归类。",
+      "evidence": [
+        "S1",
+        "S2",
+        "S4",
+        "S6"
+      ],
+      "evidence_tier": "source_derived_acceptance"
+    },
+    {
+      "id": "C05",
+      "title": "namespace override次序与exec排除",
+      "product": "Codex 58ae3ba61186c39b849a6ebe60e60f4b11690373（main研究版本；非0.160.0 GA）",
+      "preconditions": "合格dynamic/MCP；strict有效；direct_only与excluded namespace均覆盖它。",
+      "stimulus": "完成全部finalize路径，而非单测enforce helper。",
+      "expected_result": "direct-only先应用，strict随后恢复Deferred；excluded例外保留exec route；仍须满足spec形状、nested名称及归一化唯一性。",
+      "observed": "NOT_RUN",
+      "negative_control": "strict=false保留原namespace行为；仅测helper不得宣称全链通过。",
+      "evidence": [
+        "S2",
+        "S6",
+        "S8"
+      ],
+      "evidence_tier": "source_derived_acceptance"
+    },
+    {
+      "id": "C06",
+      "title": "omit-all不是禁用",
+      "product": "Codex 58ae3ba61186c39b849a6ebe60e60f4b11690373（main研究版本；非0.160.0 GA）",
+      "preconditions": "MCP/app已通过注册资格；strict有效。",
+      "stimulus": "分别omit deferred、code_mode以及direct/deferred/code_mode全部。",
+      "expected_result": "忽略暴露省略配置；合格工具仍Deferred并可经exec发现；冲突警告为tracing诊断。",
+      "observed": "NOT_RUN",
+      "negative_control": "真正enabled=false或policy拒绝见C07/C08，不能与omit-all混用。",
+      "evidence": [
+        "S2",
+        "S7",
+        "S8"
+      ],
+      "evidence_tier": "source_derived_acceptance"
+    },
+    {
+      "id": "C07",
+      "title": "disabled与app-only不可复活",
+      "product": "Codex 58ae3ba61186c39b849a6ebe60e60f4b11690373（main研究版本；非0.160.0 GA）",
+      "preconditions": "按上游Calendar场景准备lookup、disabled、app_only；apps开启；disabled enabled=false；app_only UI visibility仅app。",
+      "stimulus": "strict=true且app omit deferred；捕获ALL_TOOLS与实际dispatch结果。",
+      "expected_result": "目录仅lookup并得到它的结果；disabled/app_only不入可用集；非app MCP同样先做model-visible过滤。",
+      "observed": "NOT_RUN",
+      "negative_control": "合格lookup必须成功，否则“全部工具都坏了”会假装通过拒绝测试。",
+      "evidence": [
+        "S5",
+        "S7"
+      ],
+      "evidence_tier": "source_derived_acceptance"
+    },
+    {
+      "id": "C08",
+      "title": "policy-denied不等于Hidden",
+      "product": "Codex 58ae3ba61186c39b849a6ebe60e60f4b11690373（main研究版本；非0.160.0 GA）",
+      "preconditions": "ToolPolicy仅允许exec/wait、allowed_mcp、allowed_dynamic与一个Hidden预算项。",
+      "stimulus": "追加allowed及denied MCP/dynamic，走注册与finalize。",
+      "expected_result": "denied根本未注册；allowed为Deferred；exec映射不含denied；strict不新增授权。",
+      "observed": "NOT_RUN",
+      "negative_control": "从allowlist移除allowed应使其消失；只看模型未显示不能证明拒绝生效。",
+      "evidence": [
+        "S4",
+        "S6"
+      ],
+      "evidence_tier": "source_derived_acceptance"
+    },
+    {
+      "id": "C09",
+      "title": "预算Hidden保留",
+      "product": "Codex 58ae3ba61186c39b849a6ebe60e60f4b11690373（main研究版本；非0.160.0 GA）",
+      "preconditions": "agent-plugin MCP spec超过单项或合计预算；普通可用工具作正控。",
+      "stimulus": "经过append_mcp_tools，再namespace覆盖与strict。",
+      "expected_result": "超预算项可留registry但exposure=Hidden，不进入registered_mcp_tools合格集合与exec映射；不是omit配置产生的Hidden。",
+      "observed": "NOT_RUN",
+      "negative_control": "移除Hidden保护的变更应被oracle拒绝；普通非agent-plugin不能套用此预算断言。",
+      "evidence": [
+        "S5",
+        "S6"
+      ],
+      "evidence_tier": "source_derived_acceptance"
+    },
+    {
+      "id": "C10",
+      "title": "route不是只要Deferred就存在",
+      "product": "Codex 58ae3ba61186c39b849a6ebe60e60f4b11690373（main研究版本；非0.160.0 GA）",
+      "preconditions": "strict有效；注册合法；能构造归一化名称冲突或不支持spec的受控上游测试接口。",
+      "stimulus": "分别观察暴露、code_mode_tool_names与exec是否获准。",
+      "expected_result": "Function/Freeform或非空Namespace且nested名称合格、归一化未冲突才入映射；exec被ToolPolicy拒绝时不能宣称可执行。",
+      "observed": "NOT_RUN",
+      "negative_control": "保留至少一个合法无冲突正例；将“全部Deferred=>全部可执行”作为待拒绝错误结论。",
+      "evidence": [
+        "S2",
+        "S4"
+      ],
+      "evidence_tier": "source_derived_acceptance"
+    },
+    {
+      "id": "C11",
+      "title": "目录新增→替换→移除",
+      "product": "Codex 58ae3ba61186c39b849a6ebe60e60f4b11690373（main研究版本；非0.160.0 GA）",
+      "preconditions": "上游scenario的mock响应与MCP服务；同一运行中执行环境；Responses Lite；strict；非真实模型。",
+      "stimulus": "before无MCP→ready lookup→changed同名server新endpoint resolve/search→gone移除；每次refresh=Published，非空端点等待Ready。",
+      "expected_result": "四阶段枚举及枚举后dispatch结果精确为[]/[lookup]/[resolve,search]/[]；8个捕获请求additional_tools非空且完全相等。",
+      "observed": "NOT_RUN",
+      "negative_control": "延迟刷新或保留旧lookup必须失败；不能只比description或归一化snapshot hash。",
+      "evidence": [
+        "S8"
+      ],
+      "evidence_tier": "upstream_test_read_NOT_RUN"
+    },
+    {
+      "id": "C12",
+      "title": "显式调用旧工具的加强验收",
+      "product": "Codex 58ae3ba61186c39b849a6ebe60e60f4b11690373（main研究版本；非0.160.0 GA）",
+      "preconditions": "C11已完成；客户受控host可提交旧工具名；独立后端计数器。",
+      "stimulus": "changed/gone阶段显式尝试旧lookup名称；不只遍历当前目录。",
+      "expected_result": "客户门禁要求拒绝旧路由且旧后端effect_count=0；属于额外验收要求，S8未直接尝试旧名称，不能声称源码测试已证明。",
+      "observed": "NOT_RUN",
+      "negative_control": "ready阶段旧lookup成功且计数递增；否则负例不具判别力。",
+      "evidence": [
+        "S2",
+        "S8"
+      ],
+      "evidence_tier": "proposed_host_gate_NOT_RUN"
+    },
+    {
+      "id": "C13",
+      "title": "诊断不污染模型提示",
+      "product": "Codex 58ae3ba61186c39b849a6ebe60e60f4b11690373（main研究版本；非0.160.0 GA）",
+      "preconditions": "strict有效；制造eager->Deferred与omit冲突；有诊断捕获。",
+      "stimulus": "对比诊断日志、完整模型可见schema及exec描述。",
+      "expected_result": "诊断含对应warning；模型提示不含warning文案；上游单测直接覆盖exec.description，完整请求扫描为加强项。",
+      "observed": "NOT_RUN",
+      "negative_control": "只omit direct不保证触发“省略deferred/code_mode”那条warning；不得要求所有省略都同一日志。",
+      "evidence": [
+        "S2",
+        "S6",
+        "S7"
+      ],
+      "evidence_tier": "source_derived_acceptance"
+    },
+    {
+      "id": "C14",
+      "title": "稳定版不可冒充main",
+      "product": "Codex 58ae3ba61186c39b849a6ebe60e60f4b11690373（main研究版本；非0.160.0 GA）",
+      "preconditions": "稳定0.160.0源码SHA=a956835d020762cb2b570053af06f643a11c0ecc。",
+      "stimulus": "核对feature表与annotated tag对象，不安装CLI。",
+      "expected_result": "strict feature在固定main diff新增、UnderDevelopment且默认false；0.160.0对应feature表无此项。源码入包范围不等于已检查二进制字节。",
+      "observed": "NOT_RUN",
+      "negative_control": "仅alpha标题、同日release或启用未知flag均不能作为此机制已交付证据。",
+      "evidence": [
+        "S1",
+        "S9",
+        "S10",
+        "D2"
+      ],
+      "evidence_tier": "source_release_comparison"
+    },
+    {
+      "id": "A01",
+      "title": "PreToolUse匹配过程异常",
+      "product": "目标 Claude Code 2.1.288；D1 为 live docs 兼容性参考，非 2.1.288 固定实现，须在目标 host 复验",
+      "preconditions": "确认PreToolUse事件已到达；官方/厂商支持的真实匹配器故障注入接口；正常权限正控允许。",
+      "stimulus": "令匹配过程报错；不是普通matcher返回“不匹配”。",
+      "expected_result": "2.1.288公告期望调用blocked；独立工具effect_count=0。具体异常类型及注入入口未公开核实。",
+      "observed": "NOT_RUN",
+      "negative_control": "合法不匹配应正常跳过该hook、进入权限流，不能一律block。",
+      "evidence": [
+        "S11",
+        "S12",
+        "D1"
+      ],
+      "evidence_tier": "release_contract_NOT_RUN"
+    },
+    {
+      "id": "A02",
+      "title": "PreToolUse输入序列化异常",
+      "product": "目标 Claude Code 2.1.288；D1 为 live docs 兼容性参考，非 2.1.288 固定实现，须在目标 host 复验",
+      "preconditions": "真实host序列化边界注入可用；正常tool input/权限路径已通过。",
+      "stimulus": "在送hook前使tool input序列化JSON失败。",
+      "expected_result": "调用blocked且effect_count=0；这是输入编码失败，不是hook stdout坏JSON。",
+      "observed": "NOT_RUN",
+      "negative_control": "有效JSON输入+无阻断hook走正常权限流；不可把模型文本“NaN”当作内部不可序列化对象证据。",
+      "evidence": [
+        "S11",
+        "S12"
+      ],
+      "evidence_tier": "release_contract_NOT_RUN"
+    },
+    {
+      "id": "A03",
+      "title": "PermissionRequest匹配异常",
+      "product": "目标 Claude Code 2.1.288；D1 为 live docs 兼容性参考，非 2.1.288 固定实现，须在目标 host 复验",
+      "preconditions": "工具确实进入PermissionRequest路径；无抢先决策host竞争；事件到达可观测。",
+      "stimulus": "仅让该事件的匹配过程异常。",
+      "expected_result": "2.1.288公告期望调用blocked且effect_count=0；若事件根本未触发，应记录NOT_RUN/不可达，不能PASS。",
+      "observed": "NOT_RUN",
+      "negative_control": "匹配正常且合法decision.allow、无匹配deny规则时作允许正控。",
+      "evidence": [
+        "S11",
+        "S12",
+        "D1"
+      ],
+      "evidence_tier": "release_contract_NOT_RUN"
+    },
+    {
+      "id": "A04",
+      "title": "PermissionRequest输入编码异常",
+      "product": "目标 Claude Code 2.1.288；D1 为 live docs 兼容性参考，非 2.1.288 固定实现，须在目标 host 复验",
+      "preconditions": "同A03，且有真实输入序列化故障注入接口。",
+      "stimulus": "匹配正常，在传递hook输入JSON前注入序列化失败。",
+      "expected_result": "blocked、effect_count=0；与PermissionRequest hook自身退出2的语义不同。",
+      "observed": "NOT_RUN",
+      "negative_control": "正常输入+可控权限批准应执行一次；不用自写dispatcher替代产品。",
+      "evidence": [
+        "S11",
+        "S12",
+        "D1"
+      ],
+      "evidence_tier": "release_contract_NOT_RUN"
+    },
+    {
+      "id": "A05",
+      "title": "输出JSON解析错误非阻断",
+      "product": "目标 Claude Code 2.1.288；D1 为 live docs 兼容性参考，非 2.1.288 固定实现，须在目标 host 复验",
+      "preconditions": "同步command PreToolUse；正常匹配与输入；无其他拒绝；正常权限设置允许。",
+      "stimulus": "exit=0，stdout精确为{bad}（首尾大括号保证尝试JSON解析）。",
+      "expected_result": "标准决策模型：记录non-blocking parse error、继续正常权限流；正控权限允许时effect_count=1，而非将error等同allow。",
+      "observed": "NOT_RUN",
+      "negative_control": "保持同stdout只将exit改2：PreToolUse应阻断；stdout只有{则按D1是普通文本，不是同一解析失败。",
+      "evidence": [
+        "D1"
+      ],
+      "evidence_tier": "official_docs_contract_NOT_RUN"
+    },
+    {
+      "id": "A06",
+      "title": "输出schema错误非阻断",
+      "product": "目标 Claude Code 2.1.288；D1 为 live docs 兼容性参考，非 2.1.288 固定实现，须在目标 host 复验",
+      "preconditions": "同A05。",
+      "stimulus": "exit=0；stdout为{\"hookSpecificOutput\":{\"hookEventName\":\"PreToolUse\",\"permissionDecision\":\"INVALID\"}}。",
+      "expected_result": "对象可解析但schema校验失败；non-blocking validation error；正常权限流继续。",
+      "observed": "NOT_RUN",
+      "negative_control": "改成合法deny应阻断；改exit=2即使schema非法仍阻断（PreToolUse）。",
+      "evidence": [
+        "D1"
+      ],
+      "evidence_tier": "official_docs_contract_NOT_RUN"
+    },
+    {
+      "id": "A07",
+      "title": "PreToolUse exit2优先级",
+      "product": "目标 Claude Code 2.1.288；D1 为 live docs 兼容性参考，非 2.1.288 固定实现，须在目标 host 复验",
+      "preconditions": "同步command PreToolUse已执行。",
+      "stimulus": "exit=2，stdout给合法permissionDecision=allow；另跑exit=2+非法schema。",
+      "expected_result": "两者均阻断；allow不能覆盖exit2；非法schema情形stderr作为阻断理由、校验错误记debug。",
+      "observed": "NOT_RUN",
+      "negative_control": "exit=0+合法allow且无其他deny作正控；这不是2.1.288首次新增规则。",
+      "evidence": [
+        "D1"
+      ],
+      "evidence_tier": "official_docs_contract_NOT_RUN"
+    },
+    {
+      "id": "A08",
+      "title": "PermissionRequest exit2例外",
+      "product": "目标 Claude Code 2.1.288；D1 为 live docs 兼容性参考，非 2.1.288 固定实现，须在目标 host 复验",
+      "preconditions": "PermissionRequest可达；正常权限流程由受控host批准；避免竞争决策。",
+      "stimulus": "hook exit=2但不返回decision对象。",
+      "expected_result": "D1明确exit2在该事件不作为拒绝，权限流不变且stderr丢弃；不能套用PreToolUse规则。",
+      "observed": "NOT_RUN",
+      "negative_control": "返回合法hookSpecificOutput.decision.behavior=deny应拒绝；在无交互无人批准环境最终拒绝不证明exit2生效。",
+      "evidence": [
+        "D1"
+      ],
+      "evidence_tier": "official_docs_contract_NOT_RUN"
+    },
+    {
+      "id": "A09",
+      "title": "hook未启动与超时不能冒充前置fail-closed",
+      "product": "目标 Claude Code 2.1.288；D1 为 live docs 兼容性参考，非 2.1.288 固定实现，须在目标 host 复验",
+      "preconditions": "PreToolUse同步command；受控权限允许；禁用外部网络与真实业务效果。",
+      "stimulus": "hook路径不可执行/不存在导致如127；或合法启动后受控timeout。",
+      "expected_result": "D1：大多数事件启动失败非阻断；PreToolUse command/http/mcp_tool超时不阻断而回正常权限流；不归入2.1.288匹配/输入编码修复。",
+      "observed": "NOT_RUN",
+      "negative_control": "Agent SDK callback超时在D1有不同阻断语义；不能混用类型作产品反例。",
+      "evidence": [
+        "D1"
+      ],
+      "evidence_tier": "official_docs_contract_NOT_RUN"
+    },
+    {
+      "id": "A10",
+      "title": "PermissionRequest事件与决策形状",
+      "product": "目标 Claude Code 2.1.288；D1 为 live docs 兼容性参考，非 2.1.288 固定实现，须在目标 host 复验",
+      "preconditions": "确认实际需要权限；记录交互模式与是否有canUseTool/permission-prompt-tool；无真实模型。",
+      "stimulus": "合法decision.behavior=deny；对照只返回PreToolUse的permissionDecision字段。",
+      "expected_result": "仅该事件支持的decision对象可作允许/拒绝契约；D1说明非交互也可触发，若无决策且无法显示提示则拒绝；并行host先决策的竞争需隔离。",
+      "observed": "NOT_RUN",
+      "negative_control": "不得把“非交互一定不触发”写入测试前置；不得把别的事件字段当有效deny。",
+      "evidence": [
+        "D1"
+      ],
+      "evidence_tier": "official_docs_contract_NOT_RUN"
+    }
+  ],
+  "sources": [
+    {
+      "id": "S1",
+      "title": "Codex exact diff",
+      "url": "https://github.com/openai/codex/commit/58ae3ba61186c39b849a6ebe60e60f4b11690373.diff",
+      "kind": "fixed_sha",
+      "checked_at_utc": "2026-10-03T19:13:48.681886+00:00",
+      "http_status": 200,
+      "final_url": "https://github.com/openai/codex/commit/58ae3ba61186c39b849a6ebe60e60f4b11690373.diff",
+      "body_sha256": "1c95899e4dec17772d17fdbeb4e66580a3a96970da7b7c0f7ebfd520053d7324"
+    },
+    {
+      "id": "S2",
+      "title": "spec_plan.rs：123–291、369–598、850–974",
+      "url": "https://raw.githubusercontent.com/openai/codex/58ae3ba61186c39b849a6ebe60e60f4b11690373/codex-rs/core/src/tools/spec_plan.rs",
+      "kind": "fixed_sha",
+      "checked_at_utc": "2026-10-03T19:13:48.682082+00:00",
+      "http_status": 200,
+      "final_url": "https://raw.githubusercontent.com/openai/codex/58ae3ba61186c39b849a6ebe60e60f4b11690373/codex-rs/core/src/tools/spec_plan.rs",
+      "body_sha256": "87825bf65fddf7ca856823c8fff631d27936232621fce1dd4e2ac5d0d1bd19d7"
+    },
+    {
+      "id": "S3",
+      "title": "tools/mod.rs：requested/effective_tool_mode 75–97",
+      "url": "https://raw.githubusercontent.com/openai/codex/58ae3ba61186c39b849a6ebe60e60f4b11690373/codex-rs/core/src/tools/mod.rs",
+      "kind": "fixed_sha",
+      "checked_at_utc": "2026-10-03T19:13:48.682547+00:00",
+      "http_status": 200,
+      "final_url": "https://raw.githubusercontent.com/openai/codex/58ae3ba61186c39b849a6ebe60e60f4b11690373/codex-rs/core/src/tools/mod.rs",
+      "body_sha256": "510635e3ae67e4c63e1feaf6d645f25dc2590f54391645dddeec0a84c1d17616"
+    },
+    {
+      "id": "S4",
+      "title": "registry.rs：CoreToolRuntime；344–418注册门禁",
+      "url": "https://raw.githubusercontent.com/openai/codex/58ae3ba61186c39b849a6ebe60e60f4b11690373/codex-rs/core/src/tools/registry.rs",
+      "kind": "fixed_sha",
+      "checked_at_utc": "2026-10-03T19:13:48.684139+00:00",
+      "http_status": 200,
+      "final_url": "https://raw.githubusercontent.com/openai/codex/58ae3ba61186c39b849a6ebe60e60f4b11690373/codex-rs/core/src/tools/registry.rs",
+      "body_sha256": "c51d069d46af8d0961c4a7555b477bbab303dc2c3a0afcdf1441ecdb570edc05"
+    },
+    {
+      "id": "S5",
+      "title": "mcp_tool_exposure.rs：64–198过滤与预算",
+      "url": "https://raw.githubusercontent.com/openai/codex/58ae3ba61186c39b849a6ebe60e60f4b11690373/codex-rs/core/src/mcp_tool_exposure.rs",
+      "kind": "fixed_sha",
+      "checked_at_utc": "2026-10-03T19:13:48.687906+00:00",
+      "http_status": 200,
+      "final_url": "https://raw.githubusercontent.com/openai/codex/58ae3ba61186c39b849a6ebe60e60f4b11690373/codex-rs/core/src/mcp_tool_exposure.rs",
+      "body_sha256": "1011a3a223c88fa27f5084af64057c9c4ac29399c120e2a820e215f94a07c5b3"
+    },
+    {
+      "id": "S6",
+      "title": "strict第三方单元测试",
+      "url": "https://raw.githubusercontent.com/openai/codex/58ae3ba61186c39b849a6ebe60e60f4b11690373/codex-rs/core/src/tools/spec_plan_strict_third_party_tests.rs",
+      "kind": "fixed_sha",
+      "checked_at_utc": "2026-10-03T19:13:48.814671+00:00",
+      "http_status": 200,
+      "final_url": "https://raw.githubusercontent.com/openai/codex/58ae3ba61186c39b849a6ebe60e60f4b11690373/codex-rs/core/src/tools/spec_plan_strict_third_party_tests.rs",
+      "body_sha256": "3da18d48cbf2c33cbedd855fefeaf8ed7d1bcdbdf1afd263d4be4e3283b89c42"
+    },
+    {
+      "id": "S7",
+      "title": "app授权集成测试",
+      "url": "https://raw.githubusercontent.com/openai/codex/58ae3ba61186c39b849a6ebe60e60f4b11690373/codex-rs/core/tests/suite/app_tool_exposure_strict_tests.rs",
+      "kind": "fixed_sha",
+      "checked_at_utc": "2026-10-03T19:13:48.823301+00:00",
+      "http_status": 200,
+      "final_url": "https://raw.githubusercontent.com/openai/codex/58ae3ba61186c39b849a6ebe60e60f4b11690373/codex-rs/core/tests/suite/app_tool_exposure_strict_tests.rs",
+      "body_sha256": "b600dbba5e6910dfa25e087270a9281c4c6e35b1ca0bcb31b5279977fa3f6cec"
+    },
+    {
+      "id": "S8",
+      "title": "MCP目录刷新scenario",
+      "url": "https://raw.githubusercontent.com/openai/codex/58ae3ba61186c39b849a6ebe60e60f4b11690373/codex-rs/core/tests/suite/scenarios_strict_3p_cache.rs",
+      "kind": "fixed_sha",
+      "checked_at_utc": "2026-10-03T19:13:49.158556+00:00",
+      "http_status": 200,
+      "final_url": "https://raw.githubusercontent.com/openai/codex/58ae3ba61186c39b849a6ebe60e60f4b11690373/codex-rs/core/tests/suite/scenarios_strict_3p_cache.rs",
+      "body_sha256": "17cacf51b773c8aa99d6ac346f60364c98d9590b7f94498c5fad27e13df12b86"
+    },
+    {
+      "id": "S9",
+      "title": "0.160.0对应源码feature表",
+      "url": "https://raw.githubusercontent.com/openai/codex/a956835d020762cb2b570053af06f643a11c0ecc/codex-rs/features/src/lib.rs",
+      "kind": "fixed_sha",
+      "checked_at_utc": "2026-10-03T19:13:49.183706+00:00",
+      "http_status": 200,
+      "final_url": "https://raw.githubusercontent.com/openai/codex/a956835d020762cb2b570053af06f643a11c0ecc/codex-rs/features/src/lib.rs",
+      "body_sha256": "124c76d1fbad7b05fd78a62b89a28282c7ecab1de7426ac18696987024ddeae0"
+    },
+    {
+      "id": "S10",
+      "title": "0.160.0 annotated tag对象",
+      "url": "https://api.github.com/repos/openai/codex/git/tags/79b1b666f2e8551f8abbbca34957227f67f3f553",
+      "kind": "fixed_sha",
+      "checked_at_utc": "2026-10-03T19:13:49.190230+00:00",
+      "http_status": 200,
+      "final_url": "https://api.github.com/repos/openai/codex/git/tags/79b1b666f2e8551f8abbbca34957227f67f3f553",
+      "body_sha256": "8527d47f09dae2714fb8a3c2bb44adc06c4c2f975ee554f6ac9864b4795b24a3"
+    },
+    {
+      "id": "S11",
+      "title": "Claude 2.1.288 exact changelog diff",
+      "url": "https://github.com/anthropics/claude-code/commit/1c229fcd1e1e4e452e29a8f116b45fe4cfe2c528.diff",
+      "kind": "fixed_sha",
+      "checked_at_utc": "2026-10-03T19:13:49.194856+00:00",
+      "http_status": 200,
+      "final_url": "https://github.com/anthropics/claude-code/commit/1c229fcd1e1e4e452e29a8f116b45fe4cfe2c528.diff",
+      "body_sha256": "d8b2089aae7ba3b7e087e94e83d77d898d3a0f2dd6c0a364b3fa50659d91e9aa"
+    },
+    {
+      "id": "S12",
+      "title": "Claude 2.1.288固定changelog",
+      "url": "https://raw.githubusercontent.com/anthropics/claude-code/1c229fcd1e1e4e452e29a8f116b45fe4cfe2c528/CHANGELOG.md",
+      "kind": "fixed_sha",
+      "checked_at_utc": "2026-10-03T19:13:49.197957+00:00",
+      "http_status": 200,
+      "final_url": "https://raw.githubusercontent.com/anthropics/claude-code/1c229fcd1e1e4e452e29a8f116b45fe4cfe2c528/CHANGELOG.md",
+      "body_sha256": "c2073a2eb811b9322317fe8496bfa38634984a3de1147cc8ef3439f91e0be9a1"
+    },
+    {
+      "id": "D1",
+      "title": "Claude官方Hooks参考：Exit code output / PermissionRequest",
+      "url": "https://code.claude.com/docs/en/hooks.md",
+      "kind": "official_live_docs",
+      "checked_at_utc": "2026-10-03T19:13:49.398229+00:00",
+      "http_status": 200,
+      "final_url": "https://code.claude.com/docs/en/hooks.md",
+      "body_sha256": "755e30355fb80abada5a6a5ec10fe491cc1a57bf123232c80d1cc68312869ae5"
+    },
+    {
+      "id": "D2",
+      "title": "Codex官方changelog",
+      "url": "https://developers.openai.com/codex/changelog",
+      "kind": "official_live_docs",
+      "checked_at_utc": "2026-10-03T19:13:49.588879+00:00",
+      "http_status": 200,
+      "final_url": "https://learn.chatgpt.com/docs/changelog",
+      "body_sha256": "8bf25642e6785842eb5564f99e4d92aaa5a1489c49ac263f84231ade176b0d36"
+    },
+    {
+      "id": "R1",
+      "title": "Claude官方release元数据（published_at）",
+      "url": "https://api.github.com/repos/anthropics/claude-code/releases/tags/v2.1.288",
+      "kind": "official_release_metadata",
+      "checked_at_utc": "2026-10-03T19:13:49.594519+00:00",
+      "http_status": 200,
+      "final_url": "https://api.github.com/repos/anthropics/claude-code/releases/tags/v2.1.288",
+      "body_sha256": "21b7a7c8ee11a95e24b5bce8336b84f63e1394f2135cc6aeb936a381a206aa29"
+    }
+  ]
+}

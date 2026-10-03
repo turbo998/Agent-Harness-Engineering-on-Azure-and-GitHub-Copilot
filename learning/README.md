@@ -1,9 +1,9 @@
 <!-- generated-by: publish_learning_assets.py -->
 # Learning Assets（补充学习材料）
 
-> 这些条目包含历史资料整理、静态源码分析、POC 设计与明确标注的离线实验。请逐项查看日期、固定版本、证据范围与 NOT_RUN 限制：部分资产记录了真实源码离线测试或原创教学实验，但不等于云端、目标租户、生产部署或合规验证。历史快照的来源可达性不自动延续到今天；当日核验与执行情况以各资产说明为准。
+> 这些条目是从历史研究快照脱敏整理出的补充学习材料，用于学习、讨论、POC 设计前的思路准备；它们不是正式实验报告、不是本次实机验证结论，也不构成生产部署或合规建议。原快照中的来源可达性、HTTP 200 或核验时间不代表本次发布时已经重新核验。
 
-- 已发布：123
+- 已发布：127
 - 已隔离：0（详见本地报告，不发布敏感原文）
 - 跳过/冲突：0（详见本地报告）
 
@@ -54,6 +54,7 @@
 - 2026-10-01 — [MAF：用真实固定源码复现审批与技能 context 分离](assets/maf-skill-context-injection-lab-2026-10-01.md)
 - 2026-10-01 — [技能评测契约对齐：不要把正确拒绝当成坏样本](assets/skill-eval-contract-alignment-lab-2026-10-01.md)
 - 2026-10-03 — [动态 MCP 安全标签验收模板（基于 MAF source-SDK baseline 实测）](assets/maf-dynamic-mcp-labels-acceptance-2026-10-03.md)
+- 2026-10-04 — [Azure MCP：最终请求 URI 与云边界验收模板](assets/azure-mcp-final-uri-cloud-boundary-gates-2026-10-04.md)
 - 日期未知 — [Claude Code Dynamic Workflows — 第四种编排原语（Subagents / Skills / Agent Teams 之外）](assets/claude-code-dynamic-workflows-orchestration-primitive.md)
 - 日期未知 — [Managed Agents 容器沙箱 + MCP 工具审批/安全护栏 速查表](assets/managed-agents-sandbox-and-mcp-approval-safety-cheatsheet.md)
 - 日期未知 — [架构图模式：企业级多 Agent 参考拓扑（MCP 纵 / A2A 横）](assets/arch-pattern-multi-agent-mcp-a2a.md)
@@ -72,6 +73,8 @@
 - 2026-09-28 — [编码代理审查新鲜度与 prompt 归因：公开 harness 验收模板草稿](assets/coding-agent-review-freshness-and-prompt-attribution-2026-09-28.md)
 - 2026-09-29 — [MAF reasoning replay：固定源码离线可复演 lab（2026-09-29）](assets/maf-reasoning-replay-offline-lab-2026-09-29.md)
 - 2026-10-02 — [MAF ZIP 冲突：可复演的真实源码切片实验](assets/maf-zip-collision-source-lab-2026-10-02.md)
+- 2026-10-04 — [UserSim：manifest 意图不等于结果提交——离线单模块 Lab](assets/usersim-manifest-intent-commit-lab-2026-10-04.md)
+- 2026-10-04 — [UserSim：真实文件 write 边界与并发 append——补充 Lab](assets/usersim-file-fault-and-concurrent-append-lab-2026-10-04.md)
 - 日期未知 — [Codex Remote 控制平面 & 上下文生命周期速查 [→harness]](assets/codex-remote-control-plane-cheatsheet.md)
 - 日期未知 — [架构图模式：多 Harness 统一控制面（meta-harness）变体](assets/arch-pattern-meta-harness-control-plane.md)
 - 日期未知 — [渐进式教学 Workshop 工程模式速查（GitHub Template + Action 自动推进）](assets/progressive-workshop-engineering-pattern-cheatsheet.md)
@@ -112,6 +115,7 @@
 - 2026-09-30 — [Coding Agent：安全停止回报与模块准入验收卡](assets/coding-agent-safety-stop-and-mod-admission-2026-09-30.md)
 - 2026-10-01 — [编码代理恢复与 deny-rule 闸门：公开演练模板（2026-10-01）](assets/coding-agent-recovery-and-deny-rule-gates-2026-10-01.md)
 - 2026-10-03 — [编程代理升级的协议验收模板：输出真实性、线程回收与会话绑定](assets/coding-agent-output-lifecycle-session-gates-2026-10-03.md)
+- 2026-10-04 — [双CLI验收模板：工具暴露不等于授权，hook失败必须按阶段判定](assets/coding-agent-tool-exposure-and-hook-failure-gates-2026-10-04.md)
 - 日期未知 — [Agent 模型基线 & 上下文预算速查（Codex / Claude Code / GitHub Copilot）](assets/model-baseline-and-context-budget-cheatsheet.md)
 - 日期未知 — [xAI Grok Build — 编码 Agent CLI 第四栈速查](assets/xai-grok-build-fourth-stack-cheatsheet.md)
 - 日期未知 — [无人值守 / 托管 Agent 调度三栈对照速查（Codex Automations ↔ Claude Code Routines ↔ GitHub Actions/Copilot）+ Azure 映射](assets/unattended-agent-scheduling-tristack-cheatsheet.md)

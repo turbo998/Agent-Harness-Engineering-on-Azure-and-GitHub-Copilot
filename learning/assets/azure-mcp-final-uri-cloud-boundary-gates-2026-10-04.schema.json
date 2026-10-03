@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Azure MCP endpoint evidence — single synthetic design record only",
+  "description": "仅验证单条合成设计记录的结构；不是 sanitizer、secret 检测器、套件覆盖认证或产品认证。所有字段只能来自自有合成 fixture，禁止真实请求、凭据、客户标识和 query 值。字段名（包括 query 键名）也可能携带 secret；枚举与 schema 不能证明数据已脱敏。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "case_id", "evidence_id", "revision", "status", "scope", "configured", "input", "expected", "observed", "negative_control", "source_ids"],
+  "$defs": {
+    "nonblank": {"type": "string", "minLength": 1, "pattern": "\\S"}
+  },
+  "properties": {
+    "schema_version": {"const": "1.1-design"},
+    "case_id": {"enum": ["G01", "G02", "G03", "G04", "G05", "G06", "G07", "G08", "G09", "G10", "G11", "G12", "G13", "G14", "G15"]},
+    "evidence_id": {"enum": ["E-G01", "E-G02", "E-G03", "E-G04", "E-G05", "E-G06", "E-G07", "E-G08", "E-G09", "E-G10", "E-G11", "E-G12", "E-G13", "E-G14", "E-G15"]},
+    "revision": {"const": "6ea52482ea1446b7f2230e1d8db0d650982ff1d1"},
+    "status": {"const": "NOT_RUN"},
+    "scope": {"enum": ["service-path", "helper-only", "dependency-boundary", "original-model"]},
+    "configured": {
+      "type": "object", "additionalProperties": false,
+      "required": ["arm_environment", "cloud_type", "service_type", "executing_namespace", "bypass_namespaces", "dependency_lock_sha256", "redirect_mode"],
+      "properties": {
+        "arm_environment": {"$ref": "#/$defs/nonblank"},
+        "cloud_type": {"type": ["string", "null"]},
+        "service_type": {"$ref": "#/$defs/nonblank"},
+        "executing_namespace": {"type": ["string", "null"]},
+        "bypass_namespaces": {"type": "array", "items": {"type": "string"}},
+        "dependency_lock_sha256": {"const": null, "description": "本设计未取得锁文件，必须 null；全零或任意64位摘要均不能替代缺失证据。运行态另定义并核验真实字节。"},
+        "redirect_mode": {"enum": ["UNKNOWN", "DISABLED", "PER_HOP_GATED", "SIMULATED"]}
+      }
+    },
+    "input": {
+      "type": "object", "additionalProperties": false,
+      "required": ["origin", "fixture_id", "uri_structure"],
+      "properties": {
+        "origin": {"enum": ["filter", "next-page-link", "speech-root", "storage-account", "direct-helper", "retry", "http-location"]},
+        "fixture_id": {"$ref": "#/$defs/nonblank"},
+        "uri_structure": {
+          "type": "object", "additionalProperties": false,
+          "description": "仅合成 fixture 的结构；不接收 URI 原串、真实 host/path、query 值、userinfo 内容或 fragment。query_keys 也只能选合成合同中的键，不能从真实请求复制。",
+          "required": ["scheme", "host", "effective_port", "path_category", "query_keys", "userinfo_present"],
+          "properties": {
+            "scheme": {"enum": ["https", "http", "wss", "UNKNOWN"]},
+            "host": {"enum": ["SYNTHETIC_ALLOWED_HOST", "SYNTHETIC_EXTERNAL_HOST", "SYNTHETIC_CROSS_CLOUD_HOST", "SYNTHETIC_SUBDOMAIN", "UNKNOWN"]},
+            "effective_port": {"enum": [80, 443, 8443, "UNKNOWN"]},
+            "path_category": {"enum": ["ROOT", "PRICING_API", "SPEECH_OPERATION", "OTHER_SYNTHETIC_PATH", "UNKNOWN"]},
+            "query_keys": {"type": "array", "uniqueItems": true, "items": {"enum": ["$skip", "$filter", "api-version", "currencyCode", "meterRegion", "traffictype", "synthetic-key"]}},
+            "userinfo_present": {"type": ["boolean", "null"]}
+          }
+        }
+      }
+    },
+    "expected": {
+      "type": "object", "additionalProperties": false,
+      "required": ["validator_decision", "assertions", "measurement_boundary"],
+      "properties": {
+        "validator_decision": {"enum": ["ALLOW", "DENY", "BYPASS", "MEASURE"]},
+        "assertions": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/nonblank"}},
+        "measurement_boundary": {"$ref": "#/$defs/nonblank"}
+      }
+    },
+    "observed": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "gate_events", "transport_entries", "credential_calls", "token_calls", "socket_attempts", "runtime_artifact_sha256"],
+      "properties": {
+        "status": {"const": "NOT_RUN"},
+        "gate_events": {"const": null},
+        "transport_entries": {"const": null},
+        "credential_calls": {"const": null},
+        "token_calls": {"const": null},
+        "socket_attempts": {"const": null},
+        "runtime_artifact_sha256": {"const": null}
+      }
+    },
+    "negative_control": {"$ref": "#/$defs/nonblank"},
+    "source_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"enum": ["C88", "C6", "S01", "S02", "S03", "S04", "S05", "S06", "S07", "S08", "S09", "S10", "S11", "S12"]}}
+  }
+}

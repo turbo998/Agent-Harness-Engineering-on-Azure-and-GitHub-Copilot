@@ -1,0 +1,371 @@
+{
+  "title": "Azure MCP final URI and cloud boundary gates",
+  "date": "2026-10-04",
+  "classification": "88e497 old-radar deepening plus 6ea524 new boundary mechanism; EndpointValidator is not first discovery",
+  "revision": "6ea52482ea1446b7f2230e1d8db0d650982ff1d1",
+  "baseline": "88e497ca516d6d53dad16290eeb100686bbcdd11",
+  "key_file_count": 12,
+  "stars": "n/a",
+  "runtime_status": "NOT_RUN",
+  "design_schema_contract": {
+    "schema_version": "1.1-design",
+    "scope": "single synthetic design record; not suite coverage, sanitization, authenticity or product certification",
+    "case_ids": ["G01", "G02", "G03", "G04", "G05", "G06", "G07", "G08", "G09", "G10", "G11", "G12", "G13", "G14", "G15"],
+    "source_ids": ["C88", "C6", "S01", "S02", "S03", "S04", "S05", "S06", "S07", "S08", "S09", "S10", "S11", "S12"],
+    "text_quality": "assertions items, measurement_boundary and negative_control must contain non-whitespace; business correctness requires independent review",
+    "uri_structure": "scheme/host synthetic category/effective_port/path_category/query_keys/userinfo_present only; no raw URI, actual host/path, query values, userinfo contents or fragment",
+    "synthetic_only": "All fields and field names, including query keys, must originate from owned synthetic fixtures; names can themselves contain secrets. Schema cannot sanitize or prove provenance.",
+    "dependency_lock_sha256": null,
+    "dependency_rule": "Design requires null; zero or arbitrary hex digest rejected. Separate future runtime contract must rehash actual lockfile and runner bytes, bind relative artifact paths, inventory, generation command, configuration and runtime evidence; absent evidence cannot PASS.",
+    "suite_completeness": "MD section 8.1 checks exact 15 cases, unique case/evidence IDs, E-case binding, validates each record. uniqueItems is only scalar deduplication. claims acceptance_cards is an MD index, not a complete evidence suite."
+  },
+  "cloud_endpoint_verification": "NOT_RUN",
+  "release_inclusion": "NOT_VERIFIED; do not infer beta.49 contains later commits",
+  "claims": [
+    {
+      "id": "CL01",
+      "claim": "PricingService installs final Request.Uri gate at BeforeTransport, before ProcessNext in both sync and async policy branches.",
+      "evidence": [
+        "S03:78-84",
+        "S04:17-60"
+      ],
+      "evidence_tier": "Static source",
+      "limitation": "Does not establish transport-internal redirects or socket destination.",
+      "acceptance_cards": [
+        "G01",
+        "G03",
+        "G07",
+        "G08"
+      ],
+      "runtime_status": "NOT_RUN"
+    },
+    {
+      "id": "CL02",
+      "claim": "Typed async pagination sends every new message through the shared pipeline; next-link request resets the complete URI.",
+      "evidence": [
+        "S05:39-49",
+        "S06:190-198",
+        "S07:49-57",
+        "S08:55-70"
+      ],
+      "evidence_tier": "Static source",
+      "limitation": "Only the inspected typed async service path, not all generated overloads.",
+      "acceptance_cards": [
+        "G02",
+        "G03",
+        "G04"
+      ],
+      "runtime_status": "NOT_RUN"
+    },
+    {
+      "id": "CL03",
+      "claim": "Pricing is exact-host legacy matching, not arbitrary Azure domain or origin matching.",
+      "evidence": [
+        "S01:167-205",
+        "S02:195-202"
+      ],
+      "evidence_tier": "Static source",
+      "limitation": "No userinfo, port, path, query or fragment prohibition in this Azure-service check; downstream acceptance unverified.",
+      "acceptance_cards": [
+        "G04",
+        "G06"
+      ],
+      "runtime_status": "NOT_RUN"
+    },
+    {
+      "id": "CL04",
+      "claim": "Unknown ArmEnvironment falls back to Public in shared suffix manager; Pricing and Storage endpoint constructors separately reject unsupported cloud selections.",
+      "evidence": [
+        "S02:50-55",
+        "S03:166-175",
+        "S12:479-510"
+      ],
+      "evidence_tier": "Static source",
+      "limitation": "Known Germany empty allowlists and unknown-environment fallback are different branches; direct helper cases may not be production reachable.",
+      "acceptance_cards": [
+        "G10"
+      ],
+      "runtime_status": "NOT_RUN"
+    },
+    {
+      "id": "CL05",
+      "claim": "Bypass matches namespace or ALL case-insensitively before shared input checks; blank executing namespace does not match even ALL; configuration setter is write-once.",
+      "evidence": [
+        "S01:23-160"
+      ],
+      "evidence_tier": "Static source",
+      "limitation": "Caller-side null checks, Speech root shape and constructor restrictions remain independent.",
+      "acceptance_cards": [
+        "G09",
+        "G11"
+      ],
+      "runtime_status": "NOT_RUN"
+    },
+    {
+      "id": "CL06",
+      "claim": "Azure-service validation does not call the DNS-resolving ValidatePublicTargetUrl method from the same file.",
+      "evidence": [
+        "S01:130-237",
+        "S01:283-375"
+      ],
+      "evidence_tier": "Static source",
+      "limitation": "No DNS rebinding, private resolution, proxy, TLS or socket proof.",
+      "acceptance_cards": [
+        "G08"
+      ],
+      "runtime_status": "NOT_RUN"
+    },
+    {
+      "id": "CL07",
+      "claim": "Speech resource root rejects nonempty userinfo, nondefault port, non-root path, query and fragment; fixed operation endpoints are built before domain authorization.",
+      "evidence": [
+        "S10:104-220"
+      ],
+      "evidence_tier": "Static source",
+      "limitation": "Explicit default HTTPS port must not be confused with custom port; raw-text canonicalization edge cases not executed.",
+      "acceptance_cards": [
+        "G11",
+        "G13"
+      ],
+      "runtime_status": "NOT_RUN"
+    },
+    {
+      "id": "CL08",
+      "claim": "Speech early any-supported-cloud feedback is distinct from configured-cloud authorization.",
+      "evidence": [
+        "S10:24-79",
+        "S10:242-248"
+      ],
+      "evidence_tier": "Static source",
+      "limitation": "The helper itself does not establish resource existence, identity authority, audience or RBAC.",
+      "acceptance_cards": [
+        "G12"
+      ],
+      "runtime_status": "NOT_RUN"
+    },
+    {
+      "id": "CL09",
+      "claim": "TTS validates HTTPS projection of completed WSS URI and hands original WSS URI to SDK after obtaining credential/token.",
+      "evidence": [
+        "S10:150-176",
+        "S11:34-54",
+        "S11:108-118"
+      ],
+      "evidence_tier": "Static source",
+      "limitation": "Other recognizer callsites not deeply inspected; scope CloudType defaults to Public and must be consistent with ArmEnvironment.",
+      "acceptance_cards": [
+        "G12",
+        "G13"
+      ],
+      "runtime_status": "NOT_RUN"
+    },
+    {
+      "id": "CL10",
+      "claim": "Storage validates and reuses the same Uri before GetCredential at Blob/Table data-plane client construction.",
+      "evidence": [
+        "S12:328-338",
+        "S12:421-431",
+        "S12:519-544"
+      ],
+      "evidence_tier": "Static source",
+      "limitation": "Table options and AzureService.GetClient occur before endpoint validation; not process-wide zero I/O and not all SDK requests gated.",
+      "acceptance_cards": [
+        "G14"
+      ],
+      "runtime_status": "NOT_RUN"
+    },
+    {
+      "id": "CL11",
+      "claim": "Pricing inspected service/client path has no credential acquisition and generated documentation labels API unauthenticated.",
+      "evidence": [
+        "S03:41-105",
+        "S05:11-49"
+      ],
+      "evidence_tier": "Static source",
+      "limitation": "No assertion about future custom transport headers or online service authentication.",
+      "acceptance_cards": [
+        "G01"
+      ],
+      "runtime_status": "NOT_RUN"
+    },
+    {
+      "id": "CL12",
+      "claim": "China/Public/Gov entries are code constants; Speech Germany has anomalous servicebus.cloudapi.de entry; SRE sovereign entries are empty.",
+      "evidence": [
+        "S02:195-249"
+      ],
+      "evidence_tier": "Static source",
+      "limitation": "No cloud endpoint online verification, GA, regional parity, real resource or availability claim.",
+      "acceptance_cards": [
+        "G01",
+        "G10",
+        "G12"
+      ],
+      "runtime_status": "NOT_RUN"
+    },
+    {
+      "id": "CL13",
+      "claim": "Upstream pricing tests assert legitimate pagination, malicious next-link rejection after one handler entry, and encoded authority-like filter.",
+      "evidence": [
+        "S09:39-92"
+      ],
+      "evidence_tier": "Statically read upstream tests",
+      "limitation": "Tests were not executed; handler implementation and full suite not certified.",
+      "acceptance_cards": [
+        "G02",
+        "G03",
+        "G05"
+      ],
+      "runtime_status": "NOT_RUN"
+    },
+    {
+      "id": "CL14",
+      "claim": "5000-result cap counts items; typed async paging has no visible visited-link or independent page-count limit.",
+      "evidence": [
+        "S03:86-103",
+        "S08:55-70"
+      ],
+      "evidence_tier": "Static source inference",
+      "limitation": "Potential empty-page loop design case, not a demonstrated deployed denial of service.",
+      "acceptance_cards": [
+        "G15"
+      ],
+      "runtime_status": "NOT_RUN"
+    },
+    {
+      "id": "CL15",
+      "claim": "88e497 Storage/allowlist changes precede 6ea524 Pricing/Speech changes.",
+      "evidence": [
+        "C88",
+        "C6"
+      ],
+      "evidence_tier": "Fixed-commit metadata and selected diffs",
+      "limitation": "Old radar deepening and later mechanism, not first discovery of EndpointValidator. Released package inclusion not verified.",
+      "acceptance_cards": [],
+      "runtime_status": "NOT_RUN"
+    },
+    {
+      "id": "CL16",
+      "claim": "Retry coverage is known only for attempts actually traversing BeforeTransport; transport-internal 30x handling is not defined by these files.",
+      "evidence": [
+        "S03:78-80",
+        "S04:17-32",
+        "S05:39"
+      ],
+      "evidence_tier": "Explicit unresolved dependency boundary",
+      "limitation": "System.ClientModel and HttpClient transport internals were not inspected; require dependency pinning and per-attempt/per-hop evidence.",
+      "acceptance_cards": [
+        "G07",
+        "G08"
+      ],
+      "runtime_status": "NOT_RUN"
+    }
+  ],
+  "acceptance_cards": [
+    {
+      "id": "G01",
+      "revision": "6ea52482ea1446b7f2230e1d8db0d650982ff1d1",
+      "status": "NOT_RUN",
+      "evidence_id": "E-G01",
+      "design": "### G01｜首请求按云选 host\n- **前提/入口：**R；PricingService；bypass 空；非空 sku；分别配置 Public、China、Gov。\n- **注入：**fake transport 返回空 Items、NextPageLink=null。\n- **Expected：**本地请求 host 分别匹配 S03 构造常量；每组仅一个 transport 入口；不声称云在线。\n- **负控：**把 China 构造常量误改成 Public，host 断言或 policy 拒绝必须使该组失败。\n- **证据：**E-G01（cloud、request URI、入口计数、异常）；S03,S09:20–37。**Observed：NOT_RUN**。"
+    },
+    {
+      "id": "G02",
+      "revision": "6ea52482ea1446b7f2230e1d8db0d650982ff1d1",
+      "status": "NOT_RUN",
+      "evidence_id": "E-G02",
+      "design": "### G02｜同 host 合法分页\n- **前提/入口：**R；Public；PricingService typed async；首响应 NextPageLink 用合法 host 加显式 :443 与 `$skip`。\n- **注入：**第二页终止；两个响应 Items 可为空，保证实际请求第二页。\n- **Expected：**两个 transport 请求，第二 URI host 不变、有效端口443。\n- **负控：**把首响应链接换为外域，不能仍观察到两个请求。\n- **证据：**E-G02；S07,S08,S09:39–56。**Observed：NOT_RUN**。"
+    },
+    {
+      "id": "G03",
+      "revision": "6ea52482ea1446b7f2230e1d8db0d650982ff1d1",
+      "status": "NOT_RUN",
+      "evidence_id": "E-G03",
+      "design": "### G03｜恶意 NextPageLink\n- **前提/入口：**R；Public；bypass 空；首请求合法且未达到 item 上限。\n- **注入：**第一页 NextPageLink 指向 fixture `evil.example`。\n- **Expected：**SecurityException；fake transport 仅记录第一页；不能把这称为进程零网络。\n- **负控：**仅移除 BeforeTransport policy，恶意第二 URI 应进入 fake transport，使原“仅一请求”断言失败。\n- **证据：**E-G03；S03,S04,S08,S09:58–72。**Observed：NOT_RUN**。"
+    },
+    {
+      "id": "G04",
+      "revision": "6ea52482ea1446b7f2230e1d8db0d650982ff1d1",
+      "status": "NOT_RUN",
+      "evidence_id": "E-G04",
+      "design": "### G04｜跨云与伪后缀\n- **前提/入口：**R；Public Pricing 正常首请求。\n- **注入：**下一页分别用 China host、`prices.azure.com.evil.example`、`sub.prices.azure.com`。\n- **Expected：**三组第二请求前拒绝；Pricing exact host 不允许子域。\n- **负控：**使用真正 Public exact host，应能进入第二次 fake transport。\n- **证据：**E-G04；S01:185–204,S02:195–202,S08。**Observed：NOT_RUN**。"
+    },
+    {
+      "id": "G05",
+      "revision": "6ea52482ea1446b7f2230e1d8db0d650982ff1d1",
+      "status": "NOT_RUN",
+      "evidence_id": "E-G05",
+      "design": "### G05｜authority 样 filter 不是 next link\n- **前提/入口：**R；Public；通过 raw filter 参数输入，而不是直接改 request URI。\n- **注入：**`serviceName eq 'Storage'&redirect=https://evil.example/#fragment`。\n- **Expected：**仍是合法 host；`&redirect=...#fragment` 在 query 值中编码；不据此证明 OData 业务权限。\n- **负控：**在 fake response 的 NextPageLink 放外域 URL，应触发 G03 的拒绝而非被当作 filter 编码。\n- **证据：**E-G05；S03:108–155,S07:17–46,S09:74–92。**Observed：NOT_RUN**。"
+    },
+    {
+      "id": "G06",
+      "revision": "6ea52482ea1446b7f2230e1d8db0d650982ff1d1",
+      "status": "NOT_RUN",
+      "evidence_id": "E-G06",
+      "design": "### G06｜同 host 不同 authority/路径\n- **前提/入口：**R；Public；分别直接调用 policy 与服务分页，明确两层结果。\n- **注入：**合法 host 下添加非空 userinfo、`:8443`、其它 path、query/fragment；另做 host 在 `@` 后为 evil 的样例。\n- **Expected：**共享 legacy pricing 检查不因前三种组件单独拒绝；实际 Host 为 evil 则拒绝。分页能否送到 fake transport需记录 URI builder/transport 的独立结果，不预填成功。\n- **负控：**固定相同 userinfo，把实际 host 换外域；必须拒绝。企业“只允许默认端口/固定 path”应另加策略，不能归功于上游。\n- **证据：**E-G06；S01,S04,S07。**Observed：NOT_RUN**。"
+    },
+    {
+      "id": "G07",
+      "revision": "6ea52482ea1446b7f2230e1d8db0d650982ff1d1",
+      "status": "NOT_RUN",
+      "evidence_id": "E-G07",
+      "design": "### G07｜Retry 是否重过 policy\n- **前提/入口：**R + 后续固定的 System.ClientModel 依赖；记录默认与显式 retry 配置；受控可重试响应。\n- **注入：**先返回可重试错误，再成功；记录每次 policy entry 与 transport entry。另用仅限 fixture 的位于 gate 上游的 URI 改写，使后续 attempt 的 host 变外域。\n- **Expected（验收要求，不是已证实实现）：**每次 transport attempt 前都有同 URI 的 gate 记录；外域 attempt 被拒绝。无法固定依赖/观测重试顺序则阻断结论。\n- **负控：**把 gate 移到只执行一次的位置，重试覆盖断言应失败。\n- **证据：**E-G07（attempt index、gate/transport order）；S03:78–80,S04,S05:39。**Observed：NOT_RUN**。"
+    },
+    {
+      "id": "G08",
+      "revision": "6ea52482ea1446b7f2230e1d8db0d650982ff1d1",
+      "status": "NOT_RUN",
+      "evidence_id": "E-G08",
+      "design": "### G08｜HTTP redirect 与分页分离\n- **前提/入口：**R + 后续固定 transport/HttpClient 版本及 redirect 配置；OS 断网；可记录底层重定向行为的本地测试装置，不只是普通不会自动跳转的 fake handler。\n- **注入：**允许 host 首响应 302/307，Location 为外域，与 HTTP 200 JSON NextPageLink 分成两组。\n- **Expected（上线要求）：**redirect 禁用，或每一跳经过独立授权；未证明时保持阻断。必须记录 auto-redirect flag、每跳 URI、socket fixture 计数；不能假设 BeforeTransport 看到内部跳转。\n- **负控：**在已隔离的 redirect 模拟器中关闭逐跳 gate，应能由证据区分，且不能把一次外层 policy 事件当作多跳覆盖。\n- **证据：**E-G08；S03,S04 的边界；transport 内部实现尚未核定。**Observed：NOT_RUN**。"
+    },
+    {
+      "id": "G09",
+      "revision": "6ea52482ea1446b7f2230e1d8db0d650982ff1d1",
+      "status": "NOT_RUN",
+      "evidence_id": "E-G09",
+      "design": "### G09｜bypass 与 write-once\n- **前提/入口：**R；每组独立进程，避免污染静态一次性配置。\n- **注入：**空配置、`pricing`、`ALL`、不相关 namespace；另测空白执行 namespace 与二次 setter。\n- **Expected：**空配置/无关 namespace 拒绝恶意 host；matching 或 ALL 在共享层早退；空白 namespace 不命中 ALL；第二次 setter 抛异常。policy 的 null URI 检查仍有效。\n- **负控：**匹配换成不相关 namespace，不能保留原 bypass 放行结果。\n- **证据：**E-G09；S01:23–160,S04:49–60。**Observed：NOT_RUN**。"
+    },
+    {
+      "id": "G10",
+      "revision": "6ea52482ea1446b7f2230e1d8db0d650982ff1d1",
+      "status": "NOT_RUN",
+      "evidence_id": "E-G10",
+      "design": "### G10｜未知云不是全局一致失败\n- **前提/入口：**R；bypass 空；分别测试服务构造路径和直接共享 helper，不能混淆可达性。\n- **注入：**自定义未知 ArmEnvironment、已知 Germany；Storage 另测未知 CloudType。\n- **Expected：**Pricing constructor/Storage constructor 拒绝不支持云；共享 GetSuffixes 对未知 ArmEnvironment fallback Public；Germany Pricing/Storage 空表拒绝。不要把 helper-only 测例标成已证实生产可达。\n- **负控：**故意将 Pricing unknown 分支改为 Public，constructor 拒绝断言必须失败。\n- **证据：**E-G10；S02:50–55,S03:166–175,S12:479–510。**Observed：NOT_RUN**。"
+    },
+    {
+      "id": "G11",
+      "revision": "6ea52482ea1446b7f2230e1d8db0d650982ff1d1",
+      "status": "NOT_RUN",
+      "evidence_id": "E-G11",
+      "design": "### G11｜Speech root 合同与 bypass 不同层\n- **前提/入口：**R；合法 Speech host；直接 operation helper；bypass 空与 speech 两组。\n- **注入：**非空 userinfo、非默认 port、非根 path、query、fragment、HTTP；对照 root 与显式 :443。\n- **Expected：**两组均拒绝 shape 违规；默认端口 root 通过形状校验，域授权另记。不是把所有显式端口都拒绝。\n- **负控：**移除 root shape guard，应导致违规输入未按合同拒绝，从而业务断言失败。\n- **证据：**E-G11；S10:199–248。**Observed：NOT_RUN**。"
+    },
+    {
+      "id": "G12",
+      "revision": "6ea52482ea1446b7f2230e1d8db0d650982ff1d1",
+      "status": "NOT_RUN",
+      "evidence_id": "E-G12",
+      "design": "### G12｜Speech early feedback 与当前云\n- **前提/入口：**R；有效 China root；服务当前 ArmEnvironment=Public；bypass 空。\n- **注入：**先调用 IsValidForAnySupportedCloud，再调用 TTS operation helper/服务入口。\n- **Expected：**早期可接受、当前云 operation 拒绝；TTS credential/token 计数均为0。China/Public 的 CloudType、ArmEnvironment 必须一致。\n- **负控：**helper 错误使用任一云反馈代替当前云授权，拒绝断言应失败。\n- **证据：**E-G12；S10:42–79,150–176,S11:34–54,108–118。**Observed：NOT_RUN**。"
+    },
+    {
+      "id": "G13",
+      "revision": "6ea52482ea1446b7f2230e1d8db0d650982ff1d1",
+      "status": "NOT_RUN",
+      "evidence_id": "E-G13",
+      "design": "### G13｜TTS 投影不是 SDK endpoint\n- **前提/入口：**R；有效当前云 root；fake credential 与 SDK 配置观测 seam；不启动真实合成。\n- **注入：**记录 root、完成 WSS、HTTPS validation projection、SDK 收到的 endpoint 四份证据。\n- **Expected：**validation URI 为 HTTPS；SDK URI 为固定路径/query 的 WSS，host 一致；凭据计数发生在域授权之后，不记录 token 内容。\n- **负控：**把 HTTPS projection 当返回值交 SDK，scheme 断言应失败。\n- **证据：**E-G13；S10:150–176,S11:108–118。**Observed：NOT_RUN**。"
+    },
+    {
+      "id": "G14",
+      "revision": "6ea52482ea1446b7f2230e1d8db0d650982ff1d1",
+      "status": "NOT_RUN",
+      "evidence_id": "E-G14",
+      "design": "### G14｜Storage 服务分离、同 Uri 与凭据顺序\n- **前提/入口：**R；合法 account；分别 blob/table；CloudType 与 ArmEnvironment 一致；可注入 credential/SDK 观测 seam。\n- **注入：**helper 层交换 blob/table host、错云 host；生产层测试正确 account 构造；记录返回 Uri identity 和交给 SDK 的 Uri。\n- **Expected：**错服务/错云拒绝；成功返回同一 Uri；各所读 data-plane client 边界在 GetCredential 前校验。Table 的 GetClient 可早于校验，不能要求其计数必为0。\n- **负控：**把 table serviceType 改成 storage-blob，正确 table host 应被拒绝、原成功断言失败。\n- **证据：**E-G14；S02:234–249,S12:328–338,421–431,519–544。**Observed：NOT_RUN**。"
+    },
+    {
+      "id": "G15",
+      "revision": "6ea52482ea1446b7f2230e1d8db0d650982ff1d1",
+      "status": "NOT_RUN",
+      "evidence_id": "E-G15",
+      "design": "### G15｜分页预算与循环\n- **前提/入口：**R；fake transport，合法相同 host；明确最大测试请求预算并可强制取消。\n- **注入：**空 Items + 指向自身的 NextPageLink；另测首批已达到5000 items。\n- **Expected：**源码 item 上限不足以终止空页循环；执行装置必须在独立预算内停止并记录取消结果。达 item 上限场景停止枚举，不应以其未访问恶意下一页来证明 gate 起效。\n- **负控：**去掉 fixture 的外层预算时不得实际无界运行；改用有界状态模型证明 item count 不增长，明确模型不是 SDK 实测。\n- **证据：**E-G15；S03:86–103,S08:55–70。**Observed：NOT_RUN**。"
+    }
+  ]
+}

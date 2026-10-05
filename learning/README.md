@@ -3,7 +3,7 @@
 
 > 这些条目是从历史研究快照脱敏整理出的补充学习材料，用于学习、讨论、POC 设计前的思路准备；它们不是正式实验报告、不是本次实机验证结论，也不构成生产部署或合规建议。原快照中的来源可达性、HTTP 200 或核验时间不代表本次发布时已经重新核验。
 
-- 已发布：127
+- 已发布：136
 - 已隔离：0（详见本地报告，不发布敏感原文）
 - 跳过/冲突：0（详见本地报告）
 
@@ -12,6 +12,8 @@
 - 2026-08-28 — [Agent 扩展控制面 + 运行证据日志 Checklist（2026-08-28）](assets/agent-extension-control-plane-and-runtime-log-checklist-2026-08-28.md)
 - 2026-09-08 — [Agent Planfile / Source Freshness / Hosted Workflow Gates（2026-09-08）](assets/agent-planfile-source-freshness-and-hosted-workflow-gates-2026-09-08.md)
 - 2026-09-28 — [MAF 声明式配置暴露门：离线 POC 验收设计模板](assets/maf-declarative-config-exposure-gates-2026-09-28.md)
+- 2026-10-05 — [MAF混合provider：header投影验收 — 2026-10-05](assets/maf-provider-header-projection-2026-10-05.md)
+- 2026-10-06 — [MAF 参数改写溯源与 Handoff 生命周期：公开 NOT_RUN 验收模板](assets/maf-argument-provenance-handoff-gates-2026-10-06.md)
 
 ## MCP 与插件
 
@@ -55,6 +57,7 @@
 - 2026-10-01 — [技能评测契约对齐：不要把正确拒绝当成坏样本](assets/skill-eval-contract-alignment-lab-2026-10-01.md)
 - 2026-10-03 — [动态 MCP 安全标签验收模板（基于 MAF source-SDK baseline 实测）](assets/maf-dynamic-mcp-labels-acceptance-2026-10-03.md)
 - 2026-10-04 — [Azure MCP：最终请求 URI 与云边界验收模板](assets/azure-mcp-final-uri-cloud-boundary-gates-2026-10-04.md)
+- 2026-10-06 — [Codex required skills 准入/发行证据门公开模板（2026-10-06）](assets/codex-required-skills-and-release-gates-2026-10-06.md)
 - 日期未知 — [Claude Code Dynamic Workflows — 第四种编排原语（Subagents / Skills / Agent Teams 之外）](assets/claude-code-dynamic-workflows-orchestration-primitive.md)
 - 日期未知 — [Managed Agents 容器沙箱 + MCP 工具审批/安全护栏 速查表](assets/managed-agents-sandbox-and-mcp-approval-safety-cheatsheet.md)
 - 日期未知 — [架构图模式：企业级多 Agent 参考拓扑（MCP 纵 / A2A 横）](assets/arch-pattern-multi-agent-mcp-a2a.md)
@@ -75,6 +78,8 @@
 - 2026-10-02 — [MAF ZIP 冲突：可复演的真实源码切片实验](assets/maf-zip-collision-source-lab-2026-10-02.md)
 - 2026-10-04 — [UserSim：manifest 意图不等于结果提交——离线单模块 Lab](assets/usersim-manifest-intent-commit-lab-2026-10-04.md)
 - 2026-10-04 — [UserSim：真实文件 write 边界与并发 append——补充 Lab](assets/usersim-file-fault-and-concurrent-append-lab-2026-10-04.md)
+- 2026-10-05 — [Codex预算controller：崩溃窗口与意图对账实验 — 2026-10-05](assets/cookbook-budget-reconciliation-2026-10-05.md)
+- 2026-10-06 — [Codex settlement：看见结果，不等于业务成功](assets/codex-settlement-evidence-lab-2026-10-06.md)
 - 日期未知 — [Codex Remote 控制平面 & 上下文生命周期速查 [→harness]](assets/codex-remote-control-plane-cheatsheet.md)
 - 日期未知 — [架构图模式：多 Harness 统一控制面（meta-harness）变体](assets/arch-pattern-meta-harness-control-plane.md)
 - 日期未知 — [渐进式教学 Workshop 工程模式速查（GitHub Template + Action 自动推进）](assets/progressive-workshop-engineering-pattern-cheatsheet.md)
@@ -87,6 +92,7 @@
 - 2026-09-30 — [Agent 断连后的执行归属、连接归属与恢复门禁](assets/agent-disconnect-ownership-and-recovery-gates-2026-09-30.md)
 - 2026-10-01 — [LogAct：意图、裁决与副作用边界（5分钟恢复性Meta资产）](assets/logact-intent-decision-effect-boundaries-2026-10-01.md)
 - 2026-10-02 — [Agent Substrate：Actor 挂起的身份、lease 与副作用门](assets/actor-suspend-identity-and-lease-gates-2026-10-02.md)
+- 2026-10-05 — [ADK凭据三视图：10卡与receipt schema — 2026-10-05](assets/adk-credential-three-views-2026-10-05.md)
 - 日期未知 — [Agent 自体检 + 容器化收敛（Containment）速查](assets/agent-self-audit-and-containment-cheatsheet.md)
 - 日期未知 — [POC 计划 / 技术方案文档质量检查清单](assets/poc-plan-and-technical-proposal-quality-checklist.md)
 - 日期未知 — [多 Agent Provider 收敛 + Containment 架构 Cheatsheet](assets/multi-agent-provider-convergence-and-containment-cheatsheet.md)
@@ -104,6 +110,7 @@
 - 2026-09-26 — [Coding Agent Authority Degradation Gates：公开 CLI 验收设计模板（2026-09-26）](assets/coding-agent-authority-degradation-gates-2026-09-26.md)
 - 2026-09-29 — [Coding Agent 治理验收模板：选路、授权与强制出口不能互相替代](assets/coding-agent-route-authorization-egress-gates-2026-09-29.md)
 - 2026-10-03 — [Lightflow 人工关卡与超时副作用：客户 POC 验收模板](assets/lightflow-approval-resume-effect-gates-2026-10-03.md)
+- 2026-10-06 — [NVIDIA 冻结证据语义回归：验收设计](assets/semantic-evidence-regression-gates-2026-10-06.md)
 - 日期未知 — [Agent「命令执行授权 / 沙箱审批」三栈对照速查（Codex shell-escalation ↔ Claude Code auto-mode/sandbox ↔ AWS IAM agent-vs-human）+ Azure 映射](assets/agent-command-execution-authz-tristack-cheatsheet.md)
 - 日期未知 — [编码 Agent Hooks 与权限治理对照验收模板](assets/coding-agent-hooks-tristack-comparison-cheatsheet.md)
 
@@ -116,6 +123,7 @@
 - 2026-10-01 — [编码代理恢复与 deny-rule 闸门：公开演练模板（2026-10-01）](assets/coding-agent-recovery-and-deny-rule-gates-2026-10-01.md)
 - 2026-10-03 — [编程代理升级的协议验收模板：输出真实性、线程回收与会话绑定](assets/coding-agent-output-lifecycle-session-gates-2026-10-03.md)
 - 2026-10-04 — [双CLI验收模板：工具暴露不等于授权，hook失败必须按阶段判定](assets/coding-agent-tool-exposure-and-hook-failure-gates-2026-10-04.md)
+- 2026-10-05 — [Codex / Claude Code：线程归属与agent身份验收 — 2026-10-05](assets/coding-agent-ownership-identity-2026-10-05.md)
 - 日期未知 — [Agent 模型基线 & 上下文预算速查（Codex / Claude Code / GitHub Copilot）](assets/model-baseline-and-context-budget-cheatsheet.md)
 - 日期未知 — [xAI Grok Build — 编码 Agent CLI 第四栈速查](assets/xai-grok-build-fourth-stack-cheatsheet.md)
 - 日期未知 — [无人值守 / 托管 Agent 调度三栈对照速查（Codex Automations ↔ Claude Code Routines ↔ GitHub Actions/Copilot）+ Azure 映射](assets/unattended-agent-scheduling-tristack-cheatsheet.md)
@@ -126,6 +134,7 @@
 
 - 2026-09-01 — [Agent release radar、conformance 与 modernization gates（2026-09-01）](assets/agent-release-radar-conformance-and-modernization-gates-2026-09-01.md)
 - 2026-09-05 — [Agent CLI Extension / Version Watch / Go Runtime Gates（release/docs-derived pre-smoke, 2026-09-05）](assets/agent-cli-extension-version-and-go-runtime-gates-2026-09-05.md)
+- 2026-10-06 — [Release evidence classifier contract（2026-10-06）](assets/release-evidence-classifier-contract-2026-10-06.md)
 - 日期未知 — [Foundry C# BYO 浏览器自动化 Hosted Agent — POC 速查（含密钥脱敏模式）](assets/foundry-csharp-byo-browser-automation-poc.md)
 - 日期未知 — [Foundry Hosted Agent — 私有 VNet POC 部署 & 网络自检清单](assets/foundry-hosted-agent-private-vnet-poc.md)
 - 日期未知 — [MAF `Agent→AIAgent` 重命名 + Python `FoundryChatClient` 官方落地 —— POC 迁移速查](assets/maf-foundry-chatclient-and-agent-rename-migration-cheatsheet.md)

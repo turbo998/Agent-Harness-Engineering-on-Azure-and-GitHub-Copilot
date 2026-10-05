@@ -1,0 +1,429 @@
+{
+  "C01": {
+    "case_id": "C01",
+    "status": "NOT_RUN",
+    "synthetic_only": true,
+    "fixture": {
+      "id": "C01",
+      "kind": "model",
+      "model_class": "google.adk.auth.auth_credential.AuthCredential",
+      "construction_api": "model_validate(input)",
+      "observation_contract": "observation-contract.md",
+      "input": {
+        "authType": "apiKey",
+        "apiKey": "SYNTHETIC_API",
+        "resourceRef": "SYNTHETIC_RESOURCE"
+      },
+      "expected_dump": {
+        "authType": "apiKey",
+        "apiKey": "SYNTHETIC_API",
+        "resourceRef": "SYNTHETIC_RESOURCE"
+      },
+      "expected_outbound": {
+        "authType": "apiKey",
+        "resourceRef": "SYNTHETIC_RESOURCE"
+      },
+      "repr_hidden": [
+        "SYNTHETIC_API"
+      ],
+      "repr_visible": [],
+      "secret_canaries": [
+        "SYNTHETIC_API"
+      ]
+    }
+  },
+  "C02": {
+    "case_id": "C02",
+    "status": "NOT_RUN",
+    "synthetic_only": true,
+    "fixture": {
+      "id": "C02",
+      "kind": "model",
+      "model_class": "google.adk.auth.auth_credential.AuthCredential",
+      "construction_api": "model_validate(input)",
+      "observation_contract": "observation-contract.md",
+      "input": {
+        "auth_type": "oauth2",
+        "oauth2": {
+          "clientId": "SYNTHETIC_PUBLIC_CLIENT",
+          "authUri": "SYNTHETIC_AUTH_URI",
+          "nonce": "SYNTHETIC_NONCE",
+          "state": "SYNTHETIC_STATE",
+          "redirectUri": "SYNTHETIC_REDIRECT",
+          "expiresAt": 123,
+          "expiresIn": 60,
+          "audience": "SYNTHETIC_AUDIENCE",
+          "prompt": "SYNTHETIC_PROMPT",
+          "codeChallengeMethod": "S256",
+          "tokenEndpointAuthMethod": "client_secret_basic",
+          "clientSecret": "SYNTHETIC_CLIENTSECRET",
+          "authResponseUri": "SYNTHETIC_AUTHRESPONSEURI",
+          "authCode": "SYNTHETIC_AUTHCODE",
+          "accessToken": "SYNTHETIC_ACCESSTOKEN",
+          "refreshToken": "SYNTHETIC_REFRESHTOKEN",
+          "idToken": "SYNTHETIC_IDTOKEN",
+          "codeVerifier": "SYNTHETIC_CODEVERIFIER"
+        }
+      },
+      "expected_dump": {
+        "authType": "oauth2",
+        "oauth2": {
+          "clientId": "SYNTHETIC_PUBLIC_CLIENT",
+          "authUri": "SYNTHETIC_AUTH_URI",
+          "nonce": "SYNTHETIC_NONCE",
+          "state": "SYNTHETIC_STATE",
+          "redirectUri": "SYNTHETIC_REDIRECT",
+          "expiresAt": 123,
+          "expiresIn": 60,
+          "audience": "SYNTHETIC_AUDIENCE",
+          "prompt": "SYNTHETIC_PROMPT",
+          "codeChallengeMethod": "S256",
+          "tokenEndpointAuthMethod": "client_secret_basic",
+          "clientSecret": "SYNTHETIC_CLIENTSECRET",
+          "authResponseUri": "SYNTHETIC_AUTHRESPONSEURI",
+          "authCode": "SYNTHETIC_AUTHCODE",
+          "accessToken": "SYNTHETIC_ACCESSTOKEN",
+          "refreshToken": "SYNTHETIC_REFRESHTOKEN",
+          "idToken": "SYNTHETIC_IDTOKEN",
+          "codeVerifier": "SYNTHETIC_CODEVERIFIER"
+        }
+      },
+      "expected_outbound": {
+        "authType": "oauth2",
+        "oauth2": {
+          "clientId": "SYNTHETIC_PUBLIC_CLIENT",
+          "authUri": "SYNTHETIC_AUTH_URI",
+          "nonce": "SYNTHETIC_NONCE",
+          "state": "SYNTHETIC_STATE",
+          "redirectUri": "SYNTHETIC_REDIRECT",
+          "expiresAt": 123,
+          "expiresIn": 60,
+          "audience": "SYNTHETIC_AUDIENCE",
+          "prompt": "SYNTHETIC_PROMPT",
+          "codeChallengeMethod": "S256",
+          "tokenEndpointAuthMethod": "client_secret_basic"
+        }
+      },
+      "repr_hidden": [
+        "SYNTHETIC_CLIENTSECRET",
+        "SYNTHETIC_AUTHRESPONSEURI",
+        "SYNTHETIC_AUTHCODE",
+        "SYNTHETIC_ACCESSTOKEN",
+        "SYNTHETIC_REFRESHTOKEN",
+        "SYNTHETIC_IDTOKEN",
+        "SYNTHETIC_CODEVERIFIER"
+      ],
+      "repr_visible": [
+        "SYNTHETIC_PUBLIC_CLIENT"
+      ],
+      "secret_canaries": [
+        "SYNTHETIC_CLIENTSECRET",
+        "SYNTHETIC_AUTHRESPONSEURI",
+        "SYNTHETIC_AUTHCODE",
+        "SYNTHETIC_ACCESSTOKEN",
+        "SYNTHETIC_REFRESHTOKEN",
+        "SYNTHETIC_IDTOKEN",
+        "SYNTHETIC_CODEVERIFIER"
+      ]
+    }
+  },
+  "C05": {
+    "case_id": "C05",
+    "status": "NOT_RUN",
+    "synthetic_only": true,
+    "fixture": {
+      "id": "C05",
+      "kind": "model",
+      "model_class": "google.adk.auth.auth_credential.AuthCredential",
+      "construction_api": "model_validate(input)",
+      "observation_contract": "observation-contract.md",
+      "input": {
+        "authType": "oauth2",
+        "oauth2": {
+          "unexpected_token": "SYNTHETIC_NESTED_EXTRA",
+          "clientId": "SYNTHETIC_EXTRA_CLIENT"
+        },
+        "undeclared_secret": "SYNTHETIC_TOP_EXTRA"
+      },
+      "expected_dump": {
+        "authType": "oauth2",
+        "oauth2": {
+          "unexpected_token": "SYNTHETIC_NESTED_EXTRA",
+          "clientId": "SYNTHETIC_EXTRA_CLIENT",
+          "tokenEndpointAuthMethod": "client_secret_basic"
+        },
+        "undeclared_secret": "SYNTHETIC_TOP_EXTRA"
+      },
+      "expected_outbound": {
+        "authType": "oauth2",
+        "oauth2": {
+          "unexpected_token": "SYNTHETIC_NESTED_EXTRA",
+          "clientId": "SYNTHETIC_EXTRA_CLIENT",
+          "tokenEndpointAuthMethod": "client_secret_basic"
+        },
+        "undeclared_secret": "SYNTHETIC_TOP_EXTRA"
+      },
+      "repr_hidden": [
+        "SYNTHETIC_NESTED_EXTRA",
+        "SYNTHETIC_TOP_EXTRA"
+      ],
+      "repr_visible": [
+        "unexpected_token",
+        "undeclared_secret",
+        "<redacted>",
+        "SYNTHETIC_EXTRA_CLIENT"
+      ],
+      "secret_canaries": []
+    }
+  },
+  "C06": {
+    "case_id": "C06",
+    "status": "NOT_RUN",
+    "synthetic_only": true,
+    "fixture": {
+      "id": "C06",
+      "kind": "error",
+      "model_class": "google.adk.auth.auth_credential.AuthCredential",
+      "construction_api": "model_validate(input)",
+      "observation_contract": "observation-contract.md",
+      "expected_error": {
+        "exception_class": "pydantic.ValidationError",
+        "error_count": 1,
+        "type": "string_type",
+        "loc_json": ["apiKey"],
+        "input": ["SYNTHETIC_BAD_API"],
+        "text_hidden": ["SYNTHETIC_BAD_API", "input_value=", "input_type="],
+        "text_visible": ["apiKey", "string_type"]
+      },
+      "input": {
+        "authType": "apiKey",
+        "apiKey": [
+          "SYNTHETIC_BAD_API"
+        ]
+      },
+      "canary": "SYNTHETIC_BAD_API",
+      "location": "apiKey"
+    }
+  },
+  "C08": {
+    "case_id": "C08",
+    "status": "NOT_RUN",
+    "synthetic_only": true,
+    "fixture": {
+      "id": "C08",
+      "kind": "raw",
+      "input": {
+        "name": "adk_request_credential",
+        "args": {
+          "authConfig": {
+            "token": "SYNTHETIC_ARGS_TOKEN",
+            "clientId": "SYNTHETIC_ARGS_PUBLIC"
+          },
+          "auth_config": {
+            "password": "SYNTHETIC_ARGS_PASSWORD"
+          },
+          "token": "SYNTHETIC_ARGS_BUSINESS",
+          "other": {
+            "authType": "apiKey",
+            "apiKey": "SYNTHETIC_ARGS_OTHER_BOUNDARY"
+          }
+        }
+      },
+      "expected_outbound": {
+        "name": "adk_request_credential",
+        "args": {
+          "authConfig": {
+            "clientId": "SYNTHETIC_ARGS_PUBLIC"
+          },
+          "auth_config": {},
+          "token": "SYNTHETIC_ARGS_BUSINESS",
+          "other": {
+            "authType": "apiKey",
+            "apiKey": "SYNTHETIC_ARGS_OTHER_BOUNDARY"
+          }
+        }
+      }
+    }
+  },
+  "C09": {
+    "case_id": "C09",
+    "status": "NOT_RUN",
+    "synthetic_only": true,
+    "fixture": {
+      "id": "C09",
+      "kind": "raw",
+      "input": {
+        "name": "adk_request_credential",
+        "response": {
+          "nested": [
+            {
+              "refreshToken": "SYNTHETIC_RESPONSE",
+              "public": "SYNTHETIC_RESPONSE_PUBLIC"
+            }
+          ]
+        },
+        "id": "SYNTHETIC_CALL_ID"
+      },
+      "expected_outbound": {
+        "name": "adk_request_credential",
+        "response": {
+          "nested": [
+            {
+              "public": "SYNTHETIC_RESPONSE_PUBLIC"
+            }
+          ]
+        },
+        "id": "SYNTHETIC_CALL_ID"
+      }
+    }
+  },
+  "C10": {
+    "case_id": "C10",
+    "status": "NOT_RUN",
+    "synthetic_only": true,
+    "fixture": {
+      "id": "C10",
+      "kind": "raw",
+      "input": {
+        "requestedAuthConfigs": {
+          "tool": {
+            "token": "SYNTHETIC_REQUESTED",
+            "public": "SYNTHETIC_REQUESTED_PUBLIC"
+          }
+        },
+        "requested_auth_configs": [
+          {
+            "api_key": "SYNTHETIC_REQUESTED_SNAKE"
+          }
+        ],
+        "token": "SYNTHETIC_SIBLING_BUSINESS"
+      },
+      "expected_outbound": {
+        "requestedAuthConfigs": {
+          "tool": {
+            "public": "SYNTHETIC_REQUESTED_PUBLIC"
+          }
+        },
+        "requested_auth_configs": [
+          {}
+        ],
+        "token": "SYNTHETIC_SIBLING_BUSINESS"
+      }
+    }
+  },
+  "C11": {
+    "case_id": "C11",
+    "status": "NOT_RUN",
+    "synthetic_only": true,
+    "fixture": {
+      "id": "C11",
+      "kind": "raw",
+      "input": {
+        "rawAuthCredential": {
+          "client_secret": "SYNTHETIC_rawAuthCredential",
+          "clientId": "SYNTHETIC_CARRIER_PUBLIC"
+        },
+        "raw_auth_credential": {
+          "client_secret": "SYNTHETIC_raw_auth_credential",
+          "clientId": "SYNTHETIC_CARRIER_PUBLIC"
+        },
+        "exchangedAuthCredential": {
+          "client_secret": "SYNTHETIC_exchangedAuthCredential",
+          "clientId": "SYNTHETIC_CARRIER_PUBLIC"
+        },
+        "exchanged_auth_credential": {
+          "client_secret": "SYNTHETIC_exchanged_auth_credential",
+          "clientId": "SYNTHETIC_CARRIER_PUBLIC"
+        }
+      },
+      "expected_outbound": {
+        "rawAuthCredential": {
+          "clientId": "SYNTHETIC_CARRIER_PUBLIC"
+        },
+        "raw_auth_credential": {
+          "clientId": "SYNTHETIC_CARRIER_PUBLIC"
+        },
+        "exchangedAuthCredential": {
+          "clientId": "SYNTHETIC_CARRIER_PUBLIC"
+        },
+        "exchanged_auth_credential": {
+          "clientId": "SYNTHETIC_CARRIER_PUBLIC"
+        }
+      }
+    }
+  },
+  "C14": {
+    "case_id": "C14",
+    "status": "NOT_RUN",
+    "synthetic_only": true,
+    "fixture": {
+      "id": "C14",
+      "kind": "raw",
+      "input": {
+        "authType": {
+          "nested": "SYNTHETIC_DICT"
+        },
+        "auth_type": [
+          "SYNTHETIC_LIST"
+        ],
+        "args": {
+          "authType": [],
+          "auth_type": {},
+          "token": "SYNTHETIC_BAD_BUSINESS"
+        }
+      },
+      "expected_outbound": {
+        "authType": {
+          "nested": "SYNTHETIC_DICT"
+        },
+        "auth_type": [
+          "SYNTHETIC_LIST"
+        ],
+        "args": {
+          "authType": [],
+          "auth_type": {},
+          "token": "SYNTHETIC_BAD_BUSINESS"
+        }
+      }
+    }
+  },
+  "C15": {
+    "case_id": "C15",
+    "status": "NOT_RUN",
+    "synthetic_only": true,
+    "fixture": {
+      "id": "C15",
+      "kind": "raw",
+      "input": {
+        "token": "SYNTHETIC_BUSINESS_TOKEN",
+        "password": "SYNTHETIC_BUSINESS_PASSWORD",
+        "authType": "SYNTHETIC_UNKNOWN",
+        "customSecret": "SYNTHETIC_UNKNOWN_EXTRA",
+        "text": "SYNTHETIC_TEXT {\"authType\":\"apiKey\",\"apiKey\":\"SYNTHETIC_STRING_API\"}",
+        "empty": {},
+        "null": null,
+        "list": [
+          "SYNTHETIC_PLAIN_STRING",
+          {
+            "accessToken": "SYNTHETIC_BUSINESS_ACCESS"
+          }
+        ]
+      },
+      "expected_outbound": {
+        "token": "SYNTHETIC_BUSINESS_TOKEN",
+        "password": "SYNTHETIC_BUSINESS_PASSWORD",
+        "authType": "SYNTHETIC_UNKNOWN",
+        "customSecret": "SYNTHETIC_UNKNOWN_EXTRA",
+        "text": "SYNTHETIC_TEXT {\"authType\":\"apiKey\",\"apiKey\":\"SYNTHETIC_STRING_API\"}",
+        "empty": {},
+        "null": null,
+        "list": [
+          "SYNTHETIC_PLAIN_STRING",
+          {
+            "accessToken": "SYNTHETIC_BUSINESS_ACCESS"
+          }
+        ]
+      }
+    }
+  }
+}

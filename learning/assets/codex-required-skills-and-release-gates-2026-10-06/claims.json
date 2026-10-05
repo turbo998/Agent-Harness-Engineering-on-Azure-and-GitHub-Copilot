@@ -1,0 +1,1243 @@
+{
+  "title": "Codex required skills准入/发行证据门公开模板",
+  "date": "2026-10-06",
+  "language": "zh-CN",
+  "source_revision": "42312d4ff4e258c1dfa43db9a9c59eed943c98de",
+  "product_execution_status": "NOT_RUN",
+  "source_read_status": "sourceREAD_NOT_RUN",
+  "novelty": {
+    "codex_required": "OLD_REPOSITORY_NEW_MECHANISM_RELATIVE_TO_INSPECTED_CORPUS",
+    "claude_2_1_289": "OLD_SOURCE_REUSE",
+    "claude_2_1_290": "REGISTRY_SENTINEL_ONLY",
+    "official_docs": "OLD_SOURCE_SENTINEL"
+  },
+  "claims": [
+    {
+      "id": "C1",
+      "text": "固定main SHA引入环境级required skills普通sampling准入；不等于已发行。",
+      "evidence": [
+        "E1",
+        "E11"
+      ],
+      "status": "static_source_supported; product_NOT_RUN"
+    },
+    {
+      "id": "C2",
+      "text": "enabled、精确name、main_prompt环境id匹配；executor与cloud目录参与，不核验正文执行。",
+      "evidence": [
+        "E12"
+      ],
+      "status": "static_source_supported; product_NOT_RUN"
+    },
+    {
+      "id": "C3",
+      "text": "required失败阻断其后的normal sampling；pre-turn compaction先于gate，可能已发生模型请求。只有F3/F4成立才有受控normal=0/pre_turn=0；不推出全turn或进程零推理。取消选择只让该环境本turn要求不适用。",
+      "evidence": [
+        "E11",
+        "E12",
+        "E13",
+        "E14",
+        "E20"
+      ],
+      "status": "static_source_supported; product_NOT_RUN"
+    },
+    {
+      "id": "C4",
+      "text": "Guardian basic source按E19枚举判定跳过此gate，不是全部准入豁免或组织不可绕过控制。",
+      "evidence": [
+        "E11",
+        "E16",
+        "E17",
+        "E19"
+      ],
+      "status": "static_source_supported; product_NOT_RUN"
+    },
+    {
+      "id": "C5",
+      "text": "目标tag单文件未观察到gate；RELEASE_SUPPORT_NOT_ESTABLISHED。",
+      "evidence": [
+        "E2",
+        "E3",
+        "E4"
+      ],
+      "status": "static_source_supported; product_NOT_RUN"
+    },
+    {
+      "id": "C6",
+      "text": "Claude next 2.1.290仅registry信号；固定CHANGELOG首版2.1.289为旧源重访。",
+      "evidence": [
+        "E5",
+        "E6"
+      ],
+      "status": "static_source_supported; product_NOT_RUN"
+    },
+    {
+      "id": "C7",
+      "text": "官方docs仅旧源sentinel，正文标题与最终URL见manifest精确字段，不构建build-local发行契约。",
+      "evidence": [
+        "E7",
+        "E8",
+        "E9",
+        "E10"
+      ],
+      "status": "static_source_supported; product_NOT_RUN"
+    }
+  ],
+  "shared_fixture": {
+    "F0_revision_network": "固定上述完整SHA。设计使用loopback HTTP mock与127.0.0.1 WebSocket环境服务；允许loopback，禁止外部网络/真实provider凭据，不声称无socket。上游含skip_if_no_network；跳过、超时、注册/发现失败均为INVALID/INFRA，不能算PASS。",
+    "F1_registration_discovery": "按E13:39-135：test_env取得primary；ExtensionRegistryBuilder + install_with_providers注入CatalogSkillProvider executor catalog；include_instructions=false、bundled_skills_enabled=false、cloud_skill_enabled=false、shadow_selection_enabled=false、max_context_tokens=None；project_doc_max_bytes=0；启用Feature::ExecutorCapabilityDiscovery。启动loopback executor并attach；manager.upsert_environment_with_options以environment_id=required注册ScopedSkillsConfig{required:[review]}；等待get_environment(required).info()成功；提交primary+required，AskForApproval::Never。记录发现完成的executor/cloud catalog快照及step.environments.required_skills()，Missing/FailedEnvironment刻意使用空catalog；必须有发现完成标记，不能将未完成发现或未到达gate误当缺技能拒绝成功。",
+    "F2_catalog": "SkillCatalogEntry::new的name=review，enabled=true；SkillAuthority::new(SkillSourceKind::Executor, required)，main_prompt=SkillResourceId::environment(skill://test/review/SKILL.md, required, primary.cwd.join(SKILL.md))。OtherEnvironment仅将归属source改为primary.environment_id；Missing/FailedEnvironment用空catalog。精确判定以main_prompt环境id为准，不只看authority标签。",
+    "F3_no_compaction": "RS-01..03/05及RS-06的请求计数版本：fresh history（RS-05第二轮仍低于阈值），无previous-model切换、无comp_hash变化，context_window_token_status.token_limit_reached=false，低于自动压缩预算及可用context window；不安排手动/自动/Guardian compaction，不运行hook旁路推理。逐个检查这些状态而非假设禁用了一个虚构开关。",
+    "F4_single_response": "普通sampling mock仅一次ev_completed(done)，无工具调用/continuation/retry；其余启动、MCP、Guardian准入均成功，捕获TurnComplete与errors。按调用来源分别记录normal_sampling_requests与pre_turn_compaction_requests，另记other_model_requests，不用同一HTTP端点总数冒充普通sampling计数。",
+    "F5_trace": "记录source及is_basic_session_source结果、required_gate_calls、gate_error、请求phase、事件顺序、每turn增量计数。ordinary source选SessionSource::Cli；入口因果：注册/选择→run_turn pre-compaction→发现完成与normal step snapshot→required校验→run_sampling_request（pre-compaction本身也可capture压缩step，勿混同normal step）。"
+  },
+  "counter_contract": {
+    "normal_sampling_requests": "模型请求发起自run_sampling_request；不是整个provider端点总数",
+    "pre_turn_compaction_requests": "phase=PreTurn模型请求，包含previous-model/threshold compaction；本地与remote均需观测",
+    "other_model_requests": "其他phase、hook、工具或外部旁路单列；不由required gate承诺为零",
+    "observed": "NOT_RUN"
+  },
+  "design_cards": [
+    {
+      "id": "RS-01",
+      "version": "42312d4ff4e258c1dfa43db9a9c59eed943c98de",
+      "scope": "source_traced_integration_design_NOT_RUN",
+      "precondition": "F0..F5；同环境enabled精确名review。",
+      "stimulus": "通过E13 submit_turn_with_approval_and_environments提交普通source；等TurnComplete。",
+      "expected": "gate调用1次并通过；errors为空；不证明读取/执行SKILL.md。",
+      "normal_sampling_requests": 1,
+      "pre_turn_compaction_requests": 0,
+      "observed": "NOT_RUN",
+      "negative": "独立重建fresh fixture，分别删除review及置enabled=false：gate调用1，Fatal Required skill unavailable，normal=0、pre_turn=0。",
+      "evidence_ids": [
+        "E11",
+        "E12",
+        "E13"
+      ]
+    },
+    {
+      "id": "RS-02",
+      "version": "42312d4ff4e258c1dfa43db9a9c59eed943c98de",
+      "scope": "source_traced_integration_design_NOT_RUN",
+      "precondition": "F0..F5；要求required环境review，但main_prompt归属primary.environment_id。",
+      "stimulus": "普通source提交primary+required；核对实际目录与requirements。",
+      "expected": "gate调用1；环境id不匹配，Fatal unavailable。",
+      "normal_sampling_requests": 0,
+      "pre_turn_compaction_requests": 0,
+      "observed": "NOT_RUN",
+      "negative": "只将main_prompt环境id及对应source改回required，独立fresh run：gate通过、normal=1、pre_turn=0。",
+      "evidence_ids": [
+        "E11",
+        "E12",
+        "E13"
+      ]
+    },
+    {
+      "id": "RS-03",
+      "version": "42312d4ff4e258c1dfa43db9a9c59eed943c98de",
+      "scope": "source_traced_integration_design_NOT_RUN",
+      "precondition": "F0..F5；required注册并已连接/info成功，executor catalog为空。",
+      "stimulus": "在TurnEnvironmentSelection上注入EnvironmentConfigState::Failed(configuration unavailable)，仍选择primary+required。",
+      "expected": "配置失败分支保留required；gate调用1，Fatal unavailable。这里只覆盖已连接环境的配置失败，不等于连接失败端到端。",
+      "normal_sampling_requests": 0,
+      "pre_turn_compaction_requests": 0,
+      "observed": "NOT_RUN",
+      "negative": "重建同一配置失败fixture，仅将注册required列表改为空：required-skill Fatal不得出现；普通sampling数量不是本负控oracle，其他环境错误独立记录。连接失败仅E20静态分支支持，公开入口故障注入待独立设计/运行，不继承本卡PASS。",
+      "evidence_ids": [
+        "E11",
+        "E12",
+        "E13",
+        "E20"
+      ]
+    },
+    {
+      "id": "RS-04",
+      "version": "42312d4ff4e258c1dfa43db9a9c59eed943c98de",
+      "scope": "internal_helper_extension_registry_fault_injection_NOT_RUN",
+      "precondition": "内部helper/extension-registry故障注入：requirements非空，thread_store无SkillsThreadState；不声称普通公开入口可自然到达。",
+      "stimulus": "直接设计调用validate_required_skills；如另做gate局部适配器，显式把helper Err映射CodexErr::Fatal；不伪称run_turn端到端。",
+      "expected": "helper返回Required skills cannot be validated because the skills extension is unavailable；没有产品模型路径。",
+      "normal_sampling_requests": "N/A_HELPER_ONLY",
+      "pre_turn_compaction_requests": "N/A_HELPER_ONLY",
+      "observed": "NOT_RUN",
+      "negative": "同样缺thread state但requirements为空：Ok(())。另一独立负控保留SkillsThreadState，仅缺ExecutorSkillsStepState并提供同环境enabled cloud catalog，应Ok(())；不能将两种缺状态混同。",
+      "evidence_ids": [
+        "E11",
+        "E12"
+      ]
+    },
+    {
+      "id": "RS-05",
+      "version": "42312d4ff4e258c1dfa43db9a9c59eed943c98de",
+      "scope": "source_traced_integration_design_NOT_RUN",
+      "precondition": "F0..F5；同一thread首次选择primary+required且缺review；第二轮历史仍满足F3。",
+      "stimulus": "第一轮完成并检查Fatal后，第二轮只选primary；不删除manager注册配置。",
+      "expected": "第一次gate拒绝；第二次不再应用该环境required，允许一次普通sampling；使用每轮增量，避免把累计1误读为两轮各1。",
+      "normal_sampling_requests": [
+        0,
+        1
+      ],
+      "pre_turn_compaction_requests": [
+        0,
+        0
+      ],
+      "observed": "NOT_RUN",
+      "negative": "独立双轮fixture保持第二轮仍选primary+required且缺review：两轮normal=[0,0]、pre_turn=[0,0]，第二轮仍Fatal。",
+      "evidence_ids": [
+        "E11",
+        "E12",
+        "E13",
+        "E20"
+      ]
+    },
+    {
+      "id": "RS-06",
+      "version": "42312d4ff4e258c1dfa43db9a9c59eed943c98de",
+      "scope": "source_predicate_and_gate_pair_design; full_turn_reachability_NOT_RUN",
+      "precondition": "F0..F5；配对相同required=[review]与缺review快照，内部构造source。basic=SessionSource::Internal(InternalSessionSource::Guardian)；ordinary=SessionSource::Cli；E19:102-108判定分别true/false。",
+      "stimulus": "局部gate配对只改变source。若扩展到run_turn，另满足check_pending_guardian_input与finalize_guardian_input等Guardian前置，并记录到达gate；未到达则INVALID/INFRA。",
+      "expected": "basic required_gate_calls=0且不产生此gate的Fatal；ordinary required_gate_calls=1、Fatal unavailable。basic跳过本gate不保证整个turn成功。",
+      "normal_sampling_requests": {
+        "basic": "1 ONLY_IF full F3/F4 and Guardian admission satisfied; otherwise NOT_ASSERTED",
+        "ordinary": 0
+      },
+      "pre_turn_compaction_requests": 0,
+      "observed": "NOT_RUN",
+      "negative": "独立ordinary fresh对照保留完全相同缺失状态，必须false/1/Fatal/normal=0；basic必须true/0/no-required-Fatal。不能用政策提醒替代负控。满足全部F3/F4及Guardian其他准入后才额外断言basic normal=1；未达成前不报端到端。",
+      "evidence_ids": [
+        "E11",
+        "E12",
+        "E16",
+        "E17",
+        "E19"
+      ]
+    },
+    {
+      "id": "RS-07",
+      "version": "rust-v0.160.1 / rust-v0.162.0-alpha.15",
+      "scope": "static_comparison; product_NOT_RUN",
+      "precondition": "只读取两个目标tag turn.rs和registry，不安装包。",
+      "stimulus": "核计符号并检查目标tag source wiring的证据充分性。",
+      "expected": "两个tag validate_required_skills_count=0：TARGET_TAG_GATE_NOT_OBSERVED；发行支持RELEASE_SUPPORT_NOT_ESTABLISHED。不是对所有包字节作缺失断言。",
+      "normal_sampling_requests": "N/A_STATIC_ONLY",
+      "pre_turn_compaction_requests": "N/A_STATIC_ONLY",
+      "observed": "NOT_RUN",
+      "negative": "未来同名符号>0仍不足：必须核gate实际调用、谓词及可达入口，并建立tag→发行artifact/包字节映射；registry tag或release notes单独不足。",
+      "evidence_ids": [
+        "E2",
+        "E3",
+        "E4"
+      ]
+    },
+    {
+      "id": "RS-08",
+      "version": "Claude next 2.1.290 / pinned CHANGELOG 2.1.289",
+      "scope": "static_comparison; product_NOT_RUN",
+      "precondition": "只读registry与固定CHANGELOG；live docs仅旧源sentinel。",
+      "stimulus": "比较精确dist-tags与固定CHANGELOG首个版本标题。",
+      "expected": "Claude stable=2.1.285 latest=2.1.289 next=2.1.290；固定CHANGELOG首版2.1.289；只能给next registry信号，不据固定旧文件断言全网无新changelog。",
+      "normal_sampling_requests": "N/A_STATIC_ONLY",
+      "pre_turn_compaction_requests": "N/A_STATIC_ONLY",
+      "observed": "NOT_RUN",
+      "negative": "以next标签或E7..E10旧docs推出2.1.290功能应拒绝；要求对应版本实质发行内容及版本映射。",
+      "evidence_ids": [
+        "E5",
+        "E6",
+        "E7",
+        "E8",
+        "E9",
+        "E10"
+      ]
+    }
+  ],
+  "compaction_negative_control": {
+    "id": "NC-PRECOMPACT",
+    "parent_card": "RS-01",
+    "observed": "NOT_RUN",
+    "scope": "additional_design_negative_control_not_ninth_card",
+    "precondition": "从RS-01 missing独立fixture出发，仅改变已保存历史使token_limit_reached=true；模型/provider固定，选E14本地compaction分支，mock支持一次合法压缩完成并使压缩后低于阈值，无retry；required依然缺review。不要仅向本turn新输入填长文本：E11:180-190压缩在新输入记录前。",
+    "stimulus": "通过普通run_turn入口，记录PreTurn compaction request→压缩成功→required gate Fatal顺序。",
+    "expected": "normal_sampling_requests=0；pre_turn_compaction_requests=1（仅在明确单次成功mock条件）；other_model_requests=0。移除压缩触发条件的独立配对为normal=0/pre_turn=0。压缩失败提前退出或未到达gate均不能算此负控通过。",
+    "normal_sampling_requests": 0,
+    "pre_turn_compaction_requests": 1,
+    "evidence_ids": [
+      "E11",
+      "E14"
+    ]
+  },
+  "evidence_manifest": [
+    {
+      "id": "E1",
+      "label": "Codex 42312d4 required skills commit diff",
+      "url": "https://github.com/openai/codex/commit/42312d4ff4e258c1dfa43db9a9c59eed943c98de.diff",
+      "status": "sourceREAD_NOT_RUN",
+      "requested_url": "https://github.com/openai/codex/commit/42312d4ff4e258c1dfa43db9a9c59eed943c98de.diff",
+      "checked_at_utc": "2026-10-05T20:14:12.236757+00:00",
+      "method": "HEAD then GET",
+      "requests": [
+        {
+          "method": "HEAD",
+          "user_agent": "Python-urllib/3",
+          "checked_at_utc": "2026-10-05T20:14:12.673916+00:00",
+          "redirect_chain": [
+            {
+              "url": "https://github.com/openai/codex/commit/42312d4ff4e258c1dfa43db9a9c59eed943c98de.diff",
+              "status": 200
+            }
+          ],
+          "status": 200,
+          "final_url": "https://github.com/openai/codex/commit/42312d4ff4e258c1dfa43db9a9c59eed943c98de.diff"
+        },
+        {
+          "method": "GET",
+          "user_agent": "Mozilla/5.0",
+          "checked_at_utc": "2026-10-05T20:14:12.701389+00:00",
+          "redirect_chain": [
+            {
+              "url": "https://github.com/openai/codex/commit/42312d4ff4e258c1dfa43db9a9c59eed943c98de.diff",
+              "status": 200
+            }
+          ],
+          "status": 200,
+          "final_url": "https://github.com/openai/codex/commit/42312d4ff4e258c1dfa43db9a9c59eed943c98de.diff"
+        }
+      ],
+      "head_status": 200,
+      "head_final_url": "https://github.com/openai/codex/commit/42312d4ff4e258c1dfa43db9a9c59eed943c98de.diff",
+      "get_status": 200,
+      "get_final_url": "https://github.com/openai/codex/commit/42312d4ff4e258c1dfa43db9a9c59eed943c98de.diff",
+      "final_url": "https://github.com/openai/codex/commit/42312d4ff4e258c1dfa43db9a9c59eed943c98de.diff",
+      "sha256": "7dc44e8371598d3a0cc695024d68cfe4a32d283556bdd60a164cd7d3153f64af",
+      "body_sha256": "7dc44e8371598d3a0cc695024d68cfe4a32d283556bdd60a164cd7d3153f64af",
+      "evidence_tier": "static_source_read_not_product_execution"
+    },
+    {
+      "id": "E2",
+      "label": "Codex stable rust-v0.160.1 turn.rs tag source",
+      "url": "https://raw.githubusercontent.com/openai/codex/rust-v0.160.1/codex-rs/core/src/session/turn.rs",
+      "status": "sourceREAD_NOT_RUN; validate_required_skills_count=0",
+      "requested_url": "https://raw.githubusercontent.com/openai/codex/rust-v0.160.1/codex-rs/core/src/session/turn.rs",
+      "checked_at_utc": "2026-10-05T20:14:12.237528+00:00",
+      "method": "HEAD then GET",
+      "requests": [
+        {
+          "method": "HEAD",
+          "user_agent": "Python-urllib/3",
+          "checked_at_utc": "2026-10-05T20:14:12.527149+00:00",
+          "redirect_chain": [
+            {
+              "url": "https://raw.githubusercontent.com/openai/codex/rust-v0.160.1/codex-rs/core/src/session/turn.rs",
+              "status": 200
+            }
+          ],
+          "status": 200,
+          "final_url": "https://raw.githubusercontent.com/openai/codex/rust-v0.160.1/codex-rs/core/src/session/turn.rs"
+        },
+        {
+          "method": "GET",
+          "user_agent": "Mozilla/5.0",
+          "checked_at_utc": "2026-10-05T20:14:12.549567+00:00",
+          "redirect_chain": [
+            {
+              "url": "https://raw.githubusercontent.com/openai/codex/rust-v0.160.1/codex-rs/core/src/session/turn.rs",
+              "status": 200
+            }
+          ],
+          "status": 200,
+          "final_url": "https://raw.githubusercontent.com/openai/codex/rust-v0.160.1/codex-rs/core/src/session/turn.rs"
+        }
+      ],
+      "head_status": 200,
+      "head_final_url": "https://raw.githubusercontent.com/openai/codex/rust-v0.160.1/codex-rs/core/src/session/turn.rs",
+      "get_status": 200,
+      "get_final_url": "https://raw.githubusercontent.com/openai/codex/rust-v0.160.1/codex-rs/core/src/session/turn.rs",
+      "final_url": "https://raw.githubusercontent.com/openai/codex/rust-v0.160.1/codex-rs/core/src/session/turn.rs",
+      "sha256": "8c27407110003a384cc7a9f85985d83ff824378f1feb22e7e5c19d927d77ca1d",
+      "body_sha256": "8c27407110003a384cc7a9f85985d83ff824378f1feb22e7e5c19d927d77ca1d",
+      "evidence_tier": "static_source_read_not_product_execution",
+      "validate_required_skills_count": 0
+    },
+    {
+      "id": "E3",
+      "label": "Codex alpha rust-v0.162.0-alpha.15 turn.rs tag source",
+      "url": "https://raw.githubusercontent.com/openai/codex/rust-v0.162.0-alpha.15/codex-rs/core/src/session/turn.rs",
+      "status": "sourceREAD_NOT_RUN; validate_required_skills_count=0",
+      "requested_url": "https://raw.githubusercontent.com/openai/codex/rust-v0.162.0-alpha.15/codex-rs/core/src/session/turn.rs",
+      "checked_at_utc": "2026-10-05T20:14:12.238407+00:00",
+      "method": "HEAD then GET",
+      "requests": [
+        {
+          "method": "HEAD",
+          "user_agent": "Python-urllib/3",
+          "checked_at_utc": "2026-10-05T20:14:12.528473+00:00",
+          "redirect_chain": [
+            {
+              "url": "https://raw.githubusercontent.com/openai/codex/rust-v0.162.0-alpha.15/codex-rs/core/src/session/turn.rs",
+              "status": 200
+            }
+          ],
+          "status": 200,
+          "final_url": "https://raw.githubusercontent.com/openai/codex/rust-v0.162.0-alpha.15/codex-rs/core/src/session/turn.rs"
+        },
+        {
+          "method": "GET",
+          "user_agent": "Mozilla/5.0",
+          "checked_at_utc": "2026-10-05T20:14:12.552605+00:00",
+          "redirect_chain": [
+            {
+              "url": "https://raw.githubusercontent.com/openai/codex/rust-v0.162.0-alpha.15/codex-rs/core/src/session/turn.rs",
+              "status": 200
+            }
+          ],
+          "status": 200,
+          "final_url": "https://raw.githubusercontent.com/openai/codex/rust-v0.162.0-alpha.15/codex-rs/core/src/session/turn.rs"
+        }
+      ],
+      "head_status": 200,
+      "head_final_url": "https://raw.githubusercontent.com/openai/codex/rust-v0.162.0-alpha.15/codex-rs/core/src/session/turn.rs",
+      "get_status": 200,
+      "get_final_url": "https://raw.githubusercontent.com/openai/codex/rust-v0.162.0-alpha.15/codex-rs/core/src/session/turn.rs",
+      "final_url": "https://raw.githubusercontent.com/openai/codex/rust-v0.162.0-alpha.15/codex-rs/core/src/session/turn.rs",
+      "sha256": "7da5a7bbbd20627c8025ab46e962f0883d55069eb320eaaa79be20441e150e5b",
+      "body_sha256": "7da5a7bbbd20627c8025ab46e962f0883d55069eb320eaaa79be20441e150e5b",
+      "evidence_tier": "static_source_read_not_product_execution",
+      "validate_required_skills_count": 0
+    },
+    {
+      "id": "E4",
+      "label": "npm @openai/codex registry",
+      "url": "https://registry.npmjs.org/@openai%2fcodex",
+      "status": "sourceREAD_NOT_RUN; latest=0.160.1 alpha=0.162.0-alpha.15",
+      "requested_url": "https://registry.npmjs.org/@openai%2fcodex",
+      "checked_at_utc": "2026-10-05T20:14:12.241513+00:00",
+      "method": "HEAD then GET",
+      "requests": [
+        {
+          "method": "HEAD",
+          "user_agent": "Python-urllib/3",
+          "checked_at_utc": "2026-10-05T20:14:12.305717+00:00",
+          "redirect_chain": [
+            {
+              "url": "https://registry.npmjs.org/@openai%2fcodex",
+              "status": 200
+            }
+          ],
+          "status": 200,
+          "final_url": "https://registry.npmjs.org/@openai%2fcodex"
+        },
+        {
+          "method": "GET",
+          "user_agent": "Mozilla/5.0",
+          "checked_at_utc": "2026-10-05T20:14:12.434463+00:00",
+          "redirect_chain": [
+            {
+              "url": "https://registry.npmjs.org/@openai%2fcodex",
+              "status": 200
+            }
+          ],
+          "status": 200,
+          "final_url": "https://registry.npmjs.org/@openai%2fcodex"
+        }
+      ],
+      "head_status": 200,
+      "head_final_url": "https://registry.npmjs.org/@openai%2fcodex",
+      "get_status": 200,
+      "get_final_url": "https://registry.npmjs.org/@openai%2fcodex",
+      "final_url": "https://registry.npmjs.org/@openai%2fcodex",
+      "sha256": "57a5aa4b13f7677afebaa8af02262aed9269b5de8b0bff7e82ca57d2df61aabd",
+      "body_sha256": "57a5aa4b13f7677afebaa8af02262aed9269b5de8b0bff7e82ca57d2df61aabd",
+      "evidence_tier": "static_source_read_not_product_execution",
+      "dist_tags": {
+        "beta": "0.1.2505172116",
+        "native": "0.1.2505291658",
+        "release-0.159.0-alpha.12.1-alpha-linux-x64": "0.159.0-alpha.12.1-linux-x64",
+        "release-0.159.0-alpha.12.1-alpha-darwin-x64": "0.159.0-alpha.12.1-darwin-x64",
+        "release-0.159.0-alpha.12.1-alpha-darwin-arm64": "0.159.0-alpha.12.1-darwin-arm64",
+        "release-0.159.0-alpha.12.1-alpha-win32-arm64": "0.159.0-alpha.12.1-win32-arm64",
+        "release-0.159.0-alpha.12.1-alpha": "0.159.0-alpha.12.1",
+        "release-0.159.0-alpha.12.1-alpha-linux-arm64": "0.159.0-alpha.12.1-linux-arm64",
+        "release-0.159.0-alpha.12.1-alpha-win32-x64": "0.159.0-alpha.12.1-win32-x64",
+        "darwin-arm64": "0.160.1-darwin-arm64",
+        "alpha": "0.162.0-alpha.15",
+        "alpha-linux-x64": "0.162.0-alpha.15-linux-x64",
+        "alpha-darwin-x64": "0.162.0-alpha.15-darwin-x64",
+        "alpha-linux-arm64": "0.162.0-alpha.15-linux-arm64",
+        "alpha-darwin-arm64": "0.162.0-alpha.15-darwin-arm64",
+        "alpha-win32-x64": "0.162.0-alpha.15-win32-x64",
+        "alpha-win32-arm64": "0.162.0-alpha.15-win32-arm64",
+        "latest": "0.160.1",
+        "linux-x64": "0.160.1-linux-x64",
+        "win32-x64": "0.160.1-win32-x64",
+        "darwin-x64": "0.160.1-darwin-x64",
+        "linux-arm64": "0.160.1-linux-arm64",
+        "win32-arm64": "0.160.1-win32-arm64"
+      }
+    },
+    {
+      "id": "E5",
+      "label": "npm @anthropic-ai/claude-code registry",
+      "url": "https://registry.npmjs.org/@anthropic-ai%2fclaude-code",
+      "status": "sourceREAD_NOT_RUN; stable=2.1.285 latest=2.1.289 next=2.1.290",
+      "requested_url": "https://registry.npmjs.org/@anthropic-ai%2fclaude-code",
+      "checked_at_utc": "2026-10-05T20:14:12.245499+00:00",
+      "method": "HEAD then GET",
+      "requests": [
+        {
+          "method": "HEAD",
+          "user_agent": "Python-urllib/3",
+          "checked_at_utc": "2026-10-05T20:14:12.308650+00:00",
+          "redirect_chain": [
+            {
+              "url": "https://registry.npmjs.org/@anthropic-ai%2fclaude-code",
+              "status": 200
+            }
+          ],
+          "status": 200,
+          "final_url": "https://registry.npmjs.org/@anthropic-ai%2fclaude-code"
+        },
+        {
+          "method": "GET",
+          "user_agent": "Mozilla/5.0",
+          "checked_at_utc": "2026-10-05T20:14:12.363699+00:00",
+          "redirect_chain": [
+            {
+              "url": "https://registry.npmjs.org/@anthropic-ai%2fclaude-code",
+              "status": 200
+            }
+          ],
+          "status": 200,
+          "final_url": "https://registry.npmjs.org/@anthropic-ai%2fclaude-code"
+        }
+      ],
+      "head_status": 200,
+      "head_final_url": "https://registry.npmjs.org/@anthropic-ai%2fclaude-code",
+      "get_status": 200,
+      "get_final_url": "https://registry.npmjs.org/@anthropic-ai%2fclaude-code",
+      "final_url": "https://registry.npmjs.org/@anthropic-ai%2fclaude-code",
+      "sha256": "94f969f768b54d934e49242c5eab039db572d9e5a56e2a25bd7a9a155014e8c2",
+      "body_sha256": "94f969f768b54d934e49242c5eab039db572d9e5a56e2a25bd7a9a155014e8c2",
+      "evidence_tier": "static_source_read_not_product_execution",
+      "dist_tags": {
+        "stable": "2.1.285",
+        "next": "2.1.290",
+        "latest": "2.1.289"
+      }
+    },
+    {
+      "id": "E6",
+      "label": "Claude Code pinned CHANGELOG at 2bfb629",
+      "url": "https://raw.githubusercontent.com/anthropics/claude-code/2bfb629dfaff0c8318047a4beb93cf1dc5b58b18/CHANGELOG.md",
+      "status": "sourceREAD_NOT_RUN; first heading 2.1.289",
+      "requested_url": "https://raw.githubusercontent.com/anthropics/claude-code/2bfb629dfaff0c8318047a4beb93cf1dc5b58b18/CHANGELOG.md",
+      "checked_at_utc": "2026-10-05T20:14:12.247638+00:00",
+      "method": "HEAD then GET",
+      "requests": [
+        {
+          "method": "HEAD",
+          "user_agent": "Python-urllib/3",
+          "checked_at_utc": "2026-10-05T20:14:12.521170+00:00",
+          "redirect_chain": [
+            {
+              "url": "https://raw.githubusercontent.com/anthropics/claude-code/2bfb629dfaff0c8318047a4beb93cf1dc5b58b18/CHANGELOG.md",
+              "status": 200
+            }
+          ],
+          "status": 200,
+          "final_url": "https://raw.githubusercontent.com/anthropics/claude-code/2bfb629dfaff0c8318047a4beb93cf1dc5b58b18/CHANGELOG.md"
+        },
+        {
+          "method": "GET",
+          "user_agent": "Mozilla/5.0",
+          "checked_at_utc": "2026-10-05T20:14:12.548451+00:00",
+          "redirect_chain": [
+            {
+              "url": "https://raw.githubusercontent.com/anthropics/claude-code/2bfb629dfaff0c8318047a4beb93cf1dc5b58b18/CHANGELOG.md",
+              "status": 200
+            }
+          ],
+          "status": 200,
+          "final_url": "https://raw.githubusercontent.com/anthropics/claude-code/2bfb629dfaff0c8318047a4beb93cf1dc5b58b18/CHANGELOG.md"
+        }
+      ],
+      "head_status": 200,
+      "head_final_url": "https://raw.githubusercontent.com/anthropics/claude-code/2bfb629dfaff0c8318047a4beb93cf1dc5b58b18/CHANGELOG.md",
+      "get_status": 200,
+      "get_final_url": "https://raw.githubusercontent.com/anthropics/claude-code/2bfb629dfaff0c8318047a4beb93cf1dc5b58b18/CHANGELOG.md",
+      "final_url": "https://raw.githubusercontent.com/anthropics/claude-code/2bfb629dfaff0c8318047a4beb93cf1dc5b58b18/CHANGELOG.md",
+      "sha256": "c3b0831a2102d8d4800a2eb00c2a0d3095378d57d690e0ed1e8e3c386299f5e7",
+      "body_sha256": "c3b0831a2102d8d4800a2eb00c2a0d3095378d57d690e0ed1e8e3c386299f5e7",
+      "evidence_tier": "static_source_read_not_product_execution"
+    },
+    {
+      "id": "E7",
+      "label": "OpenAI skills docs requested URL → ChatGPT Learn Build skills",
+      "url": "https://developers.openai.com/codex/skills",
+      "status": "OLD_SOURCE_SENTINEL sourceREAD_NOT_RUN",
+      "requested_url": "https://developers.openai.com/codex/skills",
+      "checked_at_utc": "2026-10-05T20:14:12.253498+00:00",
+      "method": "HEAD then GET",
+      "requests": [
+        {
+          "method": "HEAD",
+          "user_agent": "Python-urllib/3",
+          "checked_at_utc": "2026-10-05T20:14:12.945841+00:00",
+          "redirect_chain": [
+            {
+              "url": "https://developers.openai.com/codex/skills",
+              "status": 308,
+              "location": "https://learn.chatgpt.com/docs/build-skills"
+            },
+            {
+              "url": "https://learn.chatgpt.com/docs/build-skills",
+              "status": 200
+            }
+          ],
+          "status": 200,
+          "final_url": "https://learn.chatgpt.com/docs/build-skills"
+        },
+        {
+          "method": "GET",
+          "user_agent": "Mozilla/5.0",
+          "checked_at_utc": "2026-10-05T20:14:13.158814+00:00",
+          "redirect_chain": [
+            {
+              "url": "https://developers.openai.com/codex/skills",
+              "status": 308,
+              "location": "https://learn.chatgpt.com/docs/build-skills"
+            },
+            {
+              "url": "https://learn.chatgpt.com/docs/build-skills",
+              "status": 200
+            }
+          ],
+          "status": 200,
+          "final_url": "https://learn.chatgpt.com/docs/build-skills"
+        }
+      ],
+      "head_status": 200,
+      "head_final_url": "https://learn.chatgpt.com/docs/build-skills",
+      "get_status": 200,
+      "get_final_url": "https://learn.chatgpt.com/docs/build-skills",
+      "final_url": "https://learn.chatgpt.com/docs/build-skills",
+      "sha256": "20b17238ff3b1910302e8eb5e32f5e637292c949fc9d3f5408cce9f57e552843",
+      "body_sha256": "20b17238ff3b1910302e8eb5e32f5e637292c949fc9d3f5408cce9f57e552843",
+      "evidence_tier": "static_source_read_not_product_execution",
+      "novelty": "OLD_SOURCE_SENTINEL",
+      "release_support": false,
+      "sentinel": {
+        "field": "html_title",
+        "value": "Build skills | ChatGPT Learn",
+        "scope": "live_document_snapshot_not_build_local_version_contract"
+      }
+    },
+    {
+      "id": "E8",
+      "label": "OpenAI Cookbook index (trailing slash redirected)",
+      "url": "https://developers.openai.com/cookbook/",
+      "status": "OLD_SOURCE_SENTINEL sourceREAD_NOT_RUN",
+      "requested_url": "https://developers.openai.com/cookbook/",
+      "checked_at_utc": "2026-10-05T20:14:12.257524+00:00",
+      "method": "HEAD then GET",
+      "requests": [
+        {
+          "method": "HEAD",
+          "user_agent": "Python-urllib/3",
+          "checked_at_utc": "2026-10-05T20:14:12.506008+00:00",
+          "redirect_chain": [
+            {
+              "url": "https://developers.openai.com/cookbook/",
+              "status": 308,
+              "location": "https://developers.openai.com/cookbook"
+            },
+            {
+              "url": "https://developers.openai.com/cookbook",
+              "status": 200
+            }
+          ],
+          "status": 200,
+          "final_url": "https://developers.openai.com/cookbook"
+        },
+        {
+          "method": "GET",
+          "user_agent": "Mozilla/5.0",
+          "checked_at_utc": "2026-10-05T20:14:12.669313+00:00",
+          "redirect_chain": [
+            {
+              "url": "https://developers.openai.com/cookbook/",
+              "status": 308,
+              "location": "https://developers.openai.com/cookbook"
+            },
+            {
+              "url": "https://developers.openai.com/cookbook",
+              "status": 200
+            }
+          ],
+          "status": 200,
+          "final_url": "https://developers.openai.com/cookbook"
+        }
+      ],
+      "head_status": 200,
+      "head_final_url": "https://developers.openai.com/cookbook",
+      "get_status": 200,
+      "get_final_url": "https://developers.openai.com/cookbook",
+      "final_url": "https://developers.openai.com/cookbook",
+      "sha256": "19d38df3a8b07a1d8476e5073896c5cc43855e4cb27daf5c71beb097df975f10",
+      "body_sha256": "19d38df3a8b07a1d8476e5073896c5cc43855e4cb27daf5c71beb097df975f10",
+      "evidence_tier": "static_source_read_not_product_execution",
+      "novelty": "OLD_SOURCE_SENTINEL",
+      "release_support": false,
+      "sentinel": {
+        "field": "html_title",
+        "value": "Cookbook",
+        "scope": "live_document_snapshot_not_build_local_version_contract"
+      }
+    },
+    {
+      "id": "E9",
+      "label": "Claude mods reference",
+      "url": "https://code.claude.com/docs/en/plugins/mods/reference.md",
+      "status": "OLD_SOURCE_SENTINEL sourceREAD_NOT_RUN",
+      "requested_url": "https://code.claude.com/docs/en/plugins/mods/reference.md",
+      "checked_at_utc": "2026-10-05T20:14:12.363830+00:00",
+      "method": "HEAD then GET",
+      "requests": [
+        {
+          "method": "HEAD",
+          "user_agent": "Python-urllib/3",
+          "checked_at_utc": "2026-10-05T20:14:12.569035+00:00",
+          "redirect_chain": [
+            {
+              "url": "https://code.claude.com/docs/en/plugins/mods/reference.md",
+              "status": 403
+            }
+          ],
+          "status": 403,
+          "final_url": "https://code.claude.com/docs/en/plugins/mods/reference.md"
+        },
+        {
+          "method": "GET",
+          "user_agent": "Mozilla/5.0",
+          "checked_at_utc": "2026-10-05T20:14:12.870396+00:00",
+          "redirect_chain": [
+            {
+              "url": "https://code.claude.com/docs/en/plugins/mods/reference.md",
+              "status": 200
+            }
+          ],
+          "status": 200,
+          "final_url": "https://code.claude.com/docs/en/plugins/mods/reference.md"
+        }
+      ],
+      "head_status": 403,
+      "head_final_url": "https://code.claude.com/docs/en/plugins/mods/reference.md",
+      "get_status": 200,
+      "get_final_url": "https://code.claude.com/docs/en/plugins/mods/reference.md",
+      "final_url": "https://code.claude.com/docs/en/plugins/mods/reference.md",
+      "sha256": "da4f6d5fb2164519e2a9ca0dab3c4a6fa241acc18e184797cd238a6d90bfd295",
+      "body_sha256": "da4f6d5fb2164519e2a9ca0dab3c4a6fa241acc18e184797cd238a6d90bfd295",
+      "evidence_tier": "static_source_read_not_product_execution",
+      "novelty": "OLD_SOURCE_SENTINEL",
+      "release_support": false,
+      "sentinel": {
+        "field": "markdown_h1",
+        "value": "Mods reference",
+        "scope": "live_document_snapshot_not_build_local_version_contract",
+        "explicit_version_text": "as of v2.1.289"
+      }
+    },
+    {
+      "id": "E10",
+      "label": "Anthropic engineering index",
+      "url": "https://www.anthropic.com/engineering",
+      "status": "OLD_SOURCE_SENTINEL sourceREAD_NOT_RUN",
+      "requested_url": "https://www.anthropic.com/engineering",
+      "checked_at_utc": "2026-10-05T20:14:12.435377+00:00",
+      "method": "HEAD then GET",
+      "requests": [
+        {
+          "method": "HEAD",
+          "user_agent": "Python-urllib/3",
+          "checked_at_utc": "2026-10-05T20:14:12.622460+00:00",
+          "redirect_chain": [
+            {
+              "url": "https://www.anthropic.com/engineering",
+              "status": 403
+            }
+          ],
+          "status": 403,
+          "final_url": "https://www.anthropic.com/engineering"
+        },
+        {
+          "method": "GET",
+          "user_agent": "Mozilla/5.0",
+          "checked_at_utc": "2026-10-05T20:14:12.973566+00:00",
+          "redirect_chain": [
+            {
+              "url": "https://www.anthropic.com/engineering",
+              "status": 200
+            }
+          ],
+          "status": 200,
+          "final_url": "https://www.anthropic.com/engineering"
+        }
+      ],
+      "head_status": 403,
+      "head_final_url": "https://www.anthropic.com/engineering",
+      "get_status": 200,
+      "get_final_url": "https://www.anthropic.com/engineering",
+      "final_url": "https://www.anthropic.com/engineering",
+      "sha256": "9b1ae81c9429db4f6ca8e312faa3dfdb578a87df0a6c12c01f1e7cb4fe679c0f",
+      "body_sha256": "9b1ae81c9429db4f6ca8e312faa3dfdb578a87df0a6c12c01f1e7cb4fe679c0f",
+      "evidence_tier": "static_source_read_not_product_execution",
+      "novelty": "OLD_SOURCE_SENTINEL",
+      "release_support": false,
+      "sentinel": {
+        "field": "html_title",
+        "value": "Engineering \\ Anthropic",
+        "scope": "live_document_snapshot_not_build_local_version_contract"
+      }
+    },
+    {
+      "id": "E11",
+      "label": "codex-rs/core/src/session/turn.rs",
+      "url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/core/src/session/turn.rs",
+      "status": "sourceREAD_NOT_RUN",
+      "requested_url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/core/src/session/turn.rs",
+      "checked_at_utc": "2026-10-05T20:14:12.548504+00:00",
+      "method": "HEAD then GET",
+      "requests": [
+        {
+          "method": "HEAD",
+          "user_agent": "Python-urllib/3",
+          "checked_at_utc": "2026-10-05T20:14:12.792849+00:00",
+          "redirect_chain": [
+            {
+              "url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/core/src/session/turn.rs",
+              "status": 200
+            }
+          ],
+          "status": 200,
+          "final_url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/core/src/session/turn.rs"
+        },
+        {
+          "method": "GET",
+          "user_agent": "Mozilla/5.0",
+          "checked_at_utc": "2026-10-05T20:14:12.809782+00:00",
+          "redirect_chain": [
+            {
+              "url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/core/src/session/turn.rs",
+              "status": 200
+            }
+          ],
+          "status": 200,
+          "final_url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/core/src/session/turn.rs"
+        }
+      ],
+      "head_status": 200,
+      "head_final_url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/core/src/session/turn.rs",
+      "get_status": 200,
+      "get_final_url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/core/src/session/turn.rs",
+      "final_url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/core/src/session/turn.rs",
+      "sha256": "9d996100291f200249261154484274101f119fbaebab99af732223c9faf67c67",
+      "body_sha256": "9d996100291f200249261154484274101f119fbaebab99af732223c9faf67c67",
+      "evidence_tier": "static_source_read_not_product_execution"
+    },
+    {
+      "id": "E12",
+      "label": "codex-rs/ext/skills/src/required.rs",
+      "url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/ext/skills/src/required.rs",
+      "status": "sourceREAD_NOT_RUN",
+      "requested_url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/ext/skills/src/required.rs",
+      "checked_at_utc": "2026-10-05T20:14:12.549617+00:00",
+      "method": "HEAD then GET",
+      "requests": [
+        {
+          "method": "HEAD",
+          "user_agent": "Python-urllib/3",
+          "checked_at_utc": "2026-10-05T20:14:12.852673+00:00",
+          "redirect_chain": [
+            {
+              "url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/ext/skills/src/required.rs",
+              "status": 200
+            }
+          ],
+          "status": 200,
+          "final_url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/ext/skills/src/required.rs"
+        },
+        {
+          "method": "GET",
+          "user_agent": "Mozilla/5.0",
+          "checked_at_utc": "2026-10-05T20:14:12.866845+00:00",
+          "redirect_chain": [
+            {
+              "url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/ext/skills/src/required.rs",
+              "status": 200
+            }
+          ],
+          "status": 200,
+          "final_url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/ext/skills/src/required.rs"
+        }
+      ],
+      "head_status": 200,
+      "head_final_url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/ext/skills/src/required.rs",
+      "get_status": 200,
+      "get_final_url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/ext/skills/src/required.rs",
+      "final_url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/ext/skills/src/required.rs",
+      "sha256": "a6e4cd2f46048113b4c160d4e0a8556412fa653204c30c7979be42c7129279ff",
+      "body_sha256": "a6e4cd2f46048113b4c160d4e0a8556412fa653204c30c7979be42c7129279ff",
+      "evidence_tier": "static_source_read_not_product_execution"
+    },
+    {
+      "id": "E13",
+      "label": "codex-rs/core/tests/suite/remote_env_required_skills_tests.rs",
+      "url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/core/tests/suite/remote_env_required_skills_tests.rs",
+      "status": "sourceREAD_NOT_RUN",
+      "requested_url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/core/tests/suite/remote_env_required_skills_tests.rs",
+      "checked_at_utc": "2026-10-05T20:14:12.552655+00:00",
+      "method": "HEAD then GET",
+      "requests": [
+        {
+          "method": "HEAD",
+          "user_agent": "Python-urllib/3",
+          "checked_at_utc": "2026-10-05T20:14:12.865508+00:00",
+          "redirect_chain": [
+            {
+              "url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/core/tests/suite/remote_env_required_skills_tests.rs",
+              "status": 200
+            }
+          ],
+          "status": 200,
+          "final_url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/core/tests/suite/remote_env_required_skills_tests.rs"
+        },
+        {
+          "method": "GET",
+          "user_agent": "Mozilla/5.0",
+          "checked_at_utc": "2026-10-05T20:14:12.883807+00:00",
+          "redirect_chain": [
+            {
+              "url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/core/tests/suite/remote_env_required_skills_tests.rs",
+              "status": 200
+            }
+          ],
+          "status": 200,
+          "final_url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/core/tests/suite/remote_env_required_skills_tests.rs"
+        }
+      ],
+      "head_status": 200,
+      "head_final_url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/core/tests/suite/remote_env_required_skills_tests.rs",
+      "get_status": 200,
+      "get_final_url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/core/tests/suite/remote_env_required_skills_tests.rs",
+      "final_url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/core/tests/suite/remote_env_required_skills_tests.rs",
+      "sha256": "d28ac4d0aea44daf8080ef07cca32c39156df13b11064c7913343bb0012c1241",
+      "body_sha256": "d28ac4d0aea44daf8080ef07cca32c39156df13b11064c7913343bb0012c1241",
+      "evidence_tier": "static_source_read_not_product_execution"
+    },
+    {
+      "id": "E14",
+      "label": "codex-rs/core/src/compact.rs",
+      "url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/core/src/compact.rs",
+      "status": "sourceREAD_NOT_RUN",
+      "requested_url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/core/src/compact.rs",
+      "checked_at_utc": "2026-10-05T20:14:12.669358+00:00",
+      "method": "HEAD then GET",
+      "requests": [
+        {
+          "method": "HEAD",
+          "user_agent": "Python-urllib/3",
+          "checked_at_utc": "2026-10-05T20:14:12.684606+00:00",
+          "redirect_chain": [
+            {
+              "url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/core/src/compact.rs",
+              "status": 200
+            }
+          ],
+          "status": 200,
+          "final_url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/core/src/compact.rs"
+        },
+        {
+          "method": "GET",
+          "user_agent": "Mozilla/5.0",
+          "checked_at_utc": "2026-10-05T20:14:12.702763+00:00",
+          "redirect_chain": [
+            {
+              "url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/core/src/compact.rs",
+              "status": 200
+            }
+          ],
+          "status": 200,
+          "final_url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/core/src/compact.rs"
+        }
+      ],
+      "head_status": 200,
+      "head_final_url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/core/src/compact.rs",
+      "get_status": 200,
+      "get_final_url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/core/src/compact.rs",
+      "final_url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/core/src/compact.rs",
+      "sha256": "189f54bb68ce31fc220aba43e803bece76ce6e1559a5420072c4163b2d0ef88b",
+      "body_sha256": "189f54bb68ce31fc220aba43e803bece76ce6e1559a5420072c4163b2d0ef88b",
+      "evidence_tier": "static_source_read_not_product_execution"
+    },
+    {
+      "id": "E16",
+      "label": "codex-rs/protocol/src/protocol.rs",
+      "url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/protocol/src/protocol.rs",
+      "status": "sourceREAD_NOT_RUN",
+      "requested_url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/protocol/src/protocol.rs",
+      "checked_at_utc": "2026-10-05T20:14:12.702811+00:00",
+      "method": "HEAD then GET",
+      "requests": [
+        {
+          "method": "HEAD",
+          "user_agent": "Python-urllib/3",
+          "checked_at_utc": "2026-10-05T20:14:13.114991+00:00",
+          "redirect_chain": [
+            {
+              "url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/protocol/src/protocol.rs",
+              "status": 200
+            }
+          ],
+          "status": 200,
+          "final_url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/protocol/src/protocol.rs"
+        },
+        {
+          "method": "GET",
+          "user_agent": "Mozilla/5.0",
+          "checked_at_utc": "2026-10-05T20:14:13.135544+00:00",
+          "redirect_chain": [
+            {
+              "url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/protocol/src/protocol.rs",
+              "status": 200
+            }
+          ],
+          "status": 200,
+          "final_url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/protocol/src/protocol.rs"
+        }
+      ],
+      "head_status": 200,
+      "head_final_url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/protocol/src/protocol.rs",
+      "get_status": 200,
+      "get_final_url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/protocol/src/protocol.rs",
+      "final_url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/protocol/src/protocol.rs",
+      "sha256": "5c7c2282986a9eff6548223f0bae661a686f2bb083acb433603b26e0ca5c4df8",
+      "body_sha256": "5c7c2282986a9eff6548223f0bae661a686f2bb083acb433603b26e0ca5c4df8",
+      "evidence_tier": "static_source_read_not_product_execution"
+    },
+    {
+      "id": "E17",
+      "label": "codex-rs/core/src/guardian/mod.rs",
+      "url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/core/src/guardian/mod.rs",
+      "status": "sourceREAD_NOT_RUN",
+      "requested_url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/core/src/guardian/mod.rs",
+      "checked_at_utc": "2026-10-05T20:14:35.053750+00:00",
+      "method": "HEAD then GET",
+      "requests": [
+        {
+          "method": "HEAD",
+          "user_agent": "Python-urllib/3",
+          "checked_at_utc": "2026-10-05T20:14:35.069824+00:00",
+          "redirect_chain": [
+            {
+              "url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/core/src/guardian/mod.rs",
+              "status": 200
+            }
+          ],
+          "status": 200,
+          "final_url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/core/src/guardian/mod.rs"
+        },
+        {
+          "method": "GET",
+          "user_agent": "Mozilla/5.0",
+          "checked_at_utc": "2026-10-05T20:14:35.088998+00:00",
+          "redirect_chain": [
+            {
+              "url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/core/src/guardian/mod.rs",
+              "status": 200
+            }
+          ],
+          "status": 200,
+          "final_url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/core/src/guardian/mod.rs"
+        }
+      ],
+      "head_status": 200,
+      "head_final_url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/core/src/guardian/mod.rs",
+      "get_status": 200,
+      "get_final_url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/core/src/guardian/mod.rs",
+      "final_url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/core/src/guardian/mod.rs",
+      "sha256": "444d1d4f0aad87df3c0064bd15c8f17fb785a118df82acad6e24ec4b13d7c056",
+      "body_sha256": "444d1d4f0aad87df3c0064bd15c8f17fb785a118df82acad6e24ec4b13d7c056",
+      "evidence_tier": "static_source_read_not_product_execution"
+    },
+    {
+      "id": "E19",
+      "label": "codex-rs/core/src/guardian/review.rs",
+      "url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/core/src/guardian/review.rs",
+      "status": "sourceREAD_NOT_RUN",
+      "requested_url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/core/src/guardian/review.rs",
+      "checked_at_utc": "2026-10-05T20:15:01.168423+00:00",
+      "method": "HEAD then GET",
+      "requests": [
+        {
+          "method": "HEAD",
+          "user_agent": "Python-urllib/3",
+          "checked_at_utc": "2026-10-05T20:15:01.452535+00:00",
+          "redirect_chain": [
+            {
+              "url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/core/src/guardian/review.rs",
+              "status": 200
+            }
+          ],
+          "status": 200,
+          "final_url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/core/src/guardian/review.rs"
+        },
+        {
+          "method": "GET",
+          "user_agent": "Mozilla/5.0",
+          "checked_at_utc": "2026-10-05T20:15:01.468238+00:00",
+          "redirect_chain": [
+            {
+              "url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/core/src/guardian/review.rs",
+              "status": 200
+            }
+          ],
+          "status": 200,
+          "final_url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/core/src/guardian/review.rs"
+        }
+      ],
+      "head_status": 200,
+      "head_final_url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/core/src/guardian/review.rs",
+      "get_status": 200,
+      "get_final_url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/core/src/guardian/review.rs",
+      "final_url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/core/src/guardian/review.rs",
+      "sha256": "b5d68510e01286788f7f75e4aa202e5d9c7278379907f24ea0230d7c75763627",
+      "body_sha256": "b5d68510e01286788f7f75e4aa202e5d9c7278379907f24ea0230d7c75763627",
+      "evidence_tier": "static_source_read_not_product_execution"
+    },
+    {
+      "id": "E20",
+      "label": "codex-rs/core/src/environment_selection.rs",
+      "url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/core/src/environment_selection.rs",
+      "status": "sourceREAD_NOT_RUN",
+      "requested_url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/core/src/environment_selection.rs",
+      "checked_at_utc": "2026-10-05T20:15:01.468278+00:00",
+      "method": "HEAD then GET",
+      "requests": [
+        {
+          "method": "HEAD",
+          "user_agent": "Python-urllib/3",
+          "checked_at_utc": "2026-10-05T20:15:01.867583+00:00",
+          "redirect_chain": [
+            {
+              "url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/core/src/environment_selection.rs",
+              "status": 200
+            }
+          ],
+          "status": 200,
+          "final_url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/core/src/environment_selection.rs"
+        },
+        {
+          "method": "GET",
+          "user_agent": "Mozilla/5.0",
+          "checked_at_utc": "2026-10-05T20:15:01.883268+00:00",
+          "redirect_chain": [
+            {
+              "url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/core/src/environment_selection.rs",
+              "status": 200
+            }
+          ],
+          "status": 200,
+          "final_url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/core/src/environment_selection.rs"
+        }
+      ],
+      "head_status": 200,
+      "head_final_url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/core/src/environment_selection.rs",
+      "get_status": 200,
+      "get_final_url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/core/src/environment_selection.rs",
+      "final_url": "https://raw.githubusercontent.com/openai/codex/42312d4ff4e258c1dfa43db9a9c59eed943c98de/codex-rs/core/src/environment_selection.rs",
+      "sha256": "788ffe3d15aee724347e4e44b582a7ee204fd57d942643ecf441df65204cd9dd",
+      "body_sha256": "788ffe3d15aee724347e4e44b582a7ee204fd57d942643ecf441df65204cd9dd",
+      "evidence_tier": "static_source_read_not_product_execution"
+    }
+  ],
+  "gates": {
+    "product_execution": "NO_GO_NOT_RUN",
+    "release_claim": "NO_GO_RELEASE_SUPPORT_NOT_ESTABLISHED"
+  },
+  "integrity": {
+    "direction": "Markdown -> claims.json -> fetched body hashes",
+    "claims_does_not_hash_markdown": true
+  },
+  "non_claims": [
+    "未执行上游/安装/测试/包字节核验",
+    "未把required目录命中当正文执行或组织强制",
+    "未声称Claude 2.1.290功能"
+  ],
+  "source_trace": [
+    {
+      "evidence_id": "E11",
+      "file": "codex-rs/core/src/session/turn.rs",
+      "ranges": {
+        "pre_turn_compaction": "172-190",
+        "required_gate": "500-519",
+        "normal_sampling": "535-544",
+        "pre_sampling_threshold": "1309-1336",
+        "previous_model_conditions": "1341-1368",
+        "provider_compaction_dispatch": "1482-1514"
+      }
+    },
+    {
+      "evidence_id": "E12",
+      "file": "codex-rs/ext/skills/src/required.rs",
+      "ranges": {
+        "empty_requirements_thread_state": "20-27",
+        "executor_cloud_predicate": "28-56"
+      }
+    },
+    {
+      "evidence_id": "E13",
+      "file": "codex-rs/core/tests/suite/remote_env_required_skills_tests.rs",
+      "ranges": {
+        "fixture": "39-135",
+        "assertions_and_deselect": "136-160"
+      }
+    },
+    {
+      "evidence_id": "E14",
+      "file": "codex-rs/core/src/compact.rs",
+      "ranges": {
+        "local_entry": "92-125",
+        "model_stream": "745-761"
+      }
+    },
+    {
+      "evidence_id": "E19",
+      "file": "codex-rs/core/src/guardian/review.rs",
+      "ranges": {
+        "source_predicate": "102-108"
+      }
+    },
+    {
+      "evidence_id": "E16",
+      "file": "codex-rs/protocol/src/protocol.rs",
+      "ranges": {
+        "session_source": "2826-2837",
+        "internal_guardian": "2897-2903"
+      }
+    }
+  ],
+  "source_observations": {
+    "RS-07": {
+      "status": "READ_VERIFIED_NOT_PRODUCT_RUN",
+      "E2_symbol_count": 0,
+      "E3_symbol_count": 0
+    },
+    "RS-08": {
+      "status": "READ_VERIFIED_NOT_PRODUCT_RUN",
+      "registry_dist_tags": {
+        "stable": "2.1.285",
+        "next": "2.1.290",
+        "latest": "2.1.289"
+      },
+      "pinned_changelog_first_version": "2.1.289"
+    }
+  }
+}

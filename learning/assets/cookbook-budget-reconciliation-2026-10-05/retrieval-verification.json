@@ -1,0 +1,85 @@
+{
+  "scope": "source GET and byte verification only; no JavaScript execution",
+  "checks": [
+    {
+      "path": "src/admin-api.mjs",
+      "url": "https://raw.githubusercontent.com/openai/openai-cookbook/0eac1447d4e24d06e47c459ca5e98f248b9413cf/examples/chatgpt/daily_usage_limits/src/admin-api.mjs",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://raw.githubusercontent.com/openai/openai-cookbook/0eac1447d4e24d06e47c459ca5e98f248b9413cf/examples/chatgpt/daily_usage_limits/src/admin-api.mjs",
+      "sha256": "bc1ef42a51fe1237fab4daaa86a0724ee17fb8a012ef93b3637f72206e1cf1c4",
+      "size_bytes": 28353,
+      "checked_at_utc": "2026-10-04T19:49:32.779628+00:00"
+    },
+    {
+      "path": "src/controller.mjs",
+      "url": "https://raw.githubusercontent.com/openai/openai-cookbook/0eac1447d4e24d06e47c459ca5e98f248b9413cf/examples/chatgpt/daily_usage_limits/src/controller.mjs",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://raw.githubusercontent.com/openai/openai-cookbook/0eac1447d4e24d06e47c459ca5e98f248b9413cf/examples/chatgpt/daily_usage_limits/src/controller.mjs",
+      "sha256": "9e8ef3fc3ee7e069f357516fe6a69a267022804ac35476f2ca04325048be572c",
+      "size_bytes": 20227,
+      "checked_at_utc": "2026-10-04T19:49:32.703694+00:00"
+    },
+    {
+      "path": "src/enrollment.mjs",
+      "url": "https://raw.githubusercontent.com/openai/openai-cookbook/0eac1447d4e24d06e47c459ca5e98f248b9413cf/examples/chatgpt/daily_usage_limits/src/enrollment.mjs",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://raw.githubusercontent.com/openai/openai-cookbook/0eac1447d4e24d06e47c459ca5e98f248b9413cf/examples/chatgpt/daily_usage_limits/src/enrollment.mjs",
+      "sha256": "8a76ac4fbf8d8139e8f0441325ae8363edab83c8066c3ef8e6a7ecbcb5f5bced",
+      "size_bytes": 4437,
+      "checked_at_utc": "2026-10-04T19:49:32.761768+00:00"
+    },
+    {
+      "path": "src/policy.mjs",
+      "url": "https://raw.githubusercontent.com/openai/openai-cookbook/0eac1447d4e24d06e47c459ca5e98f248b9413cf/examples/chatgpt/daily_usage_limits/src/policy.mjs",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://raw.githubusercontent.com/openai/openai-cookbook/0eac1447d4e24d06e47c459ca5e98f248b9413cf/examples/chatgpt/daily_usage_limits/src/policy.mjs",
+      "sha256": "71ae31adf9a276bbf351553db0f5b15a1044f544aea735f6cdf8228c46be895f",
+      "size_bytes": 11940,
+      "checked_at_utc": "2026-10-04T19:49:32.713922+00:00"
+    },
+    {
+      "path": "src/renewal.mjs",
+      "url": "https://raw.githubusercontent.com/openai/openai-cookbook/0eac1447d4e24d06e47c459ca5e98f248b9413cf/examples/chatgpt/daily_usage_limits/src/renewal.mjs",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://raw.githubusercontent.com/openai/openai-cookbook/0eac1447d4e24d06e47c459ca5e98f248b9413cf/examples/chatgpt/daily_usage_limits/src/renewal.mjs",
+      "sha256": "a0df2eb73bd79b958f853d51155317600e798bb1dd95e6b4e41a58a4872a5472",
+      "size_bytes": 6089,
+      "checked_at_utc": "2026-10-04T19:49:32.780699+00:00"
+    },
+    {
+      "path": "src/selection.mjs",
+      "url": "https://raw.githubusercontent.com/openai/openai-cookbook/0eac1447d4e24d06e47c459ca5e98f248b9413cf/examples/chatgpt/daily_usage_limits/src/selection.mjs",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://raw.githubusercontent.com/openai/openai-cookbook/0eac1447d4e24d06e47c459ca5e98f248b9413cf/examples/chatgpt/daily_usage_limits/src/selection.mjs",
+      "sha256": "b2b306091265aaf23c387f8a80d4dbbc839d6e36ce3cb815457975cee0a384e3",
+      "size_bytes": 5587,
+      "checked_at_utc": "2026-10-04T19:49:32.778325+00:00"
+    },
+    {
+      "path": "src/synthetic.mjs",
+      "url": "https://raw.githubusercontent.com/openai/openai-cookbook/0eac1447d4e24d06e47c459ca5e98f248b9413cf/examples/chatgpt/daily_usage_limits/src/synthetic.mjs",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://raw.githubusercontent.com/openai/openai-cookbook/0eac1447d4e24d06e47c459ca5e98f248b9413cf/examples/chatgpt/daily_usage_limits/src/synthetic.mjs",
+      "sha256": "091e73d2291fec2c58070b9b067450ee84f9669e184eee4f1a60f5854e248771",
+      "size_bytes": 7943,
+      "checked_at_utc": "2026-10-04T19:49:32.781640+00:00"
+    },
+    {
+      "path": "LICENSE.upstream",
+      "url": "https://raw.githubusercontent.com/openai/openai-cookbook/0eac1447d4e24d06e47c459ca5e98f248b9413cf/LICENSE",
+      "method": "GET",
+      "status": 200,
+      "final_url": "https://raw.githubusercontent.com/openai/openai-cookbook/0eac1447d4e24d06e47c459ca5e98f248b9413cf/LICENSE",
+      "sha256": "13df7812ca53ecaae1cb4a868844bb598373047ae1d580e4debfbef1dd5b6915",
+      "size_bytes": 1063,
+      "checked_at_utc": "2026-10-04T19:49:32.754075+00:00"
+    }
+  ]
+}

@@ -1,0 +1,296 @@
+{
+  "schema": "public-budget-prior-observations-v1",
+  "notice": "既有执行报告的精简摘录，不是公开bundle复演；不包含完整原始报告",
+  "commit": "0eac1447d4e24d06e47c459ca5e98f248b9413cf",
+  "test_sha256": "61724a7dcb74021124a3ffba6f8d198cea190e0ab0eafa26749d06b182bfef5f",
+  "node_version": "v24.21.0",
+  "source_unchanged": true,
+  "historical_reports_sha256": {
+    "extensions": "806c8eea6390622b8df6e483b9fccbdb3634c202d5b40da7f1265d53fd655a11",
+    "upstream": "0b6d9137cf66dbc390d0878351e609ffb99b5d7c1f92b5db57b4f18e1ddcdb9b"
+  },
+  "upstream_totals": {
+    "tests": 121,
+    "suites": 0,
+    "pass": 121,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "runs": [
+    {
+      "id": "version",
+      "variant": "baseline",
+      "node_args": [
+        "--version"
+      ],
+      "exit_code": 0,
+      "node_totals": {},
+      "stdout_sha256": "f2ec568164f99546161909b0189b57bb5be3e80f8e2ccd8a51a4aed8c4055a04",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "infrastructure_ok": true,
+      "timed_out": false
+    },
+    {
+      "id": "baseline",
+      "variant": "baseline",
+      "node_args": [
+        "--test",
+        "--test-concurrency=1",
+        "test/controller.extensions.test.mjs"
+      ],
+      "exit_code": 0,
+      "node_totals": {
+        "tests": 6,
+        "suites": 0,
+        "pass": 6,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "stdout_sha256": "9eeacf22e69f40669e8b2f5cf03741a90c5e17b7dfa67e8bebd748bd9bec1f67",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "infrastructure_ok": true,
+      "timed_out": false
+    },
+    {
+      "id": "M1-primary",
+      "variant": "M1",
+      "node_args": [
+        "--test",
+        "--test-concurrency=1",
+        "--test-name-pattern=^C1 ",
+        "test/controller.extensions.test.mjs"
+      ],
+      "exit_code": 1,
+      "node_totals": {
+        "tests": 1,
+        "suites": 0,
+        "pass": 0,
+        "fail": 1,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "stdout_sha256": "c7d48360bcf14697bf63563faf08baa920c340a4529cc627ffc87c54a696e6cb",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "infrastructure_ok": true,
+      "timed_out": false
+    },
+    {
+      "id": "M1-control",
+      "variant": "M1",
+      "node_args": [
+        "--test",
+        "--test-concurrency=1",
+        "--test-name-pattern=^C6 ",
+        "test/controller.extensions.test.mjs"
+      ],
+      "exit_code": 0,
+      "node_totals": {
+        "tests": 1,
+        "suites": 0,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "stdout_sha256": "3efc8ce4e673e4bf6611fb909acb9719feaba7d32ecdabacaf66979da1c8efc6",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "infrastructure_ok": true,
+      "timed_out": false
+    },
+    {
+      "id": "M2-primary",
+      "variant": "M2",
+      "node_args": [
+        "--test",
+        "--test-concurrency=1",
+        "--test-name-pattern=^C2 ",
+        "test/controller.extensions.test.mjs"
+      ],
+      "exit_code": 1,
+      "node_totals": {
+        "tests": 1,
+        "suites": 0,
+        "pass": 0,
+        "fail": 1,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "stdout_sha256": "2b8cc087dd09acd6acd900c2822ea21e32296f3cdbf816ab10b88f267940e34f",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "infrastructure_ok": true,
+      "timed_out": false
+    },
+    {
+      "id": "M2-control",
+      "variant": "M2",
+      "node_args": [
+        "--test",
+        "--test-concurrency=1",
+        "--test-name-pattern=^C6 ",
+        "test/controller.extensions.test.mjs"
+      ],
+      "exit_code": 0,
+      "node_totals": {
+        "tests": 1,
+        "suites": 0,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "stdout_sha256": "9eb6bf8e532deb12217f9dd8cf2abb8db5f39845571c6cb84768178e5b0495df",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "infrastructure_ok": true,
+      "timed_out": false
+    },
+    {
+      "id": "M3-primary",
+      "variant": "M3",
+      "node_args": [
+        "--test",
+        "--test-concurrency=1",
+        "--test-name-pattern=^C6 ",
+        "test/controller.extensions.test.mjs"
+      ],
+      "exit_code": 1,
+      "node_totals": {
+        "tests": 1,
+        "suites": 0,
+        "pass": 0,
+        "fail": 1,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "stdout_sha256": "e23bc866d9a32710d43d7c0d89e5bb375f67b443e7101a3cea81f0b70c204a60",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "infrastructure_ok": true,
+      "timed_out": false
+    },
+    {
+      "id": "M3-control",
+      "variant": "M3",
+      "node_args": [
+        "--test",
+        "--test-concurrency=1",
+        "--test-name-pattern=^C1 ",
+        "test/controller.extensions.test.mjs"
+      ],
+      "exit_code": 0,
+      "node_totals": {
+        "tests": 1,
+        "suites": 0,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "stdout_sha256": "100799593303f1d3468f2bef8fa4327ee8eb0fe3acfe3a592d82e67d5093641d",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "infrastructure_ok": true,
+      "timed_out": false
+    }
+  ],
+  "mutation": {
+    "credited_kills": 3,
+    "eligible_mutants": 3,
+    "ratio": "3/3",
+    "baseline_gate": "6/6 PASS，六个内嵌独立负控均已完成"
+  },
+  "public_replay": "NOT_RUN",
+  "mutant_observations": [
+    {
+      "id": "M1",
+      "designated_case": "C1",
+      "business_assertion": "C1_BUSINESS_RECONCILE",
+      "classification": "BusinessOracleFailure",
+      "unaffected_case": "C6",
+      "unaffected_control": "PASS",
+      "credited_kill": true,
+      "primary_run": "M1-primary",
+      "control_run": "M1-control",
+      "designated_case_negative_control": "NOT_RUN_AFTER_EARLY_BUSINESS_ASSERTION",
+      "raw_error_type": "AssertionError [ERR_ASSERTION]",
+      "assertion_line": 65,
+      "operator": "strictEqual",
+      "unique_designated_assertion_verified": true,
+      "observed_business_difference": "status实际attention，期望reconciled；原始输出未打印result.code，PENDING_WRITE_CONFLICT仅为静态推导。"
+    },
+    {
+      "id": "M2",
+      "designated_case": "C2",
+      "business_assertion": "C2_BUSINESS_PREVIEW_LEDGER_IMMUTABLE",
+      "classification": "BusinessOracleFailure",
+      "unaffected_case": "C6",
+      "unaffected_control": "PASS",
+      "credited_kill": true,
+      "primary_run": "M2-primary",
+      "control_run": "M2-control",
+      "designated_case_negative_control": "NOT_RUN_AFTER_EARLY_BUSINESS_ASSERTION",
+      "raw_error_type": "AssertionError [ERR_ASSERTION]",
+      "assertion_line": 90,
+      "operator": "deepStrictEqual",
+      "unique_designated_assertion_verified": true,
+      "observed_business_difference": "preview期间ledger新增last/lastSlot并清空pending，违反deepStrictEqual。"
+    },
+    {
+      "id": "M3",
+      "designated_case": "C6",
+      "business_assertion": "C6_BUSINESS_DUPLICATE_ZERO_PATCH",
+      "classification": "BusinessOracleFailure",
+      "unaffected_case": "C1",
+      "unaffected_control": "PASS",
+      "credited_kill": true,
+      "primary_run": "M3-primary",
+      "control_run": "M3-control",
+      "designated_case_negative_control": "NOT_RUN_AFTER_EARLY_BUSINESS_ASSERTION",
+      "raw_error_type": "AssertionError [ERR_ASSERTION]",
+      "assertion_line": 186,
+      "operator": "strictEqual",
+      "unique_designated_assertion_verified": true,
+      "observed_business_difference": "synthetic setCap调用数实际2，期望1；同slot多写一次。"
+    }
+  ],
+  "cases": [
+    {
+      "id": "C1",
+      "result": "PASS",
+      "negative_control": "PASS (内嵌独立fixture；非额外顶层测试)"
+    },
+    {
+      "id": "C2",
+      "result": "PASS",
+      "negative_control": "PASS (内嵌独立fixture；非额外顶层测试)"
+    },
+    {
+      "id": "C3",
+      "result": "PASS",
+      "negative_control": "PASS (内嵌独立fixture；非额外顶层测试)"
+    },
+    {
+      "id": "C4",
+      "result": "PASS",
+      "negative_control": "PASS (内嵌独立fixture；非额外顶层测试)"
+    },
+    {
+      "id": "C5",
+      "result": "PASS",
+      "negative_control": "PASS (内嵌独立fixture；非额外顶层测试)"
+    },
+    {
+      "id": "C6",
+      "result": "PASS",
+      "negative_control": "PASS (内嵌独立fixture；非额外顶层测试)"
+    }
+  ],
+  "public_replay_field_scope": "Historical preparation-time snapshot only; current portable-entry observations are in execution-summary.json."
+}

@@ -1,0 +1,62 @@
+{
+  "schema": "codex-settlement-public-observations-v1",
+  "report_date": "2026-10-06",
+  "evidence_kind": "完整单文件源码的历史离线实验摘要；不是产品端到端验收；本次仅整理未重跑",
+  "source": {
+    "repository": "openai/codex",
+    "commit": "28a264fbc766a59f2b550b8318f88e4a4b8dffe1",
+    "path": "codex-rs/code-mode-runtime/src/runtime/settled.js",
+    "sha256": "6b0d0b56aecf2101ca0d7f50b71d733430f703deb7bf3b71b54364c60cce4f65",
+    "license": "Apache-2.0",
+    "attribution": "OpenAI Codex; Copyright 2025 OpenAI. 仓库NOTICE另列Ratatui衍生代码MIT归属，不据此推断settled.js属于该部分。",
+    "verified_gets": [
+      {"kind":"source","url":"https://raw.githubusercontent.com/openai/codex/28a264fbc766a59f2b550b8318f88e4a4b8dffe1/codex-rs/code-mode-runtime/src/runtime/settled.js","http_status":200,"final_url_same":true,"sha256":"6b0d0b56aecf2101ca0d7f50b71d733430f703deb7bf3b71b54364c60cce4f65"},
+      {"kind":"LICENSE","url":"https://raw.githubusercontent.com/openai/codex/28a264fbc766a59f2b550b8318f88e4a4b8dffe1/LICENSE","http_status":200,"final_url_same":true,"sha256":"d17f227e4df5da1600391338865ce0f3055211760a36688f816941d58232d8dc"},
+      {"kind":"NOTICE","url":"https://raw.githubusercontent.com/openai/codex/28a264fbc766a59f2b550b8318f88e4a4b8dffe1/NOTICE","http_status":200,"final_url_same":true,"sha256":"9d71575ecfd9a843fc1677b0efb08053c6ba9fd686a0de1a6f5382fd3c220915"}
+    ]
+  },
+  "common_preconditions": {
+    "id": "P0",
+    "node": "v22.22.2",
+    "source_loading": "baseline加载完整固定字节文件；变异组仅替换预定单个锚点，不是手抄函数",
+    "realm": "node:vm受控上下文，显式共享宿主Promise/Map/Object/Array/Error/TypeError；vm不是安全沙箱",
+    "os_boundary": "历史每case独立进程/容器，OS层network none、只读输入、无凭据、非特权用户及资源限制",
+    "scheduling": "Deferred/Barrier控制先后；C11用entered握手与setImmediate回合，不以耗时推断并发",
+    "scope_excluded": ["Codex CLI", "stdio", "gRPC", "QuickJS完整运行", "生产外部副作用", "跨realm一致性", "持久化幂等", "通用取消保证"],
+    "reproduction": "验收规格而非开箱执行包；不分发机器launcher、runtime binaries或原始内部日志"
+  },
+  "summary": {"planned_case_invocations":90,"executed_case_invocations":75,"not_run_case_invocations":15,"typed_PASS":60,"typed_FAIL":14,"typed_ERROR":1,"baseline_PASS":15,"valid_kill_groups":2,"invalid_groups":2,"all_pass":false},
+  "groups": [
+    {"id":"none","role":"BASELINE","classification":"BASELINE_PASS","executed":15,"PASS":15,"FAIL":0,"ERROR":0,"NOT_RUN":0},
+    {"id":"dropMapKeys","role":"BUSINESS_MUTANT","classification":"KILL","executed":15,"PASS":14,"FAIL":1,"ERROR":0,"NOT_RUN":0,"target_cases":["C03"],"meaning":"Map键被替换为数字位置；目标业务断言失败"},
+    {"id":"allRejectedAreFulfilled","role":"BUSINESS_MUTANT","classification":"KILL","executed":15,"PASS":13,"FAIL":2,"ERROR":0,"NOT_RUN":0,"target_cases":["C04","C06"],"meaning":"拒绝记录被错标fulfilled；目标业务断言失败"},
+    {"id":"duplicateObservation","role":"BUSINESS_MUTANT","classification":"INVALID_INFRA","executed":15,"PASS":5,"FAIL":10,"ERROR":0,"NOT_RUN":0,"target_cases":["C08","C15"],"meaning":"同一观察回调调用settle两次，不是增加第二个observer；存在非目标FAIL，固定合同排除KILL；不是Docker故障证据"},
+    {"id":"emitNotAwaited","role":"BUSINESS_MUTANT","classification":"INVALID_INFRA","executed":15,"PASS":13,"FAIL":1,"ERROR":1,"NOT_RUN":0,"target_cases":["C11"],"meaning":"C11出现enter0,enter1而非仅enter0；C13为UnhandledRejection ERROR，故整组不能计KILL"},
+    {"id":"throwOnFirstRejection","role":"INVALID_CONTROL","classification":"NOT_RUN","executed":0,"PASS":0,"FAIL":0,"ERROR":0,"NOT_RUN":15,"meaning":"前组INVALID后停止；计划角色不等于观察到INVALID_CONTROL，不能计KILL"}
+  ],
+  "status_vector_order": ["none","dropMapKeys","allRejectedAreFulfilled","duplicateObservation","emitNotAwaited","throwOnFirstRejection"],
+  "case_cards": [
+    {"id":"C01","name":"empty-array","preconditions":"P0","configuration":"as_settled([])，消费到结束","expected":"零记录且结束","observed":"baseline PASS","negative":"伪造一条空记录应FAIL；此额外对照NOT_RUN","status_vector":["PASS","PASS","PASS","PASS","PASS","NOT_RUN"]},
+    {"id":"C02","name":"array-index-and-status","preconditions":"P0","configuration":"[Promise.resolve('a'),7]","expected":"两条fulfilled，index为0/1，value为a/7","observed":"baseline PASS；duplicateObservation FAIL","negative":"重复记录破坏数量与身份，已观察FAIL但该变异组INVALID","status_vector":["PASS","PASS","PASS","FAIL","PASS","NOT_RUN"]},
+    {"id":"C03","name":"map-key-and-status","preconditions":"P0；共享同一Map构造器","configuration":"Map(k1→Promise.resolve(v1),k2→v2)","expected":"index保留k1/k2而非0/1","observed":"baseline PASS；dropMapKeys FAIL，组KILL；重复组FAIL","negative":"dropMapKeys输出数字键，已有效检出","status_vector":["PASS","FAIL","PASS","FAIL","PASS","NOT_RUN"]},
+    {"id":"C04","name":"rejection-record-not-throw","preconditions":"P0","configuration":"[Promise.reject(Error('boom'))]","expected":"index0、rejected、reason.message=boom；消费不因该拒绝抛出","observed":"baseline PASS；错标组FAIL并KILL；重复组FAIL","negative":"allRejectedAreFulfilled已检出；throwOnFirstRejection全部NOT_RUN","status_vector":["PASS","PASS","FAIL","FAIL","PASS","NOT_RUN"]},
+    {"id":"C05","name":"fast-before-slow","preconditions":"P0；slow可手动resolve","configuration":"[slow.promise,Promise.resolve('fast')]，读取首条后释放slow","expected":"先index1 fast，再index0 slow","observed":"baseline PASS；重复组FAIL","negative":"改成输入顺序阻塞应不能满足首条断言；此额外对照NOT_RUN，超时不能算KILL","status_vector":["PASS","PASS","PASS","FAIL","PASS","NOT_RUN"]},
+    {"id":"C06","name":"fast-rejection-before-slow","preconditions":"P0；slow未释放","configuration":"[slow.promise,Promise.reject('fail')]，读取后释放slow","expected":"先index1 rejected(reason=fail)，后index0 fulfilled(slow)","observed":"baseline PASS；错标组FAIL并KILL；重复组FAIL","negative":"allRejectedAreFulfilled已有效检出；throw控制NOT_RUN","status_vector":["PASS","PASS","FAIL","FAIL","PASS","NOT_RUN"]},
+    {"id":"C07","name":"queued-consumer-no-loss","preconditions":"P0；三个deferred","configuration":"挂起next后依次resolve A/B/C，再读取三条","expected":"前三条index排序为[0,1,2]；不单独证明任意负载下无丢失或最终无额外记录","observed":"baseline PASS；重复组FAIL","negative":"重复组导致前三条身份不全，已观察；整组INVALID","status_vector":["PASS","PASS","PASS","FAIL","PASS","NOT_RUN"]},
+    {"id":"C08","name":"single-thenable-observation","preconditions":"P0；thenable具有thenCalls计数","configuration":"then(resolve)计数并resolve('ok')","expected":"一条index0 fulfilled(ok)，thenCalls=1","observed":"baseline PASS；重复组FAIL","negative":"重复组先因双记录失败，不能据此声称then被调用两次","status_vector":["PASS","PASS","PASS","FAIL","PASS","NOT_RUN"]},
+    {"id":"C09","name":"sync-iterable-throw","preconditions":"P0；Symbol.iterator同步抛错","configuration":"调用as_settled(iterable)，iterator抛iterable boom","expected":"调用处同步捕获iterable boom，不伪装成settlement记录","observed":"baseline PASS","negative":"吞掉构造迭代器错误应FAIL；此额外对照NOT_RUN","status_vector":["PASS","PASS","PASS","PASS","PASS","NOT_RUN"]},
+    {"id":"C10","name":"break-does-not-cancel-effects","preconditions":"P0；slow.promise已有effect++回调","configuration":"读取first后it.return()，再resolve slow并让微任务推进","expected":"effect=1；停止消费没有取消底层effect","observed":"baseline PASS","negative":"把return等同effect=0与实测相矛盾；没有运行真实取消接口","status_vector":["PASS","PASS","PASS","PASS","PASS","NOT_RUN"]},
+    {"id":"C11","name":"stream-awaits-emit-order","preconditions":"P0；emit gate与entered握手","configuration":"输入a/b；首个emit进入后等待gate，观察一个setImmediate回合，再释放gate","expected":"释放前仅enter0；完成顺序enter0,leave0,enter1,leave1","observed":"baseline PASS；emitNotAwaited FAIL(enter0,enter1)，但组INVALID；重复组FAIL","negative":"去掉await已检出重叠，但C13 ERROR排除组KILL","status_vector":["PASS","PASS","PASS","FAIL","FAIL","NOT_RUN"]},
+    {"id":"C12","name":"stream-requires-function","preconditions":"P0","configuration":"stream_settled([],null)","expected":"TypeError，即使输入为空也校验emit","observed":"baseline PASS","negative":"删除callback校验应FAIL；此额外对照NOT_RUN","status_vector":["PASS","PASS","PASS","PASS","PASS","NOT_RUN"]},
+    {"id":"C13","name":"emit-throw-propagates-after-result","preconditions":"P0；async emit可拒绝","configuration":"输入a/b；emit记录index并在index0抛emit boom","expected":"seen=[0]，调用方捕获emit boom","observed":"baseline PASS；emitNotAwaited ERROR/UnhandledRejection","negative":"错误失去await链不是业务FAIL，已观察ERROR，不计KILL","status_vector":["PASS","PASS","PASS","PASS","ERROR","NOT_RUN"]},
+    {"id":"C14","name":"plain-values-and-promises-mixed","preconditions":"P0","configuration":"['x',Promise.resolve('y')]","expected":"index0/1分别fulfilled(x/y)","observed":"baseline PASS；重复组FAIL","negative":"重复组违反精确记录列表；只接受Promise的额外实现对照NOT_RUN","status_vector":["PASS","PASS","PASS","FAIL","PASS","NOT_RUN"]},
+    {"id":"C15","name":"all-settlements-exactly-once","preconditions":"P0","configuration":"[1,2,Promise.reject('r')]，消费到结束","expected":"总数3，index排序[0,1,2]；这里未断言拒绝status","observed":"baseline PASS；重复组FAIL；错标组PASS不证明状态正确","negative":"重复settle已触发数量FAIL，但整组INVALID；外部effect幂等不在本卡范围","status_vector":["PASS","PASS","PASS","FAIL","PASS","NOT_RUN"]}
+  ],
+  "interpretation": [
+    "PASS只表示所列断言满足；fulfilled不等于业务成功，rejected不等于整个汇总失败。",
+    "单文件观察exactly-once不等于支付、写库或部署副作用exactly-once。",
+    "串行await emit限制消费者回调重叠，不限制已启动任务并发，也不提供队列容量保证。",
+    "SHA-256仅校验字节一致性，不认证作者、签名或执行真实性。",
+    "公开摘要不包含完整执行器，读者可复核规格和固定源码，但不能把本文当作已具备执行条件的命令包。"
+  ]
+}

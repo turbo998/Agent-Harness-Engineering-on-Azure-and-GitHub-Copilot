@@ -1,0 +1,59 @@
+{
+  "mutants": [
+    {
+      "id": "M1",
+      "overlay_target": "source/src/controller.mjs",
+      "original_sha256": "9e8ef3fc3ee7e069f357516fe6a69a267022804ac35476f2ca04325048be572c",
+      "variant_sha256": "8909c229c6a1847742d1e3cd4021979602ea14f4fed6f83281b83644775ca317",
+      "edit": {
+        "old_string": "if (completed) {",
+        "new_string": "if (false && completed) {",
+        "occurrences": 1
+      },
+      "primary_case": "C1",
+      "business_assertion": "C1_BUSINESS_RECONCILE",
+      "Expected": "禁用已提交pending识别；重试将返回PENDING_WRITE_CONFLICT而不是reconciled。",
+      "independent_unaffected_case": "C6",
+      "kill_rule": "仅指定case的指定业务断言失败计为kill；语法、import、超时、barrier/harness错误不计kill。",
+      "prior_observed": "KILLED_BY_DESIGNATED_BUSINESS_ASSERTION",
+      "public_replay": "KILLED_BY_DESIGNATED_BUSINESS_ASSERTION"
+    },
+    {
+      "id": "M2",
+      "overlay_target": "source/src/controller.mjs",
+      "original_sha256": "9e8ef3fc3ee7e069f357516fe6a69a267022804ac35476f2ca04325048be572c",
+      "variant_sha256": "cc52e3afa44560955bf91051d253bdbb2c6461413878a9ab6e2cb53173a1a0ce",
+      "edit": {
+        "old_string": "if (!apply) return receipt({ ok: true, status: 'pending_already_applied'",
+        "new_string": "if (false && !apply) return receipt({ ok: true, status: 'pending_already_applied'",
+        "occurrences": 1
+      },
+      "primary_case": "C2",
+      "business_assertion": "C2_BUSINESS_PREVIEW_LEDGER_IMMUTABLE",
+      "Expected": "已应用pending在preview时被记录到ledger；deepEqual业务状态断言应失败。",
+      "independent_unaffected_case": "C6",
+      "kill_rule": "仅指定case的指定业务断言失败计为kill；语法、import、超时、barrier/harness错误不计kill。",
+      "prior_observed": "KILLED_BY_DESIGNATED_BUSINESS_ASSERTION",
+      "public_replay": "KILLED_BY_DESIGNATED_BUSINESS_ASSERTION"
+    },
+    {
+      "id": "M3",
+      "overlay_target": "source/src/controller.mjs",
+      "original_sha256": "9e8ef3fc3ee7e069f357516fe6a69a267022804ac35476f2ca04325048be572c",
+      "variant_sha256": "20f7b6a84ff8fd62ba6d0452e950a8bb9b086ae66cf51ba1c25fb8a458ee6ddc",
+      "edit": {
+        "old_string": "if (state?.lastSlot === ctx.slot) return receipt({ ok: true, status: 'duplicate_slot'",
+        "new_string": "if (false && state?.lastSlot === ctx.slot) return receipt({ ok: true, status: 'duplicate_slot'",
+        "occurrences": 1
+      },
+      "primary_case": "C6",
+      "business_assertion": "C6_BUSINESS_DUPLICATE_ZERO_PATCH",
+      "Expected": "消耗过的slot重新计算observed_headroom；usage变化触发额外setCap，PATCH次数断言应失败。",
+      "independent_unaffected_case": "C1",
+      "kill_rule": "仅指定case的指定业务断言失败计为kill；语法、import、超时、barrier/harness错误不计kill。",
+      "prior_observed": "KILLED_BY_DESIGNATED_BUSINESS_ASSERTION",
+      "public_replay": "KILLED_BY_DESIGNATED_BUSINESS_ASSERTION"
+    }
+  ],
+  "application": "每个variant仅是单文件overlay，不单独导入；获准后使用独立运行目录的source闭包与相同test文件。禁止修改固定source副本。"
+}

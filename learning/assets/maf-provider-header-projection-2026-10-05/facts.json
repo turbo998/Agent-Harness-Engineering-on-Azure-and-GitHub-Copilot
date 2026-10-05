@@ -1,0 +1,191 @@
+{
+  "schema_version": "1.0",
+  "asset_date": "2026-10-05",
+  "title_zh": "MAF 混合 provider Header 投影验收模板：事实记录",
+  "document": "maf-provider-header-projection-gates-2026-10-05.md",
+  "artifact_kind": "reusable_acceptance_template_with_existing_experiment_evidence",
+  "publication": {
+    "new_experiment_executed_during_authoring": false,
+    "public_runner_included": false,
+    "public_runner_execution_claimed": false,
+    "source_or_vendor_redistributed": false,
+    "production_release_approval_claimed": false,
+    "credential_values_disclosed": false,
+    "harness_instruction_is_authorization": false
+  },
+  "scope": {
+    "repository": "https://github.com/microsoft/agent-framework",
+    "fixed_source_sha": "cb77f68f005f40e0b844392f778c4cb6b91cee1b",
+    "experiment_type": "fixed_source_plus_sdk_request_builder",
+    "source_package": "agent-framework-openai",
+    "source_declared_version": "1.15.0",
+    "openai_sdk_version": "2.31.0",
+    "httpx_version": "0.28.1",
+    "request_method": "GET",
+    "request_relative_path": "/models",
+    "observation_point": "_build_request after awaited _prepare_options",
+    "requests_sent": false,
+    "credentials": "synthetic_only",
+    "maf_wheel_tested": false,
+    "upstream_full_test_suite_execution_claimed": false,
+    "independent_runtime_import_origin_inventory_available": false
+  },
+  "result": {
+    "baseline_pass": 12,
+    "baseline_total": 12,
+    "valid_mutation_kills": 3,
+    "baseline_raw_stdout_reviewed": true,
+    "mutation_raw_stdout_reviewed": true,
+    "baseline_header_dump_available": false,
+    "observed_basis": "既有 BASE 原始输出的逐 case PASS 与已读取 runner 的实际断言交叉核对；最小状态投影，不是原始 header 抓包。",
+    "missing_observed_field_means": "not_asserted_or_not_reported; never infer false",
+    "negative_control_cases": ["C05", "C06", "C07", "C08", "C09"],
+    "all_negative_controls_passed_all_mutations": true,
+    "harness_symmetry_self_check_counted_as_case": false,
+    "harness_symmetry_self_check_counted_as_kill": false
+  },
+  "facts": [
+    {"id": "F01", "claim_zh": "Azure client、endpoint 或 credential 是初始 Azure 信号；无此信号时先解析 OpenAI 配置，可用 key 使 OpenAI 分支先返回，否则才可能回退 Azure。", "sources": ["S1"], "evidence": ["E-BASE:C01", "E-BASE:C05", "E-BASE:C08", "E-BASE:C09"]},
+    {"id": "F02", "claim_zh": "base_url 加显式 API key 不等于 Azure endpoint；域名或 /openai/v1 后缀不能单独证明 use_azure=true。", "sources": ["S1"], "evidence": ["E-BASE:C08", "E-BASE:C09"]},
+    {"id": "F03", "claim_zh": "已进入 Azure 分支且非 responses_mode 的 /openai/v1 bridge 可使用 AsyncOpenAI，同时 use_azure=true；C03 为 callable credential bridge 证据。", "sources": ["S1"], "evidence": ["E-BASE:C03", "E-BASE:C10"]},
+    {"id": "F04", "claim_zh": "Omit 是 SDK 合并过程的省略哨兵，不是空串或字符串删除；空但存在的字段仍然存在。", "sources": ["S1"], "evidence": ["E-M01"]},
+    {"id": "F05", "claim_zh": "Azure 默认投影保留显式受控字段；大小写别名按遍历顺序最后显式值获胜；输入 mapping 不应被修改。", "sources": ["S1", "S2"], "evidence": ["E-BASE:C04", "E-BASE:C11", "E-BASE:C12", "E-M03"]},
+    {"id": "F06", "claim_zh": "预建 client 原对象返回，指定 header 配置不被此工厂改写；不因此承诺其自动满足新建 Azure client 隔离策略。", "sources": ["S1", "S2"], "evidence": ["E-BASE:C06", "E-BASE:C07"]},
+    {"id": "F07", "claim_zh": "最终 HTTPX Headers 的 presence/absence 应大小写无关且对称；重复字段以 get_list 验证，不能把同一字段的别名当作不同字段。", "sources": [], "evidence": ["E-BASE:C12", "E-M01"]},
+    {"id": "F08", "claim_zh": "M02 实际仅 C03/C04 命中。固定 SDK Azure _prepare_options 向请求 options 重新加入 Bearer，因此 C02/C10 PASS。", "sources": [], "sdk_code_reference": "OpenAI SDK 2.31.0, openai/lib/azure.py:614-631", "evidence": ["E-M02"]},
+    {"id": "F09", "claim_zh": "release-notes 入口来自 agent-framework-openai 包元数据；源码声明版本与依赖范围不能替代已发布 wheel 的内容或运行验证。", "sources": ["S3", "S5"], "evidence": []}
+  ],
+  "case_defaults": {
+    "model": "explicit_synthetic_model",
+    "ambient_environment": ["synthetic OPENAI_API_KEY", "synthetic OPENAI_ORG_ID", "synthetic OPENAI_PROJECT_ID", "synthetic AZURE_OPENAI_API_KEY", "synthetic OPENAI_MODEL", "synthetic AZURE_OPENAI_MODEL"],
+    "credential_values": "withheld; state_only",
+    "observed_basis": "assertions_supported_by_existing_BASE_PASS",
+    "auth_field": "Authorization",
+    "api_key_field": "api-key",
+    "org_field": "OpenAI-Organization",
+    "project_field": "OpenAI-Project",
+    "source_labels_are_not_header_values": true
+  },
+  "cases": [
+    {
+      "id": "C01", "name_zh": "Azure API-key 默认投影", "negative_control": false,
+      "configuration": {"endpoint": "synthetic_azure_endpoint", "api_key": "synthetic_explicit", "api_version": "2024-12-01-preview"},
+      "expected_zh": "AsyncAzureOpenAI/use_azure=true；api-key 存在，Authorization 与环境 org/project 缺失。",
+      "observed": {"status": "PASS", "use_azure": true, "client_type": "AsyncAzureOpenAI", "has_api_key": true, "has_auth": false, "org_source": "absent", "project_source": "absent"},
+      "evidence_ids": ["E-BASE:C01"]
+    },
+    {
+      "id": "C02", "name_zh": "Azure callable token", "negative_control": false,
+      "configuration": {"endpoint": "synthetic_azure_endpoint", "credential": "synthetic_callable", "api_version": "2024-12-01-preview"},
+      "expected_zh": "AsyncAzureOpenAI/use_azure=true；Bearer 存在，api-key 与环境元数据缺失。",
+      "observed": {"status": "PASS", "use_azure": true, "client_type": "AsyncAzureOpenAI", "has_auth": true, "auth_scheme": "Bearer", "has_api_key": false, "org_source": "absent", "project_source": "absent"},
+      "evidence_ids": ["E-BASE:C02"]
+    },
+    {
+      "id": "C03", "name_zh": "credential 引导的 Azure OpenAI-v1 bridge", "negative_control": false,
+      "configuration": {"base_url_role": "synthetic_azure_host_openai_v1", "credential": "synthetic_callable"},
+      "expected_zh": "AsyncOpenAI/use_azure=true；Bearer 存在，api-key 与环境元数据缺失。",
+      "observed": {"status": "PASS", "use_azure": true, "client_type": "AsyncOpenAI", "has_auth": true, "auth_scheme": "Bearer", "has_api_key": false, "org_source": "absent", "project_source": "absent"},
+      "evidence_ids": ["E-BASE:C03"]
+    },
+    {
+      "id": "C04", "name_zh": "显式 auth/元数据/gateway 覆盖保留", "negative_control": false,
+      "configuration": {"endpoint": "synthetic_azure_endpoint", "api_key": "synthetic_explicit", "default_headers": "mixed_case_synthetic_explicit_auth_org_project_gateway"},
+      "expected_zh": "Azure 分支保留指定显式 auth、org、project 与 gateway 值。",
+      "observed": {"status": "PASS", "use_azure": true, "has_auth": true, "auth_scheme": "Bearer", "auth_matches_explicit": true, "org_source": "explicit", "project_source": "explicit", "gateway_matches_explicit": true},
+      "limitations_zh": ["BASE 此卡未断言 api-key，不补填该字段。"],
+      "evidence_ids": ["E-BASE:C04"]
+    },
+    {
+      "id": "C05", "name_zh": "普通 OpenAI 负控", "negative_control": true,
+      "configuration": {"base_url_role": "synthetic_generic_openai_compatible", "api_key": "synthetic_explicit"},
+      "expected_zh": "OpenAI 分支保留 Bearer 与环境 org/project。",
+      "observed": {"status": "PASS", "use_azure": false, "client_type": "AsyncOpenAI", "has_auth": true, "auth_scheme": "Bearer", "org_source": "ambient", "project_source": "ambient"},
+      "evidence_ids": ["E-BASE:C05"]
+    },
+    {
+      "id": "C06", "name_zh": "预建 OpenAI client 负控", "negative_control": true,
+      "configuration": {"client_type": "prebuilt_AsyncOpenAI", "metadata": "synthetic_prebuilt_org_project_gateway"},
+      "expected_zh": "原 client 返回，指定 org/project/gateway 保留。",
+      "observed": {"status": "PASS", "use_azure": false, "same_client": true, "org_source": "prebuilt", "project_source": "prebuilt", "gateway_matches_prebuilt": true},
+      "limitations_zh": ["此卡不提供独立 auth 断言。"],
+      "evidence_ids": ["E-BASE:C06"]
+    },
+    {
+      "id": "C07", "name_zh": "预建 Azure client 负控", "negative_control": true,
+      "configuration": {"client_type": "prebuilt_AsyncAzureOpenAI", "api_key": "synthetic_prebuilt", "org": "synthetic_prebuilt"},
+      "expected_zh": "原 client 返回，指定 org 与 api-key 保留。",
+      "observed": {"status": "PASS", "use_azure": true, "same_client": true, "org_source": "prebuilt", "has_api_key": true},
+      "evidence_ids": ["E-BASE:C07"]
+    },
+    {
+      "id": "C08", "name_zh": "Azure 环境 base_url 不越过 OpenAI 早返回边界", "negative_control": true,
+      "configuration": {"AZURE_OPENAI_BASE_URL_role": "synthetic_azure_deployment_url", "api_key": "synthetic_explicit", "endpoint": null, "credential": null},
+      "expected_zh": "OpenAI 默认 URL、Bearer 与环境 org/project 保留，api-key 缺失。",
+      "observed": {"status": "PASS", "use_azure": false, "client_type": "AsyncOpenAI", "base_url": "https://api.openai.com/v1/", "has_auth": true, "auth_scheme": "Bearer", "has_api_key": false, "org_source": "ambient", "project_source": "ambient"},
+      "limitations_zh": ["这是 OpenAI 负控，不能计作 Azure API-key bridge 覆盖。"],
+      "evidence_ids": ["E-BASE:C08"]
+    },
+    {
+      "id": "C09", "name_zh": "显式 OpenAI-v1 URL 后缀不是 Azure 信号", "negative_control": true,
+      "configuration": {"base_url_role": "synthetic_azure_host_openai_v1", "api_key": "synthetic_explicit", "endpoint": null, "credential": null},
+      "expected_zh": "OpenAI 分支；URL 保留，Bearer 和环境 org/project 保留，api-key 缺失。",
+      "observed": {"status": "PASS", "use_azure": false, "client_type": "AsyncOpenAI", "url_matches_input": true, "has_auth": true, "auth_scheme": "Bearer", "has_api_key": false, "org_source": "ambient", "project_source": "ambient"},
+      "limitations_zh": ["不是 C03 的 credential-gated Azure bridge。"],
+      "evidence_ids": ["E-BASE:C09"]
+    },
+    {
+      "id": "C10", "name_zh": "responses_mode Azure token 配置分支", "negative_control": false,
+      "configuration": {"endpoint": "synthetic_azure_endpoint", "credential": "synthetic_callable", "responses_mode": true},
+      "expected_zh": "保持 AsyncAzureOpenAI；Bearer 存在，api-key 与环境元数据缺失。",
+      "observed": {"status": "PASS", "use_azure": true, "client_type": "AsyncAzureOpenAI", "has_auth": true, "auth_scheme": "Bearer", "has_api_key": false, "org_source": "absent", "project_source": "absent"},
+      "limitations_zh": ["仍构造 GET /models，不是 /responses 请求或完整 Responses API 覆盖。"],
+      "evidence_ids": ["E-BASE:C10"]
+    },
+    {
+      "id": "C11", "name_zh": "调用者 default_headers mapping 不变", "negative_control": false,
+      "configuration": {"endpoint": "synthetic_azure_endpoint", "api_key": "synthetic_explicit", "default_headers": "synthetic_explicit_auth_org_gateway_mapping"},
+      "expected_zh": "构造请求前后调用者 mapping 与快照相等。",
+      "observed": {"status": "PASS", "input_mapping_unchanged": true},
+      "limitations_zh": ["没有独立的最终 header 值断言。"],
+      "evidence_ids": ["E-BASE:C11"]
+    },
+    {
+      "id": "C12", "name_zh": "受控 header 大小写重复别名最后显式值优先", "negative_control": false,
+      "configuration": {"endpoint": "synthetic_azure_endpoint", "api_key": "synthetic_explicit", "default_headers": "ordered_case_aliases_for_org_and_project"},
+      "expected_zh": "org/project 各一个原始字段且为最后显式值；所有大小写别名读取一致；api-key 存在、Authorization 缺失。",
+      "observed": {"status": "PASS", "has_api_key": true, "has_auth": false, "org_source": "last_explicit", "project_source": "last_explicit", "org_count": 1, "project_count": 1, "aliases_consistent": true},
+      "evidence_ids": ["E-BASE:C12"]
+    }
+  ],
+  "mutations": [
+    {"id": "M01", "fault_zh": "缺省 Omit 改为空字符串", "expected_killed_by": ["C01", "C02", "C03", "C10", "C12"], "observed_killed_by": ["C01", "C02", "C03", "C10", "C12"], "valid_kill": true, "evidence_ids": ["E-M01"]},
+    {"id": "M02", "fault_zh": "强制省略 Authorization", "expected_killed_by": ["C02", "C03", "C04", "C10"], "observed_killed_by": ["C03", "C04"], "expected_kill_but_observed_pass": ["C02", "C10"], "explanation_zh": "固定 Azure SDK _prepare_options 重新加入 Bearer，必须观察最终请求。", "valid_kill": true, "evidence_ids": ["E-M02"]},
+    {"id": "M03", "fault_zh": "丢弃显式受控值并统一 Omit", "expected_killed_by": ["C04", "C12"], "observed_killed_by": ["C04", "C12"], "valid_kill": true, "evidence_ids": ["E-M03"]}
+  ],
+  "evidence": [
+    {"id": "E-BASE", "kind": "existing_raw_stdout", "sha256": "cf3d625034606fc978e36b8d64a92e556d91a469538eaf472432ab23a8592e0e", "raw_log_included": false},
+    {"id": "E-M01", "kind": "existing_raw_stdout", "sha256": "fcf62b052d914a707717574bbb45d1ad4214ac47274aa03972f20695f9f61164", "raw_log_included": false},
+    {"id": "E-M02", "kind": "existing_raw_stdout", "sha256": "744d6a9f444ce6983f6a4a3f904f72df299ddb5bc2c29a8fec00ee6a51c44360", "raw_log_included": false},
+    {"id": "E-M03", "kind": "existing_raw_stdout", "sha256": "a8d0ae412f1204664376a5c045172cd6160babe28b14ec20bce47f57db176c50", "raw_log_included": false}
+  ],
+  "evidence_locator_rule": "E-BASE:Cxx 表示 E-BASE 中对应 case 的 PASS 记录及已核对的该 case 断言；摘要哈希不能替代原始证据或读者自行复现。",
+  "sources": [
+    {"id": "S1", "role": "fixed_source_implementation", "url": "https://github.com/microsoft/agent-framework/blob/cb77f68f005f40e0b844392f778c4cb6b91cee1b/python/packages/openai/agent_framework_openai/_shared.py", "relevant_lines": "195-212,249-291,332-388", "link_check": {"method": "curl -sIL", "final_http_status": 200}},
+    {"id": "S2", "role": "fixed_source_upstream_test_contract_reference_not_full_suite_run", "url": "https://github.com/microsoft/agent-framework/blob/cb77f68f005f40e0b844392f778c4cb6b91cee1b/python/packages/openai/tests/openai/test_openai_shared.py", "link_check": {"method": "curl -sIL", "final_http_status": 200}},
+    {"id": "S3", "role": "fixed_source_package_metadata", "url": "https://github.com/microsoft/agent-framework/blob/cb77f68f005f40e0b844392f778c4cb6b91cee1b/python/packages/openai/pyproject.toml", "declared_dependencies": ["agent-framework-core>=1.20.0,<2", "openai>=2.25.0,<4"], "declared_python": ">=3.10", "link_check": {"method": "curl -sIL", "final_http_status": 200}},
+    {"id": "S4", "role": "fixed_source_package_license", "url": "https://github.com/microsoft/agent-framework/blob/cb77f68f005f40e0b844392f778c4cb6b91cee1b/python/packages/openai/LICENSE", "license": "MIT", "copyright_holder": "Microsoft Corporation", "link_check": {"method": "curl -sIL", "final_http_status": 200}},
+    {"id": "S5", "role": "package_metadata_release_notes_entry_not_wheel_evidence", "url": "https://github.com/microsoft/agent-framework/releases?q=tag%3Apython-1&expanded=true", "attributed_package": "agent-framework-openai", "attribution_source": "S3", "dynamic_listing": true, "link_check": {"method": "curl -sIL", "final_http_status": 200}}
+  ],
+  "link_check_limit_zh": "真实 HEAD 链接检查只证明可达，不证明 tests 执行、wheel 内容或运行兼容性。",
+  "limitations_zh": [
+    "只覆盖固定 source 与依赖下的请求构造，不代表完整 MAF、所有 SDK major、线上认证或生产发布批准。",
+    "C08/C09 是 OpenAI 负控；没有将其计作 Azure API-key bridge 覆盖。",
+    "C10 只验证 responses_mode 配置分支，不是实际 Responses API 调用。",
+    "BASE 没有完整成功 header dump；Observed 仅为 PASS 断言支持的最小状态，缺省字段不外推。",
+    "现有证据没有独立运行时 import-origin 清单；后续复现应补充。",
+    "公开资产只含模板与事实摘要，不提供原始日志、可执行 runner、源码树或 vendor。",
+    "包元数据与 release-notes 入口不构成 wheel 实测证据。",
+    "新环境复用时须重置 Observed 为 NOT_RUN，不沿用现有 PASS。"
+  ]
+}

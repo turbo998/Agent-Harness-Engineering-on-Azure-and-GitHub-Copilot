@@ -1,0 +1,160 @@
+{
+  "schema_version": "1.0",
+  "title": "MAF 参数改写溯源与 Handoff 生命周期：公开 NOT_RUN 验收模板",
+  "as_of": "2026-10-06 Asia/Shanghai",
+  "language": "zh-CN",
+  "repository": "microsoft/agent-framework",
+  "delivery_type": "STATIC_ACCEPTANCE_TEMPLATE",
+  "runtime_status": "NOT_RUN",
+  "upstream_test_status": "READ_NOT_RUN",
+  "negative_control_status": "NOT_RUN",
+  "execution_statement": "本次未导入框架、安装依赖、运行上游测试、构建runner或连接模型；仅静态阅读、引用HEAD核实与文档完整性检查。Expected不是Observed。",
+  "release_status": "正式wheel/NuGet收录与GA未验证；不由固定源码提交推导发布状态。",
+  "artifacts": [
+    {
+      "file": "maf-argument-provenance-handoff-gates-2026-10-06.md",
+      "sha256": "44a2d93094f1c6712e50dda0c55e8d90701dc24c59d2371db2effa90c75b9128",
+      "role": "完整中文验收卡、Q&A、Mermaid边界图、POC签字门与工作指令"
+    },
+    {
+      "file": "claims.json",
+      "role": "声明、证据、链接核实与卡片索引；不包含自引用hash"
+    }
+  ],
+  "versions": {
+    "V1": {
+      "mechanism": "MS1",
+      "language": "Python",
+      "commit_sha": "3c2fe0a8a3657ca33132ed5726ce6658ff1fc04d",
+      "scope": "rewritten_arguments、validation snapshot与ContextVar；Experimental FIDES路径"
+    },
+    "V2": {
+      "mechanism": "MS2",
+      "language": ".NET",
+      "commit_sha": "bd5ab48cfdebb49b9223de0fc75c7141641927f3",
+      "scope": "HandoffRequestTracker、stream provenance与路由候选选择"
+    }
+  },
+  "evidence": [
+    {
+      "id": "E1",
+      "version": "V1",
+      "url": "https://raw.githubusercontent.com/microsoft/agent-framework/3c2fe0a8a3657ca33132ed5726ce6658ff1fc04d/python/packages/core/agent_framework/security.py",
+      "body_sha256": "d9b3af0ea82a36c0b25bf1d8141641854c0d60947abf9aa93e1f0c573f8a7a10",
+      "body_hash_scope": "既有GET源码正文，本轮重新计算；不是HEAD响应体",
+      "review_status": "READ_ONLY",
+      "head": {"method": "HEAD", "http_status": 200, "curl_exit": 0, "checked_at_utc": "2026-10-05T19:48:28.917181+00:00", "redirected": false},
+      "locations": ["1878-1917", "1971-1974", "2379-2424"]
+    },
+    {
+      "id": "E2",
+      "version": "V1",
+      "url": "https://raw.githubusercontent.com/microsoft/agent-framework/3c2fe0a8a3657ca33132ed5726ce6658ff1fc04d/python/packages/core/tests/test_security.py",
+      "body_sha256": "cb98ddda51f2184ac73fe40cd346bad89d40b8030f274bd66a6ad43b5627b7fb",
+      "body_hash_scope": "既有GET测试正文，本轮重新计算；不是HEAD响应体",
+      "review_status": "READ_NOT_RUN",
+      "head": {"method": "HEAD", "http_status": 200, "curl_exit": 0, "checked_at_utc": "2026-10-05T19:48:28.846483+00:00", "redirected": false},
+      "locations": ["8205-8242", "8260-8447", "8451-8478", "8481-8524"]
+    },
+    {
+      "id": "E3",
+      "version": "V2",
+      "url": "https://raw.githubusercontent.com/microsoft/agent-framework/bd5ab48cfdebb49b9223de0fc75c7141641927f3/dotnet/src/Microsoft.Agents.AI.Workflows/Specialized/HandoffAgentExecutor.cs",
+      "body_sha256": "76c0d8765f093832e0da68e6821b075939c7c4aff1c8faa912d6c4618b20532b",
+      "body_hash_scope": "既有GET源码正文，本轮重新计算；不是HEAD响应体",
+      "review_status": "READ_ONLY",
+      "head": {"method": "HEAD", "http_status": 200, "curl_exit": 0, "checked_at_utc": "2026-10-05T19:48:28.861632+00:00", "redirected": false},
+      "locations": ["87", "97-142", "149-209", "552-630", "634-669"]
+    },
+    {
+      "id": "E4",
+      "version": "V2",
+      "url": "https://raw.githubusercontent.com/microsoft/agent-framework/bd5ab48cfdebb49b9223de0fc75c7141641927f3/dotnet/tests/Microsoft.Agents.AI.Workflows.UnitTests/HandoffAgentExecutorTests.cs",
+      "body_sha256": "9dbac5f897da19560166fdbb5384fb2fa10fd675211c74c8143a358b686a34ea",
+      "body_hash_scope": "既有GET测试正文，本轮重新计算；不是HEAD响应体",
+      "review_status": "READ_NOT_RUN",
+      "head": {"method": "HEAD", "http_status": 200, "curl_exit": 0, "checked_at_utc": "2026-10-05T19:48:28.914177+00:00", "redirected": false},
+      "locations": ["284-416", "417-464", "467-545", "549-699"]
+    }
+  ],
+  "claims": [
+    {
+      "id": "CL-MS1-01", "version": "V1", "kind": "SOURCE_READING",
+      "statement": "rewritten_arguments返回顶层参数名到位置集合；list/tuple用索引，非列表用{-1}；这是元数据API，不是自动授权策略。",
+      "evidence_ids": ["E1"], "locations": ["2379-2424"], "runtime_status": "NOT_RUN"
+    },
+    {
+      "id": "CL-MS1-02", "version": "V1", "kind": "SOURCE_AND_ASSERTION_READING",
+      "statement": "参数准备前后快照不同或查询时快照不符，保守标记最终列表位置；重排/过滤不能沿用陈旧索引。旧测试docstring中的-1不覆盖实现及assert。",
+      "evidence_ids": ["E1", "E2"], "locations": ["E1:1904-1917", "E1:2409-2424", "E2:8260-8447"], "runtime_status": "NOT_RUN"
+    },
+    {
+      "id": "CL-MS1-03", "version": "V1", "kind": "HELPER_TEST_READING",
+      "statement": "最终键重映射的上游反例手工构造metadata与snapshot；只能作为helper层READ_NOT_RUN证据，不能证明完整Pydantic alias端到端行为。",
+      "evidence_ids": ["E2"], "locations": ["8481-8524"], "runtime_status": "NOT_RUN"
+    },
+    {
+      "id": "CL-MS1-04", "version": "V1", "kind": "SOURCE_READING",
+      "statement": "ContextVar在进入调用时设置并于finally复位；不能外推任意线程、插件或跨进程安全。",
+      "evidence_ids": ["E1"], "locations": ["1884-1886", "1971-1974"], "runtime_status": "NOT_RUN"
+    },
+    {
+      "id": "CL-MS1-05", "version": "V1", "kind": "BOUNDARY",
+      "statement": "无上下文、无改写metadata或arguments/kwargs重名优先级均可能产生空映射；空映射不是trusted、身份或权限证明。",
+      "evidence_ids": ["E1", "E2"], "locations": ["E1:2401-2407", "E2:8451-8478"], "runtime_status": "NOT_RUN"
+    },
+    {
+      "id": "CL-MS2-01", "version": "V2", "kind": "SOURCE_READING",
+      "statement": "候选需要当前被调用assistant、匹配producer、非空白CallId、已声明handoff名及未被配对完成的请求；只看工具名不足。",
+      "evidence_ids": ["E3"], "locations": ["634-666"], "runtime_status": "NOT_RUN"
+    },
+    {
+      "id": "CL-MS2-02", "version": "V2", "kind": "SOURCE_AND_ASSERTION_READING",
+      "statement": "以(CallId,ProducerId,ResponseId)加occurrence计数配对；完成可先到，同ID旧occurrence完成后新请求仍可路由；不是永久CallId黑名单。",
+      "evidence_ids": ["E3", "E4"], "locations": ["E3:87", "E3:149-209", "E4:549-699"], "runtime_status": "NOT_RUN"
+    },
+    {
+      "id": "CL-MS2-03", "version": "V2", "kind": "SOURCE_AND_ASSERTION_READING",
+      "statement": "role/producer仅在兼容scope继承；显式message/response边界清除旧值，response省略时存在保留规则；null不是任意response通配符。",
+      "evidence_ids": ["E3", "E4"], "locations": ["E3:97-142", "E4:467-545", "E4:610-625"], "runtime_status": "NOT_RUN"
+    },
+    {
+      "id": "CL-MS2-04", "version": "V2", "kind": "SOURCE_AND_ASSERTION_READING",
+      "statement": "缺AgentId可继承producer或回退invokedAgentId，满足其它条件仍可路由；显式foreign不同。fallback不是加密来源认证或缺字段一律拒绝。",
+      "evidence_ids": ["E3", "E4"], "locations": ["E3:134", "E4:417-464", "E4:507-523"], "runtime_status": "NOT_RUN"
+    },
+    {
+      "id": "CL-MS2-05", "version": "V2", "kind": "SOURCE_READING",
+      "statement": "多个剩余候选告警并选最后一个；部分updates可在最终路由前输出，非候选交通用collector，不代表全局拒绝、内容过滤或目标端授权。",
+      "evidence_ids": ["E3"], "locations": ["567-625"], "runtime_status": "NOT_RUN"
+    }
+  ],
+  "cards_index_note": "以下是索引；每卡完整版本、前置、刺激、Expected、Observed、负控及证据ID见同名Markdown章节。版本代号严格绑定versions中的完整SHA。",
+  "cards": [
+    {"id":"MS1-01","version":"V1","title":"精准索引与空映射的含义","design_level":"INTERFACE_BASED_DESIGN","observed":"NOT_RUN","negative_control_status":"NOT_RUN","evidence_ids":["E1"]},
+    {"id":"MS1-02","version":"V1","title":"整体列表与非列表标记","design_level":"MIDDLEWARE_TOOL_DESIGN","observed":"NOT_RUN","negative_control_status":"NOT_RUN","evidence_ids":["E1","E2"]},
+    {"id":"MS1-03","version":"V1","title":"auto-prep重排、过滤与不变验证器","design_level":"MIDDLEWARE_TOOL_DESIGN","observed":"NOT_RUN","negative_control_status":"NOT_RUN","evidence_ids":["E1","E2"]},
+    {"id":"MS1-04","version":"V1","title":"direct-middleware查询时snapshot兜底","design_level":"DIRECT_MIDDLEWARE_DESIGN_NOT_E2E","observed":"NOT_RUN","negative_control_status":"NOT_RUN","evidence_ids":["E1","E2"]},
+    {"id":"MS1-05","version":"V1","title":"最终键重映射：仅helper层","design_level":"HELPER_ONLY_NOT_ALIAS_E2E","observed":"NOT_RUN","negative_control_status":"NOT_RUN","evidence_ids":["E1","E2"]},
+    {"id":"MS1-06","version":"V1","title":"arguments与kwargs重名","design_level":"MIDDLEWARE_TOOL_DESIGN","observed":"NOT_RUN","negative_control_status":"NOT_RUN","evidence_ids":["E2"]},
+    {"id":"MS1-07","version":"V1","title":"ContextVar异常复位与任务边界","design_level":"ORIGINAL_CONCURRENCY_DESIGN","observed":"NOT_RUN","negative_control_status":"NOT_RUN","evidence_ids":["E1","E2"]},
+    {"id":"MS1-08","version":"V1","title":"元数据消费与无副作用对照","design_level":"ORIGINAL_APPLICATION_POLICY_DESIGN","observed":"NOT_RUN","negative_control_status":"NOT_RUN","evidence_ids":["E1"]},
+    {"id":"MS2-01","version":"V2","title":"候选准入不只检查工具名","design_level":"EXECUTOR_REPLAY_DESIGN","observed":"NOT_RUN","negative_control_status":"NOT_RUN","evidence_ids":["E3","E4"]},
+    {"id":"MS2-02","version":"V2","title":"同键完成取消候选","design_level":"EXECUTOR_REPLAY_DESIGN","observed":"NOT_RUN","negative_control_status":"NOT_RUN","evidence_ids":["E3","E4"]},
+    {"id":"MS2-03","version":"V2","title":"复合键隔离","design_level":"EXECUTOR_REPLAY_DESIGN","observed":"NOT_RUN","negative_control_status":"NOT_RUN","evidence_ids":["E3","E4"]},
+    {"id":"MS2-04","version":"V2","title":"完成先到仅消费对应occurrence","design_level":"EXECUTOR_REPLAY_DESIGN","observed":"NOT_RUN","negative_control_status":"NOT_RUN","evidence_ids":["E3","E4"]},
+    {"id":"MS2-05","version":"V2","title":"同ID再用不是永久封禁","design_level":"EXECUTOR_REPLAY_DESIGN","observed":"NOT_RUN","negative_control_status":"NOT_RUN","evidence_ids":["E3","E4"]},
+    {"id":"MS2-06","version":"V2","title":"流式继承限于兼容scope","design_level":"EXECUTOR_REPLAY_DESIGN","observed":"NOT_RUN","negative_control_status":"NOT_RUN","evidence_ids":["E3","E4"]},
+    {"id":"MS2-07","version":"V2","title":"缺AgentId回退与显式foreign的区别","design_level":"EXECUTOR_REPLAY_DESIGN","observed":"NOT_RUN","negative_control_status":"NOT_RUN","evidence_ids":["E3","E4"]},
+    {"id":"MS2-08","version":"V2","title":"多候选、输出时序与独立授权","design_level":"SOURCE_BASED_ORIGINAL_DESIGN","observed":"NOT_RUN","negative_control_status":"NOT_RUN","evidence_ids":["E3"]}
+  ],
+  "limitations": [
+    "非完整taint analysis、认证或权限控制；未知opaque对象、深层别名及查询后再变更不得外推。",
+    "helper别名测试不是Pydantic alias E2E；direct-middleware不是_auto_invoke_function或完整Agent loop。",
+    "不校验provider来源字段真实性、跨租户授权或远端A2A身份。",
+    "未验证正式包、真实模型/Azure、真实副作用、完整checkpoint/取消恢复组合或生产部署。",
+    "AGENTS.md/CLAUDE.md片段只是可引用工作说明，不是强制控制或执行许可；本次没有创建或修改这些文件。"
+  ],
+  "head_verification_count": 4,
+  "head_verification_scope": "公开引用的四个唯一URL；HEAD可达性不证明行为，源码及测试正文阅读也不等于执行。"
+}

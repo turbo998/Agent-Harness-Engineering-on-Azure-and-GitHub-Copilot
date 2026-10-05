@@ -27,6 +27,24 @@
     "sha256": "1568773e5796eb3c0109798fe6f7559702bbc938e4ce30018be19015e422bf89"
   },
   {
+    "path": "assets/maf-provider-header-projection-2026-10-05.md",
+    "title": "MAF混合provider：header投影验收 — 2026-10-05",
+    "date": "2026-10-05",
+    "topic": "Agent 运行时",
+    "status": "published",
+    "source_name": "maf-provider-header-projection-2026-10-05.md",
+    "sha256": "1618415c62899b3e3b67e49c6824a53eec34e73ea12ff50117b14823dcbda5ce"
+  },
+  {
+    "path": "assets/maf-argument-provenance-handoff-gates-2026-10-06.md",
+    "title": "MAF 参数改写溯源与 Handoff 生命周期：公开 NOT_RUN 验收模板",
+    "date": "2026-10-06",
+    "topic": "Agent 运行时",
+    "status": "published",
+    "source_name": "maf-argument-provenance-handoff-gates-2026-10-06.md",
+    "sha256": "bc4ee0d26003f80a2700a0d92fb690636de467ecb2386fdce21f204655ce65e3"
+  },
+  {
     "path": "assets/agent-skill-portfolio-governance-cheatsheet.md",
     "title": "Agent Skill 组合治理速查（2026-07-17）",
     "date": "2026-07-17",
@@ -387,6 +405,15 @@
     "sha256": "ba60e306ebbb2c649995da0cd50cd1cd10725084ea7b10408f5722984609f1ac"
   },
   {
+    "path": "assets/codex-required-skills-and-release-gates-2026-10-06.md",
+    "title": "Codex required skills 准入/发行证据门公开模板（2026-10-06）",
+    "date": "2026-10-06",
+    "topic": "MCP 与插件",
+    "status": "published",
+    "source_name": "codex-required-skills-and-release-gates-2026-10-06.md",
+    "sha256": "fcdacadb4955a60b97b4ce4960ffc4aaa3ec475acb8ae7114803703faf19d439"
+  },
+  {
     "path": "assets/claude-code-dynamic-workflows-orchestration-primitive.md",
     "title": "Claude Code Dynamic Workflows — 第四种编排原语（Subagents / Skills / Agent Teams 之外）",
     "date": null,
@@ -540,6 +567,24 @@
     "sha256": "736bd54d66c9aecf01170686ef3cc4478ea652e3d66d8c1f41e8e97bc8087bdc"
   },
   {
+    "path": "assets/cookbook-budget-reconciliation-2026-10-05.md",
+    "title": "Codex预算controller：崩溃窗口与意图对账实验 — 2026-10-05",
+    "date": "2026-10-05",
+    "topic": "Workshop 练习",
+    "status": "published",
+    "source_name": "cookbook-budget-reconciliation-2026-10-05.md",
+    "sha256": "4f7c9eee523dbfb0e6f4094bb8ae8a7f9b100994e7de94ace5718c41465835c0"
+  },
+  {
+    "path": "assets/codex-settlement-evidence-lab-2026-10-06.md",
+    "title": "Codex settlement：看见结果，不等于业务成功",
+    "date": "2026-10-06",
+    "topic": "Workshop 练习",
+    "status": "published",
+    "source_name": "codex-settlement-evidence-lab-2026-10-06.md",
+    "sha256": "8af814402cd8e0056bb7b0cef36dd8a807b0963ba9aa57606fc5903e30861912"
+  },
+  {
     "path": "assets/codex-remote-control-plane-cheatsheet.md",
     "title": "Codex Remote 控制平面 & 上下文生命周期速查 [→harness]",
     "date": null,
@@ -619,6 +664,15 @@
     "status": "published",
     "source_name": "actor-suspend-identity-and-lease-gates-2026-10-02.md",
     "sha256": "6ba684ca896b024e7f58a00cdcd713f1ac2d9476359db9928d63b0598cd78287"
+  },
+  {
+    "path": "assets/adk-credential-three-views-2026-10-05.md",
+    "title": "ADK凭据三视图：10卡与receipt schema — 2026-10-05",
+    "date": "2026-10-05",
+    "topic": "其他",
+    "status": "published",
+    "source_name": "adk-credential-three-views-2026-10-05.md",
+    "sha256": "4ae35ec7b196ef6563cb138704c704ed37d08c48305c493ac5176ae21d7d9ff8"
   },
   {
     "path": "assets/agent-self-audit-and-containment-cheatsheet.md",
@@ -747,6 +801,15 @@
     "sha256": "9812d603e2085d948e3add046df5867e65d5b2adbf179443c7a6625ae36b9d42"
   },
   {
+    "path": "assets/semantic-evidence-regression-gates-2026-10-06.md",
+    "title": "NVIDIA 冻结证据语义回归：验收设计",
+    "date": "2026-10-06",
+    "topic": "安全与治理",
+    "status": "published",
+    "source_name": "semantic-evidence-regression-gates-2026-10-06.md",
+    "sha256": "46b9f64a8ae948c1babf1cffc7f591830ba5ce170802f2527cff1d5bb3ec3ca4"
+  },
+  {
     "path": "assets/agent-command-execution-authz-tristack-cheatsheet.md",
     "title": "Agent「命令执行授权 / 沙箱审批」三栈对照速查（Codex shell-escalation ↔ Claude Code auto-mode/sandbox ↔ AWS IAM agent-vs-human）+ Azure 映射",
     "date": null,
@@ -828,6 +891,15 @@
     "sha256": "63fa8762e001ae30c1a9cab4b39eaf29e5970e32108463b58b2cb1a944fd7274"
   },
   {
+    "path": "assets/coding-agent-ownership-identity-2026-10-05.md",
+    "title": "Codex / Claude Code：线程归属与agent身份验收 — 2026-10-05",
+    "date": "2026-10-05",
+    "topic": "编码 Agent",
+    "status": "published",
+    "source_name": "coding-agent-ownership-identity-2026-10-05.md",
+    "sha256": "663264026d2ae62a6f8aa6878594f403615d399a7e9e1e6d7e13195891e6ae76"
+  },
+  {
     "path": "assets/model-baseline-and-context-budget-cheatsheet.md",
     "title": "Agent 模型基线 & 上下文预算速查（Codex / Claude Code / GitHub Copilot）",
     "date": null,
@@ -889,6 +961,15 @@
     "status": "published",
     "source_name": "agent-cli-extension-version-and-go-runtime-gates-2026-09-05.md",
     "sha256": "6dd7cb22cee7887452891c9341dddcd995f5d7d3b3d4a2eb3ba6df01c4963dc3"
+  },
+  {
+    "path": "assets/release-evidence-classifier-contract-2026-10-06.md",
+    "title": "Release evidence classifier contract（2026-10-06）",
+    "date": "2026-10-06",
+    "topic": "网关与部署",
+    "status": "published",
+    "source_name": "release-evidence-classifier-contract-2026-10-06.md",
+    "sha256": "8b4888642e483ffdca63da982d3e106c5537fa4bd73504dcdee7a98d733d5cc6"
   },
   {
     "path": "assets/foundry-csharp-byo-browser-automation-poc.md",

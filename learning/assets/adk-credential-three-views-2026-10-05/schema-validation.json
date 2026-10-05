@@ -1,0 +1,2587 @@
+{
+  "check_scope": "LOCAL_RECEIPT_SCHEMA_ONLY",
+  "validator": "jsonschema",
+  "validator_version": "4.26.0",
+  "python_optimize": 0,
+  "example_valid": true,
+  "fixtures_hash_matches": true,
+  "fixture_ids_match": true,
+  "fixture_refs_match": true,
+  "negative_examples_rejected": 306,
+  "input_sha256": {
+    "receipt.schema.json": "6b400992ce7eec886153679eff681e9d947fb5c2e2f6769aa4daf547ef2bfe62",
+    "receipt.example.json": "5aae9ad681bf0d5387210447a40291f5efa99bb764bce2fb8248fa1e4ad76e01",
+    "fixtures.json": "b2d0451a57a9ea208c7f12a0963825a17ca22a10e01a565104eef7ae72b5ba6c",
+    "validate_receipt.py": "f68e578af3b129f6b6f6669fd28e5619fb44d85c0614678e114d8ee0abf3f346"
+  },
+  "upstream_executed": false,
+  "adk_case_status": "NOT_RUN",
+  "checks": [
+    {
+      "kind": "reject_unknown_property",
+      "path": [],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "schema_version"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "artifact_kind"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "upstream_commit"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "execution_status"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "execution_gate"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "external_code_executed"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "scope"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "transport_observations"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "signoff"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "fixtures_sha256"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_unknown_property",
+      "path": [
+        "cases",
+        0
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        0,
+        "case_id"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        0,
+        "title"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        0,
+        "status"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        0,
+        "fixture_ref"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        0,
+        "expected"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        0,
+        "observation_plan"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        0,
+        "observed"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        0,
+        "attempts"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_unknown_property",
+      "path": [
+        "cases",
+        0,
+        "expected"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        0,
+        "expected",
+        "positive"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        0,
+        "expected",
+        "negative"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        0,
+        "expected",
+        "views"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_unknown_property",
+      "path": [
+        "cases",
+        0,
+        "expected",
+        "views"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        0,
+        "expected",
+        "views",
+        "display"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        0,
+        "expected",
+        "views",
+        "internal"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        0,
+        "expected",
+        "views",
+        "outbound"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_unknown_property",
+      "path": [
+        "cases",
+        0,
+        "observation_plan"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        0,
+        "observation_plan",
+        "primary_layer"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        0,
+        "observation_plan",
+        "independent_observer"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_unknown_property",
+      "path": [
+        "cases",
+        1
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        1,
+        "case_id"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        1,
+        "title"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        1,
+        "status"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        1,
+        "fixture_ref"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        1,
+        "expected"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        1,
+        "observation_plan"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        1,
+        "observed"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        1,
+        "attempts"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_unknown_property",
+      "path": [
+        "cases",
+        1,
+        "expected"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        1,
+        "expected",
+        "positive"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        1,
+        "expected",
+        "negative"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        1,
+        "expected",
+        "views"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_unknown_property",
+      "path": [
+        "cases",
+        1,
+        "expected",
+        "views"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        1,
+        "expected",
+        "views",
+        "display"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        1,
+        "expected",
+        "views",
+        "internal"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        1,
+        "expected",
+        "views",
+        "outbound"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_unknown_property",
+      "path": [
+        "cases",
+        1,
+        "observation_plan"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        1,
+        "observation_plan",
+        "primary_layer"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        1,
+        "observation_plan",
+        "independent_observer"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_unknown_property",
+      "path": [
+        "cases",
+        2
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        2,
+        "case_id"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        2,
+        "title"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        2,
+        "status"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        2,
+        "fixture_ref"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        2,
+        "expected"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        2,
+        "observation_plan"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        2,
+        "observed"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        2,
+        "attempts"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_unknown_property",
+      "path": [
+        "cases",
+        2,
+        "expected"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        2,
+        "expected",
+        "positive"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        2,
+        "expected",
+        "negative"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        2,
+        "expected",
+        "views"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_unknown_property",
+      "path": [
+        "cases",
+        2,
+        "expected",
+        "views"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        2,
+        "expected",
+        "views",
+        "display"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        2,
+        "expected",
+        "views",
+        "internal"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        2,
+        "expected",
+        "views",
+        "outbound"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_unknown_property",
+      "path": [
+        "cases",
+        2,
+        "observation_plan"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        2,
+        "observation_plan",
+        "primary_layer"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        2,
+        "observation_plan",
+        "independent_observer"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_unknown_property",
+      "path": [
+        "cases",
+        3
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        3,
+        "case_id"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        3,
+        "title"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        3,
+        "status"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        3,
+        "fixture_ref"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        3,
+        "expected"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        3,
+        "observation_plan"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        3,
+        "observed"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        3,
+        "attempts"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_unknown_property",
+      "path": [
+        "cases",
+        3,
+        "expected"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        3,
+        "expected",
+        "positive"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        3,
+        "expected",
+        "negative"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        3,
+        "expected",
+        "views"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_unknown_property",
+      "path": [
+        "cases",
+        3,
+        "expected",
+        "views"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        3,
+        "expected",
+        "views",
+        "display"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        3,
+        "expected",
+        "views",
+        "internal"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        3,
+        "expected",
+        "views",
+        "outbound"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_unknown_property",
+      "path": [
+        "cases",
+        3,
+        "observation_plan"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        3,
+        "observation_plan",
+        "primary_layer"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        3,
+        "observation_plan",
+        "independent_observer"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_unknown_property",
+      "path": [
+        "cases",
+        4
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        4,
+        "case_id"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        4,
+        "title"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        4,
+        "status"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        4,
+        "fixture_ref"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        4,
+        "expected"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        4,
+        "observation_plan"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        4,
+        "observed"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        4,
+        "attempts"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_unknown_property",
+      "path": [
+        "cases",
+        4,
+        "expected"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        4,
+        "expected",
+        "positive"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        4,
+        "expected",
+        "negative"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        4,
+        "expected",
+        "views"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_unknown_property",
+      "path": [
+        "cases",
+        4,
+        "expected",
+        "views"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        4,
+        "expected",
+        "views",
+        "display"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        4,
+        "expected",
+        "views",
+        "internal"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        4,
+        "expected",
+        "views",
+        "outbound"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_unknown_property",
+      "path": [
+        "cases",
+        4,
+        "observation_plan"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        4,
+        "observation_plan",
+        "primary_layer"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        4,
+        "observation_plan",
+        "independent_observer"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_unknown_property",
+      "path": [
+        "cases",
+        5
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        5,
+        "case_id"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        5,
+        "title"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        5,
+        "status"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        5,
+        "fixture_ref"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        5,
+        "expected"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        5,
+        "observation_plan"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        5,
+        "observed"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        5,
+        "attempts"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_unknown_property",
+      "path": [
+        "cases",
+        5,
+        "expected"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        5,
+        "expected",
+        "positive"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        5,
+        "expected",
+        "negative"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        5,
+        "expected",
+        "views"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_unknown_property",
+      "path": [
+        "cases",
+        5,
+        "expected",
+        "views"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        5,
+        "expected",
+        "views",
+        "display"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        5,
+        "expected",
+        "views",
+        "internal"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        5,
+        "expected",
+        "views",
+        "outbound"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_unknown_property",
+      "path": [
+        "cases",
+        5,
+        "observation_plan"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        5,
+        "observation_plan",
+        "primary_layer"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        5,
+        "observation_plan",
+        "independent_observer"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_unknown_property",
+      "path": [
+        "cases",
+        6
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        6,
+        "case_id"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        6,
+        "title"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        6,
+        "status"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        6,
+        "fixture_ref"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        6,
+        "expected"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        6,
+        "observation_plan"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        6,
+        "observed"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        6,
+        "attempts"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_unknown_property",
+      "path": [
+        "cases",
+        6,
+        "expected"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        6,
+        "expected",
+        "positive"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        6,
+        "expected",
+        "negative"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        6,
+        "expected",
+        "views"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_unknown_property",
+      "path": [
+        "cases",
+        6,
+        "expected",
+        "views"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        6,
+        "expected",
+        "views",
+        "display"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        6,
+        "expected",
+        "views",
+        "internal"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        6,
+        "expected",
+        "views",
+        "outbound"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_unknown_property",
+      "path": [
+        "cases",
+        6,
+        "observation_plan"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        6,
+        "observation_plan",
+        "primary_layer"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        6,
+        "observation_plan",
+        "independent_observer"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_unknown_property",
+      "path": [
+        "cases",
+        7
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        7,
+        "case_id"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        7,
+        "title"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        7,
+        "status"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        7,
+        "fixture_ref"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        7,
+        "expected"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        7,
+        "observation_plan"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        7,
+        "observed"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        7,
+        "attempts"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_unknown_property",
+      "path": [
+        "cases",
+        7,
+        "expected"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        7,
+        "expected",
+        "positive"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        7,
+        "expected",
+        "negative"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        7,
+        "expected",
+        "views"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_unknown_property",
+      "path": [
+        "cases",
+        7,
+        "expected",
+        "views"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        7,
+        "expected",
+        "views",
+        "display"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        7,
+        "expected",
+        "views",
+        "internal"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        7,
+        "expected",
+        "views",
+        "outbound"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_unknown_property",
+      "path": [
+        "cases",
+        7,
+        "observation_plan"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        7,
+        "observation_plan",
+        "primary_layer"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        7,
+        "observation_plan",
+        "independent_observer"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_unknown_property",
+      "path": [
+        "cases",
+        8
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        8,
+        "case_id"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        8,
+        "title"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        8,
+        "status"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        8,
+        "fixture_ref"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        8,
+        "expected"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        8,
+        "observation_plan"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        8,
+        "observed"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        8,
+        "attempts"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_unknown_property",
+      "path": [
+        "cases",
+        8,
+        "expected"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        8,
+        "expected",
+        "positive"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        8,
+        "expected",
+        "negative"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        8,
+        "expected",
+        "views"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_unknown_property",
+      "path": [
+        "cases",
+        8,
+        "expected",
+        "views"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        8,
+        "expected",
+        "views",
+        "display"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        8,
+        "expected",
+        "views",
+        "internal"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        8,
+        "expected",
+        "views",
+        "outbound"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_unknown_property",
+      "path": [
+        "cases",
+        8,
+        "observation_plan"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        8,
+        "observation_plan",
+        "primary_layer"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        8,
+        "observation_plan",
+        "independent_observer"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_unknown_property",
+      "path": [
+        "cases",
+        9
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        9,
+        "case_id"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        9,
+        "title"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        9,
+        "status"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        9,
+        "fixture_ref"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        9,
+        "expected"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        9,
+        "observation_plan"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        9,
+        "observed"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        9,
+        "attempts"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_unknown_property",
+      "path": [
+        "cases",
+        9,
+        "expected"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        9,
+        "expected",
+        "positive"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        9,
+        "expected",
+        "negative"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        9,
+        "expected",
+        "views"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_unknown_property",
+      "path": [
+        "cases",
+        9,
+        "expected",
+        "views"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        9,
+        "expected",
+        "views",
+        "display"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        9,
+        "expected",
+        "views",
+        "internal"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        9,
+        "expected",
+        "views",
+        "outbound"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_unknown_property",
+      "path": [
+        "cases",
+        9,
+        "observation_plan"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        9,
+        "observation_plan",
+        "primary_layer"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "cases",
+        9,
+        "observation_plan",
+        "independent_observer"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_unknown_property",
+      "path": [
+        "transport_observations"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "transport_observations",
+        "http_run"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "transport_observations",
+        "http_error"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "transport_observations",
+        "sse_event"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "transport_observations",
+        "sse_error"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "transport_observations",
+        "ws_text"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "transport_observations",
+        "ws_close"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "transport_observations",
+        "session_routes"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "transport_observations",
+        "eval_routes"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_unknown_property",
+      "path": [
+        "signoff"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "signoff",
+        "scope_acknowledged"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "signoff",
+        "security_reviewer"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "signoff",
+        "transport_observer"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "signoff",
+        "poc_owner"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_missing_required",
+      "path": [
+        "signoff",
+        "decision"
+      ],
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 0,
+      "value": false,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 0,
+      "value": true,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 0,
+      "value": 1,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 0,
+      "value": -1,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 0,
+      "value": 0.5,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 0,
+      "value": "0",
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 0,
+      "value": null,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 1,
+      "value": false,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 1,
+      "value": true,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 1,
+      "value": 1,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 1,
+      "value": -1,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 1,
+      "value": 0.5,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 1,
+      "value": "0",
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 1,
+      "value": null,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 2,
+      "value": false,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 2,
+      "value": true,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 2,
+      "value": 1,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 2,
+      "value": -1,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 2,
+      "value": 0.5,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 2,
+      "value": "0",
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 2,
+      "value": null,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 3,
+      "value": false,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 3,
+      "value": true,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 3,
+      "value": 1,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 3,
+      "value": -1,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 3,
+      "value": 0.5,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 3,
+      "value": "0",
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 3,
+      "value": null,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 4,
+      "value": false,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 4,
+      "value": true,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 4,
+      "value": 1,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 4,
+      "value": -1,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 4,
+      "value": 0.5,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 4,
+      "value": "0",
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 4,
+      "value": null,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 5,
+      "value": false,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 5,
+      "value": true,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 5,
+      "value": 1,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 5,
+      "value": -1,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 5,
+      "value": 0.5,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 5,
+      "value": "0",
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 5,
+      "value": null,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 6,
+      "value": false,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 6,
+      "value": true,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 6,
+      "value": 1,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 6,
+      "value": -1,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 6,
+      "value": 0.5,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 6,
+      "value": "0",
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 6,
+      "value": null,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 7,
+      "value": false,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 7,
+      "value": true,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 7,
+      "value": 1,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 7,
+      "value": -1,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 7,
+      "value": 0.5,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 7,
+      "value": "0",
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 7,
+      "value": null,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 8,
+      "value": false,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 8,
+      "value": true,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 8,
+      "value": 1,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 8,
+      "value": -1,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 8,
+      "value": 0.5,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 8,
+      "value": "0",
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 8,
+      "value": null,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 9,
+      "value": false,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 9,
+      "value": true,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 9,
+      "value": 1,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 9,
+      "value": -1,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 9,
+      "value": 0.5,
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 9,
+      "value": "0",
+      "rejected": true
+    },
+    {
+      "kind": "reject_invalid_attempts",
+      "case": 9,
+      "value": null,
+      "rejected": true
+    },
+    {
+      "kind": "runtime_claim",
+      "rejected": true
+    },
+    {
+      "kind": "gate_override",
+      "rejected": true
+    },
+    {
+      "kind": "numeric_boolean",
+      "rejected": true
+    },
+    {
+      "kind": "extra_case",
+      "rejected": true
+    },
+    {
+      "kind": "missing_case",
+      "rejected": true
+    },
+    {
+      "kind": "duplicate_case",
+      "rejected": true
+    },
+    {
+      "kind": "invented_observation",
+      "rejected": true
+    },
+    {
+      "kind": "changed_oracle",
+      "rejected": true
+    },
+    {
+      "kind": "wire_claim",
+      "rejected": true
+    }
+  ]
+}

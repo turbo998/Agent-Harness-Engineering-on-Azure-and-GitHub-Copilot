@@ -1,0 +1,1129 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ADK NOT_RUN acceptance receipt schema; not a sanitizer",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0-planning"
+    },
+    "artifact_kind": {
+      "type": "string",
+      "const": "NOT_RUN_ACCEPTANCE_RECEIPT_TEMPLATE"
+    },
+    "upstream_commit": {
+      "type": "string",
+      "const": "63aed55113d4fe78245d3d6667b6e87569888bf5"
+    },
+    "execution_status": {
+      "type": "string",
+      "const": "NOT_RUN"
+    },
+    "execution_gate": {
+      "type": "string",
+      "const": "NO_GO"
+    },
+    "external_code_executed": {
+      "type": "boolean",
+      "const": false
+    },
+    "scope": {
+      "type": "string",
+      "const": "STATIC_TEMPLATE_NOT_PRODUCTION_SANITIZER"
+    },
+    "cases": {
+      "type": "array",
+      "prefixItems": [
+        {
+          "type": "object",
+          "properties": {
+            "case_id": {
+              "type": "string",
+              "const": "C01"
+            },
+            "title": {
+              "type": "string",
+              "const": "API key三视图"
+            },
+            "status": {
+              "type": "string",
+              "const": "NOT_RUN"
+            },
+            "fixture_ref": {
+              "type": "string",
+              "const": "fixtures.json#/C01"
+            },
+            "expected": {
+              "type": "object",
+              "properties": {
+                "positive": {
+                  "type": "string",
+                  "const": "repr/str不含SYNTHETIC_API；内部dump仍有apiKey；显式出站投影删除apiKey。"
+                },
+                "negative": {
+                  "type": "string",
+                  "const": "resourceRef与authType保留；输入及内部dump不被改写。"
+                },
+                "views": {
+                  "type": "object",
+                  "properties": {
+                    "display": {
+                      "type": "string",
+                      "const": "NOT_RUN；repr/str按卡片断言检查。"
+                    },
+                    "internal": {
+                      "type": "string",
+                      "const": "NOT_RUN；固定model_dump(exclude_none=True, by_alias=True, mode=\"json\")应等于fixture.expected_dump。"
+                    },
+                    "outbound": {
+                      "type": "string",
+                      "const": "NOT_RUN；helper结果应等于fixture.expected_outbound；实际网络出口均未观察。"
+                    }
+                  },
+                  "required": [
+                    "display",
+                    "internal",
+                    "outbound"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "positive",
+                "negative",
+                "views"
+              ],
+              "additionalProperties": false
+            },
+            "observation_plan": {
+              "type": "object",
+              "properties": {
+                "primary_layer": {
+                  "type": "string",
+                  "const": "model_display"
+                },
+                "independent_observer": {
+                  "type": "string",
+                  "const": "用独立模型观察器记录repr/str、dump快照与投影；不能用helper输出代替HTTP响应。"
+                }
+              },
+              "required": [
+                "primary_layer",
+                "independent_observer"
+              ],
+              "additionalProperties": false
+            },
+            "observed": {
+              "type": "null"
+            },
+            "attempts": {
+              "type": "integer",
+              "const": 0
+            }
+          },
+          "required": [
+            "case_id",
+            "title",
+            "status",
+            "fixture_ref",
+            "expected",
+            "observation_plan",
+            "observed",
+            "attempts"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "case_id": {
+              "type": "string",
+              "const": "C02"
+            },
+            "title": {
+              "type": "string",
+              "const": "OAuth字段与别名"
+            },
+            "status": {
+              "type": "string",
+              "const": "NOT_RUN"
+            },
+            "fixture_ref": {
+              "type": "string",
+              "const": "fixtures.json#/C02"
+            },
+            "expected": {
+              "type": "object",
+              "properties": {
+                "positive": {
+                  "type": "string",
+                  "const": "clientSecret、authResponseUri、authCode、accessToken、refreshToken、idToken、codeVerifier在repr隐藏、dump保留、投影删除。"
+                },
+                "negative": {
+                  "type": "string",
+                  "const": "clientId/authUri/nonce/state及过期字段保留；保留不代表这些字段适合放任意秘密；snake_case输入按alias出站。"
+                },
+                "views": {
+                  "type": "object",
+                  "properties": {
+                    "display": {
+                      "type": "string",
+                      "const": "NOT_RUN；repr/str按卡片断言检查。"
+                    },
+                    "internal": {
+                      "type": "string",
+                      "const": "NOT_RUN；固定model_dump(exclude_none=True, by_alias=True, mode=\"json\")应等于fixture.expected_dump。"
+                    },
+                    "outbound": {
+                      "type": "string",
+                      "const": "NOT_RUN；helper结果应等于fixture.expected_outbound；实际网络出口均未观察。"
+                    }
+                  },
+                  "required": [
+                    "display",
+                    "internal",
+                    "outbound"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "positive",
+                "negative",
+                "views"
+              ],
+              "additionalProperties": false
+            },
+            "observation_plan": {
+              "type": "object",
+              "properties": {
+                "primary_layer": {
+                  "type": "string",
+                  "const": "model_display"
+                },
+                "independent_observer": {
+                  "type": "string",
+                  "const": "独立模型快照观察器逐键比对，并另抓HTTP /run响应体；源码字段保护与线路抓包分别记账。"
+                }
+              },
+              "required": [
+                "primary_layer",
+                "independent_observer"
+              ],
+              "additionalProperties": false
+            },
+            "observed": {
+              "type": "null"
+            },
+            "attempts": {
+              "type": "integer",
+              "const": 0
+            }
+          },
+          "required": [
+            "case_id",
+            "title",
+            "status",
+            "fixture_ref",
+            "expected",
+            "observation_plan",
+            "observed",
+            "attempts"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "case_id": {
+              "type": "string",
+              "const": "C05"
+            },
+            "title": {
+              "type": "string",
+              "const": "未知extra不是全局秘密扫描"
+            },
+            "status": {
+              "type": "string",
+              "const": "NOT_RUN"
+            },
+            "fixture_ref": {
+              "type": "string",
+              "const": "fixtures.json#/C05"
+            },
+            "expected": {
+              "type": "object",
+              "properties": {
+                "positive": {
+                  "type": "string",
+                  "const": "extra值在模型repr/str显示为<redacted>；内部dump和出站投影仍保留unexpected_token及undeclared_secret。"
+                },
+                "negative": {
+                  "type": "string",
+                  "const": "公开clientId与extra键名保留；把extra从dump删除或把此边界称为全局安全都不合格。"
+                },
+                "views": {
+                  "type": "object",
+                  "properties": {
+                    "display": {
+                      "type": "string",
+                      "const": "NOT_RUN；repr/str按卡片断言检查。"
+                    },
+                    "internal": {
+                      "type": "string",
+                      "const": "NOT_RUN；固定model_dump(exclude_none=True, by_alias=True, mode=\"json\")应等于fixture.expected_dump。"
+                    },
+                    "outbound": {
+                      "type": "string",
+                      "const": "NOT_RUN；helper结果应等于fixture.expected_outbound；实际网络出口均未观察。"
+                    }
+                  },
+                  "required": [
+                    "display",
+                    "internal",
+                    "outbound"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "positive",
+                "negative",
+                "views"
+              ],
+              "additionalProperties": false
+            },
+            "observation_plan": {
+              "type": "object",
+              "properties": {
+                "primary_layer": {
+                  "type": "string",
+                  "const": "model_display"
+                },
+                "independent_observer": {
+                  "type": "string",
+                  "const": "同时记录repr、dump、投影的合成canary可见性；独立HTTP/WS消费者另验wire，不借用日志结果。"
+                }
+              },
+              "required": [
+                "primary_layer",
+                "independent_observer"
+              ],
+              "additionalProperties": false
+            },
+            "observed": {
+              "type": "null"
+            },
+            "attempts": {
+              "type": "integer",
+              "const": 0
+            }
+          },
+          "required": [
+            "case_id",
+            "title",
+            "status",
+            "fixture_ref",
+            "expected",
+            "observation_plan",
+            "observed",
+            "attempts"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "case_id": {
+              "type": "string",
+              "const": "C06"
+            },
+            "title": {
+              "type": "string",
+              "const": "错误文本与结构化错误分离"
+            },
+            "status": {
+              "type": "string",
+              "const": "NOT_RUN"
+            },
+            "fixture_ref": {
+              "type": "string",
+              "const": "fixtures.json#/C06"
+            },
+            "expected": {
+              "type": "object",
+              "properties": {
+                "positive": {
+                  "type": "string",
+                  "const": "非法apiKey列表触发验证错误；str(error)不回显输入canary但保留字段位置与错误类型。"
+                },
+                "negative": {
+                  "type": "string",
+                  "const": "errors()/json()的input必须另验，不能由hide_input_in_errors推断已清除；预期默认结构化input仍可含合成列表。"
+                },
+                "views": {
+                  "type": "object",
+                  "properties": {
+                    "display": {
+                      "type": "string",
+                      "const": "NOT_RUN；原始dict或错误对象无凭据模型repr保证；不得推断隐藏。"
+                    },
+                    "internal": {
+                      "type": "string",
+                      "const": "NOT_RUN；构造失败，无有效模型dump；另观察结构化错误input。"
+                    },
+                    "outbound": {
+                      "type": "string",
+                      "const": "NOT_RUN；验证错误分支没有成功credential投影；错误线路另验。"
+                    }
+                  },
+                  "required": [
+                    "display",
+                    "internal",
+                    "outbound"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "positive",
+                "negative",
+                "views"
+              ],
+              "additionalProperties": false
+            },
+            "observation_plan": {
+              "type": "object",
+              "properties": {
+                "primary_layer": {
+                  "type": "string",
+                  "const": "structured_error"
+                },
+                "independent_observer": {
+                  "type": "string",
+                  "const": "独立错误观察器分别捕获str、errors、json；HTTP 422、SSE error帧、WS close reason各用传输消费者观察。"
+                }
+              },
+              "required": [
+                "primary_layer",
+                "independent_observer"
+              ],
+              "additionalProperties": false
+            },
+            "observed": {
+              "type": "null"
+            },
+            "attempts": {
+              "type": "integer",
+              "const": 0
+            }
+          },
+          "required": [
+            "case_id",
+            "title",
+            "status",
+            "fixture_ref",
+            "expected",
+            "observation_plan",
+            "observed",
+            "attempts"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "case_id": {
+              "type": "string",
+              "const": "C08"
+            },
+            "title": {
+              "type": "string",
+              "const": "request args的浅拷贝边界"
+            },
+            "status": {
+              "type": "string",
+              "const": "NOT_RUN"
+            },
+            "fixture_ref": {
+              "type": "string",
+              "const": "fixtures.json#/C08"
+            },
+            "expected": {
+              "type": "object",
+              "properties": {
+                "positive": {
+                  "type": "string",
+                  "const": "args.authConfig/auth_config子树精确敏感键删除；两套拼写都需验。"
+                },
+                "negative": {
+                  "type": "string",
+                  "const": "args.token业务字段保留；args.other内已知authType及apiKey也保留，因为此分支只浅拷贝args并处理两个authConfig键。"
+                },
+                "views": {
+                  "type": "object",
+                  "properties": {
+                    "display": {
+                      "type": "string",
+                      "const": "NOT_RUN；原始dict或错误对象无凭据模型repr保证；不得推断隐藏。"
+                    },
+                    "internal": {
+                      "type": "string",
+                      "const": "NOT_RUN；输入快照应保持不变；此处不证明数据库持久化或加密。"
+                    },
+                    "outbound": {
+                      "type": "string",
+                      "const": "NOT_RUN；helper结果应等于fixture.expected_outbound；实际网络出口均未观察。"
+                    }
+                  },
+                  "required": [
+                    "display",
+                    "internal",
+                    "outbound"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "positive",
+                "negative",
+                "views"
+              ],
+              "additionalProperties": false
+            },
+            "observation_plan": {
+              "type": "object",
+              "properties": {
+                "primary_layer": {
+                  "type": "string",
+                  "const": "helper_projection"
+                },
+                "independent_observer": {
+                  "type": "string",
+                  "const": "原始dict观察器比对完整预置结构与输入快照；SSE事件消费者另验同形载体，不把普通递归规则套到args.other。"
+                }
+              },
+              "required": [
+                "primary_layer",
+                "independent_observer"
+              ],
+              "additionalProperties": false
+            },
+            "observed": {
+              "type": "null"
+            },
+            "attempts": {
+              "type": "integer",
+              "const": 0
+            }
+          },
+          "required": [
+            "case_id",
+            "title",
+            "status",
+            "fixture_ref",
+            "expected",
+            "observation_plan",
+            "observed",
+            "attempts"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "case_id": {
+              "type": "string",
+              "const": "C09"
+            },
+            "title": {
+              "type": "string",
+              "const": "request response递归"
+            },
+            "status": {
+              "type": "string",
+              "const": "NOT_RUN"
+            },
+            "fixture_ref": {
+              "type": "string",
+              "const": "fixtures.json#/C09"
+            },
+            "expected": {
+              "type": "object",
+              "properties": {
+                "positive": {
+                  "type": "string",
+                  "const": "adk_request_credential.response内nested列表的refreshToken删除。"
+                },
+                "negative": {
+                  "type": "string",
+                  "const": "public及调用id保留；list次序与输入内容不变。"
+                },
+                "views": {
+                  "type": "object",
+                  "properties": {
+                    "display": {
+                      "type": "string",
+                      "const": "NOT_RUN；原始dict或错误对象无凭据模型repr保证；不得推断隐藏。"
+                    },
+                    "internal": {
+                      "type": "string",
+                      "const": "NOT_RUN；输入快照应保持不变；此处不证明数据库持久化或加密。"
+                    },
+                    "outbound": {
+                      "type": "string",
+                      "const": "NOT_RUN；helper结果应等于fixture.expected_outbound；实际网络出口均未观察。"
+                    }
+                  },
+                  "required": [
+                    "display",
+                    "internal",
+                    "outbound"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "positive",
+                "negative",
+                "views"
+              ],
+              "additionalProperties": false
+            },
+            "observation_plan": {
+              "type": "object",
+              "properties": {
+                "primary_layer": {
+                  "type": "string",
+                  "const": "helper_projection"
+                },
+                "independent_observer": {
+                  "type": "string",
+                  "const": "独立dict/list结构观察器与WS文本帧消费者分别留证；WS close不是该正常事件通道。"
+                }
+              },
+              "required": [
+                "primary_layer",
+                "independent_observer"
+              ],
+              "additionalProperties": false
+            },
+            "observed": {
+              "type": "null"
+            },
+            "attempts": {
+              "type": "integer",
+              "const": 0
+            }
+          },
+          "required": [
+            "case_id",
+            "title",
+            "status",
+            "fixture_ref",
+            "expected",
+            "observation_plan",
+            "observed",
+            "attempts"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "case_id": {
+              "type": "string",
+              "const": "C10"
+            },
+            "title": {
+              "type": "string",
+              "const": "requestedAuthConfigs双拼写"
+            },
+            "status": {
+              "type": "string",
+              "const": "NOT_RUN"
+            },
+            "fixture_ref": {
+              "type": "string",
+              "const": "fixtures.json#/C10"
+            },
+            "expected": {
+              "type": "object",
+              "properties": {
+                "positive": {
+                  "type": "string",
+                  "const": "requestedAuthConfigs及requested_auth_configs中的token/api_key删除。"
+                },
+                "negative": {
+                  "type": "string",
+                  "const": "载体外同级token保留；字典公共字段及列表中的空对象保留。"
+                },
+                "views": {
+                  "type": "object",
+                  "properties": {
+                    "display": {
+                      "type": "string",
+                      "const": "NOT_RUN；原始dict或错误对象无凭据模型repr保证；不得推断隐藏。"
+                    },
+                    "internal": {
+                      "type": "string",
+                      "const": "NOT_RUN；输入快照应保持不变；此处不证明数据库持久化或加密。"
+                    },
+                    "outbound": {
+                      "type": "string",
+                      "const": "NOT_RUN；helper结果应等于fixture.expected_outbound；实际网络出口均未观察。"
+                    }
+                  },
+                  "required": [
+                    "display",
+                    "internal",
+                    "outbound"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "positive",
+                "negative",
+                "views"
+              ],
+              "additionalProperties": false
+            },
+            "observation_plan": {
+              "type": "object",
+              "properties": {
+                "primary_layer": {
+                  "type": "string",
+                  "const": "helper_projection"
+                },
+                "independent_observer": {
+                  "type": "string",
+                  "const": "独立结构观察器；session GET/LIST/CREATE/PATCH逐路由抓取，覆盖state与events而非只调session helper。"
+                }
+              },
+              "required": [
+                "primary_layer",
+                "independent_observer"
+              ],
+              "additionalProperties": false
+            },
+            "observed": {
+              "type": "null"
+            },
+            "attempts": {
+              "type": "integer",
+              "const": 0
+            }
+          },
+          "required": [
+            "case_id",
+            "title",
+            "status",
+            "fixture_ref",
+            "expected",
+            "observation_plan",
+            "observed",
+            "attempts"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "case_id": {
+              "type": "string",
+              "const": "C11"
+            },
+            "title": {
+              "type": "string",
+              "const": "raw/exchanged四个载体"
+            },
+            "status": {
+              "type": "string",
+              "const": "NOT_RUN"
+            },
+            "fixture_ref": {
+              "type": "string",
+              "const": "fixtures.json#/C11"
+            },
+            "expected": {
+              "type": "object",
+              "properties": {
+                "positive": {
+                  "type": "string",
+                  "const": "rawAuthCredential/raw_auth_credential/exchangedAuthCredential/exchanged_auth_credential均移除client_secret。"
+                },
+                "negative": {
+                  "type": "string",
+                  "const": "四个clientId逐个保留，不得因任一分支成功便略过其他别名。"
+                },
+                "views": {
+                  "type": "object",
+                  "properties": {
+                    "display": {
+                      "type": "string",
+                      "const": "NOT_RUN；原始dict或错误对象无凭据模型repr保证；不得推断隐藏。"
+                    },
+                    "internal": {
+                      "type": "string",
+                      "const": "NOT_RUN；输入快照应保持不变；此处不证明数据库持久化或加密。"
+                    },
+                    "outbound": {
+                      "type": "string",
+                      "const": "NOT_RUN；helper结果应等于fixture.expected_outbound；实际网络出口均未观察。"
+                    }
+                  },
+                  "required": [
+                    "display",
+                    "internal",
+                    "outbound"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "positive",
+                "negative",
+                "views"
+              ],
+              "additionalProperties": false
+            },
+            "observation_plan": {
+              "type": "object",
+              "properties": {
+                "primary_layer": {
+                  "type": "string",
+                  "const": "helper_projection"
+                },
+                "independent_observer": {
+                  "type": "string",
+                  "const": "独立结构观察器；eval case、新结果、legacy结果及case别名路由分别抓响应，不能合并成eval已通过。"
+                }
+              },
+              "required": [
+                "primary_layer",
+                "independent_observer"
+              ],
+              "additionalProperties": false
+            },
+            "observed": {
+              "type": "null"
+            },
+            "attempts": {
+              "type": "integer",
+              "const": 0
+            }
+          },
+          "required": [
+            "case_id",
+            "title",
+            "status",
+            "fixture_ref",
+            "expected",
+            "observation_plan",
+            "observed",
+            "attempts"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "case_id": {
+              "type": "string",
+              "const": "C14"
+            },
+            "title": {
+              "type": "string",
+              "const": "非字符串authType负控"
+            },
+            "status": {
+              "type": "string",
+              "const": "NOT_RUN"
+            },
+            "fixture_ref": {
+              "type": "string",
+              "const": "fixtures.json#/C14"
+            },
+            "expected": {
+              "type": "object",
+              "properties": {
+                "positive": {
+                  "type": "string",
+                  "const": "authType为dict、auth_type为list时不发生不可哈希TypeError，投影等于预置输入。"
+                },
+                "negative": {
+                  "type": "string",
+                  "const": "业务token保留；这个raw helper用例不表示AuthCredential模型接受相同非法类型。"
+                },
+                "views": {
+                  "type": "object",
+                  "properties": {
+                    "display": {
+                      "type": "string",
+                      "const": "NOT_RUN；原始dict或错误对象无凭据模型repr保证；不得推断隐藏。"
+                    },
+                    "internal": {
+                      "type": "string",
+                      "const": "NOT_RUN；输入快照应保持不变；此处不证明数据库持久化或加密。"
+                    },
+                    "outbound": {
+                      "type": "string",
+                      "const": "NOT_RUN；helper结果应等于fixture.expected_outbound；实际网络出口均未观察。"
+                    }
+                  },
+                  "required": [
+                    "display",
+                    "internal",
+                    "outbound"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "positive",
+                "negative",
+                "views"
+              ],
+              "additionalProperties": false
+            },
+            "observation_plan": {
+              "type": "object",
+              "properties": {
+                "primary_layer": {
+                  "type": "string",
+                  "const": "helper_projection"
+                },
+                "independent_observer": {
+                  "type": "string",
+                  "const": "独立异常/结构观察器，同时验证未抛错及精确相等；只无异常不能判正确。"
+                }
+              },
+              "required": [
+                "primary_layer",
+                "independent_observer"
+              ],
+              "additionalProperties": false
+            },
+            "observed": {
+              "type": "null"
+            },
+            "attempts": {
+              "type": "integer",
+              "const": 0
+            }
+          },
+          "required": [
+            "case_id",
+            "title",
+            "status",
+            "fixture_ref",
+            "expected",
+            "observation_plan",
+            "observed",
+            "attempts"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "case_id": {
+              "type": "string",
+              "const": "C15"
+            },
+            "title": {
+              "type": "string",
+              "const": "普通业务与字符串JSON负控"
+            },
+            "status": {
+              "type": "string",
+              "const": "NOT_RUN"
+            },
+            "fixture_ref": {
+              "type": "string",
+              "const": "fixtures.json#/C15"
+            },
+            "expected": {
+              "type": "object",
+              "properties": {
+                "positive": {
+                  "type": "string",
+                  "const": "未知authType、业务token/password/accessToken、customSecret及字符串化JSON均按预置结构保留。"
+                },
+                "negative": {
+                  "type": "string",
+                  "const": "不能全局删除同名业务字段；字符串不再json.loads。已知载体内部则递归删精确键，不是全局扫描。"
+                },
+                "views": {
+                  "type": "object",
+                  "properties": {
+                    "display": {
+                      "type": "string",
+                      "const": "NOT_RUN；原始dict或错误对象无凭据模型repr保证；不得推断隐藏。"
+                    },
+                    "internal": {
+                      "type": "string",
+                      "const": "NOT_RUN；输入快照应保持不变；此处不证明数据库持久化或加密。"
+                    },
+                    "outbound": {
+                      "type": "string",
+                      "const": "NOT_RUN；helper结果应等于fixture.expected_outbound；实际网络出口均未观察。"
+                    }
+                  },
+                  "required": [
+                    "display",
+                    "internal",
+                    "outbound"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "positive",
+                "negative",
+                "views"
+              ],
+              "additionalProperties": false
+            },
+            "observation_plan": {
+              "type": "object",
+              "properties": {
+                "primary_layer": {
+                  "type": "string",
+                  "const": "helper_projection"
+                },
+                "independent_observer": {
+                  "type": "string",
+                  "const": "独立结构观察器核字符串字节、null、空对象及list；传输观察器不得先对收到的内容自行脱敏再声称上游安全。"
+                }
+              },
+              "required": [
+                "primary_layer",
+                "independent_observer"
+              ],
+              "additionalProperties": false
+            },
+            "observed": {
+              "type": "null"
+            },
+            "attempts": {
+              "type": "integer",
+              "const": 0
+            }
+          },
+          "required": [
+            "case_id",
+            "title",
+            "status",
+            "fixture_ref",
+            "expected",
+            "observation_plan",
+            "observed",
+            "attempts"
+          ],
+          "additionalProperties": false
+        }
+      ],
+      "minItems": 10,
+      "maxItems": 10,
+      "items": false
+    },
+    "transport_observations": {
+      "type": "object",
+      "properties": {
+        "http_run": {
+          "type": "string",
+          "const": "NOT_RUN"
+        },
+        "http_error": {
+          "type": "string",
+          "const": "NOT_RUN"
+        },
+        "sse_event": {
+          "type": "string",
+          "const": "NOT_RUN"
+        },
+        "sse_error": {
+          "type": "string",
+          "const": "NOT_RUN"
+        },
+        "ws_text": {
+          "type": "string",
+          "const": "NOT_RUN"
+        },
+        "ws_close": {
+          "type": "string",
+          "const": "NOT_RUN"
+        },
+        "session_routes": {
+          "type": "string",
+          "const": "NOT_RUN"
+        },
+        "eval_routes": {
+          "type": "string",
+          "const": "NOT_RUN"
+        }
+      },
+      "required": [
+        "http_run",
+        "http_error",
+        "sse_event",
+        "sse_error",
+        "ws_text",
+        "ws_close",
+        "session_routes",
+        "eval_routes"
+      ],
+      "additionalProperties": false
+    },
+    "signoff": {
+      "type": "object",
+      "properties": {
+        "scope_acknowledged": {
+          "type": "boolean",
+          "const": false
+        },
+        "security_reviewer": {
+          "type": "null"
+        },
+        "transport_observer": {
+          "type": "null"
+        },
+        "poc_owner": {
+          "type": "null"
+        },
+        "decision": {
+          "type": "string",
+          "const": "PENDING"
+        }
+      },
+      "required": [
+        "scope_acknowledged",
+        "security_reviewer",
+        "transport_observer",
+        "poc_owner",
+        "decision"
+      ],
+      "additionalProperties": false
+    },
+    "fixtures_sha256": {
+      "type": "string",
+      "const": "b2d0451a57a9ea208c7f12a0963825a17ca22a10e01a565104eef7ae72b5ba6c"
+    }
+  },
+  "required": [
+    "schema_version",
+    "artifact_kind",
+    "upstream_commit",
+    "execution_status",
+    "execution_gate",
+    "external_code_executed",
+    "scope",
+    "cases",
+    "transport_observations",
+    "signoff",
+    "fixtures_sha256"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,654 @@
+{
+  "schema_version": "1.0",
+  "title": "双 CLI ownership / agent-identity 验收模板",
+  "language": "zh-CN",
+  "as_of": "2026-10-05",
+  "timezone": "Asia/Shanghai",
+  "runtime_status": "NOT_RUN",
+  "runtime_observations": null,
+  "claims": [
+    {
+      "id": "F01",
+      "kind": "SOURCE_FACT",
+      "text": "Codex f365d575 ownership routing 修复不在 0.160.0 stable；compare diverged 且 stable 仍保留 MCP 例外。",
+      "evidence_ids": [
+        "E01",
+        "E05",
+        "E06"
+      ],
+      "limitations": "仅该修复与该 stable 对照；不推断后续发布。",
+      "runtime_status": "NOT_RUN"
+    },
+    {
+      "id": "F02",
+      "kind": "SOURCE_FACT",
+      "text": "正常已建立主线程的未跟踪通知只通过 ThreadStarted 直接父亲或 MCP metadata 父亲核验；四集合决定本地归属。",
+      "evidence_ids": [
+        "E01",
+        "E02"
+      ],
+      "limitations": "不是服务端认证；入口之前及特殊分支另行处理。",
+      "runtime_status": "NOT_RUN"
+    },
+    {
+      "id": "F03",
+      "kind": "SOURCE_FACT",
+      "text": "MCP lookup 的 1 秒包住整个 retry loop；仅两种消息前缀重试，50ms 起倍增封顶1秒。",
+      "evidence_ids": [
+        "E02"
+      ],
+      "limitations": "审批路径不调用该 helper；真实请求次数不固定。",
+      "runtime_status": "NOT_RUN"
+    },
+    {
+      "id": "F04",
+      "kind": "DERIVED_MECHANISM",
+      "text": "立即错误、零开销模型的 MCP 请求起点是0/50/150/350/750ms；不递归查祖先。",
+      "evidence_ids": [
+        "E02"
+      ],
+      "limitations": "推导而非实测；子线程须直接父亲已经本地归属。",
+      "runtime_status": "NOT_RUN"
+    },
+    {
+      "id": "F05",
+      "kind": "SOURCE_FACT",
+      "text": "审批先到分支单次 metadata lookup；通过后 pending/channel/UI 关联原线程；overview dispatched 有转存例外。",
+      "evidence_ids": [
+        "E01",
+        "E12"
+      ],
+      "limitations": "不等于底层执行、服务端授权或所有 foreign 永不保留。",
+      "runtime_status": "NOT_RUN"
+    },
+    {
+      "id": "F06",
+      "kind": "TEST_DEFINITION",
+      "text": "上游定义 OwnedApprovalFirst/OwnedAfterMcp/ForeignAfterMcp，断言 channel/pending/active view/foreign popup。",
+      "evidence_ids": [
+        "E03"
+      ],
+      "limitations": "测试未运行；非双TUI生产共享server集成证明。",
+      "runtime_status": "NOT_RUN"
+    },
+    {
+      "id": "F07",
+      "kind": "VERSION_CHANGELOG_FACT",
+      "text": "2.1.289：Added agent.spawn for teammates, one agent id across plugin hook events, and idle and waiting states in $.agent.list().",
+      "evidence_ids": [
+        "E07",
+        "E11"
+      ],
+      "limitations": "本机制唯一版本事实；npm只证明精确版本元数据存在。",
+      "runtime_status": "NOT_RUN"
+    },
+    {
+      "id": "F08",
+      "kind": "LIVE_DOC_FACT",
+      "text": "live reference 描述 teammate isTeammate=true；事件可传修改后 model 或 deny。",
+      "evidence_ids": [
+        "E08"
+      ],
+      "limitations": "不是已下载2.1.289二进制能力保证。",
+      "runtime_status": "NOT_RUN"
+    },
+    {
+      "id": "F09",
+      "kind": "DECLARATION_FACT",
+      "text": "固定仓库声明区分 agent loop ID 与 origin；main 可无 agentId；内部 fork 可不在 list；status 为 string。",
+      "evidence_ids": [
+        "E14"
+      ],
+      "limitations": "仓库声明与build未绑定；全文未见isTeammate，不能据此否认运行时支持。",
+      "runtime_status": "NOT_RUN"
+    },
+    {
+      "id": "F10",
+      "kind": "DECLARATION_FACT",
+      "text": "结束会话的sessionId/resume.id与运行进程不同；resume依赖transcript，agent ID跨重启规则未确证。",
+      "evidence_ids": [
+        "E08",
+        "E14"
+      ],
+      "limitations": "mod session.start 与 classic SessionStart 不同；不外推agent ID生命周期。",
+      "runtime_status": "NOT_RUN"
+    },
+    {
+      "id": "F11",
+      "kind": "LIVE_DOC_FACT",
+      "text": "普通hook失败的next前后行为不同；catch有独立预算；builtin guard特定fail-closed不能泛化。",
+      "evidence_ids": [
+        "E08",
+        "E09",
+        "E14",
+        "E16"
+      ],
+      "limitations": "catch自身失败及实际副作用需要独立运行验证。",
+      "runtime_status": "NOT_RUN"
+    },
+    {
+      "id": "F12",
+      "kind": "LIVE_DOC_FACT",
+      "text": "mods非沙箱；工具deny/managed PreToolUse不覆盖直接fs/process；http网络政策不覆盖子进程网络。",
+      "evidence_ids": [
+        "E16"
+      ],
+      "limitations": "实际可达性依赖build、guard、managed设置及OS控制。",
+      "runtime_status": "NOT_RUN"
+    },
+    {
+      "id": "F13",
+      "kind": "TEMPLATE_REQUIREMENT",
+      "text": "AGENTS.md/CLAUDE.md只作提示和资料，不是本模板的执行授权；runtime全部NOT_RUN。",
+      "evidence_ids": [],
+      "limitations": "规范性要求，不声称由产品自动强制。",
+      "runtime_status": "NOT_RUN"
+    }
+  ],
+  "cards": [
+    {
+      "id": "C01",
+      "title": "审批先于启动通知",
+      "version": "Codex source f365d5754bb643983079676c29e8f7562399019e；修复不在 0.160.0 stable；实际 build 未运行",
+      "reachable_premise": "主线程 R 已建立；C 尚无 channel/navigation/side 记录；C 的 metadata 是 ThreadSpawn(parent=R) 且可读；支持的 CommandExecutionRequestApproval；无 startup、voice、overview dispatched、active side parent 特例。",
+      "reachability": "NOT_CHECKED",
+      "stimulus": "在 ThreadStarted/MCP 通知前，向完整 handle_app_server_event 注入 C 的支持型审批请求。",
+      "expected": [
+        "走审批自己的单次 ThreadRead(include_turns=false)，而不是 MCP retry helper。",
+        "pending 登记原 request；创建 C 的 channel；非活跃 C 的审批出现在主界面，保留 C 的 thread_id；不因此执行底层命令。",
+        "下游回复是否正确返回原 request 作为新增待测目标，不能由上游 popup 断言代替。"
+      ],
+      "runtime_status": "NOT_RUN",
+      "observed": null,
+      "negative_control": "将 metadata 改为 parent=F 且 F 不在任何归属/overview dispatched 集合；不登记普通 pending、不创建 C channel、不显示该审批。再让单次读取失败：不得误以为必有 1s retry。",
+      "evidence_ids": [
+        "E01",
+        "E02",
+        "E03",
+        "E12",
+        "E15"
+      ],
+      "expectation_basis": "上游定义覆盖审批先到的 pending/UI 断言；回复关联是新设计，未运行"
+    },
+    {
+      "id": "C02",
+      "title": "MCP 前导事件不洗白 foreign 子线程",
+      "version": "Codex source f365d5754bb643983079676c29e8f7562399019e；修复不在 0.160.0 stable；实际 build 未运行",
+      "reachable_premise": "R 已建立；owned 子 C 与 foreign 根 F/子 D 均未跟踪；server metadata 可读；无 overview dispatched 特例。",
+      "reachability": "NOT_CHECKED",
+      "stimulus": "owned：C 的 McpServerStatusUpdated(Failed) → C approval；foreign：F 的相同通知 → D 的相同通知 → D approval。",
+      "expected": [
+        "owned 从 metadata 查直接父亲 R 后创建 C channel，审批进入 pending/UI。",
+        "foreign 根 F 非 SubAgent(ThreadSpawn) 不取得 channel；其子 D 的直接父亲不归属，也不取得 channel；普通 pending 与审批 popup 均无该请求。",
+        "核实失败 MCP 的 status 并不改变 ownership 条件。"
+      ],
+      "runtime_status": "NOT_RUN",
+      "observed": null,
+      "negative_control": "使用 0.160.0 路由源码/后续批准的旧 build 作为版本负对照；其 MCP bypass 应暴露行为差异，但本模板不声称已重现。",
+      "evidence_ids": [
+        "E01",
+        "E02",
+        "E03",
+        "E05",
+        "E12"
+      ],
+      "expectation_basis": "固定源码和上游三场景之一；旧 build 运行尚未验证"
+    },
+    {
+      "id": "C03",
+      "title": "metadata retry 与 unknown 的有界等待",
+      "version": "Codex source f365d5754bb643983079676c29e8f7562399019e；修复不在 0.160.0 stable；实际 build 未运行",
+      "reachable_premise": "正常未跟踪 MCP 路径；使用可控 ThreadRead mock 与虚拟/可观测时钟；主线程已确定。",
+      "reachability": "NOT_CHECKED",
+      "stimulus": "分别注入 not found 前缀、not loaded 前缀后恢复为 parent=R；持续该错误至总 timeout；无关错误；慢读取。",
+      "expected": [
+        "只对两种精确消息前缀重试；其他错误立即终止本次 helper。",
+        "总 timeout=1s，等待从50ms倍增、单等待封顶1s。零请求耗时模型的发起点为0/50/150/350/750ms，真实次数不固定。",
+        "超时/无父亲结果不得创建该通知的 channel；随后另一次有效事件可重新核验，不等于自动补回已丢弃通知。"
+      ],
+      "runtime_status": "NOT_RUN",
+      "observed": null,
+      "negative_control": "错误文本不以规定前缀开头；普通非 MCP/ThreadStarted 通知；审批先到分支。三者不得套用 MCP retry 结论。",
+      "evidence_ids": [
+        "E01",
+        "E02",
+        "E12"
+      ],
+      "expectation_basis": "时间序列为代码推导；本卡新增故障注入设计，非上游已有测试覆盖声明"
+    },
+    {
+      "id": "C04",
+      "title": "直接父亲、祖先与已跟踪快路径",
+      "version": "Codex source f365d5754bb643983079676c29e8f7562399019e；修复不在 0.160.0 stable；实际 build 未运行",
+      "reachable_premise": "R 为 primary；P 为 R 的孩子但尚未在四集合；C 的直接父亲=P；不人为预建 C channel。",
+      "reachability": "NOT_CHECKED",
+      "stimulus": "先注入 C 的 ThreadStarted 与 MCP，后合法跟踪 P，再注入 C；另分组让父亲仅在 side_threads 或 navigation；记录所有集合变化。",
+      "expected": [
+        "只知道祖父 R 不足以接纳 C；helper 不递归查询祖先。",
+        "合法跟踪 P 后直接父亲检查可通过；四集合之一命中足够。",
+        "已跟踪 C 走快路径，不要求每个通知重验父亲；这是本地路由语义，不是撤权/认证协议。"
+      ],
+      "runtime_status": "NOT_RUN",
+      "observed": null,
+      "negative_control": "不属于 ThreadSpawn 的 source、非法 thread ID、app-scoped MCP、父亲未知分别核验；不能把它们统称恶意 foreign。",
+      "evidence_ids": [
+        "E01",
+        "E02",
+        "E12",
+        "E15"
+      ],
+      "expectation_basis": "由完整分支推导的新卡；没有祖先关系的运行证明"
+    },
+    {
+      "id": "C05",
+      "title": "共享 server 双 TUI 与边界特例",
+      "version": "Codex source f365d5754bb643983079676c29e8f7562399019e；修复不在 0.160.0 stable；实际 build 未运行",
+      "reachable_premise": "授权隔离共享 app-server 上两个独立 TUI，各自 primary R/F；本地四集合起点互斥；先证明事件确实被两个入口观察；正常路径禁用特殊分支。",
+      "reachability": "NOT_CHECKED",
+      "stimulus": "交错发送各自子线程 MCP→approval；分别采集两端 channel/pending/UI。另单独标识 startup buffering、overview dispatched、voice、unsupported request 分组。",
+      "expected": [
+        "正常路径：每端仅路由本地拥有根的子线程审批；另一端零该子线程 channel、普通 pending 和 popup，且有入口到达证据。",
+        "特殊分组按 E01 的独立分支验收；overview dispatched 可转存 request，startup 可先缓冲，unsupported 可拒绝；不得沿用一刀切的全部丢弃断言。",
+        "上游 E03 是单 embedded server 的合成路由测试定义，不能替代本卡双 TUI 集成运行。"
+      ],
+      "runtime_status": "NOT_RUN",
+      "observed": null,
+      "negative_control": "刻意让事件不送达某端，验收器必须判不可达而不是隔离成功；另将线程显式加入本地跟踪，验证快路径前提变化。",
+      "evidence_ids": [
+        "E01",
+        "E02",
+        "E03",
+        "E12"
+      ],
+      "expectation_basis": "新增集成测试设计；不是服务端多租户认证/授权验收"
+    },
+    {
+      "id": "C06",
+      "title": "teammate spawn 可达性与拒绝",
+      "version": "Claude Code 2.1.289 changelog；细节为独立 live 文档/仓库声明设计，须匹配目标 build-local types",
+      "reachable_premise": "精确包/build/types 哈希已记录；团队能力与 mod 受策略允许，实际加载已确认；原生 subagent/teammate 入口可达；不能用 mock hook 冒充原生触发。",
+      "reachability": "NOT_CHECKED",
+      "stimulus": "分别原生启动普通 subagent 与 teammate；记录 spawn hook 输入/结果；仅对合成 teammate 返回 deny；成功与拒绝各取运行 side-effect 计数。",
+      "expected": [
+        "2.1.289 的待验版本目标是 teammate 也触发 agent.spawn；live 细节目标是 teammate 的 isTeammate=true。",
+        "未匹配 build types 或字段缺失时记录差异/不可达，不自行补字段；固定仓库 E14 没有 isTeammate，不能用它宣称 API 全覆盖。",
+        "deny 路径须 agent 实际未启动；只隐藏 UI 或 hook 自行应答不算已验证执行结果。"
+      ],
+      "runtime_status": "NOT_RUN",
+      "observed": null,
+      "negative_control": "禁用/阻止 mod 加载后零 hook 必须标 BLOCKED，而不是 deny 成功；去掉 deny 的允许对照应能启动无害 fixture。",
+      "evidence_ids": [
+        "E07",
+        "E08",
+        "E11",
+        "E14",
+        "E16",
+        "E17"
+      ],
+      "expectation_basis": "版本事实与 live 行为目标分层；全部目标运行 NOT_RUN"
+    },
+    {
+      "id": "C07",
+      "title": "agent loop ID 不等于 plugin origin",
+      "version": "Claude Code 2.1.289 changelog；细节为独立 live 文档/仓库声明设计，须匹配目标 build-local types",
+      "reachable_premise": "本地 types 明确支持待观测字段；一个 session 内普通子 agent、in-process teammate 均可达；同时有 main loop 对照。",
+      "reachability": "NOT_CHECKED",
+      "stimulus": "关联 spawn 返回 ID、tool.call、turn.complete、list.id 与后续 spawn.parentAgentId；记录 next.origin/spawnedBy，保留字段缺省。",
+      "expected": [
+        "版本验收目标：同一 agent 的跨 plugin hook ID 一致；具体字段映射按目标 types 核验。",
+        "声明层允许 main loop 没有 agentId；workflow/内部 fork 可有不在 list 的 ID，不应自动当伪造。",
+        "使用 harness 自己的 observation_run_id 标注采集批次，与产品 ID 分栏；不捏造产品 ID，不把插件来源当执行主体。"
+      ],
+      "runtime_status": "NOT_RUN",
+      "observed": null,
+      "negative_control": "从 main loop 取缺省 agentId；两个同名 agent；同一插件触发两个不同 agent。关联器不得以名称或 origin 合并不同 loop。",
+      "evidence_ids": [
+        "E07",
+        "E08",
+        "E14"
+      ],
+      "expectation_basis": "声明层语义与关联器设计；无跨重启永久 ID 保证"
+    },
+    {
+      "id": "C08",
+      "title": "idle/waiting 不能充当完成",
+      "version": "Claude Code 2.1.289 changelog；细节为独立 live 文档/仓库声明设计，须匹配目标 build-local types",
+      "reachable_premise": "目标 build 的 list 能被读取；无害任务可控阻塞、可恢复且有独立 artifact/完成回执；保存原始状态字符串。",
+      "reachability": "NOT_CHECKED",
+      "stimulus": "制造待输入/待工作等场景，采集 list 与 hook 时间线；等待、空闲、完成阶段分别检查真实交付物。",
+      "expected": [
+        "2.1.289 发布说明的验收目标是观察 idle 和 waiting；触发条件与转换规则未由本模板指定为产品事实。",
+        "未知状态原样保留；E14 status:string 不构成完整枚举。",
+        "spawn 返回、idle、waiting 均不能自动判任务完成；即使 turn 完成仍须 artifact 符合任务标准。"
+      ],
+      "runtime_status": "NOT_RUN",
+      "observed": null,
+      "negative_control": "fixture 未产物却标 idle/waiting；UI 显示完成但底层回执失败。验收器必须拒绝交付完成判定。",
+      "evidence_ids": [
+        "E07",
+        "E14"
+      ],
+      "expectation_basis": "发布说明支持状态名；状态转换需现场测定，完成门是模板规范"
+    },
+    {
+      "id": "C09",
+      "title": "session/resume 生命周期与 agent ID 未知边界",
+      "version": "Claude Code 2.1.289 changelog；细节为独立 live 文档/仓库声明设计，须匹配目标 build-local types",
+      "reachable_premise": "目标 build/types 支持 session.end 与 resume 信息；使用无敏感数据会话；持久化开/关分组；mod start 与 classic SessionStart 分开记录。",
+      "reachability": "NOT_CHECKED",
+      "stimulus": "有 prompt 的会话记录 sessionId/resume.id 后 clear、resume/branch、mod reload；另设从未 prompt 与 persistence off 对照。不要执行强制终止命令。",
+      "expected": [
+        "声明层：结束会话的 sessionId/resume.id 与后续当前会话分栏；resume 句柄是否可用依赖 transcript。",
+        "live mod session.start 不因 clear/resume/branch 重触发，reload 会；end 的 branch reason=resume。",
+        "agent ID 跨切换/重启是否保留、重建、丢失均为待观察，不推断；没有记录的映射为 UNKNOWN。"
+      ],
+      "runtime_status": "NOT_RUN",
+      "observed": null,
+      "negative_control": "从未 prompt 或关闭持久化仍有句柄但无 transcript；关联器不能据句柄存在声称可恢复。不要把 classic SessionStart(source=resume) 当 mod session.start。",
+      "evidence_ids": [
+        "E08",
+        "E14",
+        "E17"
+      ],
+      "expectation_basis": "仓库声明/live 文档的生命周期目标，非精确二进制已证事实"
+    },
+    {
+      "id": "C10",
+      "title": "异常、策略例外与非沙箱边界",
+      "version": "Claude Code 2.1.289 changelog；细节为独立 live 文档/仓库声明设计，须匹配目标 build-local types",
+      "reachable_premise": "本地 types/有效 managed 策略、guard 实际加载顺序已记录；仅 mock 工具与合成文件，OS 无外联；授权允许故障注入；底层调用有独立计数器。",
+      "reachability": "NOT_CHECKED",
+      "stimulus": "分别在 next 前 throw/超时/错 shape、next 已完成后失败、catch 及时 deny、catch 自身失败；分组比较工具 deny/managed PreToolUse、mod 直接 fs/process 和 mock http/process 出口。",
+      "expected": [
+        "无 catch 的 next 前失败按 live 文档跳过 hook，继续后继；不推断一定执行，仍核验后续权限；next 已完成后失败不得重复底层调用。",
+        "及时 catch deny 的阻断单独验证；catch 自己失败/超时的精确结果保留观察目标，不能默认 fail-closed 或能回滚。",
+        "guard 的 deny 与 managed block 有加载/选项前提；工具权限不覆盖 mod 直接 fs/process；http 网络政策不等于子进程出口限制。",
+        "builtin guard 特定读取失败的 fail-closed 声明，不推广为所有 hook 的默认性质。"
+      ],
+      "runtime_status": "NOT_RUN",
+      "observed": null,
+      "negative_control": "使用工具路径与直接 mod API 访问同一无害 sentinel，展示不同控制面；未加载 guard 的分组不得获得 guard 保证；任何真实外联立即停止。",
+      "evidence_ids": [
+        "E08",
+        "E09",
+        "E10",
+        "E14",
+        "E16"
+      ],
+      "expectation_basis": "live 文档异常与安全例外的条件式验收，不是2.1.289运行保证"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E01",
+      "url": "https://raw.githubusercontent.com/openai/codex/f365d5754bb643983079676c29e8f7562399019e/codex-rs/tui/src/app/app_server_events.rs",
+      "final_url": "https://raw.githubusercontent.com/openai/codex/f365d5754bb643983079676c29e8f7562399019e/codex-rs/tui/src/app/app_server_events.rs",
+      "http_status": 200,
+      "curl_exit": 0,
+      "sha256": "5638cf0073c54a2ba44712a013209fb2e895bd51ee1611f0a884484c612493e9",
+      "retrieved_at_utc": "2026-10-04T19:41:37.449852+00:00",
+      "error": null,
+      "locators": [
+        "64-124",
+        "126-424",
+        "454-498",
+        "685-797"
+      ],
+      "evidence_layer": "PINNED_SOURCE_OR_VERSION_METADATA"
+    },
+    {
+      "id": "E02",
+      "url": "https://raw.githubusercontent.com/openai/codex/f365d5754bb643983079676c29e8f7562399019e/codex-rs/tui/src/app/app_server_thread_ownership.rs",
+      "final_url": "https://raw.githubusercontent.com/openai/codex/f365d5754bb643983079676c29e8f7562399019e/codex-rs/tui/src/app/app_server_thread_ownership.rs",
+      "http_status": 200,
+      "curl_exit": 0,
+      "sha256": "41bb3dbff6089425b3cfe3f8e1610c6e41c0b6414d10a76695513d97a3470f4d",
+      "retrieved_at_utc": "2026-10-04T19:41:37.418187+00:00",
+      "error": null,
+      "locators": [
+        "16-81"
+      ],
+      "evidence_layer": "PINNED_SOURCE_OR_VERSION_METADATA"
+    },
+    {
+      "id": "E03",
+      "url": "https://raw.githubusercontent.com/openai/codex/f365d5754bb643983079676c29e8f7562399019e/codex-rs/tui/src/app/tests/startup.rs",
+      "final_url": "https://raw.githubusercontent.com/openai/codex/f365d5754bb643983079676c29e8f7562399019e/codex-rs/tui/src/app/tests/startup.rs",
+      "http_status": 200,
+      "curl_exit": 0,
+      "sha256": "25ae20a9a9d2d47a336bb8b64ee3aa432d3442d3a185bf3477779be11d4e2f80",
+      "retrieved_at_utc": "2026-10-04T19:41:37.481487+00:00",
+      "error": null,
+      "locators": [
+        "1396-1508"
+      ],
+      "evidence_layer": "PINNED_SOURCE_OR_VERSION_METADATA"
+    },
+    {
+      "id": "E04",
+      "url": "https://raw.githubusercontent.com/openai/codex/f365d5754bb643983079676c29e8f7562399019e/codex-rs/tui/src/app.rs",
+      "final_url": "https://raw.githubusercontent.com/openai/codex/f365d5754bb643983079676c29e8f7562399019e/codex-rs/tui/src/app.rs",
+      "http_status": 200,
+      "curl_exit": 0,
+      "sha256": "9b98a1041fec7b50a244d009ee9113263f0290c67de20ba3f87cfb085c9e2c30",
+      "retrieved_at_utc": "2026-10-04T19:41:37.485140+00:00",
+      "error": null,
+      "locators": [
+        "207-277"
+      ],
+      "evidence_layer": "PINNED_SOURCE_OR_VERSION_METADATA"
+    },
+    {
+      "id": "E05",
+      "url": "https://raw.githubusercontent.com/openai/codex/rust-v0.160.0/codex-rs/tui/src/app/app_server_events.rs",
+      "final_url": "https://raw.githubusercontent.com/openai/codex/rust-v0.160.0/codex-rs/tui/src/app/app_server_events.rs",
+      "http_status": 200,
+      "curl_exit": 0,
+      "sha256": "16a089d4b34380f58484d6b89da70813a3abf3e069eb1254466e18e4d6c35297",
+      "retrieved_at_utc": "2026-10-04T19:41:37.468953+00:00",
+      "error": null,
+      "locators": [
+        "437-454"
+      ],
+      "evidence_layer": "PINNED_SOURCE_OR_VERSION_METADATA"
+    },
+    {
+      "id": "E06",
+      "url": "https://api.github.com/repos/openai/codex/compare/f365d5754bb643983079676c29e8f7562399019e...rust-v0.160.0",
+      "final_url": "https://api.github.com/repos/openai/codex/compare/f365d5754bb643983079676c29e8f7562399019e...rust-v0.160.0",
+      "http_status": 200,
+      "curl_exit": 0,
+      "sha256": "fd020aa99810470c22fee1b7a1fb4322ebf7c84a5428e653d6db69ed95f2ddf2",
+      "retrieved_at_utc": "2026-10-04T19:41:37.993334+00:00",
+      "error": null,
+      "locators": [
+        "JSON status / merge_base_commit"
+      ],
+      "evidence_layer": "PINNED_SOURCE_OR_VERSION_METADATA"
+    },
+    {
+      "id": "E07",
+      "url": "https://raw.githubusercontent.com/anthropics/claude-code/2bfb629dfaff0c8318047a4beb93cf1dc5b58b18/CHANGELOG.md",
+      "final_url": "https://raw.githubusercontent.com/anthropics/claude-code/2bfb629dfaff0c8318047a4beb93cf1dc5b58b18/CHANGELOG.md",
+      "http_status": 200,
+      "curl_exit": 0,
+      "sha256": "c3b0831a2102d8d4800a2eb00c2a0d3095378d57d690e0ed1e8e3c386299f5e7",
+      "retrieved_at_utc": "2026-10-04T19:41:37.549637+00:00",
+      "error": null,
+      "locators": [
+        "3",
+        "21"
+      ],
+      "evidence_layer": "PINNED_SOURCE_OR_VERSION_METADATA"
+    },
+    {
+      "id": "E08",
+      "url": "https://code.claude.com/docs/en/plugins/mods/reference.md",
+      "final_url": "https://code.claude.com/docs/en/plugins/mods/reference.md",
+      "http_status": 200,
+      "curl_exit": 0,
+      "sha256": "da4f6d5fb2164519e2a9ca0dab3c4a6fa241acc18e184797cd238a6d90bfd295",
+      "retrieved_at_utc": "2026-10-04T19:41:37.724127+00:00",
+      "error": null,
+      "locators": [
+        "9-12",
+        "103-120",
+        "240-248"
+      ],
+      "evidence_layer": "LIVE_DOC"
+    },
+    {
+      "id": "E09",
+      "url": "https://code.claude.com/docs/en/plugins/mods/events.md",
+      "final_url": "https://code.claude.com/docs/en/plugins/mods/events.md",
+      "http_status": 200,
+      "curl_exit": 0,
+      "sha256": "0f124eb60aec54d51fb61776b4657eac6a6c3d4841f768d85c127f3d2b272695",
+      "retrieved_at_utc": "2026-10-04T19:41:37.832151+00:00",
+      "error": null,
+      "locators": [
+        "279-324"
+      ],
+      "evidence_layer": "LIVE_DOC"
+    },
+    {
+      "id": "E10",
+      "url": "https://code.claude.com/docs/en/plugins/mods/api.md",
+      "final_url": "https://code.claude.com/docs/en/plugins/mods/api.md",
+      "http_status": 200,
+      "curl_exit": 0,
+      "sha256": "46654ff407a87dcb886e19eef19070c751200f4b6d1c2a7fbfab9989d4620975",
+      "retrieved_at_utc": "2026-10-04T19:41:37.858447+00:00",
+      "error": null,
+      "locators": [
+        "93",
+        "99-140"
+      ],
+      "evidence_layer": "LIVE_DOC"
+    },
+    {
+      "id": "E11",
+      "url": "https://registry.npmjs.org/@anthropic-ai/claude-code/2.1.289",
+      "final_url": "https://registry.npmjs.org/@anthropic-ai/claude-code/2.1.289",
+      "http_status": 200,
+      "curl_exit": 0,
+      "sha256": "6614d5bb102279dbeb9966543f287a5996df474447bad9139aeb48de8889ef2b",
+      "retrieved_at_utc": "2026-10-04T19:41:37.844953+00:00",
+      "error": null,
+      "locators": [
+        "JSON version"
+      ],
+      "evidence_layer": "PINNED_SOURCE_OR_VERSION_METADATA"
+    },
+    {
+      "id": "E12",
+      "url": "https://raw.githubusercontent.com/openai/codex/f365d5754bb643983079676c29e8f7562399019e/codex-rs/tui/src/app/thread_routing.rs",
+      "final_url": "https://raw.githubusercontent.com/openai/codex/f365d5754bb643983079676c29e8f7562399019e/codex-rs/tui/src/app/thread_routing.rs",
+      "http_status": 200,
+      "curl_exit": 0,
+      "sha256": "e2ae412c411db10001d5920e2726d2257791a43765622aaab017877b48119950",
+      "retrieved_at_utc": "2026-10-04T19:41:37.687212+00:00",
+      "error": null,
+      "locators": [
+        "75-78",
+        "245-283",
+        "388-400",
+        "500-538",
+        "1170-1365",
+        "1440-1485"
+      ],
+      "evidence_layer": "PINNED_SOURCE_OR_VERSION_METADATA"
+    },
+    {
+      "id": "E13",
+      "url": "https://raw.githubusercontent.com/openai/codex/f365d5754bb643983079676c29e8f7562399019e/codex-rs/tui/src/app/thread_events.rs",
+      "final_url": "https://raw.githubusercontent.com/openai/codex/f365d5754bb643983079676c29e8f7562399019e/codex-rs/tui/src/app/thread_events.rs",
+      "http_status": 200,
+      "curl_exit": 0,
+      "sha256": "273935acf000f4d5a30f4d79d94f8fa23fe4fb5a0fd9ea383c1b3abfba758b85",
+      "retrieved_at_utc": "2026-10-04T19:41:37.674166+00:00",
+      "error": null,
+      "locators": [
+        "63-107"
+      ],
+      "evidence_layer": "PINNED_SOURCE_OR_VERSION_METADATA"
+    },
+    {
+      "id": "E14",
+      "url": "https://raw.githubusercontent.com/anthropics/claude-code/2bfb629dfaff0c8318047a4beb93cf1dc5b58b18/mods/types/claude-code.d.ts",
+      "final_url": "https://raw.githubusercontent.com/anthropics/claude-code/2bfb629dfaff0c8318047a4beb93cf1dc5b58b18/mods/types/claude-code.d.ts",
+      "http_status": 200,
+      "curl_exit": 0,
+      "sha256": "8ae1244d19d4b393261605fe72d517b66be0d7e1c214c378cdec5107e8b0b46c",
+      "retrieved_at_utc": "2026-10-04T19:41:37.703226+00:00",
+      "error": null,
+      "locators": [
+        "113-173",
+        "274-344",
+        "875-903",
+        "8876-8914",
+        "9140-9155"
+      ],
+      "evidence_layer": "PINNED_REPOSITORY_DECLARATION_NOT_BUILD_BOUND"
+    },
+    {
+      "id": "E15",
+      "url": "https://raw.githubusercontent.com/openai/codex/f365d5754bb643983079676c29e8f7562399019e/codex-rs/tui/src/app/app_server_event_targets.rs",
+      "final_url": "https://raw.githubusercontent.com/openai/codex/f365d5754bb643983079676c29e8f7562399019e/codex-rs/tui/src/app/app_server_event_targets.rs",
+      "http_status": 200,
+      "curl_exit": 0,
+      "sha256": "c6b87662e02de7d24bde815db157edb4ad522592c551040f2cdf35b6e473439a",
+      "retrieved_at_utc": "2026-10-04T19:41:37.814116+00:00",
+      "error": null,
+      "locators": [
+        "7-43"
+      ],
+      "evidence_layer": "PINNED_SOURCE_OR_VERSION_METADATA"
+    },
+    {
+      "id": "E16",
+      "url": "https://code.claude.com/docs/en/plugins/mods/admin.md",
+      "final_url": "https://code.claude.com/docs/en/plugins/mods/admin.md",
+      "http_status": 200,
+      "curl_exit": 0,
+      "sha256": "60262941b144133783f8d7a0aa4670a3cf7437d036666f367c960b329c7eb106",
+      "retrieved_at_utc": "2026-10-04T19:41:38.156528+00:00",
+      "error": null,
+      "locators": [
+        "9",
+        "40-84",
+        "149-154",
+        "209-221"
+      ],
+      "evidence_layer": "LIVE_DOC"
+    },
+    {
+      "id": "E17",
+      "url": "https://code.claude.com/docs/en/plugins/mods/create.md",
+      "final_url": "https://code.claude.com/docs/en/plugins/mods/create.md",
+      "http_status": 200,
+      "curl_exit": 0,
+      "sha256": "ca6fbdb779bf8866fc7c9d88ac81562a4eb71cffac63daafcda2a7cc06951326",
+      "retrieved_at_utc": "2026-10-04T19:41:38.136280+00:00",
+      "error": null,
+      "locators": [
+        "Get the types for your build"
+      ],
+      "evidence_layer": "LIVE_DOC"
+    }
+  ],
+  "unresolved": [
+    "目标 CLI 二进制与 build-local types 尚未取得或运行",
+    "Claude live isTeammate 与固定仓库声明缺字段的绑定差异",
+    "Claude idle/waiting 完整状态转换、agent ID跨resume/restart映射",
+    "catch 自身失败/超时与实际副作用",
+    "双TUI共享server集成结果"
+  ],
+  "poc_signoff": {
+    "environment_owner": null,
+    "build_owner": null,
+    "security_owner": null,
+    "executor": null,
+    "acceptance_owner": null
+  }
+}

@@ -1,0 +1,205 @@
+{
+  "snapshot_date": "2026-10-05",
+  "source_commit": "0eac1447d4e24d06e47c459ca5e98f248b9413cf",
+  "scope": "Documented offline entry replay with prepositioned hash-verified source and Node binary; fresh network acquisition and production services NOT_RUN",
+  "node_version": "24.21.0",
+  "node_binary_sha256": "7fde7b8afa198da66257f42ee2001d874c7355631e6d1579a5fb5ef1f246df4c",
+  "image_id": "sha256:a3ab0b966bc4e91546a033e22093cb840908979487a9fc0e6e38295747e49ac0",
+  "platform": "Linux x86_64",
+  "restager_positive": "PASS",
+  "restager_negative_controls": [
+    {
+      "id": "wrong-hash",
+      "exit": 1,
+      "rejected_without_output_changes": true
+    },
+    {
+      "id": "missing-file",
+      "exit": 1,
+      "rejected_without_output_changes": true
+    },
+    {
+      "id": "symlink",
+      "exit": 1,
+      "rejected_without_output_changes": true
+    },
+    {
+      "id": "existing-destination",
+      "exit": 1,
+      "rejected_without_output_changes": true
+    }
+  ],
+  "runs": {
+    "version": {
+      "status": "PASS",
+      "exit": 0,
+      "stdout_sha256": "f2ec568164f99546161909b0189b57bb5be3e80f8e2ccd8a51a4aed8c4055a04",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "safety_pass": true,
+      "cleanup_pass": true
+    },
+    "baseline": {
+      "status": "PASS",
+      "exit": 0,
+      "stdout_sha256": "829a1f727f78a9b64eb0644b3cf3ff8137956a7634efa95e32fb28c7c33ade55",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tap_counts": {
+        "tests": 6,
+        "pass": 6,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "cases": [
+        "C1 post-write save failure reconciles persisted intent without another PATCH",
+        "C2 pending preview leaves live settings and ledger unchanged (receipts permitted)",
+        "C3 manual edit after last controller read can be overwritten: no CAS claim",
+        "C4 restore refuses current amount or inherited source conflict without PATCH",
+        "C5 review expires during final read: pending intent survives, zero PATCH",
+        "C6 duplicate slot cannot re-award changed observed headroom; next slot can"
+      ],
+      "embedded_negative_controls": "NC1-NC6 executed within six passing top-level tests; not six additional tests",
+      "safety_pass": true,
+      "cleanup_pass": true
+    },
+    "M1-primary": {
+      "status": "KILLED_BY_DESIGNATED_BUSINESS_ASSERTION",
+      "exit": 1,
+      "stdout_sha256": "89fbd35636819e2f2281233db4b0a0cfc2f09eb2427e70cb81b42895a34dd34b",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tap_counts": {
+        "tests": 1,
+        "pass": 0,
+        "fail": 1,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "case": "C1",
+      "case_name": "C1 post-write save failure reconciles persisted intent without another PATCH",
+      "classification": "BusinessOracleFailure",
+      "assertion": "C1_BUSINESS_RECONCILE",
+      "assertion_line": 65,
+      "unique_assertion": true,
+      "embedded_control": "NOT_RUN after early primary assertion failure",
+      "unselected_cases": "Omitted by Node24 test-name-pattern, not counted as passed",
+      "safety_pass": true,
+      "cleanup_pass": true
+    },
+    "M1-control": {
+      "status": "PASS",
+      "exit": 0,
+      "stdout_sha256": "5b2d6b66bac2f582096cd8d41d3b8c124a3129a3f6c32ab2abb6330039244c53",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tap_counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "case": "C6",
+      "case_name": "C6 duplicate slot cannot re-award changed observed headroom; next slot can",
+      "unselected_cases": "Omitted, not passed",
+      "safety_pass": true,
+      "cleanup_pass": true
+    },
+    "M2-primary": {
+      "status": "KILLED_BY_DESIGNATED_BUSINESS_ASSERTION",
+      "exit": 1,
+      "stdout_sha256": "5bc693d115666cf99f93cd2e2562d892c6ab0b89c1c695316d426aeb3ef51567",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tap_counts": {
+        "tests": 1,
+        "pass": 0,
+        "fail": 1,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "case": "C2",
+      "case_name": "C2 pending preview leaves live settings and ledger unchanged (receipts permitted)",
+      "classification": "BusinessOracleFailure",
+      "assertion": "C2_BUSINESS_PREVIEW_LEDGER_IMMUTABLE",
+      "assertion_line": 90,
+      "unique_assertion": true,
+      "embedded_control": "NOT_RUN after early primary assertion failure",
+      "unselected_cases": "Omitted by Node24 test-name-pattern, not counted as passed",
+      "safety_pass": true,
+      "cleanup_pass": true
+    },
+    "M2-control": {
+      "status": "PASS",
+      "exit": 0,
+      "stdout_sha256": "cce07ece20a23342096aa9f464f017ffd4295a56efb3d5ba9c8f2e0ad9ce6954",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tap_counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "case": "C6",
+      "case_name": "C6 duplicate slot cannot re-award changed observed headroom; next slot can",
+      "unselected_cases": "Omitted, not passed",
+      "safety_pass": true,
+      "cleanup_pass": true
+    },
+    "M3-primary": {
+      "status": "KILLED_BY_DESIGNATED_BUSINESS_ASSERTION",
+      "exit": 1,
+      "stdout_sha256": "46580fd8572966640328cd890b15cc36f9fee3cc4d307fe6ccce3e1e410d0c5d",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tap_counts": {
+        "tests": 1,
+        "pass": 0,
+        "fail": 1,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "case": "C6",
+      "case_name": "C6 duplicate slot cannot re-award changed observed headroom; next slot can",
+      "classification": "BusinessOracleFailure",
+      "assertion": "C6_BUSINESS_DUPLICATE_ZERO_PATCH",
+      "assertion_line": 186,
+      "unique_assertion": true,
+      "embedded_control": "NOT_RUN after early primary assertion failure",
+      "unselected_cases": "Omitted by Node24 test-name-pattern, not counted as passed",
+      "safety_pass": true,
+      "cleanup_pass": true
+    },
+    "M3-control": {
+      "status": "PASS",
+      "exit": 0,
+      "stdout_sha256": "1dce984155a73cc7e28e2499b076ac22a64fad04ce535dfdcf6e0bfeb839e68f",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tap_counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "case": "C1",
+      "case_name": "C1 post-write save failure reconciles persisted intent without another PATCH",
+      "unselected_cases": "Omitted, not passed",
+      "safety_pass": true,
+      "cleanup_pass": true
+    }
+  },
+  "not_run": [
+    "fresh source GET during replay",
+    "Node download during replay",
+    "image pull",
+    "npm installation",
+    "real Admin API or AWS",
+    "scheduled triggers",
+    "physical-disk power-loss durability"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "version": "binding-v1",
+  "requested_allowlist": [
+    "https://raw.githubusercontent.com/openai/codex/a4ebc509f4cdff88a8e58e175541970a30a2d385/codex-rs/ext/guardian-v2/src/async_scorer/score.rs"
+  ],
+  "final_allowlist": [
+    "https://raw.githubusercontent.com/openai/codex/a4ebc509f4cdff88a8e58e175541970a30a2d385/codex-rs/ext/guardian-v2/src/async_scorer/score.rs"
+  ],
+  "receipts": [
+    {
+      "id": "codex",
+      "capture": "fixtures/codex.txt",
+      "sha256": "dda8f4912ca2d2591e9c126ed97d426a73a5c5341a4a6f512b009ad7dc86f5d7",
+      "method": "GET",
+      "status": 200,
+      "transport_exit": 0,
+      "requested_url": "https://raw.githubusercontent.com/openai/codex/a4ebc509f4cdff88a8e58e175541970a30a2d385/codex-rs/ext/guardian-v2/src/async_scorer/score.rs",
+      "final_url": "https://raw.githubusercontent.com/openai/codex/a4ebc509f4cdff88a8e58e175541970a30a2d385/codex-rs/ext/guardian-v2/src/async_scorer/score.rs",
+      "revision": "a4ebc509f4cdff88a8e58e175541970a30a2d385",
+      "kind": "main_source",
+      "scope": "excerpt"
+    }
+  ]
+}

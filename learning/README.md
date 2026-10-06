@@ -3,7 +3,7 @@
 
 > 这些条目是从历史研究快照脱敏整理出的补充学习材料，用于学习、讨论、POC 设计前的思路准备；它们不是正式实验报告、不是本次实机验证结论，也不构成生产部署或合规建议。原快照中的来源可达性、HTTP 200 或核验时间不代表本次发布时已经重新核验。
 
-- 已发布：136
+- 已发布：137
 - 已隔离：0（详见本地报告，不发布敏感原文）
 - 跳过/冲突：0（详见本地报告）
 
@@ -93,6 +93,7 @@
 - 2026-10-01 — [LogAct：意图、裁决与副作用边界（5分钟恢复性Meta资产）](assets/logact-intent-decision-effect-boundaries-2026-10-01.md)
 - 2026-10-02 — [Agent Substrate：Actor 挂起的身份、lease 与副作用门](assets/actor-suspend-identity-and-lease-gates-2026-10-02.md)
 - 2026-10-05 — [ADK凭据三视图：10卡与receipt schema — 2026-10-05](assets/adk-credential-three-views-2026-10-05.md)
+- 2026-10-07 — [Fetch receipt binding：离线字节一致性（2026-10-07）](assets/source-receipt-binding-2026-10-07.md)
 - 日期未知 — [Agent 自体检 + 容器化收敛（Containment）速查](assets/agent-self-audit-and-containment-cheatsheet.md)
 - 日期未知 — [POC 计划 / 技术方案文档质量检查清单](assets/poc-plan-and-technical-proposal-quality-checklist.md)
 - 日期未知 — [多 Agent Provider 收敛 + Containment 架构 Cheatsheet](assets/multi-agent-provider-convergence-and-containment-cheatsheet.md)

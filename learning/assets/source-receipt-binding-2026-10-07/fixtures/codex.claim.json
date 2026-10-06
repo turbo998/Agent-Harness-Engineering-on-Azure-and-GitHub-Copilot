@@ -1,0 +1,10 @@
+{
+  "version": "binding-v1",
+  "fact_id": "codex-literal-only",
+  "receipt_id": "codex",
+  "revision": "a4ebc509f4cdff88a8e58e175541970a30a2d385",
+  "kind": "main_source",
+  "line_start": 1,
+  "line_end": 1,
+  "excerpt": "            score_at_or_before_action: state"
+}

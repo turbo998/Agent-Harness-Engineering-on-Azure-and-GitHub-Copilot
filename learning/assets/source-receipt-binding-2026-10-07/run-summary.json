@@ -1,0 +1,298 @@
+{
+  "schema": "binding-offline-run-summary-v1",
+  "run": "BINDING-EXEC-V2-2026-10-07",
+  "started_utc": "2026-10-06T19:47:46.049770+00:00",
+  "ended_utc": "2026-10-06T19:47:49.601539+00:00",
+  "execution": "PASS",
+  "publication": "PUBLISHED_AS_OFFLINE_LAB_SUMMARY_AFTER_INDEPENDENT_EXECUTION_REVIEW",
+  "source_sha256": {
+    "binding.py": "a6a76b8b1b1435a3c73e1f5a41401fe9c6110b9604f1368c04ac871fd2af6c16",
+    "README.md": "b4aa92d752302ebb5176a75e975ba3537f154650297a3438908379aaf5a8153e",
+    "schema.json": "78f2000ebbd801e5b96d5f20ff7049b9a43e078887dbac5bd4a09698967658c4",
+    "test_binding.py": "a8d5d03c802caaaa8c1799b3fbb1bfc68c5cf88e24787c2794e13db0f246ea88",
+    "SHA256SUMS": "80f1850c258d5b9d816b4bd494fdea606bd19b2357bc90721ce72967e929a456",
+    "fixtures/claude.claim.json": "80e75e89cbb697da62953be5a9430f44d6ee468790374ad583efd831247d46e1",
+    "fixtures/claude.txt": "322da45b34a83f7cd0293f7f9dd60d9386d7b5cc2b3a9494ef73e84014b305bb",
+    "fixtures/claude.manifest.json": "3a075f5f3ecbc8df971d16353e1ab5742c4f48ee05e968b4aa1ef2924cea12f6",
+    "fixtures/provenance.json": "dc4409d110c9681685376b491ab3e773387037d881beaa8afb1ae82bd2a79bed",
+    "fixtures/codex.manifest.json": "a27ab6eb39a5a1a5dc938dabb8dd88bee242b55f68923831fde5c591a9b58960",
+    "fixtures/codex.txt": "dda8f4912ca2d2591e9c126ed97d426a73a5c5341a4a6f512b009ad7dc86f5d7",
+    "fixtures/codex.claim.json": "b2d50e05890fa0d9230e3e660f402b903e5482748691840bc88b6329b069d617"
+  },
+  "report_sha256": "1232db413cb769ab3c36227af7ec0010ce7f139cdf22fd4bd0bf6eaff9460352",
+  "revision_proof_sha256": "4b4d201107f8710dece2cf0b4f68967efe1ed7ae0770e775cc6ea0bf01581de6",
+  "historical": {
+    "run": "BINDING-EXEC-2026-10-07",
+    "report_sha256": "209c9667db854d93a495aa3821f1c06b805c8e1ed2874951a954cec42d2ff059",
+    "test_sha256": "b354d37a4a6ae4ac7300016f55c69cc33c231eec80c0e6792f037935b1d7673f",
+    "baseline_methods_per_mode": 42,
+    "killed_per_mode": 3,
+    "survived_per_mode": 1,
+    "revision_mutation": "SURVIVED",
+    "note": "Historical result retained unchanged; new suite does not retroactively change old run."
+  },
+  "runs": [
+    {
+      "run": "baseline-normal",
+      "mode": "normal",
+      "exit": 0,
+      "methods": 45,
+      "passed": 45,
+      "failed_methods": 0,
+      "assertion_failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "binding_sha256": "a6a76b8b1b1435a3c73e1f5a41401fe9c6110b9604f1368c04ac871fd2af6c16",
+      "test_sha256": "a8d5d03c802caaaa8c1799b3fbb1bfc68c5cf88e24787c2794e13db0f246ea88",
+      "results_sha256": "45d23280c2f0aab0c80c4b81e7c10c095f913ec4fef35cc9a3a25961de55e24a"
+    },
+    {
+      "run": "baseline-optimized",
+      "mode": "optimized",
+      "exit": 0,
+      "methods": 45,
+      "passed": 45,
+      "failed_methods": 0,
+      "assertion_failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "binding_sha256": "a6a76b8b1b1435a3c73e1f5a41401fe9c6110b9604f1368c04ac871fd2af6c16",
+      "test_sha256": "a8d5d03c802caaaa8c1799b3fbb1bfc68c5cf88e24787c2794e13db0f246ea88",
+      "results_sha256": "8b8b75c7c0aeed91f2dd7b6ebf628dea768c7405e3f3a2c5ca716cb81a9bf497"
+    },
+    {
+      "run": "M1-http-2xx-normal",
+      "mode": "normal",
+      "exit": 1,
+      "methods": 45,
+      "passed": 44,
+      "failed_methods": 1,
+      "assertion_failures": 1,
+      "errors": 0,
+      "skipped": 0,
+      "binding_sha256": "ae48f703eac368452e8cf4922a035fd8e7575395b0d41ed8d036a1f69f89e84f",
+      "test_sha256": "a8d5d03c802caaaa8c1799b3fbb1bfc68c5cf88e24787c2794e13db0f246ea88",
+      "results_sha256": "a974666b022e34720c9c457254a526956fa166918c639b419516db1ad056a471"
+    },
+    {
+      "run": "M1-http-2xx-optimized",
+      "mode": "optimized",
+      "exit": 1,
+      "methods": 45,
+      "passed": 44,
+      "failed_methods": 1,
+      "assertion_failures": 1,
+      "errors": 0,
+      "skipped": 0,
+      "binding_sha256": "ae48f703eac368452e8cf4922a035fd8e7575395b0d41ed8d036a1f69f89e84f",
+      "test_sha256": "a8d5d03c802caaaa8c1799b3fbb1bfc68c5cf88e24787c2794e13db0f246ea88",
+      "results_sha256": "fcf48eadd4e1b2aeae8d67723d2f9d3a0be38f38792cb5f6d9b077dc69a5396d"
+    },
+    {
+      "run": "M2-revision-substring-normal",
+      "mode": "normal",
+      "exit": 1,
+      "methods": 45,
+      "passed": 42,
+      "failed_methods": 3,
+      "assertion_failures": 6,
+      "errors": 0,
+      "skipped": 0,
+      "binding_sha256": "a8cc8689b8d393cc071a82d357f99a3802c6785f5fce526759f5d9d5362af57d",
+      "test_sha256": "a8d5d03c802caaaa8c1799b3fbb1bfc68c5cf88e24787c2794e13db0f246ea88",
+      "results_sha256": "9e93e7ae99716d9a3728919eed724886d539167c2aa8ee88c3f29ff5f83cf62d"
+    },
+    {
+      "run": "M2-revision-substring-optimized",
+      "mode": "optimized",
+      "exit": 1,
+      "methods": 45,
+      "passed": 42,
+      "failed_methods": 3,
+      "assertion_failures": 6,
+      "errors": 0,
+      "skipped": 0,
+      "binding_sha256": "a8cc8689b8d393cc071a82d357f99a3802c6785f5fce526759f5d9d5362af57d",
+      "test_sha256": "a8d5d03c802caaaa8c1799b3fbb1bfc68c5cf88e24787c2794e13db0f246ea88",
+      "results_sha256": "7442a3a3c552082ce6cf66d6bfb21d829aa9a009590a3ec754b412088aba2b96"
+    },
+    {
+      "run": "M3-utf8-replace-normal",
+      "mode": "normal",
+      "exit": 1,
+      "methods": 45,
+      "passed": 44,
+      "failed_methods": 1,
+      "assertion_failures": 1,
+      "errors": 0,
+      "skipped": 0,
+      "binding_sha256": "a3d5d4997f3b0da88694e71c2b07122b204fe99694fb119cb3ece4204d1aa36a",
+      "test_sha256": "a8d5d03c802caaaa8c1799b3fbb1bfc68c5cf88e24787c2794e13db0f246ea88",
+      "results_sha256": "a684a2332f8e6e088030ac849b420d5f2fb8f1a7dbab062be2b00c4bdfe4d940"
+    },
+    {
+      "run": "M3-utf8-replace-optimized",
+      "mode": "optimized",
+      "exit": 1,
+      "methods": 45,
+      "passed": 44,
+      "failed_methods": 1,
+      "assertion_failures": 1,
+      "errors": 0,
+      "skipped": 0,
+      "binding_sha256": "a3d5d4997f3b0da88694e71c2b07122b204fe99694fb119cb3ece4204d1aa36a",
+      "test_sha256": "a8d5d03c802caaaa8c1799b3fbb1bfc68c5cf88e24787c2794e13db0f246ea88",
+      "results_sha256": "f34c3e3f36588126d99179050daa6bc07d216583037727232dfa8f65fffb34a5"
+    },
+    {
+      "run": "M4-hardlink-allowed-normal",
+      "mode": "normal",
+      "exit": 1,
+      "methods": 45,
+      "passed": 44,
+      "failed_methods": 1,
+      "assertion_failures": 1,
+      "errors": 0,
+      "skipped": 0,
+      "binding_sha256": "98f461a01e3dfa96887d2d6ac7f90d666d46c6a5a5774efd32671b097d6df2b2",
+      "test_sha256": "a8d5d03c802caaaa8c1799b3fbb1bfc68c5cf88e24787c2794e13db0f246ea88",
+      "results_sha256": "76d6fcf1bd450de6bef4a1522ee32d39db6fd95a5e748abe1683cfba635c4efa"
+    },
+    {
+      "run": "M4-hardlink-allowed-optimized",
+      "mode": "optimized",
+      "exit": 1,
+      "methods": 45,
+      "passed": 44,
+      "failed_methods": 1,
+      "assertion_failures": 1,
+      "errors": 0,
+      "skipped": 0,
+      "binding_sha256": "98f461a01e3dfa96887d2d6ac7f90d666d46c6a5a5774efd32671b097d6df2b2",
+      "test_sha256": "a8d5d03c802caaaa8c1799b3fbb1bfc68c5cf88e24787c2794e13db0f246ea88",
+      "results_sha256": "934500859c423e34111847a7c29f5420c060db3d7447b68ac1330efbcc8b3c46"
+    }
+  ],
+  "revision": {
+    "negative_cases_per_mode": 6,
+    "positive_controls_per_mode": 6,
+    "failed_methods_per_mode": 3,
+    "negative_baseline": "REJECT/revision_url_mismatch; byte_binding=true",
+    "negative_mutant": "MATCH/local_consistency_only; byte_binding=true",
+    "positive_both": "MATCH/local_consistency_only",
+    "all_exact_allowlists": true,
+    "target": "AssertionError at status/reason business oracle, not syntax/import/early-rejection error"
+  },
+  "fixtures": {
+    "normal": [
+      {
+        "name": "codex",
+        "actual": {
+          "status": "UNVERIFIED",
+          "reason": "excerpt_only",
+          "byte_binding": true,
+          "evidence_layer": "main_source",
+          "fact_authorized": false,
+          "fetch_authenticated": false,
+          "runtime_verified": false
+        },
+        "expected": {
+          "status": "UNVERIFIED",
+          "reason": "excerpt_only",
+          "byte_binding": true,
+          "evidence_layer": "main_source",
+          "fact_authorized": false,
+          "fetch_authenticated": false,
+          "runtime_verified": false
+        },
+        "outcome": "PASS"
+      },
+      {
+        "name": "claude",
+        "actual": {
+          "status": "UNVERIFIED",
+          "reason": "excerpt_only",
+          "byte_binding": true,
+          "evidence_layer": "release_body",
+          "fact_authorized": false,
+          "fetch_authenticated": false,
+          "runtime_verified": false
+        },
+        "expected": {
+          "status": "UNVERIFIED",
+          "reason": "excerpt_only",
+          "byte_binding": true,
+          "evidence_layer": "release_body",
+          "fact_authorized": false,
+          "fetch_authenticated": false,
+          "runtime_verified": false
+        },
+        "outcome": "PASS"
+      }
+    ],
+    "optimized": [
+      {
+        "name": "codex",
+        "actual": {
+          "status": "UNVERIFIED",
+          "reason": "excerpt_only",
+          "byte_binding": true,
+          "evidence_layer": "main_source",
+          "fact_authorized": false,
+          "fetch_authenticated": false,
+          "runtime_verified": false
+        },
+        "expected": {
+          "status": "UNVERIFIED",
+          "reason": "excerpt_only",
+          "byte_binding": true,
+          "evidence_layer": "main_source",
+          "fact_authorized": false,
+          "fetch_authenticated": false,
+          "runtime_verified": false
+        },
+        "outcome": "PASS"
+      },
+      {
+        "name": "claude",
+        "actual": {
+          "status": "UNVERIFIED",
+          "reason": "excerpt_only",
+          "byte_binding": true,
+          "evidence_layer": "release_body",
+          "fact_authorized": false,
+          "fetch_authenticated": false,
+          "runtime_verified": false
+        },
+        "expected": {
+          "status": "UNVERIFIED",
+          "reason": "excerpt_only",
+          "byte_binding": true,
+          "evidence_layer": "release_body",
+          "fact_authorized": false,
+          "fetch_authenticated": false,
+          "runtime_verified": false
+        },
+        "outcome": "PASS"
+      }
+    ]
+  },
+  "totals": {
+    "method_executions": 450,
+    "baseline_method_executions": 90,
+    "mutant_method_executions": 360,
+    "syntax_processes": 5,
+    "explicit_fixture_outputs": 4
+  },
+  "boundaries": [
+    "Offline original stdlib checker only; user/network/mount namespaces, home masking, exact environment whitelist; Python -I -S -B and optional -O. Not a general hostile-code sandbox.",
+    "Read-only profiling records actual returns without changing candidate tests or implementation.",
+    "Six negative subcases are within three methods, not six extra methods; method totals are not coverage.",
+    "Each suite shares one OS process exit; individual cases do not have separate OS exits.",
+    "M3 detects rejection-reason regression, not erroneous acceptance.",
+    "MATCH only means local byte consistency; hashes are not signatures; no fetch/fact/runtime authentication, production readiness or automatic publication authorization.",
+    "Fixtures remain derived excerpts: UNVERIFIED/excerpt_only. No upstream product execution or fresh URL fetch.",
+    "Historical NOT_RUN comments are preparation snapshots, not evidence that the repaired suite was never subsequently run."
+  ],
+  "limitations": "Offline stdlib fixture only; no production fetch authentication, signature, package/runtime validation, or semantic fact authorization."
+}

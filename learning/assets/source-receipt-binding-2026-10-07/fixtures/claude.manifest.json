@@ -1,0 +1,24 @@
+{
+  "version": "binding-v1",
+  "requested_allowlist": [
+    "https://raw.githubusercontent.com/anthropics/claude-code/fbe20e00e2851fc01506f54f98a8f0b875af3847/CHANGELOG.md"
+  ],
+  "final_allowlist": [
+    "https://raw.githubusercontent.com/anthropics/claude-code/fbe20e00e2851fc01506f54f98a8f0b875af3847/CHANGELOG.md"
+  ],
+  "receipts": [
+    {
+      "id": "claude",
+      "capture": "fixtures/claude.txt",
+      "sha256": "322da45b34a83f7cd0293f7f9dd60d9386d7b5cc2b3a9494ef73e84014b305bb",
+      "method": "GET",
+      "status": 200,
+      "transport_exit": 0,
+      "requested_url": "https://raw.githubusercontent.com/anthropics/claude-code/fbe20e00e2851fc01506f54f98a8f0b875af3847/CHANGELOG.md",
+      "final_url": "https://raw.githubusercontent.com/anthropics/claude-code/fbe20e00e2851fc01506f54f98a8f0b875af3847/CHANGELOG.md",
+      "revision": "fbe20e00e2851fc01506f54f98a8f0b875af3847",
+      "kind": "release_body",
+      "scope": "excerpt"
+    }
+  ]
+}

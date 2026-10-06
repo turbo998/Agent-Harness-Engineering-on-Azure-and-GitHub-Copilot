@@ -1,0 +1,34 @@
+[
+  {
+    "example": "codex",
+    "capture_id": "E01",
+    "source_line": 163,
+    "public_line": 1,
+    "requested_url": "https://raw.githubusercontent.com/openai/codex/a4ebc509f4cdff88a8e58e175541970a30a2d385/codex-rs/ext/guardian-v2/src/async_scorer/score.rs",
+    "final_url": "https://raw.githubusercontent.com/openai/codex/a4ebc509f4cdff88a8e58e175541970a30a2d385/codex-rs/ext/guardian-v2/src/async_scorer/score.rs",
+    "retrieved_at": "2026-10-06T19:08:33.767773+00:00",
+    "original_capture_body_sha256": "5558c7c95dde5ed12f0406a769a0c1eea975155c3d19eec489840de94e7ea748",
+    "local_projection_sha256": "dda8f4912ca2d2591e9c126ed97d426a73a5c5341a4a6f512b009ad7dc86f5d7",
+    "capture_envelope_sha256": "fd52234dd6d4481a367b673416502b01f518ada840c2ba57afe67a32c2bd1c21",
+    "expected_status": "UNVERIFIED",
+    "expected_reason": "excerpt_only",
+    "execution": "NOT_RUN",
+    "derivation": "UTF-8 text re-encoding equals recorded raw and sanitized hashes; one LF-terminated line extracted; not a full HTTP response or fetch authentication"
+  },
+  {
+    "example": "claude",
+    "capture_id": "E07",
+    "source_line": 3,
+    "public_line": 1,
+    "requested_url": "https://raw.githubusercontent.com/anthropics/claude-code/fbe20e00e2851fc01506f54f98a8f0b875af3847/CHANGELOG.md",
+    "final_url": "https://raw.githubusercontent.com/anthropics/claude-code/fbe20e00e2851fc01506f54f98a8f0b875af3847/CHANGELOG.md",
+    "retrieved_at": "2026-10-06T19:08:33.984196+00:00",
+    "original_capture_body_sha256": "27e1b6ea7d5c7d9163c5b9eb336954fa8c7321762ea506effd679495dd144f4e",
+    "local_projection_sha256": "322da45b34a83f7cd0293f7f9dd60d9386d7b5cc2b3a9494ef73e84014b305bb",
+    "capture_envelope_sha256": "52d02e9d662d0d4b17b33e4973c80d48cbb7b2f85c93da6d8affbdde8cac71e1",
+    "expected_status": "UNVERIFIED",
+    "expected_reason": "excerpt_only",
+    "execution": "NOT_RUN",
+    "derivation": "UTF-8 text re-encoding equals recorded raw and sanitized hashes; one LF-terminated line extracted; not a full HTTP response or fetch authentication"
+  }
+]

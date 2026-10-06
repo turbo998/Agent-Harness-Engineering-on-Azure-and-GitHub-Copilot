@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:offline:binding-v1",
+  "title": "Binding v1 manifest or manual claim (additional runtime constraints in README)",
+  "description": "WARNING: schema validation is necessary but not sufficient; only binding.check enforces cross-field and filesystem constraints. This structural schema does not fully enforce URL grammar, exact requested/final allowlists, revision path segments, safe paths, receipt identity, line ordering/span, byte budgets, SHA256 or excerpt equality. Raw JSON duplicate keys, UTF-8 and strict Python integer types require implementation checks; schema success does not authenticate fetching or authorize facts.",
+  "oneOf": [{"$ref": "#/$defs/manifest"}, {"$ref": "#/$defs/claim"}],
+  "$defs": {
+    "id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,79}$"},
+    "revision": {"type": "string", "pattern": "^([0-9a-f]{40})?$"},
+    "kind": {"enum": ["main_source", "tag_source", "release_body", "docs", "registry", "release_metadata"]},
+    "url": {"type": "string", "minLength": 1, "maxLength": 2048},
+    "receipt": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "capture", "sha256", "method", "status", "transport_exit", "requested_url", "final_url", "revision", "kind", "scope"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "capture": {"type": "string", "minLength": 1, "maxLength": 200, "pattern": "^[A-Za-z0-9_./-]+$"},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "method": {"type": "string"}, "status": {"type": "integer", "minimum": 100, "maximum": 599},
+        "transport_exit": {"type": "integer"},
+        "requested_url": {"$ref": "#/$defs/url"}, "final_url": {"$ref": "#/$defs/url"},
+        "revision": {"$ref": "#/$defs/revision"}, "kind": {"$ref": "#/$defs/kind"}, "scope": {"enum": ["full", "excerpt"]}
+      }
+    },
+    "manifest": {
+      "type": "object", "additionalProperties": false,
+      "required": ["version", "requested_allowlist", "final_allowlist", "receipts"],
+      "properties": {
+        "version": {"const": "binding-v1"},
+        "requested_allowlist": {"type": "array", "minItems": 1, "maxItems": 32, "uniqueItems": true, "items": {"$ref": "#/$defs/url"}},
+        "final_allowlist": {"type": "array", "minItems": 1, "maxItems": 32, "uniqueItems": true, "items": {"$ref": "#/$defs/url"}},
+        "receipts": {"type": "array", "minItems": 1, "maxItems": 32, "items": {"$ref": "#/$defs/receipt"}}
+      }
+    },
+    "claim": {
+      "type": "object", "additionalProperties": false,
+      "required": ["version", "fact_id", "receipt_id", "revision", "kind", "line_start", "line_end", "excerpt"],
+      "properties": {
+        "version": {"const": "binding-v1"}, "fact_id": {"$ref": "#/$defs/id"}, "receipt_id": {"$ref": "#/$defs/id"},
+        "revision": {"$ref": "#/$defs/revision"}, "kind": {"$ref": "#/$defs/kind"},
+        "line_start": {"type": "integer", "minimum": 1, "maximum": 100000},
+        "line_end": {"type": "integer", "minimum": 1, "maximum": 100000},
+        "excerpt": {"type": "string", "minLength": 1, "maxLength": 8192}
+      }
+    }
+  }
+}

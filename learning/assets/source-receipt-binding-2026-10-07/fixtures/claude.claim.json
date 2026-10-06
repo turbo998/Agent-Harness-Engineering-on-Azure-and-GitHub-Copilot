@@ -1,0 +1,10 @@
+{
+  "version": "binding-v1",
+  "fact_id": "claude-literal-only",
+  "receipt_id": "claude",
+  "revision": "fbe20e00e2851fc01506f54f98a8f0b875af3847",
+  "kind": "release_body",
+  "line_start": 1,
+  "line_end": 1,
+  "excerpt": "## 2.1.292"
+}

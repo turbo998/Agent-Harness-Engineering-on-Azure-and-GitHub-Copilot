@@ -675,6 +675,15 @@
     "sha256": "4ae35ec7b196ef6563cb138704c704ed37d08c48305c493ac5176ae21d7d9ff8"
   },
   {
+    "path": "assets/source-receipt-binding-2026-10-07.md",
+    "title": "Fetch receipt binding：离线字节一致性（2026-10-07）",
+    "date": "2026-10-07",
+    "topic": "其他",
+    "status": "published",
+    "source_name": "source-receipt-binding-2026-10-07.md",
+    "sha256": "47ac1e6d7bc730a35945b3d34759df8d42ba739d9e1fada2a4ad9791403a13a7"
+  },
+  {
     "path": "assets/agent-self-audit-and-containment-cheatsheet.md",
     "title": "Agent 自体检 + 容器化收敛（Containment）速查",
     "date": null,

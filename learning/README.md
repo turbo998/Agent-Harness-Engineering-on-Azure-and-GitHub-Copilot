@@ -3,7 +3,7 @@
 
 > 这些条目是从历史研究快照脱敏整理出的补充学习材料，用于学习、讨论、POC 设计前的思路准备；它们不是正式实验报告、不是本次实机验证结论，也不构成生产部署或合规建议。原快照中的来源可达性、HTTP 200 或核验时间不代表本次发布时已经重新核验。
 
-- 已发布：137
+- 已发布：138
 - 已隔离：0（详见本地报告，不发布敏感原文）
 - 跳过/冲突：0（详见本地报告）
 
@@ -80,6 +80,7 @@
 - 2026-10-04 — [UserSim：真实文件 write 边界与并发 append——补充 Lab](assets/usersim-file-fault-and-concurrent-append-lab-2026-10-04.md)
 - 2026-10-05 — [Codex预算controller：崩溃窗口与意图对账实验 — 2026-10-05](assets/cookbook-budget-reconciliation-2026-10-05.md)
 - 2026-10-06 — [Codex settlement：看见结果，不等于业务成功](assets/codex-settlement-evidence-lab-2026-10-06.md)
+- 2026-10-19 — [Agent 授权域、双重派发护栏与异步唤醒验收实验室（2026-10-19）](assets/agent-harness-scope-verdict-wakeup-lab-2026-10-19.md)
 - 日期未知 — [Codex Remote 控制平面 & 上下文生命周期速查 [→harness]](assets/codex-remote-control-plane-cheatsheet.md)
 - 日期未知 — [架构图模式：多 Harness 统一控制面（meta-harness）变体](assets/arch-pattern-meta-harness-control-plane.md)
 - 日期未知 — [渐进式教学 Workshop 工程模式速查（GitHub Template + Action 自动推进）](assets/progressive-workshop-engineering-pattern-cheatsheet.md)

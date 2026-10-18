@@ -1,0 +1,165 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-19",
+  "artifact": "agent-harness-scope-verdict-wakeup-lab-2026-10-19",
+  "scope_boundary": "Original Python 3.11+ stdlib reference specification and 22-test / 6-mutation suite executed offline; upstream product runtimes/CLIs/SDKs are NOT_RUN.",
+  "sources": [
+    {
+      "source_id": "S01_MAF_AGUI_AUTH_SCOPE",
+      "pillar": "Microsoft Agent Framework (Python)",
+      "repo": "microsoft/agent-framework",
+      "revision": "9a1d66b3e973bdbfdcd4359d72c5f6fd4ff4d931",
+      "requested_url": "https://github.com/microsoft/agent-framework/commit/9a1d66b3e973bdbfdcd4359d72c5f6fd4ff4d931.diff",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_diff",
+      "inspected_paths": [
+        "python/packages/ag-ui/agent_framework_ag_ui/_endpoint.py",
+        "python/packages/ag-ui/README.md",
+        "docs/specs/004-python-function-calling-loop.md"
+      ],
+      "novelty": "old_repo_new_mechanism",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 74700,
+      "captured_sha256": "934d5f6f45882e9a38d8eea2eaea8f95a0fd7176dac3088ee22aef1ff11524f8"
+    },
+    {
+      "source_id": "S02_MAF_AGUI_APPROVAL_SHAPE",
+      "pillar": "Microsoft Agent Framework (Python)",
+      "repo": "microsoft/agent-framework",
+      "revision": "abeed6c62a8cc70e796334a5b490c8e94621f89d",
+      "requested_url": "https://github.com/microsoft/agent-framework/commit/abeed6c62a8cc70e796334a5b490c8e94621f89d.diff",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_diff",
+      "inspected_paths": [
+        "python/packages/ag-ui/agent_framework_ag_ui/_agent_run.py",
+        "python/packages/ag-ui/tests/ag_ui/test_endpoint.py"
+      ],
+      "novelty": "old_repo_new_mechanism",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 25816,
+      "captured_sha256": "e44698195c4e24a2dc784dd32add3f7bd2bb9ed71723bb04c276a07c07233cca"
+    },
+    {
+      "source_id": "S03_AZURE_MCP_ARM_SSRF_POLICY",
+      "pillar": "Microsoft Azure MCP Server",
+      "repo": "microsoft/mcp",
+      "revision": "da75e4d390cd8be7e77119dfd4d6c0e47188eeb9",
+      "requested_url": "https://raw.githubusercontent.com/microsoft/mcp/da75e4d390cd8be7e77119dfd4d6c0e47188eeb9/core/Microsoft.Mcp.Core/src/Helpers/SsrfProtectionPolicy.cs",
+      "http_status": 200,
+      "evidence_tier": "fixed_raw_source",
+      "inspected_paths": [
+        "core/Microsoft.Mcp.Core/src/Helpers/SsrfProtectionPolicy.cs",
+        "core/Azure.Mcp.Core/src/Services/Azure/ArmUriValidationPipelinePolicy.cs"
+      ],
+      "novelty": "old_radar_source_upgrade",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 3468,
+      "captured_sha256": "3f88893c0c0ebdd2e99d5f487a1e0ead568c7ef6a4b8179bb791c8428577d87a"
+    },
+    {
+      "source_id": "S04_MAF_DOTNET_AUTO_REJECT_APPROVAL",
+      "pillar": "Microsoft Agent Framework (.NET)",
+      "repo": "microsoft/agent-framework",
+      "revision": "95feea605dbbe879f678602585c76fdb5a963b63",
+      "requested_url": "https://raw.githubusercontent.com/microsoft/agent-framework/95feea605dbbe879f678602585c76fdb5a963b63/docs/decisions/0045-dotnet-unanswered-tool-approvals.md",
+      "http_status": 200,
+      "evidence_tier": "fixed_raw_source_and_diff",
+      "inspected_paths": [
+        "docs/decisions/0045-dotnet-unanswered-tool-approvals.md",
+        "dotnet/src/Microsoft.Agents.AI/ChatClient/ApprovalResponseBindingChatClient.cs",
+        "dotnet/src/Microsoft.Agents.AI.Workflows/Specialized/AIAgentHostExecutor.cs"
+      ],
+      "novelty": "old_repo_new_mechanism",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 6900,
+      "captured_sha256": "9c3a3a4440e7fa8af0ed2f66223c411052d9bdeed4795869e2687c01b0b87faa"
+    },
+    {
+      "source_id": "S05_GOOGLE_ADK_DYNAMIC_CHILD_RETRY",
+      "pillar": "AI Labs (Google ADK Python)",
+      "repo": "google/adk-python",
+      "revision": "e2dbc0f55027372f3a701d41004ee006ee8f9f14",
+      "requested_url": "https://github.com/google/adk-python/commit/e2dbc0f55027372f3a701d41004ee006ee8f9f14.diff",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_diff",
+      "inspected_paths": [
+        "src/google/adk/workflow/_dynamic_node_scheduler.py",
+        "src/google/adk/workflow/_node_runner.py"
+      ],
+      "novelty": "old_repo_new_mechanism",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 6032,
+      "captured_sha256": "c6169b7429954812669072fea5da3ec88c91af0a12e3e2e6c48a4d72a96a67cd"
+    },
+    {
+      "source_id": "S06_GOOGLE_ADK_LOOP_JOIN_BARRIER",
+      "pillar": "AI Labs (Google ADK Python)",
+      "repo": "google/adk-python",
+      "revision": "a6ed85905d4c1d1f285ba9d4f76a9d801b66d17f",
+      "requested_url": "https://github.com/google/adk-python/commit/a6ed85905d4c1d1f285ba9d4f76a9d801b66d17f.diff",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_diff",
+      "inspected_paths": [
+        "src/google/adk/workflow/_workflow.py",
+        "docs/guides/workflow/join_node/index.md"
+      ],
+      "novelty": "old_repo_new_mechanism",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 11218,
+      "captured_sha256": "7d0a074172eebbe95f12539358ab28d51b3d1bc1e0fd2fa7a0b404f0c70fc73a"
+    },
+    {
+      "source_id": "S07_CODEX_IDLE_WAKE_ON_AGENT_MESSAGES",
+      "pillar": "Coding Agent CLI (OpenAI Codex)",
+      "repo": "openai/codex",
+      "revision": "8c076942cb70fba8e5c4732c23f1faabc4aed484",
+      "requested_url": "https://github.com/openai/codex/commit/8c076942cb70fba8e5c4732c23f1faabc4aed484.diff",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_diff",
+      "inspected_paths": [
+        "codex-rs/core/src/session/turn_input.rs",
+        "codex-rs/core/src/session/handlers.rs",
+        "codex-rs/core/src/tasks/mod.rs"
+      ],
+      "novelty": "old_repo_new_mechanism",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 28041,
+      "captured_sha256": "153ef5eecf597f2e4aa3e7944152203d697cdbafd8d3e0c37d5793c00dfd49b8"
+    },
+    {
+      "source_id": "S08_COOKBOOK_HARNESS_AWARE_PLUGIN_EVALS",
+      "pillar": "Coding Agent CLI & Eval (OpenAI Cookbook)",
+      "repo": "openai/openai-cookbook",
+      "revision": "5bd6cb40b6b84b69b2032d810610aa85064102df",
+      "requested_url": "https://raw.githubusercontent.com/openai/openai-cookbook/5bd6cb40b6b84b69b2032d810610aa85064102df/examples/partners/harness_aware_plugin_evals/eval_grading.py",
+      "http_status": 200,
+      "evidence_tier": "fixed_raw_source",
+      "inspected_paths": [
+        "examples/partners/harness_aware_plugin_evals/README.md",
+        "examples/partners/harness_aware_plugin_evals/eval_grading.py",
+        "examples/partners/harness_aware_plugin_evals/assert_codex_result.py"
+      ],
+      "novelty": "old_repo_new_mechanism",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 1790,
+      "captured_sha256": "9333c9fbefc3c181466fc874963de9b525bb17f8ce04b60556376e1b5964850d"
+    },
+    {
+      "source_id": "S09_CLAUDE_SEC_DEFAULT_REGISTER",
+      "pillar": "Coding Agent CLI (Anthropic Claude Code)",
+      "repo": "anthropics/claude-code",
+      "revision": "dd6bee38458cc3e6dc5f2b16eca1f0f364619ad8",
+      "requested_url": "https://raw.githubusercontent.com/anthropics/claude-code/dd6bee38458cc3e6dc5f2b16eca1f0f364619ad8/mods/sec-default/hooks/register.ts",
+      "http_status": 200,
+      "evidence_tier": "fixed_raw_source",
+      "inspected_paths": [
+        "mods/sec-default/hooks/register.ts",
+        "mods/sec-default/README.md"
+      ],
+      "novelty": "old_repo_new_mechanism",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 6137,
+      "captured_sha256": "1a96897a4dc4c01f064f10b93e914e134a6e911334e08403d8c863f8388560b2"
+    }
+  ]
+}

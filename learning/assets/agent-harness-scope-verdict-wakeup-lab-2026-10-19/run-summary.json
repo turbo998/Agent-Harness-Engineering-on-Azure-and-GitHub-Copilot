@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-19",
+  "artifact": "agent-harness-scope-verdict-wakeup-lab-2026-10-19",
+  "execution_environment": {
+    "python_version": "3.11.15",
+    "modes_verified": [
+      "normal (-B)",
+      "optimized (-B -O)"
+    ],
+    "network_access": false,
+    "upstream_product_runtime": "NOT_RUN"
+  },
+  "bound_files": {
+    "harness_contracts.py": {
+      "bytes": 22695,
+      "sha256": "2982e3d9b3c4b7b31077495020c775154c99870bae79de36092ccd454b2a99dc"
+    },
+    "test_harness_contracts.py": {
+      "bytes": 22610,
+      "sha256": "794a54edf4765a5748757c93767f0485f48eab910416ed3492f690b287eed3d8"
+    },
+    "fixtures/provenance.json": {
+      "bytes": 7847,
+      "sha256": "8e98827e7a165c24d3d3e5c5f510a6b1cb8d7c09766866dbc877bde5e559a07e"
+    }
+  },
+  "results": {
+    "normal_mode": {
+      "exit_code": 0,
+      "tests_run": 22,
+      "tests_passed": 22
+    },
+    "optimized_mode": {
+      "exit_code": 0,
+      "tests_run": 22,
+      "tests_passed": 22
+    },
+    "mutation_calibration": {
+      "mutations_total": 6,
+      "mutations_killed": 6,
+      "mutations": [
+        {
+          "mutation_id": "M1_agui_skip_shape_guard",
+          "target": "carries_tool_approval_authority",
+          "status": "KILLED",
+          "failed_test_count": 1,
+          "failed_tests": [
+            "test_06_client_shared_state_blocks_approval_authority_by_shape"
+          ]
+        },
+        {
+          "mutation_id": "M2_mcp_blank_context_allows_all_override",
+          "target": "SsrfProtectionPolicy",
+          "status": "KILLED",
+          "failed_test_count": 2,
+          "failed_tests": [
+            "test_08_missing_or_blank_context_keeps_ssrf_enabled_even_under_all",
+            "test_09_untrimmed_all_marker_does_not_disable_all_namespaces"
+          ]
+        },
+        {
+          "mutation_id": "M3_maf_dotnet_mutate_saved_request_in_place",
+          "target": "bind_or_auto_reject_approvals",
+          "status": "KILLED",
+          "failed_test_count": 2,
+          "failed_tests": [
+            "test_12_unanswered_approvals_auto_rejected_and_cloned_without_mutating_saved",
+            "test_13_failed_inner_call_retains_unmutated_pending_requests_for_retry"
+          ]
+        },
+        {
+          "mutation_id": "M4_adk_rewind_counter_to_zero",
+          "target": "DynamicCounterScheduler",
+          "status": "KILLED",
+          "failed_test_count": 1,
+          "failed_tests": [
+            "test_15_dynamic_child_retry_rewinds_to_attempt_snapshot_not_zero"
+          ]
+        },
+        {
+          "mutation_id": "M5_codex_wake_ignores_plan_and_subagent_guards",
+          "target": "should_wake_on_agent_messages",
+          "status": "KILLED",
+          "failed_test_count": 1,
+          "failed_tests": [
+            "test_17_codex_wake_on_agent_messages_respects_three_boundaries"
+          ]
+        },
+        {
+          "mutation_id": "M6_claude_sec_default_fail_open_on_user_lift",
+          "target": "evaluate_sec_default_tool_check",
+          "status": "KILLED",
+          "failed_test_count": 2,
+          "failed_tests": [
+            "test_20_sec_default_restores_held_deny_or_ask_when_user_mod_loosens",
+            "test_21_sec_default_detects_reworded_ask_and_fails_closed_on_policy_error"
+          ]
+        }
+      ]
+    }
+  }
+}

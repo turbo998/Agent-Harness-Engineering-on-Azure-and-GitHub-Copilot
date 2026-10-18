@@ -585,6 +585,15 @@
     "sha256": "8af814402cd8e0056bb7b0cef36dd8a807b0963ba9aa57606fc5903e30861912"
   },
   {
+    "path": "assets/agent-harness-scope-verdict-wakeup-lab-2026-10-19.md",
+    "title": "Agent 授权域、双重派发护栏与异步唤醒验收实验室（2026-10-19）",
+    "date": "2026-10-19",
+    "topic": "Workshop 练习",
+    "status": "published",
+    "source_name": "agent-harness-scope-verdict-wakeup-lab-2026-10-19.md",
+    "sha256": "7a6bfc9c4939e708940c1164c2680ab5ace647e20df2fa4763b724b7be2415cb"
+  },
+  {
     "path": "assets/codex-remote-control-plane-cheatsheet.md",
     "title": "Codex Remote 控制平面 & 上下文生命周期速查 [→harness]",
     "date": null,

@@ -414,6 +414,15 @@
     "sha256": "fcdacadb4955a60b97b4ce4960ffc4aaa3ec475acb8ae7114803703faf19d439"
   },
   {
+    "path": "assets/agent-sandbox-skill-integrity-and-trace-replay-lab-2026-10-21.md",
+    "title": "Agent 沙箱前置围栏、远端技能完整性与录制轨迹回放验收实验室（2026-10-21）",
+    "date": "2026-10-21",
+    "topic": "MCP 与插件",
+    "status": "published",
+    "source_name": "agent-sandbox-skill-integrity-and-trace-replay-lab-2026-10-21.md",
+    "sha256": "5202b2c034d2a7416ed99416bf04bbf1fab67b7514a1a7b457014286de72bb7a"
+  },
+  {
     "path": "assets/claude-code-dynamic-workflows-orchestration-primitive.md",
     "title": "Claude Code Dynamic Workflows — 第四种编排原语（Subagents / Skills / Agent Teams 之外）",
     "date": null,

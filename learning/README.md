@@ -3,7 +3,7 @@
 
 > 这些条目是从历史研究快照脱敏整理出的补充学习材料，用于学习、讨论、POC 设计前的思路准备；它们不是正式实验报告、不是本次实机验证结论，也不构成生产部署或合规建议。原快照中的来源可达性、HTTP 200 或核验时间不代表本次发布时已经重新核验。
 
-- 已发布：138
+- 已发布：139
 - 已隔离：0（详见本地报告，不发布敏感原文）
 - 跳过/冲突：0（详见本地报告）
 
@@ -58,6 +58,7 @@
 - 2026-10-03 — [动态 MCP 安全标签验收模板（基于 MAF source-SDK baseline 实测）](assets/maf-dynamic-mcp-labels-acceptance-2026-10-03.md)
 - 2026-10-04 — [Azure MCP：最终请求 URI 与云边界验收模板](assets/azure-mcp-final-uri-cloud-boundary-gates-2026-10-04.md)
 - 2026-10-06 — [Codex required skills 准入/发行证据门公开模板（2026-10-06）](assets/codex-required-skills-and-release-gates-2026-10-06.md)
+- 2026-10-21 — [Agent 沙箱前置围栏、远端技能完整性与录制轨迹回放验收实验室（2026-10-21）](assets/agent-sandbox-skill-integrity-and-trace-replay-lab-2026-10-21.md)
 - 日期未知 — [Claude Code Dynamic Workflows — 第四种编排原语（Subagents / Skills / Agent Teams 之外）](assets/claude-code-dynamic-workflows-orchestration-primitive.md)
 - 日期未知 — [Managed Agents 容器沙箱 + MCP 工具审批/安全护栏 速查表](assets/managed-agents-sandbox-and-mcp-approval-safety-cheatsheet.md)
 - 日期未知 — [架构图模式：企业级多 Agent 参考拓扑（MCP 纵 / A2A 横）](assets/arch-pattern-multi-agent-mcp-a2a.md)

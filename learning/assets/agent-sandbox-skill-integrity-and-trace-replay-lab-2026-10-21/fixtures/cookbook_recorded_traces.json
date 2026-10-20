@@ -1,0 +1,726 @@
+{
+  "schema_version": 1,
+  "upstream_repo": "openai/openai-cookbook",
+  "upstream_license": "MIT",
+  "upstream_commit": "5bd6cb40b6b84b69b2032d810610aa85064102df",
+  "source_files": {
+    "l2-trace.json": {
+      "url": "https://raw.githubusercontent.com/openai/openai-cookbook/5bd6cb40b6b84b69b2032d810610aa85064102df/examples/partners/harness_aware_plugin_evals/data/l2-trace.json",
+      "bytes": 26519,
+      "sha256": "06efd0404ecdb8fbb02d5162d9c9cca6561ceb43d946786f049ffb473aec98f1"
+    },
+    "l3-trace-before.json": {
+      "url": "https://raw.githubusercontent.com/openai/openai-cookbook/5bd6cb40b6b84b69b2032d810610aa85064102df/examples/partners/harness_aware_plugin_evals/data/l3-trace-before.json",
+      "bytes": 45612,
+      "sha256": "53555aa5e8157a51538162480a029ea37a4d1be91ab4417cdb707bbb19acefb5"
+    },
+    "l3-trace-after.json": {
+      "url": "https://raw.githubusercontent.com/openai/openai-cookbook/5bd6cb40b6b84b69b2032d810610aa85064102df/examples/partners/harness_aware_plugin_evals/data/l3-trace-after.json",
+      "bytes": 39574,
+      "sha256": "453e748390e516a03028cee29b96d4cc70eda40862badd2b4cdc389eb4c2e4f9"
+    }
+  },
+  "traces": {
+    "l2_standalone": [
+      {
+        "case_id": "case_1",
+        "mode": "standalone",
+        "vars": {
+          "indicator": "unemployment rate",
+          "query": "What is the U.S. unemployment rate?",
+          "expected_tools": "resolve,fetch_bls_data",
+          "expected_series_ids": "LNS14000000"
+        },
+        "output": "{\"tool_calls\": [{\"name\": \"resolve\", \"arguments\": {\"indicators\": [{\"indicator\": \"U.S. unemployment rate\"}]}, \"result\": {}}, {\"name\": \"fetch_bls_data\", \"arguments\": {\"series_ids\": [\"LNS14000000\"]}, \"result\": {\"data\": [{\"series_id\": \"LNS14000000\"}]}}], \"answer\": \"non-empty recorded answer\", \"completed\": true}",
+        "recorded_pass": true,
+        "recorded_score": 1.0,
+        "recorded_reason": "All assertions passed"
+      },
+      {
+        "case_id": "case_2",
+        "mode": "standalone",
+        "vars": {
+          "indicator": "labor force participation rate",
+          "query": "What is the value of the labor force participation rate?",
+          "expected_tools": "resolve,fetch_bls_data",
+          "expected_series_ids": "LNS11300000"
+        },
+        "output": "{\"tool_calls\": [{\"name\": \"resolve\", \"arguments\": {\"indicators\": [{\"indicator\": \"labor force participation rate\"}]}, \"result\": {}}, {\"name\": \"fetch_bls_data\", \"arguments\": {\"series_ids\": [\"LNS11300000\"]}, \"result\": {\"data\": [{\"series_id\": \"LNS11300000\"}]}}], \"answer\": \"non-empty recorded answer\", \"completed\": true}",
+        "recorded_pass": true,
+        "recorded_score": 1.0,
+        "recorded_reason": "All assertions passed"
+      },
+      {
+        "case_id": "case_3",
+        "mode": "standalone",
+        "vars": {
+          "indicator": "nonfarm payroll employment",
+          "query": "What is seasonally adjusted monthly U.S. total nonfarm payroll employment?",
+          "expected_tools": "resolve,fetch_bls_data",
+          "expected_series_ids": "CES0000000001"
+        },
+        "output": "{\"tool_calls\": [{\"name\": \"resolve\", \"arguments\": {\"indicators\": [{\"indicator\": \"seasonally adjusted monthly U.S. total nonfarm payroll employment\"}]}, \"result\": {}}, {\"name\": \"fetch_bls_data\", \"arguments\": {\"series_ids\": [\"CES0000000001\"]}, \"result\": {\"data\": [{\"series_id\": \"CES0000000001\"}]}}], \"answer\": \"non-empty recorded answer\", \"completed\": true}",
+        "recorded_pass": true,
+        "recorded_score": 1.0,
+        "recorded_reason": "All assertions passed"
+      },
+      {
+        "case_id": "case_4",
+        "mode": "standalone",
+        "vars": {
+          "indicator": "consumer price index",
+          "query": "What is the current consumer price index?",
+          "expected_tools": "resolve",
+          "expected_series_ids": ""
+        },
+        "output": "{\"tool_calls\": [{\"name\": \"resolve\", \"arguments\": {\"indicators\": [{\"indicator\": \"current U.S. Consumer Price Index (CPI), all urban consumers, all items, U.S. city average, not seasonally adjusted\"}]}, \"result\": {}}, {\"name\": \"resolve\", \"arguments\": {\"indicators\": [{\"indicator\": \"Consumer Price Index CPI all items\"}, {\"indicator\": \"CPI-U all items U.S. city average\"}]}, \"result\": {}}], \"answer\": \"non-empty recorded answer\", \"completed\": true}",
+        "recorded_pass": true,
+        "recorded_score": 1.0,
+        "recorded_reason": "All assertions passed"
+      },
+      {
+        "case_id": "case_5",
+        "mode": "standalone",
+        "vars": {
+          "indicator": "employment",
+          "query": "What is U.S. employment?",
+          "expected_tools": "resolve",
+          "expected_series_ids": ""
+        },
+        "output": "{\"tool_calls\": [{\"name\": \"resolve\", \"arguments\": {\"indicators\": [{\"indicator\": \"U.S. employment\"}]}, \"result\": {}}], \"answer\": \"non-empty recorded answer\", \"completed\": true}",
+        "recorded_pass": true,
+        "recorded_score": 1.0,
+        "recorded_reason": "All assertions passed"
+      }
+    ],
+    "l3_codex_before_instructions": [
+      {
+        "case_id": "case_1",
+        "mode": "codex",
+        "vars": {
+          "indicator": "unemployment rate",
+          "query": "What is the U.S. unemployment rate?",
+          "expected_tools": "resolve,fetch_bls_data",
+          "expected_series_ids": "LNS14000000"
+        },
+        "output": "non-empty recorded answer",
+        "providerResponse": {
+          "error": null,
+          "raw": {
+            "items": [
+              {
+                "type": "mcp_tool_call",
+                "tool": "resolve",
+                "status": "completed",
+                "error": null,
+                "arguments": {
+                  "indicators": [
+                    {
+                      "indicator": "U.S. unemployment rate, seasonally adjusted, monthly"
+                    }
+                  ]
+                },
+                "result": {
+                  "structured_content": {}
+                }
+              },
+              {
+                "type": "mcp_tool_call",
+                "tool": "fetch_bls_data",
+                "status": "completed",
+                "error": null,
+                "arguments": {
+                  "series_ids": [
+                    "LNS14000000"
+                  ]
+                },
+                "result": {
+                  "structured_content": {
+                    "data": [
+                      {
+                        "series_id": "LNS14000000"
+                      }
+                    ]
+                  }
+                }
+              }
+            ],
+            "finalResponse": "non-empty final response"
+          }
+        },
+        "recorded_pass": true,
+        "recorded_score": 1.0,
+        "recorded_reason": "All assertions passed"
+      },
+      {
+        "case_id": "case_2",
+        "mode": "codex",
+        "vars": {
+          "indicator": "labor force participation rate",
+          "query": "What is the value of the labor force participation rate?",
+          "expected_tools": "resolve,fetch_bls_data",
+          "expected_series_ids": "LNS11300000"
+        },
+        "output": "non-empty recorded answer",
+        "providerResponse": {
+          "error": null,
+          "raw": {
+            "items": [
+              {
+                "type": "mcp_tool_call",
+                "tool": "resolve",
+                "status": "completed",
+                "error": null,
+                "arguments": {
+                  "indicators": [
+                    {
+                      "indicator": "labor force participation rate"
+                    }
+                  ]
+                },
+                "result": {
+                  "structured_content": {}
+                }
+              },
+              {
+                "type": "mcp_tool_call",
+                "tool": "fetch_bls_data",
+                "status": "completed",
+                "error": null,
+                "arguments": {
+                  "series_ids": [
+                    "LNS11300000"
+                  ]
+                },
+                "result": {
+                  "structured_content": {
+                    "data": [
+                      {
+                        "series_id": "LNS11300000"
+                      }
+                    ]
+                  }
+                }
+              }
+            ],
+            "finalResponse": "non-empty final response"
+          }
+        },
+        "recorded_pass": true,
+        "recorded_score": 1.0,
+        "recorded_reason": "All assertions passed"
+      },
+      {
+        "case_id": "case_3",
+        "mode": "codex",
+        "vars": {
+          "indicator": "nonfarm payroll employment",
+          "query": "What is seasonally adjusted monthly U.S. total nonfarm payroll employment?",
+          "expected_tools": "resolve,fetch_bls_data",
+          "expected_series_ids": "CES0000000001"
+        },
+        "output": "non-empty recorded answer",
+        "providerResponse": {
+          "error": null,
+          "raw": {
+            "items": [
+              {
+                "type": "mcp_tool_call",
+                "tool": "resolve",
+                "status": "completed",
+                "error": null,
+                "arguments": {
+                  "indicators": [
+                    {
+                      "indicator": "seasonally adjusted monthly U.S. total nonfarm payroll employment"
+                    }
+                  ]
+                },
+                "result": {
+                  "structured_content": {}
+                }
+              },
+              {
+                "type": "mcp_tool_call",
+                "tool": "fetch_bls_data",
+                "status": "completed",
+                "error": null,
+                "arguments": {
+                  "series_ids": [
+                    "CES0000000001"
+                  ]
+                },
+                "result": {
+                  "structured_content": {
+                    "data": [
+                      {
+                        "series_id": "CES0000000001"
+                      }
+                    ]
+                  }
+                }
+              }
+            ],
+            "finalResponse": "non-empty final response"
+          }
+        },
+        "recorded_pass": true,
+        "recorded_score": 1.0,
+        "recorded_reason": "All assertions passed"
+      },
+      {
+        "case_id": "case_4",
+        "mode": "codex",
+        "vars": {
+          "indicator": "consumer price index",
+          "query": "What is the current consumer price index?",
+          "expected_tools": "resolve",
+          "expected_series_ids": ""
+        },
+        "output": "non-empty recorded answer",
+        "providerResponse": {
+          "error": null,
+          "raw": {
+            "items": [
+              {
+                "type": "mcp_tool_call",
+                "tool": "resolve",
+                "status": "completed",
+                "error": null,
+                "arguments": {
+                  "indicators": [
+                    {
+                      "indicator": "U.S. Consumer Price Index for All Urban Consumers, all items, not seasonally adjusted"
+                    }
+                  ]
+                },
+                "result": {
+                  "structured_content": {}
+                }
+              },
+              {
+                "type": "mcp_tool_call",
+                "tool": "resolve",
+                "status": "completed",
+                "error": null,
+                "arguments": {
+                  "indicators": [
+                    {
+                      "indicator": "CPI-U all items US city average"
+                    }
+                  ]
+                },
+                "result": {
+                  "structured_content": {}
+                }
+              },
+              {
+                "type": "mcp_tool_call",
+                "tool": "fetch_bls_data",
+                "status": "completed",
+                "error": null,
+                "arguments": {
+                  "series_ids": [
+                    "CUUR0000SA0"
+                  ]
+                },
+                "result": {
+                  "structured_content": {
+                    "data": [
+                      {
+                        "series_id": "CUUR0000SA0",
+                        "error": "unknown series"
+                      }
+                    ]
+                  }
+                }
+              },
+              {
+                "type": "mcp_tool_call",
+                "tool": "resolve",
+                "status": "completed",
+                "error": null,
+                "arguments": {
+                  "indicators": [
+                    {
+                      "indicator": "consumer price index"
+                    }
+                  ]
+                },
+                "result": {
+                  "structured_content": {}
+                }
+              },
+              {
+                "type": "mcp_tool_call",
+                "tool": "resolve",
+                "status": "completed",
+                "error": null,
+                "arguments": {
+                  "indicators": [
+                    {
+                      "indicator": "CPI all items"
+                    }
+                  ]
+                },
+                "result": {
+                  "structured_content": {}
+                }
+              },
+              {
+                "type": "mcp_tool_call",
+                "tool": "resolve",
+                "status": "completed",
+                "error": null,
+                "arguments": {
+                  "indicators": [
+                    {
+                      "indicator": "CPI"
+                    }
+                  ]
+                },
+                "result": {
+                  "structured_content": {}
+                }
+              },
+              {
+                "type": "mcp_tool_call",
+                "tool": "resolve",
+                "status": "completed",
+                "error": null,
+                "arguments": {
+                  "indicators": [
+                    {
+                      "indicator": "inflation"
+                    }
+                  ]
+                },
+                "result": {
+                  "structured_content": {}
+                }
+              }
+            ],
+            "finalResponse": "non-empty final response"
+          }
+        },
+        "recorded_pass": false,
+        "recorded_score": 0.0,
+        "recorded_reason": "fetched series outside the expectation: ['CUUR0000SA0']"
+      },
+      {
+        "case_id": "case_5",
+        "mode": "codex",
+        "vars": {
+          "indicator": "employment",
+          "query": "What is U.S. employment?",
+          "expected_tools": "resolve",
+          "expected_series_ids": ""
+        },
+        "output": "non-empty recorded answer",
+        "providerResponse": {
+          "error": null,
+          "raw": {
+            "items": [
+              {
+                "type": "mcp_tool_call",
+                "tool": "resolve",
+                "status": "completed",
+                "error": null,
+                "arguments": {
+                  "indicators": [
+                    {
+                      "indicator": "U.S. employment"
+                    }
+                  ]
+                },
+                "result": {
+                  "structured_content": {}
+                }
+              },
+              {
+                "type": "mcp_tool_call",
+                "tool": "fetch_bls_data",
+                "status": "completed",
+                "error": null,
+                "arguments": {
+                  "series_ids": [
+                    "LNS12000000",
+                    "CES0000000001"
+                  ]
+                },
+                "result": {
+                  "structured_content": {
+                    "data": [
+                      {
+                        "series_id": "LNS12000000"
+                      },
+                      {
+                        "series_id": "CES0000000001"
+                      }
+                    ]
+                  }
+                }
+              }
+            ],
+            "finalResponse": "non-empty final response"
+          }
+        },
+        "recorded_pass": false,
+        "recorded_score": 0.0,
+        "recorded_reason": "fetched series outside the expectation: ['CES0000000001', 'LNS12000000']"
+      }
+    ],
+    "l3_codex_after_instructions": [
+      {
+        "case_id": "case_1",
+        "mode": "codex",
+        "vars": {
+          "indicator": "unemployment rate",
+          "query": "What is the U.S. unemployment rate?",
+          "expected_tools": "resolve,fetch_bls_data",
+          "expected_series_ids": "LNS14000000"
+        },
+        "output": "non-empty recorded answer",
+        "providerResponse": {
+          "error": null,
+          "raw": {
+            "items": [
+              {
+                "type": "mcp_tool_call",
+                "tool": "resolve",
+                "status": "completed",
+                "error": null,
+                "arguments": {
+                  "indicators": [
+                    {
+                      "indicator": "U.S. unemployment rate"
+                    }
+                  ]
+                },
+                "result": {
+                  "structured_content": {}
+                }
+              },
+              {
+                "type": "mcp_tool_call",
+                "tool": "fetch_bls_data",
+                "status": "completed",
+                "error": null,
+                "arguments": {
+                  "series_ids": [
+                    "LNS14000000"
+                  ]
+                },
+                "result": {
+                  "structured_content": {
+                    "data": [
+                      {
+                        "series_id": "LNS14000000"
+                      }
+                    ]
+                  }
+                }
+              }
+            ],
+            "finalResponse": "non-empty final response"
+          }
+        },
+        "recorded_pass": true,
+        "recorded_score": 1.0,
+        "recorded_reason": "All assertions passed"
+      },
+      {
+        "case_id": "case_2",
+        "mode": "codex",
+        "vars": {
+          "indicator": "labor force participation rate",
+          "query": "What is the value of the labor force participation rate?",
+          "expected_tools": "resolve,fetch_bls_data",
+          "expected_series_ids": "LNS11300000"
+        },
+        "output": "non-empty recorded answer",
+        "providerResponse": {
+          "error": null,
+          "raw": {
+            "items": [
+              {
+                "type": "mcp_tool_call",
+                "tool": "resolve",
+                "status": "completed",
+                "error": null,
+                "arguments": {
+                  "indicators": [
+                    {
+                      "indicator": "labor force participation rate"
+                    }
+                  ]
+                },
+                "result": {
+                  "structured_content": {}
+                }
+              },
+              {
+                "type": "mcp_tool_call",
+                "tool": "fetch_bls_data",
+                "status": "completed",
+                "error": null,
+                "arguments": {
+                  "series_ids": [
+                    "LNS11300000"
+                  ]
+                },
+                "result": {
+                  "structured_content": {
+                    "data": [
+                      {
+                        "series_id": "LNS11300000"
+                      }
+                    ]
+                  }
+                }
+              }
+            ],
+            "finalResponse": "non-empty final response"
+          }
+        },
+        "recorded_pass": true,
+        "recorded_score": 1.0,
+        "recorded_reason": "All assertions passed"
+      },
+      {
+        "case_id": "case_3",
+        "mode": "codex",
+        "vars": {
+          "indicator": "nonfarm payroll employment",
+          "query": "What is seasonally adjusted monthly U.S. total nonfarm payroll employment?",
+          "expected_tools": "resolve,fetch_bls_data",
+          "expected_series_ids": "CES0000000001"
+        },
+        "output": "non-empty recorded answer",
+        "providerResponse": {
+          "error": null,
+          "raw": {
+            "items": [
+              {
+                "type": "mcp_tool_call",
+                "tool": "resolve",
+                "status": "completed",
+                "error": null,
+                "arguments": {
+                  "indicators": [
+                    {
+                      "indicator": "seasonally adjusted monthly U.S. total nonfarm payroll employment"
+                    }
+                  ]
+                },
+                "result": {
+                  "structured_content": {}
+                }
+              },
+              {
+                "type": "mcp_tool_call",
+                "tool": "fetch_bls_data",
+                "status": "completed",
+                "error": null,
+                "arguments": {
+                  "series_ids": [
+                    "CES0000000001"
+                  ]
+                },
+                "result": {
+                  "structured_content": {
+                    "data": [
+                      {
+                        "series_id": "CES0000000001"
+                      }
+                    ]
+                  }
+                }
+              }
+            ],
+            "finalResponse": "non-empty final response"
+          }
+        },
+        "recorded_pass": true,
+        "recorded_score": 1.0,
+        "recorded_reason": "All assertions passed"
+      },
+      {
+        "case_id": "case_4",
+        "mode": "codex",
+        "vars": {
+          "indicator": "consumer price index",
+          "query": "What is the current consumer price index?",
+          "expected_tools": "resolve",
+          "expected_series_ids": ""
+        },
+        "output": "non-empty recorded answer",
+        "providerResponse": {
+          "error": null,
+          "raw": {
+            "items": [
+              {
+                "type": "mcp_tool_call",
+                "tool": "resolve",
+                "status": "completed",
+                "error": null,
+                "arguments": {
+                  "indicators": [
+                    {
+                      "indicator": "consumer price index"
+                    }
+                  ]
+                },
+                "result": {
+                  "structured_content": {}
+                }
+              }
+            ],
+            "finalResponse": "non-empty final response"
+          }
+        },
+        "recorded_pass": true,
+        "recorded_score": 1.0,
+        "recorded_reason": "All assertions passed"
+      },
+      {
+        "case_id": "case_5",
+        "mode": "codex",
+        "vars": {
+          "indicator": "employment",
+          "query": "What is U.S. employment?",
+          "expected_tools": "resolve",
+          "expected_series_ids": ""
+        },
+        "output": "non-empty recorded answer",
+        "providerResponse": {
+          "error": null,
+          "raw": {
+            "items": [
+              {
+                "type": "mcp_tool_call",
+                "tool": "resolve",
+                "status": "completed",
+                "error": null,
+                "arguments": {
+                  "indicators": [
+                    {
+                      "indicator": "U.S. employment"
+                    }
+                  ]
+                },
+                "result": {
+                  "structured_content": {}
+                }
+              }
+            ],
+            "finalResponse": "non-empty final response"
+          }
+        },
+        "recorded_pass": true,
+        "recorded_score": 1.0,
+        "recorded_reason": "All assertions passed"
+      }
+    ]
+  }
+}

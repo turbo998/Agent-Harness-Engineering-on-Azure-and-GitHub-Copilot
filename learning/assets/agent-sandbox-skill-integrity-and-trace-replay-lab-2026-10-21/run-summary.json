@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-21",
+  "artifact": "agent-sandbox-skill-integrity-and-trace-replay-lab-2026-10-21",
+  "execution_environment": {
+    "python_version": "3.11.15",
+    "modes_verified": [
+      "normal (-B)",
+      "optimized (-B -O)"
+    ],
+    "network_access": false,
+    "recorded_trace_replay": "15/15 recorded cases (5 L2 standalone + 5 L3 Codex before + 5 L3 Codex after) replayed deterministically offline",
+    "upstream_product_runtime": "NOT_RUN"
+  },
+  "bound_files": {
+    "harness_contracts.py": {
+      "bytes": 33709,
+      "sha256": "2d6345808324e4fce3c5d5452a7f01f0e2ea13851808ae8f6cb4a49867349618"
+    },
+    "test_harness_contracts.py": {
+      "bytes": 31037,
+      "sha256": "bb821aa0919839a5076962435ddc7c92e439651fbd7c8bb7cdad39ec76636413"
+    },
+    "fixtures/provenance.json": {
+      "bytes": 8205,
+      "sha256": "9c31754d49e8600c770ba6816d7d0b88835f8fa344414a7767cac1be1d591f77"
+    },
+    "fixtures/cookbook_recorded_traces.json": {
+      "bytes": 24113,
+      "sha256": "4685b8f72f579e80abe8fb51dbc9a4c131529e9cee2cc7583dfa5123ffde8db9"
+    }
+  },
+  "results": {
+    "normal_mode": {
+      "exit_code": 0,
+      "tests_run": 24,
+      "tests_passed": 24
+    },
+    "optimized_mode": {
+      "exit_code": 0,
+      "tests_run": 24,
+      "tests_passed": 24
+    },
+    "mutation_calibration": {
+      "mutations_total": 7,
+      "mutations_killed": 7,
+      "mutations": [
+        {
+          "mutation_id": "M1_copilot_empty_limit_to_allows_all",
+          "target": "evaluate_copilot_limit_to",
+          "status": "KILLED",
+          "failed_test_count": 1,
+          "failed_tests": [
+            "test_02_copilot_limit_to_intersection_and_empty_vs_null"
+          ]
+        },
+        {
+          "mutation_id": "M2_maf_duplicate_approval_skips_state_purge",
+          "target": "ensure_approval_request_ids_unique",
+          "status": "KILLED",
+          "failed_test_count": 1,
+          "failed_tests": [
+            "test_07_maf_dotnet_duplicate_approval_id_purges_state_and_saves"
+          ]
+        },
+        {
+          "mutation_id": "M3_adk_vmaas_retries_running_failed_precondition",
+          "target": "execute_vmaas_sandbox_command",
+          "status": "KILLED",
+          "failed_test_count": 2,
+          "failed_tests": [
+            "test_09_adk_vmaas_deadline_exceeded_in_message_returns_timed_out_once",
+            "test_10_adk_vmaas_running_failed_precondition_raises_without_retry"
+          ]
+        },
+        {
+          "mutation_id": "M4_mcp_skills_skip_frontmatter_diff",
+          "target": "verify_and_read_sep2640_skill_file",
+          "status": "KILLED",
+          "failed_test_count": 1,
+          "failed_tests": [
+            "test_13_mcp_sep2640_rejects_unlisted_size_digest_and_frontmatter_mismatch"
+          ]
+        },
+        {
+          "mutation_id": "M5_codex_frozen_skill_allows_cross_package_resource",
+          "target": "FrozenCloudSkillSnapshot",
+          "status": "KILLED",
+          "failed_test_count": 1,
+          "failed_tests": [
+            "test_15_codex_frozen_cloud_skill_snapshot_validation_and_authority_isolation"
+          ]
+        },
+        {
+          "mutation_id": "M6_cookbook_grader_ignores_unexpected_series",
+          "target": "grade_cookbook_normalized_calls",
+          "status": "KILLED",
+          "failed_test_count": 2,
+          "failed_tests": [
+            "test_20_cookbook_l3_codex_before_case_4_cpi_fails_on_unexpected_series",
+            "test_21_cookbook_l3_codex_before_case_5_employment_fails_on_unexpected_series"
+          ]
+        },
+        {
+          "mutation_id": "M7_claude_person_decider_allows_auto_classifier",
+          "target": "evaluate_claude_2_1_304_person_decider_and_env",
+          "status": "KILLED",
+          "failed_test_count": 1,
+          "failed_tests": [
+            "test_17_claude_2_1_304_person_decider_blocks_headless_and_auto_classifier"
+          ]
+        }
+      ]
+    }
+  }
+}

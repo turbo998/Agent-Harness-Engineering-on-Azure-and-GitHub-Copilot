@@ -1,0 +1,167 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-21",
+  "artifact": "agent-sandbox-skill-integrity-and-trace-replay-lab-2026-10-21",
+  "scope_boundary": "Original Python 3.11+ stdlib reference specification, 15-case recorded trace replay (from fixed OpenAI Cookbook commit 5bd6cb40), and 24-test / 7-mutation suite executed offline in normal (-B) and optimized (-B -O) modes; upstream product runtimes/CLIs/SDKs (Copilot CLI/SDK, MAF ASP.NET Core, Google ADK VMaaS, MCP TS SDK, Codex App Server, Claude Code CLI) are NOT_RUN.",
+  "sources": [
+    {
+      "source_id": "S01_COPILOT_SDK_LIMIT_TO",
+      "pillar": "Microsoft GitHub Copilot SDK",
+      "repo": "github/copilot-sdk",
+      "revision": "20d75a718bf40d856525b0c33713c553371af1ab",
+      "requested_url": "https://github.com/github/copilot-sdk/commit/20d75a718bf40d856525b0c33713c553371af1ab.patch",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_patch",
+      "inspected_paths": [
+        "python/copilot/client.py",
+        "nodejs/src/types.ts",
+        "nodejs/test/e2e/managed_permissions_limit_to.e2e.test.ts"
+      ],
+      "novelty": "backlog_radar_source_upgrade",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 532610,
+      "captured_sha256": "c796a77c840a4fbc54722ad071ff6888c74a59b08d79b7ed43c57d27dda7c33a"
+    },
+    {
+      "source_id": "S02_COPILOT_SDK_PRE_MCP_SANDBOX_CONFIG",
+      "pillar": "Microsoft GitHub Copilot SDK",
+      "repo": "github/copilot-sdk",
+      "revision": "51e9556d2607f00f9f72038fa16accfe2f5d150d",
+      "requested_url": "https://github.com/github/copilot-sdk/commit/51e9556d2607f00f9f72038fa16accfe2f5d150d.patch",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_patch",
+      "inspected_paths": [
+        "dotnet/src/Client.cs",
+        "nodejs/src/client.ts",
+        "docs/mcp/overview.md"
+      ],
+      "novelty": "old_repo_new_mechanism",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 261618,
+      "captured_sha256": "1c423aa78e462cb556a26c207b18e1b076fdb4a39f802009689d61793b498a1a"
+    },
+    {
+      "source_id": "S03_MAF_DOTNET_AGUI_SCOPED_LIFETIME",
+      "pillar": "Microsoft Agent Framework (.NET)",
+      "repo": "microsoft/agent-framework",
+      "revision": "30bc5c1bd0159f3a96353c9b98a118dc53cc9f6d",
+      "requested_url": "https://github.com/microsoft/agent-framework/commit/30bc5c1bd0159f3a96353c9b98a118dc53cc9f6d.patch",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_patch",
+      "inspected_paths": [
+        "dotnet/src/Microsoft.Agents.AI.Hosting.AGUI.AspNetCore/AGUIEndpointRouteBuilderExtensions.cs",
+        "dotnet/src/Shared/HostedAgents/HostedAgentResolution.cs"
+      ],
+      "novelty": "old_repo_new_mechanism",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 43942,
+      "captured_sha256": "a1a131e7768d78dc2826f627b349302cb63aac1417303924c6bb9c0d71d9ce65"
+    },
+    {
+      "source_id": "S04_MAF_DOTNET_DUPLICATE_APPROVAL_ID_PURGE",
+      "pillar": "Microsoft Agent Framework (.NET)",
+      "repo": "microsoft/agent-framework",
+      "revision": "8ab068b8b360369d6425cc50603eeba07207a9d1",
+      "requested_url": "https://github.com/microsoft/agent-framework/commit/8ab068b8b360369d6425cc50603eeba07207a9d1.patch",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_patch",
+      "inspected_paths": [
+        "dotnet/src/Microsoft.Agents.AI/Harness/ToolApproval/ToolApprovalAgent.cs"
+      ],
+      "novelty": "old_repo_new_mechanism",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 16335,
+      "captured_sha256": "895387577e1979cf8b9bf6d8a1901100637935a73966d3e9195bd8afff5ee8c4"
+    },
+    {
+      "source_id": "S05_GOOGLE_ADK_VMAAS_SANDBOX_NO_DOUBLE_EXEC",
+      "pillar": "AI Labs (Google ADK Python)",
+      "repo": "google/adk-python",
+      "revision": "019b2b21f9b68a344efd6b92f4f7a40a7c6e273b",
+      "requested_url": "https://github.com/google/adk-python/commit/019b2b21f9b68a344efd6b92f4f7a40a7c6e273b.patch",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_patch",
+      "inspected_paths": [
+        "src/google/adk/integrations/vmaas/_agent_engine_environment.py",
+        "tests/unittests/integrations/vmaas/test_agent_engine_environment.py"
+      ],
+      "novelty": "old_repo_new_mechanism",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 10565,
+      "captured_sha256": "325892851952da9aeac0a98b0eecbe5e68e91957af56480194707fd2401c4201"
+    },
+    {
+      "source_id": "S06_MCP_TS_SDK_SEP2640_SKILLS_EXTENSION",
+      "pillar": "AI Labs / Protocol (Model Context Protocol TypeScript SDK)",
+      "repo": "modelcontextprotocol/typescript-sdk",
+      "revision": "46d9c9921b6542e813c1ecc5f9fc964085e8e3bb",
+      "requested_url": "https://github.com/modelcontextprotocol/typescript-sdk/commit/46d9c9921b6542e813c1ecc5f9fc964085e8e3bb.patch",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_patch",
+      "inspected_paths": [
+        "packages/client/src/ext/skills/skillsClient.ts",
+        "packages/client/src/ext/skills/verify.ts",
+        "packages/core-internal/src/ext/skills/uri.ts"
+      ],
+      "novelty": "new_protocol_extension_sep2640",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 448997,
+      "captured_sha256": "cf6fb9c19e7587b154eda38f063e92742a033576753024c5ae6f93a273f81bde"
+    },
+    {
+      "source_id": "S07_CODEX_FROZEN_CLOUD_SKILL_SNAPSHOTS",
+      "pillar": "Coding Agent CLI (OpenAI Codex)",
+      "repo": "openai/codex",
+      "revision": "e776b27eb0422c3d10fba676c632ff08ffb4469b",
+      "requested_url": "https://github.com/openai/codex/commit/e776b27eb0422c3d10fba676c632ff08ffb4469b.patch",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_patch",
+      "inspected_paths": [
+        "codex-rs/ext/skills/src/provider/frozen_cloud.rs",
+        "codex-rs/ext/skills/src/provider/frozen_cloud_tests.rs",
+        "codex-rs/app-server/src/lib.rs"
+      ],
+      "novelty": "old_repo_new_mechanism",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 52298,
+      "captured_sha256": "4b7a3f2e2992d65ba28eb0c125bc9674b99220fcbfb0d4356595b8b0e25bc4a6"
+    },
+    {
+      "source_id": "S08_COOKBOOK_RECORDED_TRACE_REPLAY",
+      "pillar": "Coding Agent CLI & Eval (OpenAI Cookbook)",
+      "repo": "openai/openai-cookbook",
+      "revision": "5bd6cb40b6b84b69b2032d810610aa85064102df",
+      "requested_url": "https://raw.githubusercontent.com/openai/openai-cookbook/5bd6cb40b6b84b69b2032d810610aa85064102df/examples/partners/harness_aware_plugin_evals/data/l3-trace-before.json",
+      "http_status": 200,
+      "evidence_tier": "fixed_raw_trace_and_grader_replay",
+      "inspected_paths": [
+        "examples/partners/harness_aware_plugin_evals/data/l2-trace.json",
+        "examples/partners/harness_aware_plugin_evals/data/l3-trace-before.json",
+        "examples/partners/harness_aware_plugin_evals/data/l3-trace-after.json",
+        "examples/partners/harness_aware_plugin_evals/assert_codex_result.py",
+        "examples/partners/harness_aware_plugin_evals/eval_grading.py"
+      ],
+      "novelty": "backlog_recorded_trace_replay_deepening",
+      "runtime_status": "recorded_trace_replay_EXECUTED_codex_host_NOT_RUN",
+      "captured_bytes": 45612,
+      "captured_sha256": "53555aa5e8157a51538162480a029ea37a4d1be91ab4417cdb707bbb19acefb5"
+    },
+    {
+      "source_id": "S09_CLAUDE_CODE_2_1_304_PERSON_DECIDER",
+      "pillar": "Coding Agent CLI (Anthropic Claude Code)",
+      "repo": "anthropics/claude-code",
+      "revision": "772c6bee5c36f58be43bbb2b182862aeb22aceff",
+      "requested_url": "https://github.com/anthropics/claude-code/commit/772c6bee5c36f58be43bbb2b182862aeb22aceff.patch",
+      "http_status": 200,
+      "evidence_tier": "fixed_changelog_and_mod_readme_patch",
+      "inspected_paths": [
+        "CHANGELOG.md",
+        "mods/sec-default/README.md"
+      ],
+      "novelty": "new_release_2_1_304",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 41886,
+      "captured_sha256": "8baa3ef1cbeed19d2724e80209e73c4348d8a306a01987d5be95391a556758d6"
+    }
+  ]
+}

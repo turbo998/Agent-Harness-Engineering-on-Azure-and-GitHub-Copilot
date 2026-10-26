@@ -1,0 +1,248 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-27",
+  "artifact": "agent-attribution-secret-substitution-and-closed-book-lab-2026-10-27",
+  "scope_boundary": "Original Python 3.11+ stdlib reference specification and 24-test / 6-mutation suite executed offline in normal (-B) and optimized (-B -O) modes; upstream product runtimes/CLIs/SDKs (MAF Python/.NET, Azure AI AgentServer, GitHub Copilot SDK AHP Host, Google ADK /run_live, MCP Go SDK, NVIDIA NeMo Helix, OpenAI Codex MITM Proxy & CLI, Anthropic Claude Code CLI) are NOT_RUN.",
+  "sources": [
+    {
+      "source_id": "S01_MAF_AGENT_HOOKS_DECLARATION",
+      "pillar": "Microsoft Agent Framework (Python)",
+      "repo": "microsoft/agent-framework",
+      "revision": "18adf808a57eb6668fc773162037b311d36c5678",
+      "requested_url": "https://github.com/microsoft/agent-framework/commit/18adf808a57eb6668fc773162037b311d36c5678.patch",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_patch",
+      "inspected_paths": [
+        "python/packages/core/agent_framework/_agent_hooks.py",
+        "python/packages/core/tests/core/test_agent_hooks.py"
+      ],
+      "novelty": "old_repo_new_mechanism",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 69399,
+      "captured_sha256": "cdeb2e8314b28b4823f5231ed39aac6cfa996ffb0c8358bea8b0076523219b5c"
+    },
+    {
+      "source_id": "S02_MAF_FIDES_QUARANTINE_SCOPE",
+      "pillar": "Microsoft Agent Framework (Python)",
+      "repo": "microsoft/agent-framework",
+      "revision": "7db56c05f949b39535fef6d5a9bfdf645e3beffc",
+      "requested_url": "https://github.com/microsoft/agent-framework/commit/7db56c05f949b39535fef6d5a9bfdf645e3beffc.patch",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_patch",
+      "inspected_paths": [
+        "python/packages/core/agent_framework/security.py",
+        "python/packages/core/tests/test_security.py"
+      ],
+      "novelty": "old_repo_new_mechanism",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 13241,
+      "captured_sha256": "c82decb2cdef3221a1dce5627bc2c8ef463ec2bf4000baa57b685c6852ce355c"
+    },
+    {
+      "source_id": "S03_MAF_FOUNDRY_TOOLBOX_APPROVAL",
+      "pillar": "Microsoft Agent Framework (.NET)",
+      "repo": "microsoft/agent-framework",
+      "revision": "264439f7f5c71713051b8db4e51fd04f33fcb422",
+      "requested_url": "https://github.com/microsoft/agent-framework/commit/264439f7f5c71713051b8db4e51fd04f33fcb422.patch",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_patch",
+      "inspected_paths": [
+        "dotnet/src/Microsoft.Agents.AI.Foundry.Hosting/FoundryToolboxService.cs",
+        "dotnet/tests/Microsoft.Agents.AI.Foundry.Hosting.UnitTests/FoundryToolboxApprovalTests.cs"
+      ],
+      "novelty": "old_repo_new_mechanism",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 21801,
+      "captured_sha256": "78182e5a0c659814d27071c411ea47c51d1cbf9a6be11e3d46ac190fcbe75807"
+    },
+    {
+      "source_id": "S04_COPILOT_SDK_AHP_HOST_AUTH",
+      "pillar": "Microsoft GitHub Copilot SDK",
+      "repo": "github/copilot-sdk",
+      "revision": "f2b720c8ec368e035a4d5c72b012fd41b0d533e4",
+      "requested_url": "https://github.com/github/copilot-sdk/commit/f2b720c8ec368e035a4d5c72b012fd41b0d533e4.patch",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_patch",
+      "inspected_paths": [
+        "nodejs/src/host.ts",
+        "python/copilot/host.py",
+        "docs/runtime-supervised-host.md"
+      ],
+      "novelty": "old_repo_new_mechanism",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 1253629,
+      "captured_sha256": "8fdb3ebb5d1c0e117082231088e178372b137152ea452882911b4f972918b139"
+    },
+    {
+      "source_id": "S05_AZURE_AGENT_SERVER_ORIGINAL_SUBJECT",
+      "pillar": "Microsoft Azure AI AgentServer Python SDK",
+      "repo": "Azure/azure-sdk-for-python",
+      "revision": "a7dd9f37e99f6ae8f3ba6a764e11f86736e37035",
+      "requested_url": "https://github.com/Azure/azure-sdk-for-python/commit/a7dd9f37e99f6ae8f3ba6a764e11f86736e37035.patch",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_patch",
+      "inspected_paths": [
+        "sdk/agentserver/azure-ai-agentserver-core/azure/ai/agentserver/core/_request_context.py",
+        "sdk/agentserver/azure-ai-agentserver-core/tests/test_request_context.py",
+        "sdk/agentserver/azure-ai-agentserver-responses/tests/contract/test_streaming_request_context.py"
+      ],
+      "novelty": "new_package_feature_2_3_0b2",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 262324,
+      "captured_sha256": "95822bf48e9c21131942af4d46efa8b5eec864f64d26602486f30df307ad2b29"
+    },
+    {
+      "source_id": "S06_GOOGLE_ADK_RUN_LIVE_WEDGE_FIX",
+      "pillar": "AI Labs (Google ADK Python)",
+      "repo": "google/adk-python",
+      "revision": "3b227d6ec82490dae6473f681dcc825b1ac31679",
+      "requested_url": "https://github.com/google/adk-python/commit/3b227d6ec82490dae6473f681dcc825b1ac31679.patch",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_patch",
+      "inspected_paths": [
+        "src/google/adk/cli/api_server.py",
+        "tests/unittests/cli/test_adk_web_server_run_live.py"
+      ],
+      "novelty": "old_repo_new_mechanism",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 12173,
+      "captured_sha256": "ac2e2e5dc996f1cc886ce70b4ed8e4c4f0dd5c4b8670dceed009ec7d21fa7f64"
+    },
+    {
+      "source_id": "S07_MCP_GO_SDK_RFC9207_ISS",
+      "pillar": "AI Labs / Protocol (Model Context Protocol Go SDK)",
+      "repo": "modelcontextprotocol/go-sdk",
+      "revision": "fa799c5fc2e2e0f8aa578aa918a6e39607bd0142",
+      "requested_url": "https://github.com/modelcontextprotocol/go-sdk/commit/fa799c5fc2e2e0f8aa578aa918a6e39607bd0142.patch",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_patch",
+      "inspected_paths": [
+        "auth/extauth/oidc_login.go",
+        "auth/extauth/oidc_login_test.go"
+      ],
+      "novelty": "new_repo_protocol_security",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 10334,
+      "captured_sha256": "6c1a5566a485446322072cc4a7a25e5bd29bf3c113f19b3dcf73aa4bd9571cd9"
+    },
+    {
+      "source_id": "S08_MCP_GO_SDK_ID_JAG_TOKEN_TYPE",
+      "pillar": "AI Labs / Protocol (Model Context Protocol Go SDK)",
+      "repo": "modelcontextprotocol/go-sdk",
+      "revision": "6f47cb7983b371b60460f730beab9794adc9f04c",
+      "requested_url": "https://github.com/modelcontextprotocol/go-sdk/commit/6f47cb7983b371b60460f730beab9794adc9f04c.patch",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_patch",
+      "inspected_paths": [
+        "auth/extauth/enterprise_handler.go",
+        "auth/extauth/enterprise_handler_test.go"
+      ],
+      "novelty": "new_repo_protocol_security",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 6865,
+      "captured_sha256": "2ec197a55becea225f5048f906a832a51eeb61d222a3ca53a0756e5ef1bcfc3e"
+    },
+    {
+      "source_id": "S09_NEMO_HELIX_CLOSED_BOOK_MIDDLEWARE",
+      "pillar": "AI Labs (NVIDIA NeMo Helix)",
+      "repo": "NVIDIA-NeMo/nemo-helix",
+      "revision": "8c3ef7f50c88ba6ff1775350dd4cdfa5473c7b9a",
+      "requested_url": "https://github.com/NVIDIA-NeMo/nemo-helix/commit/8c3ef7f50c88ba6ff1775350dd4cdfa5473c7b9a.patch",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_patch",
+      "inspected_paths": [
+        "plugins/nemo-evals/src/nemo_evals/jobs/gateway_models.py",
+        "plugins/nemo-evals/tests/test_gateway_models.py"
+      ],
+      "novelty": "radar_upgrade_to_source_contract",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 30517,
+      "captured_sha256": "14e09194943fff1c88ec9ed2e0623771fe244398f0dc95cedc82fe7da4d02bd6"
+    },
+    {
+      "source_id": "S10_CODEX_MITM_V2_BODY_SECRET_SUBSTITUTION",
+      "pillar": "Coding Agent CLI (OpenAI Codex)",
+      "repo": "openai/codex",
+      "revision": "619531225b29dcf6437ec6571537f9da9da002bc",
+      "requested_url": "https://github.com/openai/codex/commit/619531225b29dcf6437ec6571537f9da9da002bc.patch",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_patch",
+      "inspected_paths": [
+        "codex-rs/network-proxy/src/secret_substitution.rs",
+        "codex-rs/network-proxy/src/mitm.rs",
+        "codex-rs/config/src/permissions_toml.rs"
+      ],
+      "novelty": "old_repo_new_mechanism",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 43992,
+      "captured_sha256": "c628cd31719fbc2c78ea277341338a1707cf65136f54bd1b6b212c696053950c"
+    },
+    {
+      "source_id": "S11_CODEX_ADVISORY_ROLLOUT_BUDGET",
+      "pillar": "Coding Agent CLI (OpenAI Codex)",
+      "repo": "openai/codex",
+      "revision": "77eb019ad039d21e5a346e77568739993a7f94cd",
+      "requested_url": "https://github.com/openai/codex/commit/77eb019ad039d21e5a346e77568739993a7f94cd.patch",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_patch",
+      "inspected_paths": [
+        "codex-rs/core/src/rollout_budget.rs",
+        "codex-rs/core/tests/suite/rollout_budget.rs"
+      ],
+      "novelty": "old_repo_new_mechanism",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 9898,
+      "captured_sha256": "ce95608c0fe676d40ff60dc0cb57ae0c5dfa466458c43603b2e1fbcc62436036"
+    },
+    {
+      "source_id": "S12_COOKBOOK_DATABRICKS_SANDBOX_EXEC_SERVER",
+      "pillar": "Coding Agent CLI & Sandbox (OpenAI Cookbook)",
+      "repo": "openai/openai-cookbook",
+      "revision": "8495326b6f1b7cec94e7f5e393a4045e328a268e",
+      "requested_url": "https://github.com/openai/openai-cookbook/commit/8495326b6f1b7cec94e7f5e393a4045e328a268e.patch",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_patch",
+      "inspected_paths": [
+        "examples/agents_api/sandboxes/databricks/README.md",
+        "examples/agents_api/sandboxes/databricks/common.py",
+        "examples/agents_api/sandboxes/databricks/application_managed/main.py"
+      ],
+      "novelty": "new_cookbook_example",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 704376,
+      "captured_sha256": "4e3ef42f581510c978fd3f6cc2c8088f4d4220a3bc0026e7fdcea4dff3e52a37"
+    },
+    {
+      "source_id": "S13_CLAUDE_CODE_2_1_310_CHANGELOG",
+      "pillar": "Coding Agent CLI (Anthropic Claude Code)",
+      "repo": "anthropics/claude-code",
+      "revision": "b70dc4113ad72e0ee44f7b1b95afaf510b53ee98",
+      "requested_url": "https://github.com/anthropics/claude-code/commit/b70dc4113ad72e0ee44f7b1b95afaf510b53ee98.patch",
+      "http_status": 200,
+      "evidence_tier": "fixed_changelog_patch",
+      "inspected_paths": [
+        "CHANGELOG.md"
+      ],
+      "novelty": "new_release_2_1_305_to_2_1_310",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 25735,
+      "captured_sha256": "97164d41202215ffda0938b3527010ef5a6da9d4edc09e14422e61c4d00e5d4a"
+    },
+    {
+      "source_id": "S14_CLAUDE_CODE_SEC_DEFAULT_REOPEN_GATE",
+      "pillar": "Coding Agent CLI (Anthropic Claude Code)",
+      "repo": "anthropics/claude-code",
+      "revision": "318b7e6ac4e726e88a4ad326214866a93c373b1b",
+      "requested_url": "https://github.com/anthropics/claude-code/commit/318b7e6ac4e726e88a4ad326214866a93c373b1b.patch",
+      "http_status": 200,
+      "evidence_tier": "fixed_mod_readme_patch",
+      "inspected_paths": [
+        "mods/sec-default/README.md"
+      ],
+      "novelty": "old_repo_new_mechanism",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 1514,
+      "captured_sha256": "a7599e0595e3044f9f1a2a6f8b62aa8fb3de2fd122f43f113ea9449cffb9c594"
+    }
+  ]
+}

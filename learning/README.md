@@ -3,7 +3,7 @@
 
 > 这些条目是从历史研究快照脱敏整理出的补充学习材料，用于学习、讨论、POC 设计前的思路准备；它们不是正式实验报告、不是本次实机验证结论，也不构成生产部署或合规建议。原快照中的来源可达性、HTTP 200 或核验时间不代表本次发布时已经重新核验。
 
-- 已发布：139
+- 已发布：140
 - 已隔离：0（详见本地报告，不发布敏感原文）
 - 跳过/冲突：0（详见本地报告）
 
@@ -168,6 +168,7 @@
 - 2026-10-02 — [Coding Agent：来源授权与遥测内容门验收卡](assets/coding-agent-origin-grants-and-telemetry-gates-2026-10-02.md)
 - 2026-10-02 — [多模态评测输入完整性与覆盖分母 Gate：POC 验收模板](assets/multimodal-evaluation-input-and-coverage-gates-2026-10-02.md)
 - 2026-10-03 — [eval_hub 解析器覆盖验收练习卡（公开版，2026-10-03）](assets/eval-parser-coverage-lab-2026-10-03.md)
+- 2026-10-27 — [Agent 调用级归因、沙箱凭据字节替换与闭卷评测网关验收实验室（2026-10-27）](assets/agent-attribution-secret-substitution-and-closed-book-lab-2026-10-27.md)
 - 日期未知 — [Agent 可观测性/评测层选型速查：Opik vs Foundry Evals vs Cookbook Improvement Loop](assets/agent-observability-selection-opik-vs-foundry-evals-cheatsheet.md)
 - 日期未知 — [Foundry Evals（含 Adaptive / Rubric 评测器）— 评测驱动闭环的 Azure 原生版 速查](assets/foundry-adaptive-evals-azure-native-eval-gate-cheatsheet.md)
 - 日期未知 — [Harness 评测回路 + Goal 完成契约 + Headless/FinOps 速查](assets/harness-eval-loop-and-goal-contract-cheatsheet.md)

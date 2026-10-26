@@ -1215,6 +1215,15 @@
     "sha256": "b963dfc07f49606b9e325de7da572a16264518a0b07d725ad72131ac7019dd5d"
   },
   {
+    "path": "assets/agent-attribution-secret-substitution-and-closed-book-lab-2026-10-27.md",
+    "title": "Agent 调用级归因、沙箱凭据字节替换与闭卷评测网关验收实验室（2026-10-27）",
+    "date": "2026-10-27",
+    "topic": "评测与观测",
+    "status": "published",
+    "source_name": "agent-attribution-secret-substitution-and-closed-book-lab-2026-10-27.md",
+    "sha256": "3d3bca62c50b2f519b82796e932d1f60881d8532eb5d54200d94498a8e5454fb"
+  },
+  {
     "path": "assets/agent-observability-selection-opik-vs-foundry-evals-cheatsheet.md",
     "title": "Agent 可观测性/评测层选型速查：Opik vs Foundry Evals vs Cookbook Improvement Loop",
     "date": null,

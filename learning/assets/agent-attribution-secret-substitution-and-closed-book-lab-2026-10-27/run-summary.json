@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-27",
+  "artifact": "agent-attribution-secret-substitution-and-closed-book-lab-2026-10-27",
+  "execution_environment": {
+    "python_version": "3.11.15",
+    "modes_verified": [
+      "normal (-B)",
+      "optimized (-B -O)"
+    ],
+    "network_access": false,
+    "upstream_product_runtime": "NOT_RUN"
+  },
+  "bound_files": {
+    "harness_contracts.py": {
+      "bytes": 34483,
+      "sha256": "2629addcb05b3006b93f547767a8b8c85c48051d749b03d806460274c907fe7a"
+    },
+    "test_harness_contracts.py": {
+      "bytes": 29979,
+      "sha256": "c7a188a58bbbd746bfddfc49c19b841e4f67e021d1c7680b1065c6c8701b9d04"
+    },
+    "fixtures/provenance.json": {
+      "bytes": 11781,
+      "sha256": "01ef8960e9edfcac6c0ecdaa2d7be914a0ddfcf101be28730a7bf9e51f591094"
+    }
+  },
+  "results": {
+    "normal_mode": {
+      "exit_code": 0,
+      "tests_run": 24,
+      "tests_passed": 24
+    },
+    "optimized_mode": {
+      "exit_code": 0,
+      "tests_run": 24,
+      "tests_passed": 24
+    },
+    "mutation_calibration": {
+      "mutations_total": 6,
+      "mutations_killed": 6,
+      "mutations": [
+        {
+          "mutation_id": "M1_maf_fides_empty_config_falls_back_to_global",
+          "target": "resolve_fides_quarantine_client",
+          "status": "KILLED",
+          "failed_test_count": 1,
+          "failed_tests": [
+            "test_04_maf_fides_quarantine_client_scoped_isolation_and_explicit_none"
+          ]
+        },
+        {
+          "mutation_id": "M2_azure_subject_infers_from_user_id",
+          "target": "FoundryAgentRequestContextContract",
+          "status": "KILLED",
+          "failed_test_count": 1,
+          "failed_tests": [
+            "test_07_azure_agentserver_original_subject_absent_does_not_infer_from_user_id"
+          ]
+        },
+        {
+          "mutation_id": "M3_mcp_enterprise_ignores_issued_token_type",
+          "target": "TOKEN_TYPE_ID_JAG",
+          "status": "KILLED",
+          "failed_test_count": 2,
+          "failed_tests": [
+            "test_12_mcp_go_sdk_rfc9207_iss_and_id_jag_token_type_verification",
+            "test_13_mcp_go_sdk_rejects_non_id_jag_access_token_leakage"
+          ]
+        },
+        {
+          "mutation_id": "M4_nemo_closed_book_accepts_any_middleware_position",
+          "target": "require_closed_book_virtual_model_route",
+          "status": "KILLED",
+          "failed_test_count": 3,
+          "failed_tests": [
+            "test_14_nemo_helix_closed_book_accepts_last_request_middleware_and_model_free_agents",
+            "test_15_nemo_helix_closed_book_rejects_router_after_closed_book_or_response_only",
+            "test_16_nemo_helix_closed_book_checks_caller_read_permission_before_disclosing_middleware"
+          ]
+        },
+        {
+          "mutation_id": "M5_codex_mitm_allows_digest_header",
+          "target": "FORBIDDEN_INTEGRITY_HEADERS",
+          "status": "KILLED",
+          "failed_test_count": 1,
+          "failed_tests": [
+            "test_19_codex_mitm_v2_rejects_gzip_trailers_and_client_digest_headers"
+          ]
+        },
+        {
+          "mutation_id": "M6_claude_sec_default_ignores_regex_length_cap",
+          "target": "MAX_SEC_DEFAULT_REOPEN_REGEX_CHARS",
+          "status": "KILLED",
+          "failed_test_count": 1,
+          "failed_tests": [
+            "test_21_claude_sec_default_reopen_allows_only_prepend_and_enforces_65536_regex_cap"
+          ]
+        }
+      ]
+    }
+  }
+}

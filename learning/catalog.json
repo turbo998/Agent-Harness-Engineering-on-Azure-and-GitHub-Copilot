@@ -603,6 +603,15 @@
     "sha256": "7a6bfc9c4939e708940c1164c2680ab5ace647e20df2fa4763b724b7be2415cb"
   },
   {
+    "path": "assets/agent-data-boundary-guardian-board-and-url-ssrf-lab-2026-10-29.md",
+    "title": "Agent 主权数据边界、Guardian V3 只读消息板与 URL/NAT64 防 SSRF 验收实验室（2026-10-29）",
+    "date": "2026-10-29",
+    "topic": "Workshop 练习",
+    "status": "published",
+    "source_name": "agent-data-boundary-guardian-board-and-url-ssrf-lab-2026-10-29.md",
+    "sha256": "bc39d69e2c95bf2ea26a4dc8bff0fd43f32ad836c8940a02f4c34b05a5f60f87"
+  },
+  {
     "path": "assets/codex-remote-control-plane-cheatsheet.md",
     "title": "Codex Remote 控制平面 & 上下文生命周期速查 [→harness]",
     "date": null,

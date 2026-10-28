@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-29",
+  "artifact": "agent-data-boundary-guardian-board-and-url-ssrf-lab-2026-10-29",
+  "execution_environment": {
+    "python_version": "3.11.15",
+    "modes_verified": [
+      "normal (-B)",
+      "optimized (-B -O)"
+    ],
+    "network_access": false,
+    "upstream_product_runtime": "NOT_RUN"
+  },
+  "bound_files": {
+    "harness_contracts.py": {
+      "bytes": 34165,
+      "sha256": "6a9868b45b865f3811bd2fce52937b8aa8193719231d79291e37d3a2b8fd9b57"
+    },
+    "test_harness_contracts.py": {
+      "bytes": 24604,
+      "sha256": "4958bc5a0f88465d798a11b3bc3925f144bca3954af391301f2b68eacd5f72c0"
+    },
+    "fixtures/provenance.json": {
+      "bytes": 13027,
+      "sha256": "62d11759b4cfac0a7bcacd9cb9392cfafc2c894d084aa07a57c3642377625739"
+    }
+  },
+  "results": {
+    "normal_mode": {
+      "exit_code": 0,
+      "tests_run": 24,
+      "tests_passed": 24
+    },
+    "optimized_mode": {
+      "exit_code": 0,
+      "tests_run": 24,
+      "tests_passed": 24
+    },
+    "mutation_calibration": {
+      "mutations_total": 6,
+      "mutations_killed": 6,
+      "mutations": [
+        {
+          "mutation_id": "M1_azure_mcp_allows_non_transient_retry",
+          "target": "RESILIENCY_TRANSIENT_HTTP_CODES",
+          "status": "KILLED",
+          "failed_test_count": 1,
+          "failed_tests": [
+            "test_02_azure_mcp_data_boundary_fails_closed_on_unknown_malformed_or_sovereign"
+          ]
+        },
+        {
+          "mutation_id": "M2_maf_redis_omits_nul_separator",
+          "target": "MAF_REDIS_SCOPE_NUL_SEPARATOR",
+          "status": "KILLED",
+          "failed_test_count": 1,
+          "failed_tests": [
+            "test_05_maf_redis_scope_token_prevents_delimiter_collision"
+          ]
+        },
+        {
+          "mutation_id": "M3_adk_nat64_prefix_disabled",
+          "target": "ADK_NAT64_WELL_KNOWN_PREFIX",
+          "status": "KILLED",
+          "failed_test_count": 1,
+          "failed_tests": [
+            "test_10_google_adk_url_validator_rejects_nat64_sixtofour_and_mapped_ipv6"
+          ]
+        },
+        {
+          "mutation_id": "M4_nemo_allows_transfer_encoding_override",
+          "target": "NEMO_CLIENT_OWNED_HEADERS",
+          "status": "KILLED",
+          "failed_test_count": 1,
+          "failed_tests": [
+            "test_12_nemo_guardrails_relay_rejects_url_credentials_and_client_owned_headers"
+          ]
+        },
+        {
+          "mutation_id": "M5_codex_guardian_zero_required_recent_tools",
+          "target": "GUARDIAN_MIN_RECENT_TOOL_ENTRIES",
+          "status": "KILLED",
+          "failed_test_count": 1,
+          "failed_tests": [
+            "test_16_codex_guardian_deferred_truncation_preserves_original_bytes_and_promotes_recent_tools"
+          ]
+        },
+        {
+          "mutation_id": "M6_claude_sec_default_drops_bash_env_pin",
+          "target": "CLAUDE_SEC_DEFAULT_PINNED_ENV_VARS",
+          "status": "KILLED",
+          "failed_test_count": 1,
+          "failed_tests": [
+            "test_19_claude_sec_default_pins_19_security_env_vars_and_fails_closed"
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,272 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-29",
+  "artifact": "agent-data-boundary-guardian-board-and-url-ssrf-lab-2026-10-29",
+  "scope_boundary": "Original Python 3.11+ stdlib reference specification and 24-test / 6-mutation suite executed offline in normal (-B) and optimized (-B -O) modes; upstream product runtimes/CLIs/SDKs (Azure MCP Server 4.0.0-beta.3, Microsoft Agent Framework Python, Google ADK Python, NVIDIA NeMo Guardrails Rust Relay Plugin, OpenAI Agents Python SDK, OpenAI Codex CLI/App-Server, Anthropic Claude Code CLI, and Planning with Files hooks) are NOT_RUN.",
+  "sources": [
+    {
+      "source_id": "S01_AZURE_MCP_RESILIENCY_AGENT",
+      "pillar": "Microsoft Azure MCP Server (4.0.0-beta.3)",
+      "repo": "microsoft/mcp",
+      "revision": "b3f862be67cfd39ff43a9de038bc747e378f4571",
+      "requested_url": "https://github.com/microsoft/mcp/commit/b3f862be67cfd39ff43a9de038bc747e378f4571.patch",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_patch",
+      "inspected_paths": [
+        "tools/Azure.Mcp.Tools.ResiliencyAgent/src/Services/DataBoundaryResolver.cs",
+        "tools/Azure.Mcp.Tools.ResiliencyAgent/src/Services/ResiliencyAgentCloudSupport.cs",
+        "tools/Azure.Mcp.Tools.ResiliencyAgent/src/Services/AttachmentPolicy.cs",
+        "tools/Azure.Mcp.Tools.ResiliencyAgent/src/Services/LocalFileSnapshotter.cs",
+        "tools/Azure.Mcp.Tools.ResiliencyAgent/src/Services/ArtifactWriter.cs"
+      ],
+      "novelty": "source_contract_deep_dive",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 291759,
+      "captured_sha256": "3579bb97c3f94f7e58a46b7f31902639c40279d4aa87e7dcac479a4119ba61fb"
+    },
+    {
+      "source_id": "S02_AZURE_MCP_MONITOR_INGESTION",
+      "pillar": "Microsoft Azure MCP Server (4.0.0-beta.3)",
+      "repo": "microsoft/mcp",
+      "revision": "cd2556e5c60426660b55b09ac6cdf44ed559bdd9",
+      "requested_url": "https://github.com/microsoft/mcp/commit/cd2556e5c60426660b55b09ac6cdf44ed559bdd9.patch",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_patch",
+      "inspected_paths": [
+        "tools/Azure.Mcp.Tools.Monitor/src/Validation/IngestionLogDataValidator.cs",
+        "tools/Azure.Mcp.Tools.Monitor/src/Commands/Ingestion/IngestionUploadCommand.cs"
+      ],
+      "novelty": "source_contract_deep_dive",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 81808,
+      "captured_sha256": "6f66feb254c4a8155bdff44c188467ab4bec4ca32a59ec01ba97fbcf87a9733f"
+    },
+    {
+      "source_id": "S03_MAF_REDIS_CONTEXT_SCOPE_IDENTITY",
+      "pillar": "Microsoft Agent Framework (Python)",
+      "repo": "microsoft/agent-framework",
+      "revision": "9b72ed4f96bca2be463468fadeeed28de07514c9",
+      "requested_url": "https://github.com/microsoft/agent-framework/commit/9b72ed4f96bca2be463468fadeeed28de07514c9.patch",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_patch",
+      "inspected_paths": [
+        "python/packages/redis/agent_framework_redis/_context_provider.py",
+        "python/packages/redis/tests/test_context_provider_edges.py"
+      ],
+      "novelty": "old_repo_new_breaking_mechanism",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 41409,
+      "captured_sha256": "b3a496a078a8ee6a8062c2c9e48d48a7861f1b3242ac68f8b27aaf558a6047e5"
+    },
+    {
+      "source_id": "S04_MAF_AGENT_TRIGGERED_COMPACTION",
+      "pillar": "Microsoft Agent Framework (Python)",
+      "repo": "microsoft/agent-framework",
+      "revision": "c2a8f91b3070596c30723f74f303a124332bbb77",
+      "requested_url": "https://github.com/microsoft/agent-framework/commit/c2a8f91b3070596c30723f74f303a124332bbb77.patch",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_patch",
+      "inspected_paths": [
+        "python/packages/core/agent_framework/_compaction.py",
+        "python/packages/core/agent_framework/_clients.py"
+      ],
+      "novelty": "old_repo_new_mechanism",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 119064,
+      "captured_sha256": "b00e5907d083de492f975feb2b5ae8d9e316ed06d70da3ad5b860e0335cec2c6"
+    },
+    {
+      "source_id": "S05_GOOGLE_ADK_URL_BACKSLASH_NAT64_SSRF",
+      "pillar": "AI Labs (Google ADK Python)",
+      "repo": "google/adk-python",
+      "revision": "4d0cd985faedb3c0d9e3579077de327a6ef86a52",
+      "requested_url": "https://github.com/google/adk-python/commit/4d0cd985faedb3c0d9e3579077de327a6ef86a52.patch",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_patch",
+      "inspected_paths": [
+        "src/google/adk/tools/_url_validator.py",
+        "tests/unittests/tools/test_url_validator.py"
+      ],
+      "novelty": "old_repo_new_security_mechanism",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 4503,
+      "captured_sha256": "ec95e4d564d2f4cab8a35fcbb54b08556cda2f862d6fd71243f1b7edf5f5c02a"
+    },
+    {
+      "source_id": "S06_GOOGLE_ADK_TRAILING_NEWLINE_REGEX",
+      "pillar": "AI Labs (Google ADK Python)",
+      "repo": "google/adk-python",
+      "revision": "e2e9336a7fde1ea6450a56629090be7bc06cae52",
+      "requested_url": "https://github.com/google/adk-python/commit/e2e9336a7fde1ea6450a56629090be7bc06cae52.patch",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_patch",
+      "inspected_paths": [
+        "src/google/adk/skills/models.py",
+        "src/google/adk/apps/app.py"
+      ],
+      "novelty": "old_repo_new_security_mechanism",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 5934,
+      "captured_sha256": "aaedfeba401c132d9463aa61f300bd2bf697e6bd7d4126636f9fe04012682cd5"
+    },
+    {
+      "source_id": "S07_NEMO_GUARDRAILS_RELAY_PRETOOLUSE",
+      "pillar": "AI Labs (NVIDIA NeMo Guardrails)",
+      "repo": "NVIDIA-NeMo/Guardrails",
+      "revision": "7d2ef097f11b98aedaab6261060d007c59b53329",
+      "requested_url": "https://github.com/NVIDIA-NeMo/Guardrails/commit/7d2ef097f11b98aedaab6261060d007c59b53329.patch",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_patch",
+      "inspected_paths": [
+        "crates/nemo-guardrails-relay-plugin/src/client.rs",
+        "crates/nemo-guardrails-relay-plugin/src/config.rs",
+        "crates/nemo-guardrails-relay-plugin/src/lib.rs"
+      ],
+      "novelty": "old_repo_new_mechanism",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 68861,
+      "captured_sha256": "0cd4bc8958b024bfb903cb04ecd5c7a5b3738f5216ee39c0f3b2f12d80320fc7"
+    },
+    {
+      "source_id": "S08_OPENAI_AGENTS_PY_NATIVE_QUEUE_CANCEL",
+      "pillar": "AI Labs (OpenAI Agents Python SDK)",
+      "repo": "openai/openai-agents-python",
+      "revision": "cd26bbbc52847845fde73b9952b51e62e2bcbdc0",
+      "requested_url": "https://github.com/openai/openai-agents-python/commit/cd26bbbc52847845fde73b9952b51e62e2bcbdc0.patch",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_patch",
+      "inspected_paths": [
+        "src/agents/run_internal/tool_planning.py",
+        "src/agents/run_internal/tool_execution.py",
+        "src/agents/util/_asyncio_tasks.py"
+      ],
+      "novelty": "old_repo_new_mechanism",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 33871,
+      "captured_sha256": "fc8bddeb63f388bdec75b5bdc8c8e4ea08655b1f25d7d48cab10c031fc8a8e6d"
+    },
+    {
+      "source_id": "S09_CODEX_GUARDIAN_V3_MESSAGE_BOARD",
+      "pillar": "Coding Agent CLI (OpenAI Codex)",
+      "repo": "openai/codex",
+      "revision": "bca6cff1e140c1791975f0f6c47cb3add4f31710",
+      "requested_url": "https://github.com/openai/codex/commit/bca6cff1e140c1791975f0f6c47cb3add4f31710.patch",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_patch",
+      "inspected_paths": [
+        "codex-rs/ext/guardian-v3/src/lib.rs",
+        "codex-rs/message-board/src/local/connection.rs",
+        "codex-rs/message-board/src/local/lifecycle.rs",
+        "codex-rs/message-board/src/local.rs"
+      ],
+      "novelty": "source_contract_deep_dive",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 3888,
+      "captured_sha256": "58b9520b0fa7e2aeb448edc4f7c8cb29d4685e1b485b8db1630c70931906c7a0"
+    },
+    {
+      "source_id": "S10_CODEX_GUARDIAN_DEFERRED_TRUNCATION",
+      "pillar": "Coding Agent CLI (OpenAI Codex)",
+      "repo": "openai/codex",
+      "revision": "83a9600acbc902ab8b212ab2e5166d7d55a2519d",
+      "requested_url": "https://github.com/openai/codex/commit/83a9600acbc902ab8b212ab2e5166d7d55a2519d.patch",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_patch",
+      "inspected_paths": [
+        "codex-rs/guardian-context/src/transcript.rs",
+        "codex-rs/guardian-context/src/profile.rs",
+        "codex-rs/core/src/guardian/prompt.rs"
+      ],
+      "novelty": "source_contract_deep_dive",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 7619,
+      "captured_sha256": "6a0353cfada3a907eaf6420f24fb9cc624e365b5e42d964d817f7d91a0e4cbf9"
+    },
+    {
+      "source_id": "S11_CODEX_CONFIG_SERVER_AUTH_DECOUPLING",
+      "pillar": "Coding Agent CLI (OpenAI Codex)",
+      "repo": "openai/codex",
+      "revision": "ec513795a6a727b32f906a2aa27f7fc92a996b6f",
+      "requested_url": "https://github.com/openai/codex/commit/ec513795a6a727b32f906a2aa27f7fc92a996b6f.patch",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_patch",
+      "inspected_paths": [
+        "codex-rs/cloud-config/src/bundle_loader.rs",
+        "codex-rs/app-server/src/config_manager.rs",
+        "codex-rs/cli/src/login.rs"
+      ],
+      "novelty": "source_contract_deep_dive",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 31203,
+      "captured_sha256": "8ef5f074925785e2f0a61727903dfb338d936a049fb41e3c36b9c781184b75a0"
+    },
+    {
+      "source_id": "S12_CODEX_CODE_MODE_HOST_SESSION_ADMISSION",
+      "pillar": "Coding Agent CLI (OpenAI Codex)",
+      "repo": "openai/codex",
+      "revision": "5fdb50af9518cf39c134e3df0bdfec2be8f09b42",
+      "requested_url": "https://github.com/openai/codex/commit/5fdb50af9518cf39c134e3df0bdfec2be8f09b42.patch",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_patch",
+      "inspected_paths": [
+        "codex-rs/core/src/code_mode_host.rs"
+      ],
+      "novelty": "old_repo_new_mechanism",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 26950,
+      "captured_sha256": "e4746d7b8edfa23371963813172bf709aa0beaec7641af136b46fcff83123a8a"
+    },
+    {
+      "source_id": "S13_CLAUDE_CODE_SEC_DEFAULT_TWO_PASS",
+      "pillar": "Coding Agent CLI (Anthropic Claude Code)",
+      "repo": "anthropics/claude-code",
+      "revision": "a5b0f2e03aba37ea34e527fe30b2f6aaa4895b9f",
+      "requested_url": "https://raw.githubusercontent.com/anthropics/claude-code/a5b0f2e03aba37ea34e527fe30b2f6aaa4895b9f/mods/sec-default/hooks/register.ts",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_raw_file",
+      "inspected_paths": [
+        "mods/sec-default/hooks/register.ts",
+        "mods/sec-default/hooks/held-verdict/verdicts/holds-over.ts",
+        "mods/sec-default/hooks/policy/pinned-names.ts"
+      ],
+      "novelty": "old_repo_new_mechanism",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 6988,
+      "captured_sha256": "3752c3673e0b2105f32555ef58530b5fa476be73ab08ab0d19ec8f3352ebaccb"
+    },
+    {
+      "source_id": "S14_CLAUDE_CODE_CHANGELOG_2_1_312",
+      "pillar": "Coding Agent CLI (Anthropic Claude Code v2.1.312)",
+      "repo": "anthropics/claude-code",
+      "revision": "0e1f4789406477380b267a01f3ddd50b0211e5b3",
+      "requested_url": "https://raw.githubusercontent.com/anthropics/claude-code/0e1f4789406477380b267a01f3ddd50b0211e5b3/CHANGELOG.md",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_raw_file",
+      "inspected_paths": [
+        "CHANGELOG.md"
+      ],
+      "novelty": "new_release_2_1_311_and_2_1_312",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 1104632,
+      "captured_sha256": "379eaa1f7cecbca8ac5604b92877c72a1bb59b4a860ba0458773ee660100eda9"
+    },
+    {
+      "source_id": "S15_PLANNING_WITH_FILES_SUBAGENT_ISOLATION",
+      "pillar": "Community Supply-Chain Audit (Planning with Files v3.26.0)",
+      "repo": "OthmanAdi/planning-with-files",
+      "revision": "5d29800bf8b919ca9a88ee7885b90050b5cb64ed",
+      "requested_url": "https://raw.githubusercontent.com/OthmanAdi/planning-with-files/5d29800bf8b919ca9a88ee7885b90050b5cb64ed/scripts/inject-plan.py",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_raw_file",
+      "inspected_paths": [
+        "scripts/inject-plan.py",
+        "hooks/claude-hook.sh",
+        "LICENSE"
+      ],
+      "novelty": "supply_chain_audit_source_contract",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 67611,
+      "captured_sha256": "89233f24eb693592123889af9c9fa030c001b3b3be2d3c4840ddc3040e844b2e"
+    }
+  ]
+}

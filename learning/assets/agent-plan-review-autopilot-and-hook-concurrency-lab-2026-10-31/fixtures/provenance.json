@@ -1,0 +1,348 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-31",
+  "artifact": "agent-plan-review-autopilot-and-hook-concurrency-lab-2026-10-31",
+  "scope_boundary": "Original Python 3.11+ stdlib reference specification and 24-test / 6-mutation suite executed offline in normal (-B) and optimized (-B -O) modes; upstream product runtimes/CLIs/SDKs (Microsoft Agent Framework .NET 1.27.0 & Python 1.24.0, GitHub Copilot SDK, Azure MCP Server 4.0.0-beta.4, Google ADK Python & Go, MCP Go SDK, OpenAI Agents JS, OpenAI Codex CLI/App-Server rust-v0.166.0, OpenAI Cookbook Decisions API, Anthropic Claude Code CLI v2.1.312-v2.1.314, and infragate/capa) are NOT_RUN.",
+  "sources": [
+    {
+      "source_id": "S01_MAF_MAGENTIC_PLAN_REVIEW",
+      "pillar": "Microsoft Agent Framework (.NET 1.27.0)",
+      "repo": "microsoft/agent-framework",
+      "revision": "5f469d26d51977b396bbec9007a0052975ea723c",
+      "requested_url": "https://github.com/microsoft/agent-framework/commit/5f469d26d51977b396bbec9007a0052975ea723c.patch",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_patch",
+      "inspected_paths": [
+        "dotnet/src/Microsoft.Agents.AI.Workflows/Specialized/Magentic/MagenticConstants.cs",
+        "dotnet/src/Microsoft.Agents.AI.Workflows/Specialized/Magentic/MagenticOrchestrator.cs"
+      ],
+      "novelty": "source_contract_deep_dive",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 19936,
+      "captured_sha256": "86eaf49de998f857bb943531702f9596cd321c41877c5e34a89e13ea5ee9e858"
+    },
+    {
+      "source_id": "S02_MAF_MCP_DUAL_APPROVAL_MERGE",
+      "pillar": "Microsoft Agent Framework (Python 1.24.0)",
+      "repo": "microsoft/agent-framework",
+      "revision": "2e931679dcf68b504f27fb0de266a543467deaaa",
+      "requested_url": "https://github.com/microsoft/agent-framework/commit/2e931679dcf68b504f27fb0de266a543467deaaa.patch",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_patch",
+      "inspected_paths": [
+        "python/packages/foundry/agent_framework_foundry/_chat_client.py",
+        "python/packages/openai/agent_framework_openai/_chat_client.py"
+      ],
+      "novelty": "source_contract_deep_dive",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 7531,
+      "captured_sha256": "d5df63957d448f817eb75f3992590100c3bac6b19ab60f36cd600c0fd0be955e"
+    },
+    {
+      "source_id": "S03_MAF_MCP_DEFAULT_APPROVAL",
+      "pillar": "Microsoft Agent Framework (Python 1.24.0)",
+      "repo": "microsoft/agent-framework",
+      "revision": "5de71b8a7a2cfaba3b27c4a38e458eb1c10c4406",
+      "requested_url": "https://github.com/microsoft/agent-framework/commit/5de71b8a7a2cfaba3b27c4a38e458eb1c10c4406.patch",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_patch",
+      "inspected_paths": [
+        "python/packages/core/agent_framework/_mcp.py"
+      ],
+      "novelty": "old_repo_new_mechanism",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 39913,
+      "captured_sha256": "6e1416dda72aefee3a4704313821e39595d00be8296e00f9bc72fe9a7cb0024e"
+    },
+    {
+      "source_id": "S04_MAF_CHECKPOINT_METACLASS_GUARD",
+      "pillar": "Microsoft Agent Framework (Python 1.24.0)",
+      "repo": "microsoft/agent-framework",
+      "revision": "34452c8ae32b514d6d9be83359e1692bb5446ef2",
+      "requested_url": "https://github.com/microsoft/agent-framework/commit/34452c8ae32b514d6d9be83359e1692bb5446ef2.patch",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_patch",
+      "inspected_paths": [
+        "python/packages/core/agent_framework/_workflows/_checkpoint_encoding.py"
+      ],
+      "novelty": "old_repo_new_security_mechanism",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 29231,
+      "captured_sha256": "e3aeeda06a57c58b18ee0e7417c48d322e8063c955d63d90aaef973df0b7b6cd"
+    },
+    {
+      "source_id": "S05_COPILOT_SDK_STRUCTURED_OUTPUT_AUTOPILOT",
+      "pillar": "GitHub Copilot SDK (CLI 1.0.102-0)",
+      "repo": "github/copilot-sdk",
+      "revision": "15fe467548d077978ae4040f1621db8bd515608f",
+      "requested_url": "https://github.com/github/copilot-sdk/commit/15fe467548d077978ae4040f1621db8bd515608f.patch",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_patch",
+      "inspected_paths": [
+        "python/copilot/session.py",
+        "rust/src/session.rs",
+        "dotnet/src/Session.StructuredOutput.cs",
+        "dotnet/src/Generated/Rpc.cs"
+      ],
+      "novelty": "source_contract_deep_dive",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 596946,
+      "captured_sha256": "189f69d600f95c8e13dd815f6c7aec42dcdd993c554392134dc58353fcbee1aa"
+    },
+    {
+      "source_id": "S06_COPILOT_SDK_TRUSTED_DISPLAY_IDENTITY",
+      "pillar": "GitHub Copilot SDK (CLI 1.0.105-1)",
+      "repo": "github/copilot-sdk",
+      "revision": "9bc718cb608c4cd3b63e0e71c637dcf1ebfd5409",
+      "requested_url": "https://github.com/github/copilot-sdk/commit/9bc718cb608c4cd3b63e0e71c637dcf1ebfd5409.patch",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_patch",
+      "inspected_paths": [
+        "python/copilot/generated/session_events.py",
+        "python/copilot/session.py",
+        "nodejs/src/generated/session-events.ts"
+      ],
+      "novelty": "source_contract_deep_dive",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 37268,
+      "captured_sha256": "7f8a5eb64c1d70d65ff7492338be0ce67c172c9f78f51ee7ff39ab854b064b2b"
+    },
+    {
+      "source_id": "S07_AZURE_MCP_TOOL_LIST_CACHE_TTL",
+      "pillar": "Microsoft Azure MCP Server (4.0.0-beta.4+)",
+      "repo": "microsoft/mcp",
+      "revision": "2caca623611f5229ef19b898e13065447ed26189",
+      "requested_url": "https://github.com/microsoft/mcp/commit/2caca623611f5229ef19b898e13065447ed26189.patch",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_patch",
+      "inspected_paths": [
+        "core/Microsoft.Mcp.Core/src/Areas/Server/Commands/ToolLoading/ToolListCache.cs",
+        "core/Microsoft.Mcp.Core/src/Areas/Server/Commands/Runtime/McpRuntime.cs"
+      ],
+      "novelty": "old_repo_new_mechanism",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 41892,
+      "captured_sha256": "6fb24a46c68c27903e794e4b84eb3f075ca1dfd5ce07b9885ae51188b3fa0df7"
+    },
+    {
+      "source_id": "S08_AZURE_MCP_KUSTO_TOKEN_ISOLATION",
+      "pillar": "Microsoft Azure MCP Server (4.0.0-beta.4)",
+      "repo": "microsoft/mcp",
+      "revision": "286a2b8b6ec0e2fe1d388ad45963a3fe8bf5a3b5",
+      "requested_url": "https://github.com/microsoft/mcp/commit/286a2b8b6ec0e2fe1d388ad45963a3fe8bf5a3b5.patch",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_patch",
+      "inspected_paths": [
+        "tools/Azure.Mcp.Tools.Kusto/src/Services/KustoClient.cs"
+      ],
+      "novelty": "old_repo_new_security_mechanism",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 21176,
+      "captured_sha256": "c976846e7dfa386ac9b316be5fcfb21531d5e84b2ec141c77b370f5fd575b229"
+    },
+    {
+      "source_id": "S09_GOOGLE_ADK_VERTEX_SESSION_ALLOWLIST",
+      "pillar": "AI Labs (Google ADK Python)",
+      "repo": "google/adk-python",
+      "revision": "968cd869ff79be622eb921c5e314bd19efd889d2",
+      "requested_url": "https://github.com/google/adk-python/commit/968cd869ff79be622eb921c5e314bd19efd889d2.patch",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_patch",
+      "inspected_paths": [
+        "src/google/adk/sessions/vertex_ai_session_service.py"
+      ],
+      "novelty": "old_repo_new_security_mechanism",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 6571,
+      "captured_sha256": "7a5f4d47dcc0cb3a08ab08859f4b905ae98d94d013215acd924cc6b988eeff65"
+    },
+    {
+      "source_id": "S10_GOOGLE_ADK_COMPACTION_ABORT_RACE",
+      "pillar": "AI Labs (Google ADK Python)",
+      "repo": "google/adk-python",
+      "revision": "87d9dcdf5273b54f61ee9d9cba95c30e5c0a5e0e",
+      "requested_url": "https://github.com/google/adk-python/commit/87d9dcdf5273b54f61ee9d9cba95c30e5c0a5e0e.patch",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_patch",
+      "inspected_paths": [
+        "src/google/adk/apps/compaction.py"
+      ],
+      "novelty": "old_repo_new_mechanism",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 18520,
+      "captured_sha256": "e627ffc890af94ad0f037b2b62ee771b9e371ae0b6a33a0492d886a80949d5ad"
+    },
+    {
+      "source_id": "S11_GOOGLE_ADK_GO_TOOLAUTH_REDACTION",
+      "pillar": "AI Labs (Google ADK Go)",
+      "repo": "google/adk-go",
+      "revision": "beea418caa2b5cc9417251a37e7ee527ae7f99df",
+      "requested_url": "https://github.com/google/adk-go/commit/beea418caa2b5cc9417251a37e7ee527ae7f99df.patch",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_patch",
+      "inspected_paths": [
+        "tool/toolauth/auth_tool.go",
+        "tool/toolauth/redact.go"
+      ],
+      "novelty": "old_repo_new_security_mechanism",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 133561,
+      "captured_sha256": "a28b6a4e302ba6a3aac11f65cd5d7490e67f37a9f1f2ff29c76aac8e7596d944"
+    },
+    {
+      "source_id": "S12_MCP_GO_SDK_MRTR_MIDDLEWARE",
+      "pillar": "AI Labs (MCP Go SDK)",
+      "repo": "modelcontextprotocol/go-sdk",
+      "revision": "eafb671c47d45f3c8a001495f7dd6d605ea4a374",
+      "requested_url": "https://github.com/modelcontextprotocol/go-sdk/commit/eafb671c47d45f3c8a001495f7dd6d605ea4a374.patch",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_patch",
+      "inspected_paths": [
+        "mcp/mrtr.go"
+      ],
+      "novelty": "old_repo_new_security_mechanism",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 5403,
+      "captured_sha256": "6cf45340015a048980c01926ede152c2ee34b2b3c321ca40b243c2a77f192c31"
+    },
+    {
+      "source_id": "S13_OPENAI_AGENTS_JS_MANIFEST_AUTHORITY",
+      "pillar": "AI Labs (OpenAI Agents JS)",
+      "repo": "openai/openai-agents-js",
+      "revision": "52fcb5769c74844b198affe377e75fe04b1732a3",
+      "requested_url": "https://github.com/openai/openai-agents-js/commit/52fcb5769c74844b198affe377e75fe04b1732a3.patch",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_patch",
+      "inspected_paths": [
+        "packages/agents-core/src/sandbox/runtime/sessionState.ts",
+        "packages/agents-core/src/sandbox/mountSecurity.ts"
+      ],
+      "novelty": "old_repo_new_security_mechanism",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 210597,
+      "captured_sha256": "75df3734552cb7ab086052be3cc1b635af897b8a618a7305b8318b329ec6ae6b"
+    },
+    {
+      "source_id": "S14_CODEX_GUARDIAN_ASSESSMENT_STREAM",
+      "pillar": "Coding Agent CLI (OpenAI Codex rust-v0.166.0)",
+      "repo": "openai/codex",
+      "revision": "fc916a22b57e9d7b17988f044a54794d2222ae2c",
+      "requested_url": "https://github.com/openai/codex/commit/fc916a22b57e9d7b17988f044a54794d2222ae2c.patch",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_patch",
+      "inspected_paths": [
+        "codex-rs/codex-api/src/guardian_assessment.rs",
+        "codex-rs/codex-api/src/sse/responses.rs",
+        "codex-rs/core/src/session/turn.rs"
+      ],
+      "novelty": "source_contract_deep_dive",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 32741,
+      "captured_sha256": "995ac1a7200ff909e1acf59a6e7948416036c4d34ce538da9b2317e4a0b6f667"
+    },
+    {
+      "source_id": "S15_CODEX_WRITE_STDIN_ORIGINAL_COMMAND",
+      "pillar": "Coding Agent CLI (OpenAI Codex rust-v0.166.0)",
+      "repo": "openai/codex",
+      "revision": "7c11b8074dbdbab2a3afedf30df7c55f0c6907d8",
+      "requested_url": "https://github.com/openai/codex/commit/7c11b8074dbdbab2a3afedf30df7c55f0c6907d8.patch",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_patch",
+      "inspected_paths": [
+        "codex-rs/core/src/unified_exec/process_manager.rs",
+        "codex-rs/core/src/unified_exec/stdin_approval.rs"
+      ],
+      "novelty": "source_contract_deep_dive",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 12316,
+      "captured_sha256": "5e33c873778c45eea65dcdd1ed4a85955baa02fc7b49bfdbacbd1c43f9d6fd97"
+    },
+    {
+      "source_id": "S16_CODEX_MANAGED_OTEL_FIELD_PROTECTION",
+      "pillar": "Coding Agent CLI (OpenAI Codex rust-v0.166.0)",
+      "repo": "openai/codex",
+      "revision": "154e8736a51224e12b2d990753622a2cd8118f54",
+      "requested_url": "https://github.com/openai/codex/commit/154e8736a51224e12b2d990753622a2cd8118f54.patch",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_patch",
+      "inspected_paths": [
+        "codex-rs/config/src/config_requirements.rs",
+        "codex-rs/config/src/requirements_layers/stack.rs",
+        "codex-rs/otel/src/otlp.rs"
+      ],
+      "novelty": "source_contract_deep_dive",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 750982,
+      "captured_sha256": "828917637a367671c6be43ff6b573dbc52416c1cd9729f0df54a850fdb35565d"
+    },
+    {
+      "source_id": "S17_COOKBOOK_DECISIONS_API_ROUTING",
+      "pillar": "Coding Agent CLI / Eval (OpenAI Cookbook)",
+      "repo": "openai/openai-cookbook",
+      "revision": "f5819076643583e2c2a77268e7fe522e927499d0",
+      "requested_url": "https://raw.githubusercontent.com/openai/openai-cookbook/f5819076643583e2c2a77268e7fe522e927499d0/examples/decisions/routing.py",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_raw_file",
+      "inspected_paths": [
+        "examples/decisions/routing.py",
+        "examples/decisions/customer_requests.json",
+        "examples/decisions/test_customer_request_routing.py"
+      ],
+      "novelty": "old_repo_new_mechanism",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 4791,
+      "captured_sha256": "07baff4bee5c5668a6026d3ca5515d3ccc79ade16b6ac296140f12599dd72eab"
+    },
+    {
+      "source_id": "S18_CLAUDE_CODE_CHANGELOG_V2_1_312_314",
+      "pillar": "Coding Agent CLI (Anthropic Claude Code v2.1.312-v2.1.314)",
+      "repo": "anthropics/claude-code",
+      "revision": "b3f291d131924810e2b7713ededc144843a229d5",
+      "requested_url": "https://raw.githubusercontent.com/anthropics/claude-code/b3f291d131924810e2b7713ededc144843a229d5/CHANGELOG.md",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_raw_file",
+      "inspected_paths": [
+        "CHANGELOG.md"
+      ],
+      "novelty": "source_contract_deep_dive",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 1121848,
+      "captured_sha256": "1786d423ae4312abf0dcdf9ea0ae15c07919bb3957caf34f84a7d1c2ccd047a5"
+    },
+    {
+      "source_id": "S19_CLAUDE_CODE_SEC_DEFAULT_SKIP_LIST",
+      "pillar": "Coding Agent CLI (Anthropic Claude Code mods/sec-default)",
+      "repo": "anthropics/claude-code",
+      "revision": "d4dfed4e1c578cfea8bd6e64873e4f5e5b7e36f0",
+      "requested_url": "https://raw.githubusercontent.com/anthropics/claude-code/d4dfed4e1c578cfea8bd6e64873e4f5e5b7e36f0/mods/sec-default/README.md",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_raw_file",
+      "inspected_paths": [
+        "mods/sec-default/README.md",
+        "mods/sec-default/hooks/register.ts"
+      ],
+      "novelty": "old_repo_new_security_mechanism",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 35940,
+      "captured_sha256": "97520d7ae32e2dc7f249f069aed6f35d8f3830bac13bf7c6ffa3097cfa462e75"
+    },
+    {
+      "source_id": "S20_CAPA_INSTALL_PATH_GUARD",
+      "pillar": "Community Supply Chain Audit (infragate/capa)",
+      "repo": "infragate/capa",
+      "revision": "d7af1197d4214599b8143794212b6094c9096d99",
+      "requested_url": "https://raw.githubusercontent.com/infragate/capa/d7af1197d4214599b8143794212b6094c9096d99/src/shared/install-path-guard.ts",
+      "http_status": 200,
+      "evidence_tier": "fixed_commit_raw_file",
+      "inspected_paths": [
+        "src/shared/install-path-guard.ts",
+        "src/shared/hooks-validate.ts",
+        "src/cli/commands/install-tasks/register-mcp-server.ts"
+      ],
+      "novelty": "source_contract_deep_dive",
+      "runtime_status": "upstream_product_NOT_RUN",
+      "captured_bytes": 6232,
+      "captured_sha256": "b172ed4ed01f6cc29ea2c56e6504ef39e22ae53792ad9447846d6f9b494c4525"
+    }
+  ]
+}

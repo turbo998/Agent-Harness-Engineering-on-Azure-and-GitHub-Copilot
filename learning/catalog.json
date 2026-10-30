@@ -612,6 +612,15 @@
     "sha256": "bc39d69e2c95bf2ea26a4dc8bff0fd43f32ad836c8940a02f4c34b05a5f60f87"
   },
   {
+    "path": "assets/agent-plan-review-autopilot-and-hook-concurrency-lab-2026-10-31.md",
+    "title": "Agent 计划审批保持、Autopilot 结构化输出与 Hook 并发限流验收实验室（2026-10-31）",
+    "date": "2026-10-31",
+    "topic": "Workshop 练习",
+    "status": "published",
+    "source_name": "agent-plan-review-autopilot-and-hook-concurrency-lab-2026-10-31.md",
+    "sha256": "5834bf57ea7cccdb196b7fde4ecf9151d3ff7feb77acb8534ef40c391cfde7d0"
+  },
+  {
     "path": "assets/codex-remote-control-plane-cheatsheet.md",
     "title": "Codex Remote 控制平面 & 上下文生命周期速查 [→harness]",
     "date": null,

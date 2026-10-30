@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-31",
+  "artifact": "agent-plan-review-autopilot-and-hook-concurrency-lab-2026-10-31",
+  "execution_environment": {
+    "python_version": "3.11.15",
+    "modes_verified": [
+      "normal (-B)",
+      "optimized (-B -O)"
+    ],
+    "network_access": false,
+    "upstream_product_runtime": "NOT_RUN"
+  },
+  "bound_files": {
+    "harness_contracts.py": {
+      "bytes": 31781,
+      "sha256": "0b5be9f56416b7ef3917b43727759a1248c1c7cbacfeb23510d2e6c350b827a1"
+    },
+    "test_harness_contracts.py": {
+      "bytes": 35795,
+      "sha256": "bc61e8fa1e2a56643c8b4abe673306f7061a741d711fc8cad0059814921c9dbf"
+    },
+    "fixtures/provenance.json": {
+      "bytes": 16493,
+      "sha256": "91358fa41dd9bdbb24a1b2f0800fe305866295898f6929859097146b76e5b894"
+    }
+  },
+  "results": {
+    "normal_mode": {
+      "exit_code": 0,
+      "tests_run": 24,
+      "tests_passed": 24
+    },
+    "optimized_mode": {
+      "exit_code": 0,
+      "tests_run": 24,
+      "tests_passed": 24
+    },
+    "mutation_calibration": {
+      "mutations_total": 6,
+      "mutations_killed": 6,
+      "mutations": [
+        {
+          "mutation_id": "M1_magentic_disables_heuristic_checkpoint_restore",
+          "status": "KILLED",
+          "failed_test_count": 1,
+          "failed_tests": [
+            "test_02_magentic_plan_review_rejects_unsolicited_response_and_restores_checkpoint"
+          ]
+        },
+        {
+          "mutation_id": "M2_copilot_autopilot_completes_on_intermediate_idle",
+          "status": "KILLED",
+          "failed_test_count": 1,
+          "failed_tests": [
+            "test_05_copilot_autopilot_ignores_intermediate_idle_and_completes_on_correlated_stop"
+          ]
+        },
+        {
+          "mutation_id": "M3_google_adk_allows_temp_state_persistence",
+          "status": "KILLED",
+          "failed_test_count": 1,
+          "failed_tests": [
+            "test_10_google_adk_compaction_abort_artifact_filtering_and_toolauth_redaction"
+          ]
+        },
+        {
+          "mutation_id": "M4_openai_agents_js_trusts_provider_manifest_authority",
+          "status": "KILLED",
+          "failed_test_count": 1,
+          "failed_tests": [
+            "test_13_openai_agents_js_manifest_authority_overwrites_untrusted_provider_security_fields"
+          ]
+        },
+        {
+          "mutation_id": "M5_codex_write_stdin_counts_original_command_against_8kb",
+          "status": "KILLED",
+          "failed_test_count": 1,
+          "failed_tests": [
+            "test_16_codex_write_stdin_excludes_original_command_from_8kb_limit"
+          ]
+        },
+        {
+          "mutation_id": "M6_claude_hook_concurrency_raises_active_cap_to_100",
+          "status": "KILLED",
+          "failed_test_count": 1,
+          "failed_tests": [
+            "test_20_claude_code_hook_concurrency_24_active_12_timeout_waiting_and_min_1s_timeout"
+          ]
+        }
+      ]
+    }
+  }
+}
